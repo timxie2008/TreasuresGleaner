@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="sea.plist" tex="sea.png"></texture>
+  <mesh name="coral_01">
+    <frame src="coral_01.png"></frame>
+  </mesh>
+  <pose name="stand">
+    <part name="body">
+      <mesh ref="coral_01" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscale="15%,15%" ></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

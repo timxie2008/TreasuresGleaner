@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stage>
+  <model id="player" src="player.spr"></model>
+  <model id="sea" src="sea.spr"></model>
+  <model id="light" src="light.spr"></model>
+  <model id="sand-01" src="sand-01.spr"></model>
+  <model id="wave-01" src="wave-01.spr"></model>
+  <model id="wave-02" src="wave-02.spr"></model>
+  <model id="wave-03" src="wave-03.spr"></model>
+  <model id="info_dist_max_back" src="ui_info_dist_max_back.spr"></model>
+  <model id="info_dist_last_back" src="ui_info_dist_last_back.spr"></model>
+  <model id="label_dist_last" src="ui_label_dist_last.spr"></model>
+  <model id="label_dist_max" src="ui_label_dist_max.spr"></model>
+  <model id="label_coin_last" src="ui_label_coin_last.spr"></model>
+  <model id="label_coin_max" src="ui_label_coin_max.spr"></model>
+  <model id="button_music" src="ui_button_music.spr"></model>
+  <model id="button_sound" src="ui_button_sound.spr"></model>
+  <model id="button_play" src="ui_button_play.spr"></model>
+  <model id="button_shop" src="ui_button_shop.spr"></model>
+  <model id="label_title" src="ui_label_title.spr"></model>
+  <model id="button_pause" src="ui_button_pause.spr"></model>
+  <model id="button_resume" src="ui_button_resume.spr"></model>
+  <model id="button_restart" src="ui_button_restart.spr"></model>
+  <!--model id="button_quit" src="ui_button_quit.spr"></model-->
+  <model id="label_distance" src="ui_label_distance.spr"></model>
+  <model id="label_gas" src="ui_label_gas.spr"></model>
+  <model id="label_coin" src="ui_label_coin.spr"></model>
+  <!--model id="dialog_border" src="dialog_border.spr"></model-->
+  <model id="text_pop" src="text_pop.spr"></model>
+  <model id="text_blue" src="text_blue.spr"></model>
+  <model id="text_yellow" src="text_yellow.spr"></model>
+  <model id="bubble" src="bubble.spr"></model>
+  <model id="fish-01" src="fish-01.spr"></model>
+  <model id="coral-01" src="coral-01.spr"></model>
+  <model id="pearl-golden" src="pearl_golden.spr"></model>
+  <model id="pearl-black" src="pearl_black.spr"></model>
+  <model id="pearl-white" src="pearl_white.spr"></model>
+  <model id="panel_black" src="ui_panel_black.spr"></model>
+  <!--music id="bgm1" src="audio/bgm/Main_bgm.mp3" duration="14"></music>
+  <music id="bgm2" src="audio/bgm/pandora_bgm.mp3" duration="38"></music>
+  <music id="bgm3" src="audio/bgm/pandora_comboBgm.mp3" duration="17"></music>
+  <music id="bgm4" src="audio/bgm/Birzzle_HurryUp.mp3" duration="6"></music>
+  <music id="bgm5" src="audio/bgm/facebook_rank_bgm.m4a" duration="7"></music>
+  <sound id="sfx_over" src="audio/SFX/event_rouletteOpen.ogg"></sound-->
+  <layer id="game" ref="game.layer">
+  </layer>
+</stage>
