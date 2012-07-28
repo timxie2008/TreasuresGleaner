@@ -18,7 +18,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)bin\$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName).win32"
 			IntermediateDirectory="$(ConfigurationName).win32"
 			ConfigurationType="1"
 			CharacterSet="1"
@@ -121,7 +121,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)CocosDenshion\include&quot;;..\Classes;$(SolutionDir)cocos2dx;$(SolutionDir)cocos2dx\platform;$(SolutionDir)cocos2dx\platform\win32;$(SolutionDir)cocos2dx\platform\third_party\win32\iconv;$(SolutionDir)cocos2dx\platform\third_party\win32\zlib;$(SolutionDir)cocos2dx\platform\third_party\win32\libpng;$(SolutionDir)cocos2dx\platform\third_party\win32\libjpeg;$(SolutionDir)cocos2dx\platform\third_party\win32\libtiff;$(SolutionDir)cocos2dx\platform\third_party\win32\libxml2;$(SolutionDir)cocos2dx\platform\third_party\win32\pthread;$(SolutionDir)cocos2dx\platform\third_party\win32\OGLES;$(SolutionDir)cocos2dx\include;$(SolutionDir)cocos2dx\kazmath\include;$(SolutionDir)cocos2dx\actions;$(SolutionDir)cocos2dx\base_nodes;$(SolutionDir)cocos2dx\cocoa;$(SolutionDir)cocos2dx\effects;$(SolutionDir)cocos2dx\extensions;$(SolutionDir)cocos2dx\keypad_dispatcher;$(SolutionDir)cocos2dx\label_nodes;$(SolutionDir)cocos2dx\layers_scenes_transitions_nodes;$(SolutionDir)cocos2dx\menu_nodes;$(SolutionDir)cocos2dx\misc_nodes;$(SolutionDir)cocos2dx\particle_nodes;$(SolutionDir)cocos2dx\script_support;$(SolutionDir)cocos2dx\shaders;$(SolutionDir)cocos2dx\sprite_nodes;$(SolutionDir)cocos2dx\text_input_node;$(SolutionDir)cocos2dx\textures;$(SolutionDir)cocos2dx\tileMap_parallax_nodes;$(SolutionDir)cocos2dx\touch_dispatcher;$(SolutionDir)cocos2dx\support"
+				AdditionalIncludeDirectories="..\..\libcacore\Classes;..\Classes;&quot;$(SolutionDir)cocos2d.home\cocos2dx&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\include&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\kazmath\include&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\win32&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32\iconv&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32\libxml2&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32\OGLES&quot;;&quot;$(SolutionDir)cocos2d.home\&quot;;&quot;$(SolutionDir)cocos2d.home\chipmunk\include\chipmunk&quot;;&quot;$(SolutionDir)cocos2d.home\CocosDenshion\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;COCOS2D_DEBUG=1"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcocos2d.lib libEGL.lib libGLESv2.lib libBox2d.lib libchipmunk.lib libcurl_imp.lib libxml2.lib libzlib.lib libpng.lib libjpeg.lib libiconv.lib libtiff.lib pthreadVCE2.lib"
+				AdditionalDependencies="libcocos2d.lib opengl32.lib glew32.lib libcurl_imp.lib libxml2.lib libzlib.lib libpng.lib libjpeg.lib libiconv.lib libtiff.lib pthreadVCE2.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(OutDir)"
@@ -308,14 +308,6 @@
 				</File>
 				<File
 					RelativePath="..\..\libcacore\Classes\AObject.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\libcacore\Classes\AppDelegate.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\libcacore\Classes\AppDelegate.h"
 					>
 				</File>
 				<File
