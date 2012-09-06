@@ -1,8 +1,9 @@
+md ..\Resources\env 
+md ..\Resources\ui
+md ..\Resources\character
+ 
 copy .\env\env.plist ..\Resources\env\ /Y
 copy .\env\env.png ..\Resources\env\ /Y
-
-copy .\blockers\blockers.plist ..\Resources\env\ /Y
-copy .\blockers\blockers.png ..\Resources\env\ /Y
 
 copy .\ui\ui.plist ..\Resources\ui\ /Y
 copy .\ui\ui.png ..\Resources\ui\ /Y
