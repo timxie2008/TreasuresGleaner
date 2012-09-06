@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>10001.png</key>
+            <key>blocker_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,308},{114,114}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{128,128}</string>
             </dict>
-            <key>10002.png</key>
+            <key>blocker_02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{118,118}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{128,128}</string>
             </dict>
-            <key>10003.png</key>
+            <key>blocker_03.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,424},{86,114}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{128,128}</string>
             </dict>
-            <key>10004.png</key>
+            <key>blocker_04.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,226},{80,116}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{128,128}</string>
             </dict>
-            <key>10005.png</key>
+            <key>blocker_05.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,122},{102,118}}</string>
@@ -79,7 +79,7 @@
             <key>size</key>
             <string>{128,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4829bf72121a884f76e2850fe34a2fb8$</string>
+            <string>$TexturePacker:SmartUpdate:2bebe8b7221c34f318bb74d6912238e7$</string>
             <key>textureFileName</key>
             <string>blockers.png</string>
         </dict>
