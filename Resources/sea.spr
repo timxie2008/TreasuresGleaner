@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="sea.plist" tex="sea.png"></texture>
+  <mesh name="water">
+    <frame src="water.png"></frame>
+  </mesh>
+  <pose name="stand">
+    <part name="body">
+      <mesh ref="water" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" apos="0,1" yardpos="0%,100%" yardscale="100%,100%" ></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite> 

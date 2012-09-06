@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="ui.plist" tex="ui.png"></texture>
+  <mesh name="btn_options">
+    <frame src="button_options.png"></frame>
+  </mesh>
+  <settings>
+    <!--key name="deadpose" string="dismiss"></key-->
+  </settings>
+  <pose name="idle" collid="0.99,0.99">
+    <part name="body">
+      <mesh ref="btn_options" dt="1000"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="09%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="fadein" collid="0.99,0.99">
+    <part name="body">
+      <mesh ref="btn_options" dt="1000"></mesh>
+      <modifier mode="abc0" ref="ui_button_fadein.anim" timescale="1.0" timeoffset="0.2">
+      </modifier>
+    </part>
+  </pose>
+  <pose name="fadeout" collid="0.99,0.99">
+    <part name="body">
+      <mesh ref="btn_options" dt="1000"></mesh>
+      <modifier mode="abc0" ref="ui_button_fadeout.anim" timescale="1.0" timeoffset="0.2"></modifier>
+    </part>
+  </pose>
+  <pose name="pressed" collid="1.1,1.1">
+    <part name="body">
+      <mesh ref="btn_options" dt="1000"></mesh>
+      <modifier mode="abc0" ref="ui_button_pressed.anim" timescale="1.0" timeoffset="0.0"></modifier>
+    </part>
+  </pose>
+</sprite>

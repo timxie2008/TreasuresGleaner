@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="sea.plist" tex="sea.png"></texture>
+  <mesh name="wave-02">
+    <frame src="wave-02.png"></frame>
+  </mesh>
+  <pose name="stand">
+    <part name="body">
+      <mesh ref="wave-02" dt="1"></mesh>
+      <modifier mode="abcb">
+        <key time="0000" apos="0,1" yardpos="0%,100%" yardscale="100%,20%" ></key>
+        <key time="0400" apos="0,1" yardpos="0%,099%" yardscale="100%,20%" ></key>
+        <key time="0800" apos="0,1" yardpos="0%,098%" yardscale="100%,20%" ></key>
+        <key time="1200" apos="0,1" yardpos="0%,097%" yardscale="100%,20%" ></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

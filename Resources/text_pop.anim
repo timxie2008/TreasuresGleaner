@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<anim version="1.0">
+  <key time="000" yardscaley="6%"  yardpos="0,0.01" alpha="99%"></key>
+  <key time="040" yardscaley="6%"  yardpos="0,0.02" alpha="80%"></key>
+  <key time="080" yardscaley="6%"  yardpos="0,0.03" alpha="60%"></key>
+  <key time="120" yardscaley="7%"  yardpos="0,0.04" alpha="20%"></key>
+  <key time="160" yardscaley="8%"  yardpos="0,0.05" alpha="00%"></key>
+</anim>
