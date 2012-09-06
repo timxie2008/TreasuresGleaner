@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout version="1.0">
-  <child name="1" ref="pearl-golden" gname="pearl-golden" xpos="0,0" pose="stand"></child>
-  <child name="2" ref="pearl-white" gname="pearl-white" xpos="0,0.03" pose="stand"></child>
-  <child name="3" ref="pearl-white" gname="pearl-white" xpos="0,-0.03" pose="stand"></child>
-  <child name="4" ref="pearl-black" gname="pearl-black" xpos="0.03,0" pose="stand"></child>
-  <child name="5" ref="pearl-black" gname="pearl-black" xpos="-0.03,0" pose="stand"></child>
-</layout>
