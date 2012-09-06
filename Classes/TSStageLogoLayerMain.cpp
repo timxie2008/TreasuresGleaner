@@ -12,7 +12,7 @@
 #define STATE_WAITING	"waiting"
 #define STATE_FADING	"fading"
 
-#define STAGE_NEXT	"play"
+#define STAGE_NEXT	"game/game"
 
 TSStageLogoLayerMain::TSStageLogoLayerMain(CAStage* pstage, CAStageLayer* playerParent) : CAStageLayer(pstage, playerParent)
 {

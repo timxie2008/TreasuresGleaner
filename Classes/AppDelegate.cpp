@@ -141,7 +141,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     //CCDirector::sharedDirector()->setProjection(kCCDirectorProjection3D);
 
 	_world.initialize();
-	CAStage* pstage = _world.createStage(START_STAGE);
+	string start = _world.settings().getString("entry");
+	CAStage* pstage = _world.createStage(start.c_str());
 	while (SLS_Finished != pstage->loadProgressively());
 	_world.switchStage(pstage);
 

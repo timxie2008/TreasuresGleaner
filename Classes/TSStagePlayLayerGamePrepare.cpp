@@ -62,7 +62,6 @@ bool TSStagePlayLayerGamePrepare::checkCondition(CAState* from, const CATransiti
 			{
 				_label_title(),
 				_button_play(),
-				_button_shop(),
 				null,
 			};
 			result = _checkSpritePoseFinished(pszPose, psprs);
@@ -116,7 +115,7 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 	{
 		_InitGetters();
 
-		const char* cm = "0123456789mc+";
+		const char* cm = "0123456789m+";
 		
 #define NUMBER_COUNT 7
 		CASprite* psprs[NUMBER_COUNT];
@@ -124,26 +123,18 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		_dist_last.init(this, psprs, NUMBER_COUNT, cm);
 		_findNumberSprites("dist_max", psprs, NUMBER_COUNT);
 		_dist_max.init(this, psprs, NUMBER_COUNT, cm);
-		_findNumberSprites("coin_last", psprs, NUMBER_COUNT);
-		_coin_last.init(this, psprs, NUMBER_COUNT, cm);
-		_findNumberSprites("coin_max", psprs, NUMBER_COUNT);
-		_coin_max.init(this, psprs, NUMBER_COUNT, cm);
 
 		CASprite* psprsStatic[] = 
 		{
 			_label_title(),
-			_info_dist_last_back(),
-			_info_dist_max_back(),
+			_info_dist_back(),
 			_label_dist_last(),
 			_label_dist_max(),
-			_label_coin_last(),
-			_label_coin_max(),
 			null,
 		};
 		CASprite* psprsControls[] =
 		{
 			_button_play(),
-			_button_shop(),
 			null,
 		};
 		_setSpritesState(STATE_Fadein, psprsStatic);
@@ -169,18 +160,14 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		CASprite* psprsStatic[] = 
 		{
 			_label_title(),
-			_info_dist_last_back(),
-			_info_dist_max_back(),
+			_info_dist_back(),
 			_label_dist_last(),
 			_label_dist_max(),
-			_label_coin_last(),
-			_label_coin_max(),
 			null,
 		};
 		CASprite* psprsControls[] =
 		{
 			_button_play(),
-			_button_shop(),
 			null,
 		};
 		_setSpritesState(STATE_Fadeout, psprsStatic);
@@ -190,8 +177,6 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 
 		_dist_last.setState(STATE_Fadeout);
 		_dist_max.setState(STATE_Fadeout);
-		_coin_last.setState(STATE_Fadeout);
-		_coin_max.setState(STATE_Fadeout);
 	}
 	else ;
 };
@@ -278,14 +263,6 @@ void TSStagePlayLayerGamePrepare::onUpdate()
 		sprintf(szNumber, "%dm", 0x2234);
 		_dist_max.setText(szNumber);
 		_dist_max.onUpdate();
-
-		sprintf(szNumber, "%dc", 0x2234);
-		_coin_last.setText(szNumber);
-		_coin_last.onUpdate();
-
-		sprintf(szNumber, "%dc", 0x2234);
-		_coin_max.setText(szNumber);
-		_coin_max.onUpdate();
 
 		int c = this->_getNamedSpritesCount("bubble");
 		if (c < 20)

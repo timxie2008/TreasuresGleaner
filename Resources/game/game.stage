@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stage>
+  <!-- env -->
+  <model id="sea" src="env/sea.spr"></model>
+  <model id="light" src="env/light.spr"></model>
+  <model id="wave" src="env/wave.spr"></model>
+  <model id="sand" src="env/sand.spr"></model>
+  <model id="bubble" src="env/bubble.spr"></model>
+  <model id="pearl" src="env/pearl.spr"></model>
+  <model id="coral" src="env/coral.spr"></model>
+
+  <!-- ui -->
+  <model id="label_title" src="ui/ui_label_title.spr"></model>
+  <model id="info_dist_back" src="ui/ui_info_dist_back.spr"></model>
+  <model id="label_dist_last" src="ui/ui_label_dist_last.spr"></model>
+  <model id="label_dist_max" src="ui/ui_label_dist_max.spr"></model>
+  <model id="text_yellow" src="ui/text_yellow.spr"></model>
+  <model id="button_music" src="ui/ui_button_music.spr"></model>
+  <model id="button_sound" src="ui/ui_button_sound.spr"></model>
+  <model id="button_play" src="ui/ui_button_play.spr"></model>
+  <!--model id="button_shop" src="ui/ui_button_shop.spr"></model-->
+
+  <!-- play ui -->
+  <model id="label_distance" src="ui/ui_label_distance.spr"></model>
+  <model id="text_blue" src="ui/text_blue.spr"></model>
+  <!-- character -->
+  <model id="player" src="character/player.spr"></model>
+
+  <!-- pause -->
+  <model id="panel_black" src="ui/ui_panel_black.spr"></model>
+  <model id="button_pause" src="ui/ui_button_pause.spr"></model>
+  <model id="button_resume" src="ui/ui_button_resume.spr"></model>
+  <model id="button_restart" src="ui/ui_button_restart.spr"></model>
+
+  <!--music id="bgm1" src="audio/bgm/Main_bgm.mp3" duration="14"></music>
+  <music id="bgm2" src="audio/bgm/pandora_bgm.mp3" duration="38"></music>
+  <music id="bgm3" src="audio/bgm/pandora_comboBgm.mp3" duration="17"></music>
+  <music id="bgm4" src="audio/bgm/Birzzle_HurryUp.mp3" duration="6"></music>
+  <music id="bgm5" src="audio/bgm/facebook_rank_bgm.m4a" duration="7"></music>
+  <sound id="sfx_over" src="audio/SFX/event_rouletteOpen.ogg"></sound-->
+  <layer id="game" ref="game/game.layer">
+  </layer>
+</stage>

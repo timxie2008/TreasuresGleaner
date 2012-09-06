@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="env/env.plist" tex="env/env.png"></texture>
+  <!--mesh ref="xxx.spr"></mesh>
+  <mesh ref="xxx.spr"></mesh-->
+  <mesh name="env_bubble">
+    <frame src="bubble.png" ></frame>
+  </mesh>
+  <pose name="pop">
+    <part name="root">
+      <mesh ref="env_bubble" dt="10"></mesh>
+      <modifier mode="abc0" abs="false">
+        <key time="0"    yardpos="0,00%" scale="0.40,0.40" alpha="60%"></key>
+        <key time="100"  yardpos="0,10%" scale="0.42,0.42" alpha="70%"></key>
+        <key time="200"  yardpos="0,20%" scale="0.48,0.48" alpha="80%"></key>
+        <key time="300"  yardpos="0,30%" scale="0.56,0.56" alpha="90%"></key>
+        <key time="400"  yardpos="0,40%" scale="0.64,0.64" alpha="100%"></key>
+        <key time="500"  yardpos="0,50%" scale="0.70,0.70" alpha="90%"></key>
+        <key time="600"  yardpos="0,60%" scale="0.82,0.82" alpha="30%"></key>
+        <key time="700"  yardpos="0,70%" scale="0.92,0.92" alpha="0%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="pop_slow">
+    <part name="root">
+      <mesh ref="env_bubble" dt="10"></mesh>
+      <modifier mode="abc0" timescale="2" keyas="posy">
+        <key time="0"    yardpos="0,00%" scale="0.40,0.40" alpha="30%"></key>
+        <key time="100"  yardpos="0,10%" scale="0.42,0.42" alpha="70%"></key>
+        <key time="200"  yardpos="0,20%" scale="0.48,0.48" alpha="80%"></key>
+        <key time="300"  yardpos="0,30%" scale="0.56,0.56" alpha="90%"></key>
+        <key time="400"  yardpos="0,40%" scale="0.64,0.64" alpha="100%"></key>
+        <key time="500"  yardpos="0,50%" scale="0.70,0.70" alpha="90%"></key>
+        <key time="600"  yardpos="0,60%" scale="0.82,0.82" alpha="30%"></key>
+        <key time="700"  yardpos="0,70%" scale="0.92,0.92" alpha="0%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="pop_low">
+    <part name="root">
+      <mesh ref="env_bubble" dt="10"></mesh>
+      <modifier mode="abc0" abs="false">
+        <key time="0"    yardpos="0,00%" scale="0.40,0.40" alpha="60%"></key>
+        <key time="100"  yardpos="0,05%" scale="0.42,0.42" alpha="70%"></key>
+        <key time="200"  yardpos="0,10%" scale="0.48,0.48" alpha="80%"></key>
+        <key time="300"  yardpos="0,15%" scale="0.56,0.56" alpha="90%"></key>
+        <key time="400"  yardpos="0,20%" scale="0.64,0.64" alpha="100%"></key>
+        <key time="500"  yardpos="0,25%" scale="0.70,0.70" alpha="90%"></key>
+        <key time="600"  yardpos="0,30%" scale="0.82,0.82" alpha="30%"></key>
+        <key time="700"  yardpos="0,30%" scale="0.92,0.92" alpha="0%"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

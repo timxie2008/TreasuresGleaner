@@ -3,14 +3,6 @@
   <settings>
     <key name="fps" float="60" />
     <key name="log" int="2" />
+    <key name="entry" string="logo/logo" />
   </settings>
-  <fadetable>
-    <fade from="logo" to="menu" trans="slide_top" duration="0.3"></fade>
-    <fade from="logo" to="play" trans="slide_eight" duration="0.3"></fade>
-    <fade from="menu" to="play" trans="slide_left" duration="0.3"></fade>
-    <fade from="play" to="menu" trans="slide_right" duration="0.3"></fade>
-    <fade from="play" to="play" trans="slide_right" duration="0.3"></fade>
-    <fade from="menu" to="options" trans="slide_left" duration="0.3"></fade>
-    <fade from="options" to="menu" trans="slide_right" duration="0.3"></fade>
-  </fadetable>
 </world> 

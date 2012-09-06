@@ -13,45 +13,34 @@ class TSStagePlayLayerGamePrepare :
 {
 protected:
 	Define_Sprite_Getter(TSSpriteCommon, label_title);
-	Define_Sprite_Getter(TSSpriteCommon, info_dist_last_back);
-	Define_Sprite_Getter(TSSpriteCommon, info_dist_max_back);
+	Define_Sprite_Getter(TSSpriteCommon, info_dist_back);
 	Define_Sprite_Getter(TSSpriteCommon, label_dist_last);
 	Define_Sprite_Getter(TSSpriteCommon, label_dist_max);
-	Define_Sprite_Getter(TSSpriteCommon, label_coin_last);
-	Define_Sprite_Getter(TSSpriteCommon, label_coin_max);
-	//Define_Sprite_Getter(TSSpriteCommon, panel_scores);
 	Define_Sprite_Getter(TSSpriteButton, button_play);
-	Define_Sprite_Getter(TSSpriteButton, button_shop);
+	//Define_Sprite_Getter(TSSpriteButton, button_shop);
 	Define_Sprite_Getter(TSSpriteButton, button_music);
 	Define_Sprite_Getter(TSSpriteButton, button_sound);
 
 	void _NullGetters()
 	{
 		Init_Sprite_Getter_Var(label_title);
-		Init_Sprite_Getter_Var(info_dist_last_back);
-		Init_Sprite_Getter_Var(info_dist_max_back);
+		Init_Sprite_Getter_Var(info_dist_back);
 		Init_Sprite_Getter_Var(label_dist_last);
 		Init_Sprite_Getter_Var(label_dist_max);
-		Init_Sprite_Getter_Var(label_coin_last);
-		Init_Sprite_Getter_Var(label_coin_max);
 		//Init_Sprite_Getter_Var(panel_scores);
 		Init_Sprite_Getter_Var(button_play);
-		Init_Sprite_Getter_Var(button_shop);
+		//Init_Sprite_Getter_Var(button_shop);
 		Init_Sprite_Getter_Var(button_music);
 		Init_Sprite_Getter_Var(button_sound);
 	}
 	void _InitGetters()
 	{
 		Init_Sprite_Getter(TSSpriteCommon, label_title);
-		Init_Sprite_Getter(TSSpriteCommon, info_dist_last_back);
-		Init_Sprite_Getter(TSSpriteCommon, info_dist_max_back);
+		Init_Sprite_Getter(TSSpriteCommon, info_dist_back);
 		Init_Sprite_Getter(TSSpriteCommon, label_dist_last);
 		Init_Sprite_Getter(TSSpriteCommon, label_dist_max);
-		Init_Sprite_Getter(TSSpriteCommon, label_coin_last);
-		Init_Sprite_Getter(TSSpriteCommon, label_coin_max);
-		//Init_Sprite_Getter(TSSpriteCommon, panel_scores);
 		Init_Sprite_Getter(TSSpriteButton, button_play);
-		Init_Sprite_Getter(TSSpriteButton, button_shop);
+		//Init_Sprite_Getter(TSSpriteButton, button_shop);
 		Init_Sprite_Getter(TSSpriteButton, button_music);
 		Init_Sprite_Getter(TSSpriteButton, button_sound);
 	}
@@ -59,8 +48,6 @@ protected:
 	void _findNumberSprites(const char* prefix, CASprite** ppsprs, int size);
 	TSGroupNumber _dist_last;
 	TSGroupNumber _dist_max;
-	TSGroupNumber _coin_last;
-	TSGroupNumber _coin_max;
 
 	//void _updateNumber(const char* prefix, int nValue);
 

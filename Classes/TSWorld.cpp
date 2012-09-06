@@ -48,7 +48,7 @@ TSWorld::~TSWorld(void)
 {
 }
 
-static const char* _stage_play			= "play";
+static const char* _stage_play			= "game/game";
 static		const char* _layer_game		= "game";
 static			const char* _layer_game_prepare	= "game.prepare";
 static			const char* _layer_game_shop	= "game.shop";
@@ -59,7 +59,7 @@ static const char* _stage_test			= "test";
 static		const char* _layer_test		= "test";
 static			const char* _layer_test_bubbles = "test.bubbles";
 
-static const char* _stage_logo			= "logo";
+static const char* _stage_logo			= "logo/logo";
 static		const char* _layer_logo		= "logo";
 
 //static const char* _stage_menu			= "menu";
