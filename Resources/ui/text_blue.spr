@@ -35,9 +35,9 @@
     <part name="body">
       <mesh ref="font_number_blue_0" dt="0.8"></mesh>
       <modifier mode="abc0">
-        <key time="0" yardscaley="3.6%" alpha="100%"></key>
-        <key time="400" yardscaley="3.6%" alpha="100%"></key>
-        <key time="500" yardscaley="3.6%" alpha="80%"></key>
+        <key time="0" yardscaley="5.5%" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" alpha="80%"></key>
       </modifier>
     </part>
   </pose>
@@ -45,9 +45,9 @@
     <part name="body">
       <mesh ref="font_number_blue_1" dt="0.8"></mesh>
       <modifier mode="abc0">
-        <key time="0" yardscaley="3.6%" alpha="100%"></key>
-        <key time="400" yardscaley="3.6%" alpha="100%"></key>
-        <key time="500" yardscaley="3.6%" alpha="80%"></key>
+        <key time="0" yardscaley="5.5%" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" alpha="80%"></key>
       </modifier>
     </part>
   </pose>
@@ -55,9 +55,9 @@
     <part name="body">
       <mesh ref="font_number_blue_2" dt="0.8"></mesh>
       <modifier mode="abc0">
-        <key time="0" yardscaley="3.6%" alpha="100%"></key>
-        <key time="400" yardscaley="3.6%" alpha="100%"></key>
-        <key time="500" yardscaley="3.6%" alpha="80%"></key>
+        <key time="0" yardscaley="5.5%" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" alpha="80%"></key>
       </modifier>
     </part>
   </pose>
@@ -65,9 +65,9 @@
     <part name="body">
       <mesh ref="font_number_blue_3" dt="0.8"></mesh>
       <modifier mode="abc0">
-        <key time="0" yardscaley="3.6%" alpha="100%"></key>
-        <key time="400" yardscaley="3.6%" alpha="100%"></key>
-        <key time="500" yardscaley="3.6%" alpha="80%"></key>
+        <key time="0" yardscaley="5.5%" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" alpha="80%"></key>
       </modifier>
     </part>
   </pose>
@@ -75,9 +75,9 @@
     <part name="body">
       <mesh ref="font_number_blue_4" dt="0.8"></mesh>
       <modifier mode="abc0">
-        <key time="0" yardscaley="3.6%" alpha="100%"></key>
-        <key time="400" yardscaley="3.6%" alpha="100%"></key>
-        <key time="500" yardscaley="3.6%" alpha="80%"></key>
+        <key time="0" yardscaley="5.5%" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" alpha="80%"></key>
       </modifier>
     </part>
   </pose>
@@ -85,9 +85,9 @@
     <part name="body">
       <mesh ref="font_number_blue_5" dt="0.8"></mesh>
       <modifier mode="abc0">
-        <key time="0" yardscaley="3.6%" alpha="100%"></key>
-        <key time="400" yardscaley="3.6%" alpha="100%"></key>
-        <key time="500" yardscaley="3.6%" alpha="80%"></key>
+        <key time="0" yardscaley="5.5%" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" alpha="80%"></key>
       </modifier>
     </part>
   </pose>
@@ -95,9 +95,9 @@
     <part name="body">
       <mesh ref="font_number_blue_6" dt="0.8"></mesh>
       <modifier mode="abc0">
-        <key time="0" yardscaley="3.6%" alpha="100%"></key>
-        <key time="400" yardscaley="3.6%" alpha="100%"></key>
-        <key time="500" yardscaley="3.6%" alpha="80%"></key>
+        <key time="0" yardscaley="5.5%" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" alpha="80%"></key>
       </modifier>
     </part>
   </pose>
@@ -105,9 +105,9 @@
     <part name="body">
       <mesh ref="font_number_blue_7" dt="0.8"></mesh>
       <modifier mode="abc0">
-        <key time="0" yardscaley="3.6%" alpha="100%"></key>
-        <key time="400" yardscaley="3.6%" alpha="100%"></key>
-        <key time="500" yardscaley="3.6%" alpha="80%"></key>
+        <key time="0" yardscaley="5.5%" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" alpha="80%"></key>
       </modifier>
     </part>
   </pose>
@@ -115,9 +115,9 @@
     <part name="body">
       <mesh ref="font_number_blue_8" dt="0.8"></mesh>
       <modifier mode="abc0">
-        <key time="0" yardscaley="3.6%" alpha="100%"></key>
-        <key time="400" yardscaley="3.6%" alpha="100%"></key>
-        <key time="500" yardscaley="3.6%" alpha="80%"></key>
+        <key time="0" yardscaley="5.5%" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" alpha="80%"></key>
       </modifier>
     </part>
   </pose>
@@ -125,9 +125,9 @@
     <part name="body">
       <mesh ref="font_number_blue_9" dt="0.8"></mesh>
       <modifier mode="abc0">
-        <key time="0" yardscaley="3.6%" alpha="100%"></key>
-        <key time="400" yardscaley="3.6%" alpha="100%"></key>
-        <key time="500" yardscaley="3.6%" alpha="80%"></key>
+        <key time="0" yardscaley="5.5%" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" alpha="80%"></key>
       </modifier>
     </part>
   </pose>

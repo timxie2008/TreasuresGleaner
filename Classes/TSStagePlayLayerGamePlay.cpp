@@ -12,9 +12,6 @@
 TSStagePlayLayerGamePlay::TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer* playerParent) : CAStageLayer(pstage, playerParent)
 {
 	_Trace("%s allocated", __FUNCTION__);
-	_nGas = 3;
-	_nScore = 0;
-	_nScoredCount = 0;
 	
 	_fPlayerSpeedLast = 0;
 
@@ -31,7 +28,11 @@ TSStagePlayLayerGamePlay::~TSStagePlayLayerGamePlay(void)
 string TSStagePlayLayerGamePlay::debuglog() 
 { 
 	char sz[256];
-	sprintf(sz, "ps=%s, sprs=%d, state=%s", _player() ? _player()->debuglog().c_str() : "N", this->_getNamedSpritesCount(), 
+	sprintf(sz, "ps=%s, psp=%.2f ssp=%.2f sprs=%d, state=%s", 
+		_player() ? _player()->debuglog().c_str() : "N", 
+		_player() ? _player()->getPos().x : 0.0f,
+		this->stage()->getOffset().x,
+		this->_getNamedSpritesCount(), 
 		this->getCurrentState()->getLeafState()->getFullName().c_str());
 	return sz;
 }
@@ -76,7 +77,7 @@ bool TSStagePlayLayerGamePlay::checkCondition(CAState* from, const CATransition&
 	else if (fname == "root.diving")
 	{
 	}
-	else if (fname == "root.resume")
+	else if (fname == "root.wait_resume")
 	{
 		CAStageLayer* pl = this->_getSubLayer("game.play.pause");
 		_Assert(pl);
@@ -140,10 +141,6 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		CASprite* psprs[7];
 		_findNumberSprites("dist", psprs, 6);
 		_distance.init(this, psprs, 6, cm);
-		_findNumberSprites("gas", psprs, 6);
-		_gas.init(this, psprs, 6, cm);
-		_findNumberSprites("score", psprs, 6);
-		_score.init(this, psprs, 6, cm);
 			
 		/*
 		activeAllTimeline("play_title_bar", true);
@@ -205,6 +202,9 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		resume();
 		_player()->setState(PS_Prepare);
 		this->_playerParent->onEvent(new CAEventCommand(this, "play.finished"));
+	}
+	else if (CAString::startWith(fname, "root.wait_resume"))
+	{
 	}
 	else if (CAString::startWith(fname, "root.resume"))
 	{
@@ -292,59 +292,6 @@ int TSStagePlayLayerGamePlay::_getDistance()
 	return r;
 }
 
-void TSStagePlayLayerGamePlay::_addScore(CASprite* psprPearl)
-{
-	string spr = psprPearl->getGroupName();
-
-	if (_lastScoredSprite != spr)
-	{
-		_nScoredCount = 1;
-		_lastScoredSprite = spr;
-	}
-	else
-	{
-		_nScoredCount++;
-		int max_s = (int)_settings.getFloat("score_max_count");
-		if (_nScoredCount > max_s)
-			_nScoredCount = max_s;
-	}
-	int score = (int)(_nScoredCount * _settings.getFloat("score"));
-	_nScore += score;
-
-	//CCPoint pos = _player()->getPos();
-	CCPoint pos = psprPearl->getPos();
-	CCSize size;
-	size.width = 0;
-	size.height = 0.05f;
-	CAWorld::percent2view(size);
-	pos.x += size.width;
-	pos.y += size.height;
-
-	char szScore[16];
-	sprintf(szScore, "%d", score);
-
-	int i, len = strlen(szScore);
-	for (i = 0; i < len; i++)
-	{
-		CASprite* pspr = CAWorld::sharedWorld().createSprite(this, "text_pop");
-		pspr->setPos(pos);
-		pspr->setFollowCamera(true);
-		float nzo = psprPearl->getZOrder() + 1.1f;
-		pspr->setZOrder(nzo);
-		char szState[4];
-		szState[0] = szScore[i];
-		szState[1] = 0;
-		pspr->setState(szState);
-		pspr->getSettings().setString("deadpose", szState);
-
-		float xo = pspr->getSettings().getFloat("xoffset");
-		CAWorld::percent2view(xo, true);
-		pos.x += xo; //next pos
-
-		this->addSprite(pspr);
-	}
-}
-
 void TSStagePlayLayerGamePlay::_checkRewards() 
 {
 	CASprite* psprPlayer = _player();
@@ -358,7 +305,7 @@ void TSStagePlayLayerGamePlay::_checkRewards()
 		{
 			if (psprPlayer->isCollidWith(pspr))
 			{
-				_addScore(pspr);
+				//_addScore(pspr);
 				pspr->setState("dismiss");
 			}
 		}
@@ -378,6 +325,8 @@ void TSStagePlayLayerGamePlay::_checkFishes()
 		CASprite* pspr = _getNamedSprite("fish", i);
 		if (psprPlayer->isCollidWith(pspr))
 		{
+			psprPlayer->setState("hurt");
+			/*
 			_nGas -= 30;
 			if (_nGas < 0)
 			{
@@ -386,6 +335,7 @@ void TSStagePlayLayerGamePlay::_checkFishes()
 				//setState(STATE_DYING);
 				return;
 			}
+			*/
 			//_addScore(pspr->getGroupName());
 			//pspr->setState("dismiss");
 		}
@@ -442,14 +392,6 @@ void TSStagePlayLayerGamePlay::onUpdate()
 		sprintf(szTemp, "%d", (int)_getDistance());
 		_distance.setText(szTemp);
 		_distance.onUpdate();
-
-		sprintf(szTemp, "%d", (int)_nGas);
-		_gas.setText(szTemp);
-		_gas.onUpdate();
-
-		sprintf(szTemp, "%d", (int)_nScore);
-		_score.setText(szTemp);
-		_score.onUpdate();
 
 		_checkRewards();
 
@@ -509,7 +451,7 @@ void TSStagePlayLayerGamePlay::onEvent(CAEvent* pevt)
 			}
 			else if (pec->command() == EVENT_ONRESUME)
 			{
-				this->setConditionResult("root.pause@user.resume", true);
+				this->setConditionResult("root.pause@user.wait_resume", true);
 			}
 			else if (pec->command() == EVENT_ONRESTART)
 			{

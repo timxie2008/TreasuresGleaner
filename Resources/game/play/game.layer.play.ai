@@ -27,12 +27,16 @@
   </state>
   <state name="pause">
     <!-- stop something here -->
-    <transition condition="user.resume" tostate="root.resume" />
+    <transition condition="user.wait_resume" tostate="root.wait_resume" />
     <transition condition="user.restart" tostate="root.restart" />
+  </state>
+  <state name="wait_resume">
+    <!-- resume something here-->
+    <transition condition="pause.isidle" tostate="root.resume" />
   </state>
   <state name="resume">
     <!-- resume something here-->
-    <transition condition="pause.isidle" tostate="root.running@Le" />
+    <transition condition="true" tostate="root.running@Le" />
   </state>
   <state name="over">
     <!-- 

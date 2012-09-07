@@ -30,13 +30,13 @@
     <!--玩家位置，屏幕百分比，因为视角滞后，这个值和玩家速度有关-->
     <key name="player_z" float="80"></key>
     <!--越大，方向变化越快-->
-    <key name="rot_rat" float="0.8"></key>
+    <key name="rot_rat" float="1.8"></key>
     <!--最后一次拟合的最小旋转角度-->
     <key name="rot_min_delta" float="1"></key>
     <!--使用多少帧完成角度拟合-->
     <key name="rot_frames" float="4"></key>
     <!--最大仰角，tan值，0.5代表30度-->
-    <key name="rot_max_up" float="0.7"></key>
+    <key name="rot_max_up" float="0.6"></key>
     <!--最大俯角，tan值，100代表70-80度，大约-->
     <key name="rot_max_down" float="0.8"></key>
     <!--碰撞区域定义-->
@@ -57,19 +57,22 @@
       </modifier>
     </part>
   </pose>
-  <pose name="prepare_swim">
-    <part name="root">
-      <mesh ref="player_swim" dt="0.8"></mesh>
-      <modifier mode="abca">
-        <key time="0" yardscalex="26%" ></key>
-      </modifier>
-    </part>
-  </pose>
   <pose name="swim">
     <part name="root">
       <mesh ref="player_swim" dt="0.8"></mesh>
       <modifier mode="abca">
         <key time="0" yardscalex="13%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="float">
+    <part name="root">
+      <mesh ref="player_swim" dt="0.8"></mesh>
+      <modifier mode="abcb" timescale="10">
+        <key time="000" yardscaley="48%" apos="0.5,0.43" />
+        <key time="050" yardscaley="47.6%" apos="0.5,0.45" />
+        <key time="100" yardscaley="48%" apos="0.5,0.47" />
+        <key time="150" yardscaley="48.8%" apos="0.5,0.50" />
       </modifier>
     </part>
   </pose>

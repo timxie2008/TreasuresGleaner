@@ -144,6 +144,7 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.running"))	//_onStateBeginRunning(from);
 	{
+		_label_title()->setState("stand");
 	}
 	else if (CAString::startWith(fname, "root.onshop"))		//_onStateBeginOnShop(from);
 	{

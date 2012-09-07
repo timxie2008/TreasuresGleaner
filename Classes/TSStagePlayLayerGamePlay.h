@@ -32,15 +32,8 @@ protected:
 
 	void _findNumberSprites(const char* prefix, CASprite** ppsprs, int size);
 	TSGroupNumber _distance;
-	TSGroupNumber _score;
-	TSGroupNumber _gas;
 
 	string _state;
-	int		_nGas;
-	int		_nScore;
-	int		_nScoredCount;
-	string	_lastScoredSprite;
-	void _addScore(CASprite* pspr);
 	
 	float _fDistanceInPixel;
 	float _fPlayerSpeedInPixel;

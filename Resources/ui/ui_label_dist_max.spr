@@ -21,9 +21,9 @@
       <modifier mode="abc0" timescale="1.0" timeoffset="0">
         <key time="000" yardscaley="08%"  yardpos="-0.80,0.0" rot="-5"></key>
         <key time="240" yardscaley="08%"  yardpos="-0.30,0.0" rot="-5"></key>
-        <key time="280" yardscaley="08%"  yardpos="0.1,0.0"   rot="-5"></key>
-        <key time="320" yardscaley="08%"  yardpos="0.14,0.0"   rot="-5"></key>
-        <key time="360" yardscaley="08%"  yardpos="0.16,0.0"   rot="-5"></key>
+        <key time="280" yardscaley="08%"  yardpos="0.11,0.0"   rot="-5"></key>
+        <key time="320" yardscaley="08%"  yardpos="0.34,0.0"   rot="-5"></key>
+        <key time="360" yardscaley="08%"  yardpos="0.56,0.0"   rot="-5"></key>
       </modifier>
     </part>
   </pose>

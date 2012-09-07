@@ -11,7 +11,7 @@
     <part name="body">
       <mesh ref="lbl_distance" dt="1000"></mesh>
       <modifier mode="abca">
-        <key time="0"   yardscaley="5%"   alpha="100%"></key>
+        <key time="0"   yardscaley="6%"   alpha="100%"></key>
       </modifier>
     </part>
   </pose>
