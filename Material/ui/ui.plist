@@ -59,11 +59,11 @@
             <key>button_restart.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{256,905},{56,45}}</string>
+                <string>{{430,926},{56,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{56,45}}</string>
                 <key>sourceSize</key>
@@ -319,11 +319,11 @@
             <key>number_yellow_00.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{153,926},{48,71}}</string>
+                <string>{{430,874},{48,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{48,71}}</string>
                 <key>sourceSize</key>
@@ -345,11 +345,11 @@
             <key>number_yellow_02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{101,926},{48,71}}</string>
+                <string>{{304,863},{48,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{48,71}}</string>
                 <key>sourceSize</key>
@@ -358,11 +358,11 @@
             <key>number_yellow_03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{208,852},{49,71}}</string>
+                <string>{{101,927},{49,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{49,71}}</string>
                 <key>sourceSize</key>
@@ -384,7 +384,7 @@
             <key>number_yellow_05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{208,799},{49,71}}</string>
+                <string>{{101,874},{49,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -410,7 +410,7 @@
             <key>number_yellow_07.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{205,905},{47,71}}</string>
+                <string>{{379,863},{47,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -423,11 +423,11 @@
             <key>number_yellow_08.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{101,874},{48,71}}</string>
+                <string>{{154,927},{48,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{48,71}}</string>
                 <key>sourceSize</key>
@@ -458,6 +458,19 @@
                 <string>{{6,4},{56,64}}</string>
                 <key>sourceSize</key>
                 <string>{72,72}</string>
+            </dict>
+            <key>oxygen_tank_bubble.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{208,799},{92,92}}</string>
+                <key>offset</key>
+                <string>{-1,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{17,17},{92,92}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
             </dict>
             <key>pause_panel.png</key>
             <dict>
@@ -547,7 +560,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4cd794d46ad138b7fc92bb79053444c0$</string>
+            <string>$TexturePacker:SmartUpdate:aef7859998a64799121ead274f7c0e49$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>
