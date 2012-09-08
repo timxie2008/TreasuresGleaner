@@ -20,6 +20,9 @@ protected:
 	//Define_Sprite_Getter(TSSpriteButton, button_shop);
 	Define_Sprite_Getter(TSSpriteButton, button_music);
 	Define_Sprite_Getter(TSSpriteButton, button_sound);
+	Define_Sprite_Getter(TSSpriteCommon, prepare_player);
+	Define_Sprite_Getter(TSSpriteCommon, prepare_shark);
+	Define_Sprite_Getter(TSSpriteCommon, prepare_dolphin);
 
 	void _NullGetters()
 	{
@@ -32,6 +35,9 @@ protected:
 		//Init_Sprite_Getter_Var(button_shop);
 		Init_Sprite_Getter_Var(button_music);
 		Init_Sprite_Getter_Var(button_sound);
+		Init_Sprite_Getter_Var(prepare_player);
+		Init_Sprite_Getter_Var(prepare_shark);
+		Init_Sprite_Getter_Var(prepare_dolphin);
 	}
 	void _InitGetters()
 	{
@@ -43,6 +49,9 @@ protected:
 		//Init_Sprite_Getter(TSSpriteButton, button_shop);
 		Init_Sprite_Getter(TSSpriteButton, button_music);
 		Init_Sprite_Getter(TSSpriteButton, button_sound);
+		Init_Sprite_Getter(TSSpriteCommon, prepare_player);
+		Init_Sprite_Getter(TSSpriteCommon, prepare_shark);
+		Init_Sprite_Getter(TSSpriteCommon, prepare_dolphin);
 	}
 
 	void _findNumberSprites(const char* prefix, CASprite** ppsprs, int size);

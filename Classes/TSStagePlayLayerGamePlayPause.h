@@ -16,6 +16,7 @@ class TSStagePlayLayerGamePlayPause :
 protected:
 	Define_Sprite_Getter(TSSpriteCommon, label_pause_title);
 	Define_Sprite_Getter(TSSpriteCommon, panel_black);
+	Define_Sprite_Getter(TSSpriteCommon, panel_frame);
 	Define_Sprite_Getter(TSSpriteButton, button_restart);
 	Define_Sprite_Getter(TSSpriteButton, button_resume);
 	Define_Sprite_Getter(TSSpriteButton, button_music);
@@ -25,6 +26,7 @@ protected:
 	{
 		Init_Sprite_Getter_Var(label_pause_title);
 		Init_Sprite_Getter_Var(panel_black);
+		Init_Sprite_Getter_Var(panel_frame);
 		Init_Sprite_Getter_Var(button_restart);
 		Init_Sprite_Getter_Var(button_resume);
 		Init_Sprite_Getter_Var(button_music);
@@ -35,6 +37,7 @@ protected:
 	{
 		//Init_Sprite_Getter(TSSpriteCommon, label_pause_title);
 		Init_Sprite_Getter(TSSpriteCommon, panel_black);
+		Init_Sprite_Getter(TSSpriteCommon, panel_frame);
 		Init_Sprite_Getter(TSSpriteButton, button_restart);
 		Init_Sprite_Getter(TSSpriteButton, button_resume);
 		Init_Sprite_Getter(TSSpriteButton, button_music);

@@ -129,6 +129,7 @@ void TSStagePlayLayerGamePlayPause::onStateBegin(CAState* from, void* param)
 		{
 			//_label_pause_title(),
 			_panel_black(),
+			_panel_frame(),
 			_button_restart(),
 			_button_resume(),
 			null,

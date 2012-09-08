@@ -42,11 +42,11 @@
   <pose name="pressed" collid="1.1,1.1">
     <part name="body">
       <mesh ref="btn_play" dt="1000"></mesh>
-      <modifier mode="abcb" timescale="1.0" timeoffset="0.0">
+      <modifier mode="abc0" timescale="1.0" timeoffset="0.0">
         <key time="000" yardscaley="23.9%" yardpos="0.81,0" alpha="1.0"></key>
         <key time="020" yardscaley="23.7%" yardpos="0.81,0" alpha="1.0"></key>
         <key time="040" yardscaley="23.1%" yardpos="0.81,0" alpha="0.9"></key>
-        <key time="060" yardscaley="23.4%" yardpos="0.81,0" alpha="1.0"></key>
+        <key time="060" yardscaley="24.0%" yardpos="0.81,0" alpha="1.0"></key>
       </modifier>
     </part>
   </pose>

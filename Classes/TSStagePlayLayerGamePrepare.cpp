@@ -164,6 +164,9 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 			_info_dist_back(),
 			_label_dist_last(),
 			_label_dist_max(),
+			_prepare_player(),
+			_prepare_shark(),
+			_prepare_dolphin(),
 			null,
 		};
 		CASprite* psprsControls[] =

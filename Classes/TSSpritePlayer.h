@@ -29,6 +29,7 @@ protected:
 	void _on_waitriding(EStateFlag flag);
 	void _on_riding(EStateFlag flag);
 	void _on_dead(EStateFlag flag);
+	void _on_fadeout(EStateFlag flag);
 public:
 	TSSpritePlayer(CAStageLayer* palyer, const char* name);
 	virtual ~TSSpritePlayer(void);
@@ -43,6 +44,7 @@ public:
 #	define PS_WaitRiding	"waitriding"
 #	define PS_Riding		"riding"
 #	define PS_Dead			"dead"
+#	define PS_Fadeout		"fadeout"
 
 	void onStateChanged(const string& olds, const string& news);
 

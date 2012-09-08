@@ -310,6 +310,25 @@ void TSSpritePlayer::_on_dead(EStateFlag flag)
 	}
 }
 
+void TSSpritePlayer::_on_fadeout(EStateFlag flag)
+{
+	switch(flag)
+	{
+	case SF_Begin:
+		{
+			this->switchPose(PS_Fadeout);
+		}
+		break;
+	case SF_Update:
+		{
+		}
+		break;
+	default:
+		_Assert(false);
+		break;
+	}
+}
+
 void TSSpritePlayer::onStateChanged(const string& olds, const string& news)
 {
 	_HandleState(news, prepare, SF_Begin);
@@ -318,12 +337,15 @@ void TSSpritePlayer::onStateChanged(const string& olds, const string& news)
 	_HandleState(news, waitriding, SF_Begin);
 	_HandleState(news, riding, SF_Begin);
 	_HandleState(news, dead, SF_Begin);
+	_HandleState(news, fadeout, SF_Begin);
 }
 
 void TSSpritePlayer::_adjustPosition(CCPoint& pos)
 {
 	//_Trace("player[%s] gx=%.0f,gy=%.0f cx=%.2f cy=%.0f", _state.c_str(),
 	//	_gameKey.x, _gameKey.y, _combinedKey.x, _combinedKey.y);
+	if (this->getCurrentPose() && this->getCurrentPose()->name() == "fadeout")
+		return;
 
 	if (pos.y < _rectYard.origin.y)
 	{

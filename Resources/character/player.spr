@@ -57,14 +57,6 @@
       </modifier>
     </part>
   </pose>
-  <pose name="swim">
-    <part name="root">
-      <mesh ref="player_swim" dt="0.8"></mesh>
-      <modifier mode="abca">
-        <key time="0" yardscalex="13%" ></key>
-      </modifier>
-    </part>
-  </pose>
   <pose name="float">
     <part name="root">
       <mesh ref="player_swim" dt="0.8"></mesh>
@@ -73,6 +65,27 @@
         <key time="050" yardscaley="47.6%" apos="0.5,0.45" />
         <key time="100" yardscaley="48%" apos="0.5,0.47" />
         <key time="150" yardscaley="48.8%" apos="0.5,0.50" />
+      </modifier>
+    </part>
+  </pose>
+  <pose name="fadeout">
+    <part name="root">
+      <mesh ref="player_swim" dt="0.8"></mesh>
+      <modifier mode="abc0" timescale="1.5">
+        <key time="350"  yardpos="0,3.30" yardscalex="13%" alpha="00%"></key>
+        <key time="280"  yardpos="0,1.10" yardscalex="14%" alpha="30%"></key>
+        <key time="210"  yardpos="0,0.65" yardscalex="25%" alpha="50%"></key>
+        <key time="140"  yardpos="0,0.25" yardscalex="36%" alpha="80%"></key>
+        <key time="070"  yardpos="0,0.30" yardscalex="47%" alpha="90%"></key>
+        <key time="000"  yardpos="0,0.00" yardscalex="48%" alpha="100%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="swim">
+    <part name="root">
+      <mesh ref="player_swim" dt="0.8"></mesh>
+      <modifier mode="abca">
+        <key time="0" yardscalex="13%" ></key>
       </modifier>
     </part>
   </pose>

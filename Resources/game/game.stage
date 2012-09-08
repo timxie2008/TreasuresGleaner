@@ -25,9 +25,12 @@
   <model id="text_blue" src="ui/text_blue.spr"></model>
   <!-- character -->
   <model id="player" src="character/player.spr"></model>
+  <model id="dolphin" src="character/dolphin.spr"></model>
+  <model id="shark" src="character/shark.spr"></model>
 
   <!-- pause -->
   <model id="panel_black" src="ui/ui_panel_black.spr"></model>
+  <model id="panel_frame" src="ui/ui_panel_frame.spr"></model>
   <model id="button_pause" src="ui/ui_button_pause.spr"></model>
   <model id="button_resume" src="ui/ui_button_resume.spr"></model>
   <model id="button_restart" src="ui/ui_button_restart.spr"></model>
