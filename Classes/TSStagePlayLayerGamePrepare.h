@@ -23,6 +23,8 @@ protected:
 	Define_Sprite_Getter(TSSpriteCommon, prepare_player);
 	Define_Sprite_Getter(TSSpriteCommon, prepare_shark);
 	Define_Sprite_Getter(TSSpriteCommon, prepare_dolphin);
+	Define_Sprite_Getter(TSSpriteCommon, prepare_bubble_shark);
+	Define_Sprite_Getter(TSSpriteCommon, prepare_bubble_dolphin);
 
 	void _NullGetters()
 	{
@@ -38,6 +40,8 @@ protected:
 		Init_Sprite_Getter_Var(prepare_player);
 		Init_Sprite_Getter_Var(prepare_shark);
 		Init_Sprite_Getter_Var(prepare_dolphin);
+		Init_Sprite_Getter_Var(prepare_bubble_shark);
+		Init_Sprite_Getter_Var(prepare_bubble_dolphin);
 	}
 	void _InitGetters()
 	{
@@ -52,6 +56,8 @@ protected:
 		Init_Sprite_Getter(TSSpriteCommon, prepare_player);
 		Init_Sprite_Getter(TSSpriteCommon, prepare_shark);
 		Init_Sprite_Getter(TSSpriteCommon, prepare_dolphin);
+		Init_Sprite_Getter(TSSpriteCommon, prepare_bubble_shark);
+		Init_Sprite_Getter(TSSpriteCommon, prepare_bubble_dolphin);
 	}
 
 	void _findNumberSprites(const char* prefix, CASprite** ppsprs, int size);

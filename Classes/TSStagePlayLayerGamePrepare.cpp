@@ -100,18 +100,18 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 {
 	const string& fname = from->getFullName();
 	if (0) ;
-	else if (CAString::startWith(fname, "root.idle"))		//_onStateBeginIdle(from);
+	else if (CAString::startWith(fname, "root.idle"))
 	{
 		_NullGetters();
 		this->removeAllTimelines();
 	}
-	else if (CAString::startWith(fname, "root.create"))		//_onStateBeginFadein(from);
+	else if (CAString::startWith(fname, "root.create"))
 	{
 		//_pstage->resetTimer();
 		_pstage->setOffset(ccp(0, 0), 0.0f);
 		this->activeAllTimelines();
 	}
-	else if (CAString::startWith(fname, "root.fadein"))		//_onStateBeginFadein(from);
+	else if (CAString::startWith(fname, "root.fadein"))
 	{
 		_InitGetters();
 
@@ -142,21 +142,21 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		_button_music()->setState(stage()->isMusicMute() ? "off_fadein" : "on_fadein");
 		_button_sound()->setState(stage()->isSoundMute() ? "off_fadein" : "on_fadein");
 	}
-	else if (CAString::startWith(fname, "root.running"))	//_onStateBeginRunning(from);
+	else if (CAString::startWith(fname, "root.running"))
 	{
 		_label_title()->setState("stand");
 	}
-	else if (CAString::startWith(fname, "root.onshop"))		//_onStateBeginOnShop(from);
+	else if (CAString::startWith(fname, "root.onshop"))
 	{
 		//_Assert(this->_playerParent);
 		//this->_playerParent->onEvent(new CAEventCommand(this, "onShop"));
 	}
-	else if (CAString::startWith(fname, "root.onplay"))		//_onStateBeginOnPlay(from);
+	else if (CAString::startWith(fname, "root.onplay"))
 	{
 		_Assert(this->_playerParent);
 		this->_playerParent->onEvent(new CAEventCommand(this, "onPlay"));
 	}
-	else if (CAString::startWith(fname, "root.fadeout"))	//_onStateBeginFadeout(from);
+	else if (CAString::startWith(fname, "root.fadeout"))
 	{
 		CASprite* psprsStatic[] = 
 		{
@@ -178,6 +178,9 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		_setSpritesState(STATE_Fadeout, psprsControls);
 		_button_music()->setState(stage()->isMusicMute() ? "off_fadeout" : "on_fadeout");
 		_button_sound()->setState(stage()->isSoundMute() ? "off_fadeout" : "on_fadeout");
+
+		_prepare_bubble_shark()->setState("ellipse_shark_fadeout");
+		_prepare_bubble_dolphin()->setState("ellipse_dolphin_fadeout");
 
 		_dist_last.setState(STATE_Fadeout);
 		_dist_max.setState(STATE_Fadeout);
@@ -271,8 +274,9 @@ void TSStagePlayLayerGamePrepare::onUpdate()
 		int c = this->_getNamedSpritesCount("bubble");
 		if (c < 20)
 		{
-			TSSpriteBubble* pspr;
-			pspr = (TSSpriteBubble*)CAWorld::sharedWorld().createSprite(this, "bubble");
+			//TSSpriteBubble* pspr;
+			//pspr = (TSSpriteBubble*)CAWorld::sharedWorld().createSprite(this, "bubble");
+			TSSpriteCommon* pspr = new TSSpriteCommon(this, "bubble");
 
 			CCPoint pos;
 			pos.x = CAUtils::Rand() * 0.8f + 0.1f;
@@ -290,7 +294,9 @@ void TSStagePlayLayerGamePrepare::onUpdate()
 			pspr->setZOrder(_label_title()->getZOrder() - CAUtils::Rand(0.0f, 0.3f));
 
 			this->addSprite(pspr);
-			pspr->switchPose("pop_slow");
+			char* szPose = "pop_slow";
+			pspr->setState(szPose);
+			pspr->setDeadPose(szPose);
 		}
 	}
 };

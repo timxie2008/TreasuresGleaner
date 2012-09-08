@@ -7,12 +7,17 @@ USING_NS_CC;
 
 //#define _HRES_
 #if defined(_HRES_)
-#define DEVICE_WIDTH	960
-#define DEVICE_HEIGHT	640
+#define _DEVICE_WIDTH	960
+#define _DEVICE_HEIGHT	640
 #else
-#define DEVICE_WIDTH	800
-#define DEVICE_HEIGHT	480
+#define _DEVICE_WIDTH	800
+#define _DEVICE_HEIGHT	480
 #endif
+
+#define _DEVICE_SCALE  (6.0f / 8.0f)
+
+#define DEVICE_WIDTH	(int)(_DEVICE_WIDTH * _DEVICE_SCALE)
+#define DEVICE_HEIGHT	(int)(_DEVICE_HEIGHT * _DEVICE_SCALE)
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                        HINSTANCE hPrevInstance,

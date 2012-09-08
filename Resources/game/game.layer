@@ -115,8 +115,14 @@
       <emmitor spos="0.11,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
         <candidate spr="shark" pose="swim" percent="10" gname="prepare_shark" ></candidate>
       </emmitor>
+      <emmitor spos="0.11,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="bubble" pose="ellipse_shark" percent="10" gname="prepare_bubble_shark" ></candidate>
+      </emmitor>
       <emmitor spos="0.11,0.51,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
         <candidate spr="dolphin" pose="swim" percent="10" gname="prepare_dolphin" ></candidate>
+      </emmitor>
+      <emmitor spos="0.11,0.51,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="bubble" pose="ellipse_dolphin" percent="10" gname="prepare_bubble_dolphin" ></candidate>
       </emmitor>
     </timeline>
     <timeline name="prepare" mode="abc0" range="0" enable="true">

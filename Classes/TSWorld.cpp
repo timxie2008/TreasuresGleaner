@@ -271,11 +271,13 @@ CASprite* TSWorld::createSprite(CAStageLayer* player, const char* _name)
 				GUARD_FIELD(player);
 				pspr = new TSSpritePlayer(player, name.c_str());
 			}
+			/*
 			else if (name == "bubble")
 			{
 				GUARD_FIELD(bubble);
 				pspr = new TSSpriteBubble(player, name.c_str()); 
 			}
+			*/
 			else if (name.find("button") == 0 || 0)
 			{
 				GUARD_FIELD(bubble);
