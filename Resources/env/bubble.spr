@@ -40,6 +40,15 @@
       </modifier>
     </part>
   </pose>
+  <pose name="indicator">
+    <part name="root">
+      <mesh ref="env_bubble" dt="10"></mesh>
+      <modifier mode="abc0" abs="false">
+        <key time="000" scale="0.45,0.45" alpha="100%"></key>
+        <key time="100" scale="0.55,0.55" alpha="100%"></key>
+      </modifier>
+    </part>
+  </pose>
   <pose name="pop">
     <part name="root">
       <mesh ref="env_bubble" dt="10"></mesh>

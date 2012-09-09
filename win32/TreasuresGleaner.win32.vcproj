@@ -553,6 +553,14 @@
 						RelativePath="..\Classes\TSStagePlayLayerGameShop.h"
 						>
 					</File>
+					<File
+						RelativePath="..\Classes\TSTraceLine.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Classes\TSTraceLine.h"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="test.stage"

@@ -45,6 +45,10 @@ protected:
 
 	int _getDistance();
 	
+	CASprite* _psprIndicators[18];
+
+	//_TSTraceLine _traceline;
+
 	void _updateStageOffset();
 	void _checkFishes();
 	void _checkRewards();

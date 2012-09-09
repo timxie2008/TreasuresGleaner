@@ -1,4 +1,62 @@
-﻿"$(COCOS2D_20_RC2_x_201)CocosDenshion\include";..\Classes;$(COCOS2D_20_RC2_x_201)cocos2dx;$(COCOS2D_20_RC2_x_201)cocos2dx\platform;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\win32;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\iconv;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\zlib;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libpng;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libjpeg;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libtiff;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libxml2;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\pthread;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\OGLES;$(COCOS2D_20_RC2_x_201)cocos2dx\include;$(COCOS2D_20_RC2_x_201)cocos2dx\kazmath\include;$(COCOS2D_20_RC2_x_201)cocos2dx\actions;$(COCOS2D_20_RC2_x_201)cocos2dx\base_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\cocoa;$(COCOS2D_20_RC2_x_201)cocos2dx\effects;$(COCOS2D_20_RC2_x_201)cocos2dx\extensions;$(COCOS2D_20_RC2_x_201)cocos2dx\keypad_dispatcher;$(COCOS2D_20_RC2_x_201)cocos2dx\label_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\layers_scenes_transitions_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\menu_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\misc_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\particle_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\script_support;$(COCOS2D_20_RC2_x_201)cocos2dx\shaders;$(COCOS2D_20_RC2_x_201)cocos2dx\sprite_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\text_input_node;$(COCOS2D_20_RC2_x_201)cocos2dx\textures;$(COCOS2D_20_RC2_x_201)cocos2dx\tileMap_parallax_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\touch_dispatcher;$(COCOS2D_20_RC2_x_201)cocos2dx\support
+﻿
+static inline float bezierat( float a, float b, float c, float d, float t )
+{
+	if (_mode)
+	{
+		float t1 = 1 - t;
+		float t2 = t1 * t1;
+		float t3 = t2 * t1;
+		float _t2 = t * t;
+
+		return 
+			t3 * a + 
+			3 * t * t2 * b + 
+			3 * _t2 * t1 * c + 
+			_t2 * t * d;
+	}
+
+    return (powf(1-t,3) * a + 
+            3*t*(powf(1-t,2))*b + 
+            3*powf(t,2)*(1-t)*c +
+            powf(t,3)*d );
+}
+
+
+// Bezier cubic formula:
+//    ((1 - t) + t)3 = 1 
+// Expands to… 
+//   (1 - t)3 + 3t(1-t)2 + 3t2(1 - t) + t3 = 1 
+static inline float bezierat( float a, float b, float c, float d, float t )
+{
+    return (powf(1-t,3) * a + 
+            3*t*(powf(1-t,2))*b + 
+            3*powf(t,2)*(1-t)*c +
+            powf(t,3)*d );
+}
+
+template<class T>
+inline T _interpolateHermite(const float t, const T &v1, const T &v2, const T &in, const T &out)
+{
+	// basis functions
+	float r2 = t * t;
+	float r3 = r2 * t;
+
+	//float h1 = 2.0f * t * t * t - 3.0f * t * t + 1.0f;
+	float h1 = 2.0f * r3 - 3.0f * r2;
+	//float h2 = -2.0f * t * t * t + 3.0f * t * t;
+	float h2 = -2.0f * r3 + 3.0f * r2;
+	//float h3 = t * t * t - 2.0f * t * t + t;
+	float h3 = r3 - 2.0f * r2 + t;
+	//float h4 = t * t * t - t * t;
+	float h4 = r3 - r2;
+
+	// interpolation
+	return static_cast<T>(_MUL(v1, h1) + _MUL(v2, h2) + _MUL(in, h3) + _MUL(out, h4));
+}
+
+
+
+"$(COCOS2D_20_RC2_x_201)CocosDenshion\include";..\Classes;$(COCOS2D_20_RC2_x_201)cocos2dx;$(COCOS2D_20_RC2_x_201)cocos2dx\platform;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\win32;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\iconv;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\zlib;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libpng;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libjpeg;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libtiff;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libxml2;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\pthread;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\OGLES;$(COCOS2D_20_RC2_x_201)cocos2dx\include;$(COCOS2D_20_RC2_x_201)cocos2dx\kazmath\include;$(COCOS2D_20_RC2_x_201)cocos2dx\actions;$(COCOS2D_20_RC2_x_201)cocos2dx\base_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\cocoa;$(COCOS2D_20_RC2_x_201)cocos2dx\effects;$(COCOS2D_20_RC2_x_201)cocos2dx\extensions;$(COCOS2D_20_RC2_x_201)cocos2dx\keypad_dispatcher;$(COCOS2D_20_RC2_x_201)cocos2dx\label_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\layers_scenes_transitions_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\menu_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\misc_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\particle_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\script_support;$(COCOS2D_20_RC2_x_201)cocos2dx\shaders;$(COCOS2D_20_RC2_x_201)cocos2dx\sprite_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\text_input_node;$(COCOS2D_20_RC2_x_201)cocos2dx\textures;$(COCOS2D_20_RC2_x_201)cocos2dx\tileMap_parallax_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\touch_dispatcher;$(COCOS2D_20_RC2_x_201)cocos2dx\support
 
 niuchao
 

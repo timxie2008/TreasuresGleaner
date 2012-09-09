@@ -10,6 +10,8 @@
 
 TSStagePlayLayerGamePrepare::TSStagePlayLayerGamePrepare(CAStage* pstage, CAStageLayer* playerParent) : CAStageLayer(pstage, playerParent)
 {
+	CCPoint a = bezierat(0.333333334, ccp(1,0), ccp(2,1), ccp(3,1), ccp(4,0));
+
 	_Trace("%s allocated", __FUNCTION__);
 	_NullGetters();
 }
