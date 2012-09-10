@@ -15,6 +15,8 @@ TSStagePlayLayerGamePlay::TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer
 	
 	_fPlayerSpeedLast = 0;
 
+	memset(_psprIndicators, 0, sizeof(_psprIndicators));
+
 	_NullGetters();
 
 	_animPlayerSpeed.setValid(false);
@@ -141,7 +143,9 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		CASprite* psprs[7];
 		_findNumberSprites("dist", psprs, 6);
 		_distance.init(this, psprs, 6, cm);
-			
+		
+		_findNumberSprites("gas", _psprIndicators, 18);
+
 		/*
 		activeAllTimeline("play_title_bar", true);
 		activeTimeline("play_ui_buttons", true);
@@ -401,6 +405,9 @@ void TSStagePlayLayerGamePlay::onUpdate()
 		{
 			_player()->setMoveSpeed(_animPlayerSpeed.getValue(getTimeNow()));
 		}
+
+		//generate gas tank
+
 	}
 };
 

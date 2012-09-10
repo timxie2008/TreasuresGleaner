@@ -124,8 +124,23 @@
       <emmitor spos="0.11,0.51,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
         <candidate spr="bubble" pose="ellipse_dolphin" percent="10" gname="prepare_bubble_dolphin" ></candidate>
       </emmitor>
+      <emmitor spos="0.44,0.26,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="blocker_01" pose="stand" percent="10" gname="prepare_blocker_01" ></candidate>
+      </emmitor>
+      <emmitor spos="0.55,0.26,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="blocker_02" pose="stand" percent="10" gname="prepare_blocker_02" ></candidate>
+      </emmitor>
+      <emmitor spos="0.86,0.32,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="blocker_03" pose="stand" percent="10" gname="prepare_blocker_03" ></candidate>
+      </emmitor>
+      <!--emmitor spos="0.77,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="blocker_04" pose="stand" percent="10" gname="prepare_blocker_04" ></candidate>
+      </emmitor>
+      <emmitor spos="0.88,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="blocker_05" pose="stand" percent="10" gname="prepare_blocker_05" ></candidate>
+      </emmitor-->
     </timeline>
-    <timeline name="prepare" mode="abc0" range="0" enable="true">
+    <timeline name="prepare_buttons" mode="abc0" range="0" enable="true">
       <emmitor spos="0.95,0.935,20" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate spr="button_music" pose="on" percent="10" touch="true"></candidate>
       </emmitor>
@@ -143,17 +158,24 @@
   <layer id="game.play">
     <settings>
       <!--视角校正速度，秒，一般0.2较合适-->
-      <key name="view_adj" float="0.03"></key>
+      <key name="view_adj" float="0.03" />
       <!--玩家位置，屏幕百分比，因为视角滞后，这个值和玩家速度有关-->
-      <key name="player_x" float="22%"></key>
+      <key name="player_x" float="22%" />
 
-      <key name="score" float="10"></key>
-      <key name="score_max_count" float="10"></key>
+      <key name="score" float="10" />
+      <key name="score_max_count" float="10" />
 
-      <key name="distance_in_percent" float="5%"></key>
-      <key name="player_speed_in_percent" float="40%"></key>
-      <key name="player_speed_max_in_percent" float="180%"></key>
-      <key name="player_speed_acc_in_distance" float="0.1"></key>
+      <key name="distance_in_percent" float="5%" />
+      <key name="player_speed_in_percent" float="40%" />
+      <key name="player_speed_max_in_percent" float="180%" />
+      <key name="player_speed_acc_in_distance" float="0.1" />
+
+      <key name="seed" int="3746287" />
+      <key name="traceline_left" float="0.5" />
+      <key name="traceline_top" float="0.8" />
+      <key name="traceline_bottom" float="0.2" />
+      <key name="traceline_node_density" float="0.25" />
+      <key name="traceline_point_density" float="0.07" />
     </settings>
     <machine ref="game/play/game.layer.play.ai"></machine>
 
@@ -242,9 +264,6 @@
       <emmitor spos="0,0,18" range="0,0,0">
         <candidate spr="player" pose="prepare" percent="100%"></candidate>
       </emmitor>
-      <emmitor spos="-0.5,-0.5,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate pat="ui/prepare_text_7_number.layout" pose="0" percent="10" gname="player_score" ></candidate>
-      </emmitor>
     </timeline>
     <!--timeline name="play_rewards" mode="abca" range="3.0" enable="false">
       <emmitor spos="0,0.5,6" range="0,0.05, 0" live="0,0,3,1" speed="0">
@@ -328,6 +347,12 @@
       </emmitor>
       <emmitor spos="13.2%,0.95,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate pat="ui/text_6_number.layout" pose="0" percent="10" gname="dist" ></candidate>
+      </emmitor>
+      <emmitor spos="0.42,0.95,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="label_gas" pose="stand" percent="10" gname="lab_dist"></candidate>
+      </emmitor>
+      <emmitor spos="0.46,0.95,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate pat="ui/indicator_gas.layout" pose="indicator" percent="10" gname="gas"></candidate>
       </emmitor>
     </timeline>
     <timeline name="play_ui_buttons" mode="abc0" range="0" enable="false">

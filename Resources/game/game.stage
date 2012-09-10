@@ -8,6 +8,11 @@
   <model id="bubble" src="env/bubble.spr"></model>
   <model id="pearl" src="env/pearl.spr"></model>
   <model id="coral" src="env/coral.spr"></model>
+  <model id="blocker_01" src="env/blocker_01.spr"></model>
+  <model id="blocker_02" src="env/blocker_02.spr"></model>
+  <model id="blocker_03" src="env/blocker_03.spr"></model>
+  <model id="blocker_04" src="env/blocker_04.spr"></model>
+  <model id="blocker_05" src="env/blocker_05.spr"></model>
 
   <!-- ui -->
   <model id="label_title" src="ui/ui_label_title.spr"></model>
@@ -22,6 +27,7 @@
 
   <!-- play ui -->
   <model id="label_distance" src="ui/ui_label_distance.spr"></model>
+  <model id="label_gas" src="ui/ui_label_gas.spr"></model>
   <model id="text_blue" src="ui/text_blue.spr"></model>
   <!-- character -->
   <model id="player" src="character/player.spr"></model>
