@@ -9,6 +9,8 @@ using namespace CocosDenshion;
 #include "CCEGLView.h"
 #include "AStage.h"
 
+#include "TSTraceLine.h"
+
 #if defined(_DEBUG)
 //#	define _TEST_
 #endif
@@ -23,7 +25,16 @@ USING_NS_CC;
 
 AppDelegate::AppDelegate() 
 {
-
+#if 0
+	TSTraceLine line;
+	line.init(143417, 0.5f, 0.92f, 0.07f, 0.2f, 0.02f, 0.02f, 5, 3);
+	int i;
+	for (i = 0; i < 1000; i++)
+	{
+		CCPoint pt = line.getNextTracePoint();
+		_Info("ts = (%.2f,%.2f)", pt.x, pt.y);
+	}
+#endif
 }
 
 AppDelegate::~AppDelegate() 

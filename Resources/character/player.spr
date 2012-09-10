@@ -81,7 +81,7 @@
       </modifier>
     </part>
   </pose>
-  <pose name="swim">
+  <pose name="swim"  collid="0.68,0.58">
     <part name="root">
       <mesh ref="player_swim" dt="0.8"></mesh>
       <modifier mode="abca">

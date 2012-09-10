@@ -17,7 +17,7 @@ void TSSpriteFish::_on_swim(EStateFlag flag)
 	{
 	case SF_Begin:
 		{
-			this->switchPose("swim");
+			this->switchPose("swim");	
 		}
 		break;
 	case SF_Update:

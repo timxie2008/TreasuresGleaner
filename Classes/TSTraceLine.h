@@ -6,31 +6,38 @@
 class TSTraceLine
 {
 protected:
-	int _nIndexTraceLine;
-	CCPoint _ptTraceLine[64];
-	
-	int _getNodeCount();
-	//index = 0, -1, -2, -3, -4 ....
-	//index = 0 is the last node
-	//if index < -count, return the first node
-	CCPoint _getNode(int index);
+	int _nSegments;
+	float _fOffsetNodeBegin;
+	float _fOffsetPoint;
+	float _fOffsetNodeEnd;
+	CCPoint _ptTraceLine[4];
+	int _nYSegmentLast;
+	int _nYSegmentMax;
+	int _nYSegmentRange;
+	void _createSegment();
 
-	float _xTraceLineOffset;
+	float _frandy(float pmin, float pmax);
+	float _frandy();
+	float _frandx(float offset, float range);
 
-    int _seed;
-    float _traceline_left;
-    float _traceline_top;
-    float _traceline_bottom;
-    float _traceline_node_density;
-    float _traceline_point_density;
+    float _left;
+    float _top;
+    float _bottom;
+    float _node_density;
+	float _node_rand_range;
+    float _point_density;
+
+	CCPoint _ptLast;
 public:
 	TSTraceLine();
 	virtual ~TSTraceLine(void);
 
-	void init(int seed, float left, float top, float bottom, float node_density, float point_density);
+	void init(int seed, float left, float top, float bottom, 
+		float node_density, float node_rand_range, float point_density, 
+		int nYSegmentMax = 5, int nYSegmentRange = 3);
 
-	void addTraceNode(const CCPoint& pt);
-	CCPoint getTracePoint(float offset);
+	const CCPoint& getLastTracePoint() const;
+	CCPoint getNextTracePoint();
 };
 
 #endif //_TSTRACE_LINE_H_

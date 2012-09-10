@@ -4,6 +4,7 @@
 #include "AWorld.h"
 #include "AStage.h"
 #include "AStageLayer.h"
+#include "TSSpriteCommon.h"
 
 static const char* POSE_BORN = "born";
 static const char* POSE_SWIM = "swim";
@@ -76,8 +77,11 @@ void TSSpritePlayer::_createBubbles(int c, bool bLow)
 		//_Trace("player ptime=%d, x=%f, y=%f,sw=%f,sh=%f", percent, x, y, size.width, size.height);
 		x += CAUtils::Rand() * size.width / 3 - size.width / 6;
 
-		TSSpriteBubble* pspr;
-		pspr = (TSSpriteBubble*)CAWorld::sharedWorld().createSprite(_pLayer, "bubble");
+		//TSSpriteBubble* pspr;
+		//pspr = (TSSpriteBubble*)CAWorld::sharedWorld().createSprite(_pLayer, "bubble");
+
+		TSSpriteCommon* pspr;
+		pspr = new TSSpriteCommon(_pLayer, "bubble");
 
 		float ats = CAUtils::Rand() * 0.2f + 0.1f;
 		pspr->setScl(ats / 0.5f);
@@ -89,7 +93,9 @@ void TSSpritePlayer::_createBubbles(int c, bool bLow)
 		pspr->setZOrder(this->getZOrder() + CAUtils::Rand(-2.0f,2.0f));
 		_pLayer->addSprite(pspr);
 
-		pspr->switchPose(bLow ? "pop_low" : "pop");
+		const char* pszPose = bLow ? "pop_low" : "pop";
+		pspr->setDeadPose(pszPose);
+		pspr->setState(pszPose);
 		
 	}
 }

@@ -342,20 +342,21 @@
       </emmitor>
     </timeline-->
     <timeline name="play_title_bar" mode="abc0" range="0" enable="false">
-      <emmitor spos="0.07,0.95,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+      <emmitor spos="0.0,1.0,7" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="panel_black" pose="float" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0.05,0.93,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate spr="label_distance" pose="stand" percent="10" gname="lab_dist"></candidate>
       </emmitor>
-      <emmitor spos="13.2%,0.95,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+      <emmitor spos="0.112,0.93,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate pat="ui/text_6_number.layout" pose="0" percent="10" gname="dist" ></candidate>
       </emmitor>
-      <emmitor spos="0.42,0.95,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
-        <candidate spr="label_gas" pose="stand" percent="10" gname="lab_dist"></candidate>
+      <emmitor spos="0.30,0.93,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="label_state" pose="stand" percent="10" gname="lab_state"></candidate>
       </emmitor>
-      <emmitor spos="0.46,0.95,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
-        <candidate pat="ui/indicator_gas.layout" pose="indicator" percent="10" gname="gas"></candidate>
+      <emmitor spos="0.33,0.93,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate pat="ui/indicator_score.layout" pose="indicator" percent="10" gname="score"></candidate>
       </emmitor>
-    </timeline>
-    <timeline name="play_ui_buttons" mode="abc0" range="0" enable="false">
       <emmitor spos="0.95,0.93,8" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate spr="button_pause" pose="stand" percent="10" touch="true"></candidate>
       </emmitor>

@@ -4,6 +4,16 @@
   <mesh name="ui_pause_back">
     <frame src="ui_back_black.png"></frame>
   </mesh>
+  <pose name="float">
+    <part name="body">
+      <mesh ref="ui_pause_back" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="000" apos="0,1" yardscale="100%,12%" alpha="00%"></key>
+        <key time="050" apos="0,1" yardscale="100%,12%" alpha="05%"></key>
+        <key time="100" apos="0,1" yardscale="100%,12%" alpha="10%"></key>
+      </modifier>
+    </part>
+  </pose>
   <pose name="stand">
     <part name="body">
       <mesh ref="ui_pause_back" dt="1"></mesh>

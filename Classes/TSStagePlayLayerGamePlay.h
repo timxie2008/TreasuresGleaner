@@ -6,7 +6,9 @@
 class TSSpritePlayer;
 class TSSpriteCommon;
 class TSSpriteButton;
+
 #include "TSGroupNumber.h"
+#include "TSTraceLine.h"
 
 class TSStagePlayLayerGamePlay :
 	public CAStageLayer //, public CCTargetedTouchDelegate
@@ -45,9 +47,12 @@ protected:
 
 	int _getDistance();
 	
-	CASprite* _psprIndicators[18];
+	CASprite* _psprIndicators[26];
+	void _updateScoreBar();
 
-	//_TSTraceLine _traceline;
+	TSTraceLine _traceline;
+
+	int _nCollected;
 
 	void _updateStageOffset();
 	void _checkFishes();

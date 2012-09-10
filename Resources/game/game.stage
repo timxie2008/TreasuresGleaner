@@ -27,8 +27,9 @@
 
   <!-- play ui -->
   <model id="label_distance" src="ui/ui_label_distance.spr"></model>
-  <model id="label_gas" src="ui/ui_label_gas.spr"></model>
   <model id="text_blue" src="ui/text_blue.spr"></model>
+  <model id="label_gas" src="ui/ui_label_gas.spr"></model>
+  <model id="label_state" src="ui/ui_label_state.spr"></model>
   <!-- character -->
   <model id="player" src="character/player.spr"></model>
   <model id="dolphin" src="character/dolphin.spr"></model>

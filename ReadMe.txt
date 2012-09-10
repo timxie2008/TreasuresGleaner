@@ -54,6 +54,12 @@ inline T _interpolateHermite(const float t, const T &v1, const T &v2, const T &i
 	return static_cast<T>(_MUL(v1, h1) + _MUL(v2, h2) + _MUL(in, h3) + _MUL(out, h4));
 }
 
+d0 d1 d2 d3 d4 d5
+i0 i1 i2 i3 i4 i5
+o0 o1 o2 o3 o4 o5
+
+d0 d1 i0 o0
+d1 d2 i1 o1
 
 
 "$(COCOS2D_20_RC2_x_201)CocosDenshion\include";..\Classes;$(COCOS2D_20_RC2_x_201)cocos2dx;$(COCOS2D_20_RC2_x_201)cocos2dx\platform;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\win32;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\iconv;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\zlib;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libpng;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libjpeg;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libtiff;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\libxml2;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\pthread;$(COCOS2D_20_RC2_x_201)cocos2dx\platform\third_party\win32\OGLES;$(COCOS2D_20_RC2_x_201)cocos2dx\include;$(COCOS2D_20_RC2_x_201)cocos2dx\kazmath\include;$(COCOS2D_20_RC2_x_201)cocos2dx\actions;$(COCOS2D_20_RC2_x_201)cocos2dx\base_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\cocoa;$(COCOS2D_20_RC2_x_201)cocos2dx\effects;$(COCOS2D_20_RC2_x_201)cocos2dx\extensions;$(COCOS2D_20_RC2_x_201)cocos2dx\keypad_dispatcher;$(COCOS2D_20_RC2_x_201)cocos2dx\label_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\layers_scenes_transitions_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\menu_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\misc_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\particle_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\script_support;$(COCOS2D_20_RC2_x_201)cocos2dx\shaders;$(COCOS2D_20_RC2_x_201)cocos2dx\sprite_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\text_input_node;$(COCOS2D_20_RC2_x_201)cocos2dx\textures;$(COCOS2D_20_RC2_x_201)cocos2dx\tileMap_parallax_nodes;$(COCOS2D_20_RC2_x_201)cocos2dx\touch_dispatcher;$(COCOS2D_20_RC2_x_201)cocos2dx\support

@@ -21,11 +21,29 @@
       </modifier>
     </part>
   </pose>
+  <pose name="indicator_white" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="pearl_white" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="05%" ></key>
+      </modifier>
+    </part>
+  </pose>
   <pose name="white" collid="0.3,0.3">
     <part name="body">
       <mesh ref="pearl_white" dt="1"></mesh>
       <modifier mode="abc0">
         <key time="0000" yardscalex="09%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="indicator_golden" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="pearl_golden" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="05%" alpha="0.5"></key>
+        <key time="0050" yardscalex="09%" alpha="0.7"></key>
+        <key time="0070" yardscalex="05%" alpha="1.0"></key>
       </modifier>
     </part>
   </pose>

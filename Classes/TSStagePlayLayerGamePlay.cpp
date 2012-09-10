@@ -15,6 +15,8 @@ TSStagePlayLayerGamePlay::TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer
 	
 	_fPlayerSpeedLast = 0;
 
+	_nCollected = 0;
+
 	memset(_psprIndicators, 0, sizeof(_psprIndicators));
 
 	_NullGetters();
@@ -29,13 +31,19 @@ TSStagePlayLayerGamePlay::~TSStagePlayLayerGamePlay(void)
 
 string TSStagePlayLayerGamePlay::debuglog() 
 { 
-	char sz[256];
-	sprintf(sz, "ps=%s, psp=%.2f ssp=%.2f sprs=%d, state=%s", 
+	char sz[1024];
+	string sprinfo = this->_sprite_container_debug_log().c_str();
+	if (sprinfo.size())
+	{
+		sprinfo += " ";
+	}
+	sprintf(sz, "ps=%s, psp=%.2f ssp=%.2f sprs=%d, state=%s, %s", 
 		_player() ? _player()->debuglog().c_str() : "N", 
 		_player() ? _player()->getPos().x : 0.0f,
 		this->stage()->getOffset().x,
 		this->_getNamedSpritesCount(), 
-		this->getCurrentState()->getLeafState()->getFullName().c_str());
+		this->getCurrentState()->getLeafState()->getFullName().c_str(),
+		sprinfo.c_str());
 	return sz;
 }
 
@@ -106,10 +114,12 @@ void TSStagePlayLayerGamePlay::_findNumberSprites(const char* prefix, CASprite**
 	{
 		CASprite* pspr = _getNamedSprite(prefix, i);
 		string gname = pspr->getGroupName();
-		char c = gname[gname.length() - 1];
-		_Assert(c >= '0' && c <= '9');
-		int index = c - '0';
-		_Assert (index >= 0 && index < size);
+		strings parts;
+		CAString::split(gname, "-", parts);
+		string order = parts[parts.size() - 1];
+		int index = atoi(order.c_str());
+		_Assert(index >= 0 && index < size);
+		_Assert(null == ppsprs[index]);
 		{
 			ppsprs[index] = pspr;
 		}
@@ -122,29 +132,34 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	_state = fname;
 
 	if (0) ;
-	else if (CAString::startWith(fname, "root.idle"))		//_onStateBeginIdle(from);
+	else if (CAString::startWith(fname, "root.idle"))
 	{
 		//this->setVisible(false);
 		_NullGetters();
 		removeAllTimelines();
 	}
-	else if (CAString::startWith(fname, "root.create"))		//_onStateBeginFadein(from);
+	else if (CAString::startWith(fname, "root.create"))
 	{
 		//this->stage()->resetTimer();
 		//this->stage()->setOffset(ccp(0, 0), 0);
 		activeAllTimelines();
+		_traceline.init(143417, 0.5f, 0.92f, 0.07f, 0.4f, 0.01f, 0.09f, 5, 3);
 	}
-	else if (CAString::startWith(fname, "root.fadein"))		//_onStateBeginFadein(from);
+	else if (CAString::startWith(fname, "root.fadein"))
 	{
 		_InitGetters();
 
 		const char* cm = "0123456789";
 		
 		CASprite* psprs[7];
+		memset(psprs, 0, sizeof(psprs));
 		_findNumberSprites("dist", psprs, 6);
 		_distance.init(this, psprs, 6, cm);
 		
-		_findNumberSprites("gas", _psprIndicators, 18);
+		memset(_psprIndicators, 0, SIZE_OF_ARRAY(_psprIndicators));
+		_findNumberSprites("score", _psprIndicators, SIZE_OF_ARRAY(_psprIndicators));
+		_nCollected = 0;
+		_updateScoreBar();
 
 		/*
 		activeAllTimeline("play_title_bar", true);
@@ -171,7 +186,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		_player()->setState(PS_Dive);
 		_player()->setMoveSpeed(0);
 	}
-	else if (CAString::startWith(fname, "root.running"))	//_onStateBeginRunning(from);
+	else if (CAString::startWith(fname, "root.running"))
 	{
 		if (fname == "root.running.swiming")
 		{
@@ -296,6 +311,35 @@ int TSStagePlayLayerGamePlay::_getDistance()
 	return r;
 }
 
+void TSStagePlayLayerGamePlay::_updateScoreBar()
+{
+	int i;
+	int n = _nCollected / 10;
+	int p = 0;
+	for (i = 0; i < SIZE_OF_ARRAY(_psprIndicators); i++)
+	{
+		CASprite* pspr = _psprIndicators[i];
+		if (pspr && pspr->getModName() == "pearl")
+		{
+			if (p < n)
+			{
+				if (pspr->getState() != "indicator_golden")
+				{
+					pspr->setState("indicator_golden");
+				}
+			}
+			else
+			{
+				if (pspr->getState() != "indicator_white")
+				{
+					pspr->setState("indicator_white");
+				}
+			}
+			p++;
+		}
+	}
+}
+
 void TSStagePlayLayerGamePlay::_checkRewards() 
 {
 	CASprite* psprPlayer = _player();
@@ -310,7 +354,9 @@ void TSStagePlayLayerGamePlay::_checkRewards()
 			if (psprPlayer->isCollidWith(pspr))
 			{
 				//_addScore(pspr);
+				_nCollected++;
 				pspr->setState("dismiss");
+				_updateScoreBar();
 			}
 		}
 	}
@@ -400,6 +446,32 @@ void TSStagePlayLayerGamePlay::onUpdate()
 		_checkRewards();
 
 		_updateStageOffset();
+
+		int n = 0;
+		CCPoint ptOffset = stage()->getOffset();
+		CCPoint ptLast = _traceline.getLastTracePoint();
+		CAWorld::percent2view(ptLast);
+		float w = CAWorld::getScreenSize().width;
+		while (ptLast.x < ptOffset.x + w * 1.2f)
+		{
+			CCPoint pt = _traceline.getNextTracePoint();
+			CAWorld::percent2view(pt);
+			ptLast = pt;
+			CCRect rect;
+			rect.origin = ccp(-0.2f, 0);
+			rect.size.width = 4.0f;
+			rect.size.height = 1.0f;
+
+			TSSpriteCommon* pspr = new TSSpriteCommon(this, "pearl");
+			pspr->setLiveArea(rect);
+			pspr->setFollowCamera(true);
+			pspr->setPos(pt);
+			pspr->setState("golden");
+			this->addSprite(pspr);
+			n++;
+		}
+		//_Info("n = %d", n);
+	
 		//if (CAString::startWith(fname, "root.running"))
 		if (_animPlayerSpeed.isValid() && _player())
 		{

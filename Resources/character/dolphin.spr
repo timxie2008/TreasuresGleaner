@@ -23,6 +23,14 @@
       </modifier>
     </part>
   </pose>
+  <pose name="indicator">
+    <part name="root">
+      <mesh ref="dolphin_swim" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscalex="4%" ></key>
+      </modifier>
+    </part>
+  </pose>
   <pose name="fadeout">
     <part name="root">
       <mesh ref="dolphin_swim" dt="0.8"></mesh>
