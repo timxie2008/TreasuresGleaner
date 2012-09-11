@@ -32,6 +32,10 @@ public:
 	TSTraceLine();
 	virtual ~TSTraceLine(void);
 
+	int getSegmentsCount() const { return _nSegments; }
+	float top() const { return _top; }
+	float bottom() const { return _bottom; }
+
 	void init(int seed, float left, float top, float bottom, 
 		float node_density, float node_rand_range, float point_density, 
 		int nYSegmentMax = 5, int nYSegmentRange = 3);

@@ -125,19 +125,19 @@
         <candidate spr="bubble" pose="ellipse_dolphin" percent="10" gname="prepare_bubble_dolphin" ></candidate>
       </emmitor>
       <emmitor spos="0.44,0.26,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="blocker_01" pose="stand" percent="10" gname="prepare_blocker_01" ></candidate>
+        <candidate spr="blocker-01" pose="stand" percent="10" gname="prepare_blocker-01" ></candidate>
       </emmitor>
       <emmitor spos="0.55,0.26,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="blocker_02" pose="stand" percent="10" gname="prepare_blocker_02" ></candidate>
+        <candidate spr="blocker-02" pose="stand" percent="10" gname="prepare_blocker-02" ></candidate>
       </emmitor>
       <emmitor spos="0.86,0.32,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="blocker_03" pose="stand" percent="10" gname="prepare_blocker_03" ></candidate>
+        <candidate spr="blocker-03" pose="stand" percent="10" gname="prepare_blocker-03" ></candidate>
       </emmitor>
       <!--emmitor spos="0.77,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="blocker_04" pose="stand" percent="10" gname="prepare_blocker_04" ></candidate>
+        <candidate spr="blocker-04" pose="stand" percent="10" gname="prepare_blocker-04" ></candidate>
       </emmitor>
       <emmitor spos="0.88,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="blocker_05" pose="stand" percent="10" gname="prepare_blocker_05" ></candidate>
+        <candidate spr="blocker-05" pose="stand" percent="10" gname="prepare_blocker-05" ></candidate>
       </emmitor-->
     </timeline>
     <timeline name="prepare_buttons" mode="abc0" range="0" enable="true">
@@ -170,12 +170,20 @@
       <key name="player_speed_max_in_percent" float="180%" />
       <key name="player_speed_acc_in_distance" float="0.1" />
 
-      <key name="seed" int="3746287" />
+      <key name="traceline_seed" int="3746287" />
       <key name="traceline_left" float="0.5" />
       <key name="traceline_top" float="0.8" />
       <key name="traceline_bottom" float="0.2" />
       <key name="traceline_node_density" float="0.25" />
+      <key name="traceline_node_rand_range" float="0.01" />
       <key name="traceline_point_density" float="0.07" />
+      <key name="traceline_yseg_max" int="5" />
+      <key name="traceline_yseg_range" int="3" />
+
+      <key name="traceline_coin2pearl" int="3" />
+      <key name="traceline_blocker_k" float="0.15" />
+      <key name="traceline_blocker_dy_percent_from_center" float="0.12" />
+      <key name="traceline_block_density" float="170" />
     </settings>
     <machine ref="game/play/game.layer.play.ai"></machine>
 
