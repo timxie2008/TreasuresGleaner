@@ -1,9 +1,12 @@
 
 #include "TSStagePlayLayerGamePlay.h"
 #include "TSStagePlayLayerGamePlayPause.h"
+
 #include "AWorld.h"
 #include "AStage.h"
 #include "AString.h"
+#include "AUserData.h"
+
 #include "TSSpritePlayer.h"
 #include "TSSpriteFish.h"
 #include "TSSpriteCommon.h"
@@ -228,6 +231,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	{
 		//show game over message
 		//save record here
+		CAUserData::sharedUserData().setInteger("last_score", this->_getDistance());
 		_player()->setState(PS_Prepare);
 		this->_playerParent->onEvent(new CAEventCommand(this, "play.finished"));
 	}
@@ -235,10 +239,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	{
 		//show fadeout effects
 		//transite to idle
-		_Info("play faddeout 1");
 		this->removeAllSpritesByGroupName("pearl");
 		this->removeAllSpritesByGroupName("blocker");
-		_Info("play faddeout 2");
 	}
 	else ;
 };

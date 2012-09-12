@@ -64,6 +64,9 @@ protected:
 	TSGroupNumber _dist_last;
 	TSGroupNumber _dist_max;
 
+	bool _bScoreDirty;
+	int _score_last;
+	int _score_max;
 	//void _updateNumber(const char* prefix, int nValue);
 
 	/*

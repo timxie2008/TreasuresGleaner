@@ -1,7 +1,10 @@
 #include "TSStagePlayLayerGamePrepare.h"
+
 #include "AWorld.h"
 #include "AStage.h"
 #include "AString.h"
+#include "AUserData.h"
+
 #include "TSSpritePlayer.h"
 #include "TSSpriteFish.h"
 #include "TSSpriteCommon.h"
@@ -12,6 +15,10 @@ TSStagePlayLayerGamePrepare::TSStagePlayLayerGamePrepare(CAStage* pstage, CAStag
 {
 	_Trace("%s allocated", __FUNCTION__);
 	_NullGetters();
+
+	_bScoreDirty = true;
+	_score_last = 0;
+	_score_max = 0;
 }
 
 TSStagePlayLayerGamePrepare::~TSStagePlayLayerGamePrepare(void)
@@ -114,6 +121,15 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 	else if (CAString::startWith(fname, "root.fadein"))
 	{
 		_InitGetters();
+
+		_bScoreDirty = true;
+		_score_last = CAUserData::sharedUserData().getInteger("last_score");;
+		_score_max = CAUserData::sharedUserData().getInteger("max_score");;
+		if (_score_last > _score_max)
+		{
+			_score_max = _score_last;
+			CAUserData::sharedUserData().setInteger("max_score", _score_max);
+		}
 
 		const char* cm = "0123456789m+";
 		
@@ -262,14 +278,18 @@ void TSStagePlayLayerGamePrepare::onUpdate()
 	CAStageLayer::onUpdate();
 	if (this->getCurrentState()->getFullName() == "root.running")
 	{
-		char szNumber[32];
-		sprintf(szNumber, "%dm", 0x1234);
-		_dist_last.setText(szNumber);
-		_dist_last.onUpdate();
+		if (_bScoreDirty)
+		{
+			char szNumber[32];
 
-		sprintf(szNumber, "%dm", 0x2234);
-		_dist_max.setText(szNumber);
-		_dist_max.onUpdate();
+			sprintf(szNumber, "%dm", _score_last);
+			_dist_last.setText(szNumber);
+			_dist_last.onUpdate();
+
+			sprintf(szNumber, "%dm", _score_max);
+			_dist_max.setText(szNumber);
+			_dist_max.onUpdate();
+		}
 
 		int c = this->_getNamedSpritesCount("bubble");
 		if (c < 20)
