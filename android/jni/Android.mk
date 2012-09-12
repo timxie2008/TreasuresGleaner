@@ -57,6 +57,7 @@ LOCAL_SRC_FILES := game_frame.cpp \
 
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../libcacore/Classes                   
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static cocosdenshion_static
             
