@@ -16,7 +16,7 @@ TSStagePlayLayerGamePlay::TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer
 	_fPlayerSpeedLast = 0;
 
 	_nCollected = 0;
-	ptLastBlocker = CCPointZero;
+	_ptLastBlocker = CCPointZero;
 
 	memset(_psprIndicators, 0, sizeof(_psprIndicators));
 
@@ -76,14 +76,8 @@ bool TSStagePlayLayerGamePlay::checkCondition(CAState* from, const CATransition&
 		{
 			result = true;
 		}
-		if (result)
-		{
-			string result = "";
-			result += from->getFullName();
-			result += "@";
-			result += trans.condition;
-			this->setConditionResult(result.c_str(), true);
-		}
+		_Info("check result timeout(%.2f-%.2f > %.2f): %s => %s", this->getTimeNow(), from->getTimeEnter(), timeout, fname.c_str(), result ? "true" : "false");
+		return result;
 	}
 	else if (fname == "root.diving")
 	{
@@ -161,7 +155,10 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		_traceline_blocker_dy_percent_from_center = _settings.getFloat("traceline_blocker_dy_percent_from_center");
 		_traceline_block_density = _settings.getFloat("traceline_block_density");
 
+		_ptLastBlocker = CCPointZero;
 		_traceline.init(seed, left, top, bottom, node_density, node_rand_range, point_density, seg_max, seg_range);
+
+		_fPlayerSpeedLast = 0;
 	}
 	else if (CAString::startWith(fname, "root.fadein"))
 	{
@@ -179,13 +176,6 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		_nCollected = 0;
 		_updateScoreBar();
 
-		/*
-		activeAllTimeline("play_title_bar", true);
-		activeTimeline("play_ui_buttons", true);
-		enableTimeline("play_fishes", true);
-		enableTimeline("play_rewards", true);
-		*/
-		//this->setVisible(true);
 		_pstage->setFocus(this);
 	}
 	else if (CAString::startWith(fname, "root.diving"))	
@@ -206,23 +196,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.running"))
 	{
-		if (fname == "root.running.swiming")
-		{
-			//set player swim speed to normal
-			_player()->setState(PS_Swiming);
-		}
-		else if (fname == "root.running.waitriding")
-		{
-			_animPlayerSpeed.init(getTimeNow(), 0.2f, _fPlayerSpeedLast, 0);
-			_player()->setState(PS_WaitRiding);
-		}
-		else if (fname == "root.running.riding")
-		{
-			//get rider speed
-			float fSpeedOfRedier = _fPlayerSpeedMax;
-			_animPlayerSpeed.init(getTimeNow(), 0.1f, 0, fSpeedOfRedier);
-			_player()->setState(PS_Riding);
-		}
+		//set player swim speed to normal
+		_player()->setState(PS_Swiming);
 	}
 	else if (fname == "root.pause")
 	{
@@ -253,11 +228,17 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	{
 		//show game over message
 		//save record here
+		_player()->setState(PS_Prepare);
+		this->_playerParent->onEvent(new CAEventCommand(this, "play.finished"));
 	}
 	else if (CAString::startWith(fname, "root.fadeout"))
 	{
 		//show fadeout effects
 		//transite to idle
+		_Info("play faddeout 1");
+		this->removeAllSpritesByGroupName("pearl");
+		this->removeAllSpritesByGroupName("blocker");
+		_Info("play faddeout 2");
 	}
 	else ;
 };
@@ -279,10 +260,6 @@ void TSStagePlayLayerGamePlay::onStateEnd(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.running"))	
 	{
-		if (fname == "root.running.swiming")
-		{
-		}
-		//else if (fname == "
 	}
 	else if (CAString::startWith(fname, "root.pause"))	
 	{
@@ -358,6 +335,27 @@ void TSStagePlayLayerGamePlay::_updateScoreBar()
 	}
 }
 
+void TSStagePlayLayerGamePlay::_addCollected(int c)
+{
+	_nCollected += c;
+
+	int cmax = _traceline_coin2pearl * (SIZE_OF_ARRAY(_psprIndicators) - 4);
+	if (_nCollected < 0) 
+	{
+		_nCollected = 0;
+	}
+	else if (_nCollected > cmax)
+	{
+		_nCollected = cmax;
+	}
+
+	if (_nCollected <= 0)
+	{
+		_player()->setState("dead");
+	}
+	_updateScoreBar();
+}
+
 void TSStagePlayLayerGamePlay::_checkRewards() 
 {
 	CASprite* psprPlayer = _player();
@@ -371,10 +369,8 @@ void TSStagePlayLayerGamePlay::_checkRewards()
 		{
 			if (psprPlayer->isCollidWith(pspr))
 			{
-				//_addScore(pspr);
-				_nCollected++;
+				_addCollected(1);
 				pspr->setState("dismiss");
-				_updateScoreBar();
 			}
 		}
 	}
@@ -396,28 +392,8 @@ void TSStagePlayLayerGamePlay::_checkBlockers()
 			if (psprPlayer->isCollidWith(pspr))
 			{
 				//psprPlayer->setState("hurt");
-				_nCollected -= 5 *  _traceline_coin2pearl;
-				if (_nCollected < 0) 
-				{
-					_nCollected = 0;
-					_player()->setState("dead");
-					return;
-					//setState(STATE_DYING);
-				}
-				_updateScoreBar();
+				_addCollected(-5 *  _traceline_coin2pearl);
 				pspr->setState("dismiss");
-				/*
-				_nGas -= 30;
-				if (_nGas < 0)
-				{
-					_nGas = 0;
-					_player()->setState("dead");
-					//setState(STATE_DYING);
-					return;
-				}
-				*/
-				//_addScore(pspr->getGroupName());
-				//pspr->setState("dismiss");
 			}
 		}
 	}
@@ -453,7 +429,7 @@ void TSStagePlayLayerGamePlay::onUpdate()
 	{
 		CASprite* psprPlayer = _player();
 
-		if (fname == "root.running.swiming")
+		//if (fname == "root.running.swiming")
 		{
 			float speed = _fPlayerSpeedInPixel + _fPlayerSpeedAcc * _getDistance();
 			if (speed > _fPlayerSpeedMax) speed = _fPlayerSpeedMax;
@@ -461,10 +437,10 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			_animPlayerSpeed.init(getTimeNow(), 0, _fPlayerSpeedLast, speed);
 			_fPlayerSpeedLast = speed;
 		}
-		else if (fname == "root.running.waitriding")
+		//else if (fname == "root.running.waitriding")
 		{
 		}
-		else if (fname == "root.running.riding")
+		//else if (fname == "root.running.riding")
 		{
 		}
 
@@ -484,7 +460,10 @@ void TSStagePlayLayerGamePlay::onUpdate()
 		CCSize size = CAWorld::getScreenSize();
 		while (ptLast.x < ptOffset.x + size.width * 1.8f)
 		{
+			TSSpriteCommon* pspr;
+
 			Vector3 v0, v1, vc, vd, vr;
+			
 			CCPoint pt = _traceline.getNextTracePoint();
 			CAWorld::percent2view(pt);
 			
@@ -502,7 +481,7 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			rect.size.width = 4.0f;
 			rect.size.height = 1.0f;
 
-			TSSpriteCommon* pspr = new TSSpriteCommon(this, "pearl");
+			pspr = new TSSpriteCommon(this, "pearl");
 			pspr->setLiveArea(rect);
 			pspr->setFollowCamera(true);
 			pspr->setPos(pt);
@@ -521,34 +500,48 @@ void TSStagePlayLayerGamePlay::onUpdate()
 				continue;
 			}
 
+			if (v0.x - _ptLastBlocker.x < _traceline_block_density)
+			{
+				continue;
+			}
+
 			//get mirror point of pt
 			vc.x = pt.x;
 			vc.y = size.height / 2.0f;
 			vc.z = 0;
 			vr = vc - v0;
 			float len = vr.length();
-			vr.normalize();
-			vr *= 2 * len;
-			vr = v0 + vr;
-			if (len > size.height * _traceline_blocker_dy_percent_from_center && vr.x - ptLastBlocker.x > _traceline_block_density)
+
+			if (len < size.height * _traceline_blocker_dy_percent_from_center)
 			{
-				//try to create a blocker
-				CCPoint ptBlocker;
-				ptBlocker.x = vr.x;
-				ptBlocker.y = vr.y;
-				ptLastBlocker = ptBlocker;
-
-				int n = (int)(CAUtils::Rand() * 5.0f);
-				char szBlocker[32];
-				sprintf(szBlocker, "blocker-%02d", n + 1);
-
-				TSSpriteCommon* pspr = new TSSpriteCommon(this, szBlocker);
-				pspr->setLiveArea(rect);
-				pspr->setFollowCamera(true);
-				pspr->setPos(ptBlocker);
-				pspr->setState("stand");
-				this->addSprite(pspr);
+				continue;
 			}
+
+			len = (CAUtils::Rand() * 0.8f + 1.8f) * len;
+			vr.normalize();
+			vr *= len;
+			vr = v0 + vr;
+			if (vr.y < _traceline.bottom() * size.height || vr.y > _traceline.top() * size.height)
+			{
+				continue;
+			}
+
+			//try to create a blocker
+			CCPoint ptBlocker;
+			ptBlocker.x = vr.x;
+			ptBlocker.y = vr.y;
+			_ptLastBlocker = ptBlocker;
+
+			int n = (int)(CAUtils::Rand() * 5.0f);
+			char szBlocker[32];
+			sprintf(szBlocker, "blocker-%02d", n + 1);
+
+			pspr = new TSSpriteCommon(this, szBlocker);
+			pspr->setLiveArea(rect);
+			pspr->setFollowCamera(true);
+			pspr->setPos(ptBlocker);
+			pspr->setState("stand");
+			this->addSprite(pspr);
 		}
 
 		//if (CAString::startWith(fname, "root.running"))
@@ -602,6 +595,10 @@ void TSStagePlayLayerGamePlay::onEvent(CAEvent* pevt)
 				{
 					this->setConditionResult("root.running@user.pause", true);
 				}
+			}
+			else if (pec->command() == "over")
+			{
+				this->setConditionResult("root.running@player.dead", true);
 			}
 			else if (pec->command() == EVENT_DIVE_FINISHED)
 			{

@@ -58,27 +58,42 @@
     <timeline name="coral-01" mode="abca" range="3.0" enable="true">
       <emmitor spos="0,0.01,4" range="0,0.05, 0" live="0,0,3,1" speed="0">
         <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
       </emmitor>
       <emmitor spos="0.3,0.02,4" range="0,0.05,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
       </emmitor>
       <emmitor spos="0.7,0.03,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
         <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
       </emmitor>
       <emmitor spos="1.0,0.04,4" range="0,0.04,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
       </emmitor>
       <emmitor spos="1.7,0.014,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
         <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
       </emmitor>
       <emmitor spos="2.0,0.015,4" range="0,0.12,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
       </emmitor>
       <emmitor spos="2.3,0.014,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
       </emmitor>
       <emmitor spos="2.8,0.014,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
       </emmitor>
     </timeline>
     <timeline name="light" mode="abc0" range="0">
@@ -182,8 +197,8 @@
 
       <key name="traceline_coin2pearl" int="3" />
       <key name="traceline_blocker_k" float="0.15" />
-      <key name="traceline_blocker_dy_percent_from_center" float="0.12" />
-      <key name="traceline_block_density" float="170" />
+      <key name="traceline_blocker_dy_percent_from_center" float="0.08" />
+      <key name="traceline_block_density" float="210" />
     </settings>
     <machine ref="game/play/game.layer.play.ai"></machine>
 
@@ -237,29 +252,42 @@
       </emmitor>
     </timeline>
     <timeline name="coral-01" mode="abca" range="3.0" enable="true">
-      <emmitor spos="0,0.01,2.1" range="0,0.05, 0" live="0,0,3,1" speed="0">
+      <emmitor spos="0,0.01,4" range="0,0.05, 0" live="0,0,3,1" speed="0">
         <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
       </emmitor>
-      <emmitor spos="0.3,0.02,2.1" range="0,0.05,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+      <emmitor spos="0.3,0.02,4" range="0,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
       </emmitor>
-      <emmitor spos="0.7,0.03,2.1" range="0.1,0.05,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+      <emmitor spos="0.7,0.03,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
       </emmitor>
-      <emmitor spos="1.0,0.04,2.1" range="0,0.04,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+      <emmitor spos="1.0,0.04,4" range="0,0.04,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
       </emmitor>
-      <emmitor spos="1.7,0.014,2.1" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+      <emmitor spos="1.7,0.014,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
         <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
       </emmitor>
-      <emmitor spos="2.0,0.015,2.1" range="0,0.12,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+      <emmitor spos="2.0,0.015,4" range="0,0.12,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
       </emmitor>
-      <emmitor spos="2.3,0.014,2.1" range="0.1,0.05,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+      <emmitor spos="2.3,0.014,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
       </emmitor>
-      <emmitor spos="2.8,0.014,2.1" range="0.1,0.05,0" live="0,0,3,1" speed="0">
-        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+      <emmitor spos="2.8,0.014,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
       </emmitor>
     </timeline>
     <timeline name="light" mode="abc0" range="0">

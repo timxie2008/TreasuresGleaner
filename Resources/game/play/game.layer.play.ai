@@ -15,15 +15,6 @@
   <state name="running" init="">
     <transition condition="user.pause" tostate="root.pause@lE" />
     <transition condition="player.dead" tostate="root.over" />
-    <state name="swiming">
-      <transition condition="ride" tostate="root.running.waitriding" />
-    </state>
-    <state name="waitriding">
-      <transition condition="rided" tostate="root.running.riding" />
-    </state>
-    <state name="riding">
-      <transition condition="ride.finished" tostate="root.running.swim" />
-    </state>
   </state>
   <state name="pause">
     <!-- stop something here -->
@@ -53,7 +44,7 @@
     <transition condition="true" tostate="root.fadeout" />
   </state>
   <state name="fadeout" init="">
-    <transition condition="wait" timeout="0.9" tostate="root.sendresult" />
+    <transition condition="wait" timeout="0.1" tostate="root.sendresult" />
   </state>
   <state name="sendresult">
     <!-- send CAEventCommand(play.finished) to parent layer-->

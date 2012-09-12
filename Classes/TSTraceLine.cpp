@@ -207,6 +207,8 @@ void TSTraceLine::init(int seed, float left, float top, float bottom,
 	_nYSegmentLast = _nYSegmentMax / 2; //middle of screen
 	_nYSegmentRange = nYSegmentRange;
 
+	_ptLast = CCPointZero;
+
 	_nSegments = 0;
 	_createSegment();
 }

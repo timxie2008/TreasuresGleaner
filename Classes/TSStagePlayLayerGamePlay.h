@@ -52,28 +52,18 @@ protected:
 	void _updateScoreBar();
 
 	TSTraceLine _traceline;
-	CCPoint	ptLastBlocker;
+	CCPoint	_ptLastBlocker;
 	int _traceline_coin2pearl;
 	float _traceline_blocker_k;
 	float _traceline_blocker_dy_percent_from_center;
 	float _traceline_block_density;
 
 	int _nCollected;
+	void _addCollected(int c);
 
 	void _updateStageOffset();
 	void _checkBlockers();
 	void _checkRewards();
-
-	//void _updateNumber(const char* prefix, int nValue);
-
-	/*
-	DELCARE_STATE_HANDLER(Idle);
-	DELCARE_STATE_HANDLER(Fadein);
-	DELCARE_STATE_HANDLER(Running);
-	DELCARE_STATE_HANDLER(OnResume);
-	DELCARE_STATE_HANDLER(OnRestart);
-	DELCARE_STATE_HANDLER(Fadeout);
-	*/
 public:
 	TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer* playerParent);
 	virtual ~TSStagePlayLayerGamePlay(void);
