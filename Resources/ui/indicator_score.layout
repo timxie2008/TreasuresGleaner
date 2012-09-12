@@ -6,9 +6,9 @@
   <child name="4" ref="pearl"   xpos="0.08,0" pose="indicator_white" />
   <child name="5" ref="pearl"   xpos="0.10,0" pose="indicator_white" />
   <child name="6" ref="pearl"   xpos="0.12,0" pose="indicator_white" />
-  
-  <child name="7" ref="bubble"    xpos="0.14,0" pose="indicator" />
-  <child name="8" ref="label_gas" xpos="0.14,0" pose="indicator" />
+
+  <child name="7" ref="bubble"  xpos="0.14,0" pose="indicator" />
+  <child name="8" ref="dolphin" xpos="0.14,0" pose="indicator" />
 
   <child name="9" ref="pearl"    xpos="0.16,0" pose="indicator_white" />
   <child name="10" ref="pearl"   xpos="0.18,0" pose="indicator_white" />
@@ -18,18 +18,8 @@
   <child name="14" ref="pearl"   xpos="0.26,0" pose="indicator_white" />
 
   <child name="15" ref="bubble"  xpos="0.28,0" pose="indicator" />
-  <child name="16" ref="dolphin" xpos="0.28,0" pose="indicator" />
+  <child name="16" ref="shark"   xpos="0.28,0" pose="indicator" />
 
   <child name="17" ref="pearl"   xpos="0.30,0" pose="indicator_white" />
   <child name="18" ref="pearl"   xpos="0.32,0" pose="indicator_white" />
-  <child name="19" ref="pearl"   xpos="0.34,0" pose="indicator_white" />
-  <child name="20" ref="pearl"   xpos="0.36,0" pose="indicator_white" />
-  <child name="21" ref="pearl"   xpos="0.38,0" pose="indicator_white" />
-  <child name="22" ref="pearl"   xpos="0.40,0" pose="indicator_white" />
-
-  <child name="23" ref="bubble"  xpos="0.42,0" pose="indicator" />
-  <child name="24" ref="shark"   xpos="0.42,0" pose="indicator" />
-
-  <child name="25" ref="pearl"   xpos="0.44,0" pose="indicator_white" />
-  <child name="26" ref="pearl"   xpos="0.46,0" pose="indicator_white" />
 </layout>

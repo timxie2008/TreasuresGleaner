@@ -2,6 +2,7 @@
 #define _STAGE_PLAY_LAYER_GAME_PLAY_H_
 
 #include "AStageLayer.h"
+#include "AMath3d.h"
 
 class TSSpritePlayer;
 class TSSpriteCommon;
@@ -47,15 +48,20 @@ protected:
 
 	int _getDistance();
 	
-	CASprite* _psprIndicators[26];
+	CASprite* _psprIndicators[18];
 	void _updateScoreBar();
 
 	TSTraceLine _traceline;
+	CCPoint	ptLastBlocker;
+	int _traceline_coin2pearl;
+	float _traceline_blocker_k;
+	float _traceline_blocker_dy_percent_from_center;
+	float _traceline_block_density;
 
 	int _nCollected;
 
 	void _updateStageOffset();
-	void _checkFishes();
+	void _checkBlockers();
 	void _checkRewards();
 
 	//void _updateNumber(const char* prefix, int nValue);

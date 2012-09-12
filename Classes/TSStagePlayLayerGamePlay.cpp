@@ -16,6 +16,7 @@ TSStagePlayLayerGamePlay::TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer
 	_fPlayerSpeedLast = 0;
 
 	_nCollected = 0;
+	ptLastBlocker = CCPointZero;
 
 	memset(_psprIndicators, 0, sizeof(_psprIndicators));
 
@@ -37,8 +38,8 @@ string TSStagePlayLayerGamePlay::debuglog()
 	{
 		sprinfo += " ";
 	}
-	sprintf(sz, "ps=%s, psp=%.2f ssp=%.2f sprs=%d, state=%s, %s", 
-		_player() ? _player()->debuglog().c_str() : "N", 
+	sprintf(sz, "%d ps=%s psp=%.2f ssp=%.2f sprs=%d, state=%s, %s", 
+		_nCollected, _player() ? _player()->debuglog().c_str() : "N", 
 		_player() ? _player()->getPos().x : 0.0f,
 		this->stage()->getOffset().x,
 		this->_getNamedSpritesCount(), 
@@ -143,7 +144,24 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		//this->stage()->resetTimer();
 		//this->stage()->setOffset(ccp(0, 0), 0);
 		activeAllTimelines();
-		_traceline.init(143417, 0.5f, 0.92f, 0.07f, 0.4f, 0.01f, 0.09f, 5, 3);
+
+		int seed = _settings.getInteger("traceline_seed");
+		float left = _settings.getFloat("traceline_left");
+		float top = _settings.getFloat("traceline_top");
+		float bottom = _settings.getFloat("traceline_bottom");
+		float node_density = _settings.getFloat("traceline_node_density");
+		float node_rand_range = _settings.getFloat("traceline_node_rand_range");
+		float point_density = _settings.getFloat("traceline_point_density");
+		int seg_max = _settings.getInteger("traceline_yseg_max");
+		int seg_range = _settings.getInteger("traceline_yseg_range");
+
+		_traceline_coin2pearl = _settings.getInteger("traceline_coin2pearl");
+		_Assert(_traceline_coin2pearl > 1 && _traceline_coin2pearl < 400);
+		_traceline_blocker_k = _settings.getFloat("traceline_blocker_k");
+		_traceline_blocker_dy_percent_from_center = _settings.getFloat("traceline_blocker_dy_percent_from_center");
+		_traceline_block_density = _settings.getFloat("traceline_block_density");
+
+		_traceline.init(seed, left, top, bottom, node_density, node_rand_range, point_density, seg_max, seg_range);
 	}
 	else if (CAString::startWith(fname, "root.fadein"))
 	{
@@ -156,7 +174,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		_findNumberSprites("dist", psprs, 6);
 		_distance.init(this, psprs, 6, cm);
 		
-		memset(_psprIndicators, 0, SIZE_OF_ARRAY(_psprIndicators));
+		memset(_psprIndicators, 0, sizeof(_psprIndicators));
 		_findNumberSprites("score", _psprIndicators, SIZE_OF_ARRAY(_psprIndicators));
 		_nCollected = 0;
 		_updateScoreBar();
@@ -314,7 +332,7 @@ int TSStagePlayLayerGamePlay::_getDistance()
 void TSStagePlayLayerGamePlay::_updateScoreBar()
 {
 	int i;
-	int n = _nCollected / 10;
+	int n = _nCollected / _traceline_coin2pearl;
 	int p = 0;
 	for (i = 0; i < SIZE_OF_ARRAY(_psprIndicators); i++)
 	{
@@ -362,32 +380,45 @@ void TSStagePlayLayerGamePlay::_checkRewards()
 	}
 }
 
-void TSStagePlayLayerGamePlay::_checkFishes() 
+void TSStagePlayLayerGamePlay::_checkBlockers() 
 {
-	this->stage()->playEffect("sfx_over");
+	//this->stage()->playEffect("sfx_over");
 
 	CASprite* psprPlayer = _player();
 
 	unsigned int i, count;
-	count = _getNamedSpritesCount("fish");
+	count = _getNamedSpritesCount("blocker");
 	for (i = 0; i < count; i++)
 	{
-		CASprite* pspr = _getNamedSprite("fish", i);
-		if (psprPlayer->isCollidWith(pspr))
+		CASprite* pspr = _getNamedSprite("blocker", i);
+		if (pspr->getState() != "dismiss")
 		{
-			psprPlayer->setState("hurt");
-			/*
-			_nGas -= 30;
-			if (_nGas < 0)
+			if (psprPlayer->isCollidWith(pspr))
 			{
-				_nGas = 0;
-				_player()->setState("dead");
-				//setState(STATE_DYING);
-				return;
+				//psprPlayer->setState("hurt");
+				_nCollected -= 5 *  _traceline_coin2pearl;
+				if (_nCollected < 0) 
+				{
+					_nCollected = 0;
+					_player()->setState("dead");
+					return;
+					//setState(STATE_DYING);
+				}
+				_updateScoreBar();
+				pspr->setState("dismiss");
+				/*
+				_nGas -= 30;
+				if (_nGas < 0)
+				{
+					_nGas = 0;
+					_player()->setState("dead");
+					//setState(STATE_DYING);
+					return;
+				}
+				*/
+				//_addScore(pspr->getGroupName());
+				//pspr->setState("dismiss");
 			}
-			*/
-			//_addScore(pspr->getGroupName());
-			//pspr->setState("dismiss");
 		}
 	}
 }
@@ -413,7 +444,6 @@ void TSStagePlayLayerGamePlay::_updateStageOffset()
 		}
 	}
 }
-
 
 void TSStagePlayLayerGamePlay::onUpdate() 
 {
@@ -444,19 +474,29 @@ void TSStagePlayLayerGamePlay::onUpdate()
 		_distance.onUpdate();
 
 		_checkRewards();
+		_checkBlockers();
 
 		_updateStageOffset();
 
-		int n = 0;
 		CCPoint ptOffset = stage()->getOffset();
 		CCPoint ptLast = _traceline.getLastTracePoint();
 		CAWorld::percent2view(ptLast);
-		float w = CAWorld::getScreenSize().width;
-		while (ptLast.x < ptOffset.x + w * 1.2f)
+		CCSize size = CAWorld::getScreenSize();
+		while (ptLast.x < ptOffset.x + size.width * 1.8f)
 		{
+			Vector3 v0, v1, vc, vd, vr;
 			CCPoint pt = _traceline.getNextTracePoint();
 			CAWorld::percent2view(pt);
+			
+			v0.x = pt.x;
+			v0.y = pt.y;
+			v0.z = 0;
+			v1.x = ptLast.x;
+			v1.y = ptLast.y;
+			v1.z = 0;
+	
 			ptLast = pt;
+
 			CCRect rect;
 			rect.origin = ccp(-0.2f, 0);
 			rect.size.width = 4.0f;
@@ -468,10 +508,49 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			pspr->setPos(pt);
 			pspr->setState("golden");
 			this->addSprite(pspr);
-			n++;
+
+			//random some blockers
+			if (_traceline.getSegmentsCount() <= 0)
+			{
+				continue;
+			}
+
+			vd = v1 - v0;
+			if (abs(vd.y / vd.x) > _traceline_blocker_k)
+			{
+				continue;
+			}
+
+			//get mirror point of pt
+			vc.x = pt.x;
+			vc.y = size.height / 2.0f;
+			vc.z = 0;
+			vr = vc - v0;
+			float len = vr.length();
+			vr.normalize();
+			vr *= 2 * len;
+			vr = v0 + vr;
+			if (len > size.height * _traceline_blocker_dy_percent_from_center && vr.x - ptLastBlocker.x > _traceline_block_density)
+			{
+				//try to create a blocker
+				CCPoint ptBlocker;
+				ptBlocker.x = vr.x;
+				ptBlocker.y = vr.y;
+				ptLastBlocker = ptBlocker;
+
+				int n = (int)(CAUtils::Rand() * 5.0f);
+				char szBlocker[32];
+				sprintf(szBlocker, "blocker-%02d", n + 1);
+
+				TSSpriteCommon* pspr = new TSSpriteCommon(this, szBlocker);
+				pspr->setLiveArea(rect);
+				pspr->setFollowCamera(true);
+				pspr->setPos(ptBlocker);
+				pspr->setState("stand");
+				this->addSprite(pspr);
+			}
 		}
-		//_Info("n = %d", n);
-	
+
 		//if (CAString::startWith(fname, "root.running"))
 		if (_animPlayerSpeed.isValid() && _player())
 		{

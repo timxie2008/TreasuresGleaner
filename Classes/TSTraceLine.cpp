@@ -30,6 +30,7 @@ unsigned int _rand()
    r &= 0x7fffffff;
    return r;
 }
+
 void _seed(unsigned int s)
 {
 	_z1 = _z2 = _z3 = _z4 = s;
