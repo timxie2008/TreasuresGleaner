@@ -3,7 +3,9 @@
 
 #include "AStageLayer.h"
 
+#if defined(WIN32)
 #define _DEBUG_INFO
+#endif
 
 class TSSpritePlayer;
 class TSSpriteCommon;
