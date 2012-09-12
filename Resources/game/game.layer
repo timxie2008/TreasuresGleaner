@@ -195,14 +195,14 @@
       <key name="traceline_bottom" float="0.2" />
       <key name="traceline_node_density" float="0.25" />
       <key name="traceline_node_rand_range" float="0.01" />
-      <key name="traceline_point_density" float="0.07" />
+      <key name="traceline_point_density" float="0.15" />
       <key name="traceline_yseg_max" int="5" />
       <key name="traceline_yseg_range" int="3" />
 
-      <key name="traceline_coin2pearl" int="3" />
+      <key name="traceline_coin2pearl" int="12" />
       <key name="traceline_blocker_k" float="0.15" />
       <key name="traceline_blocker_dy_percent_from_center" float="0.08" />
-      <key name="traceline_block_density" float="210" />
+      <key name="traceline_block_density" float="410" />
     </settings>
     <machine ref="game/play/game.layer.play.ai"></machine>
 
