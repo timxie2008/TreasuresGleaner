@@ -2,6 +2,10 @@
 <layer version="1.0">
   <machine ref="game/game.layer.ai"></machine>
 
+  <settings>
+    <key name="debug_info" bool="true" />
+  </settings>
+  
   <!-- add random player, fishes and treasures here -->
   <layer id="game.prepare">
     <machine ref="game/prepare/game.layer.prepare.ai"></machine>

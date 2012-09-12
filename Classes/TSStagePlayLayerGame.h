@@ -3,9 +3,7 @@
 
 #include "AStageLayer.h"
 
-#if defined(WIN32)
 #define _DEBUG_INFO
-#endif
 
 class TSSpritePlayer;
 class TSSpriteCommon;
@@ -16,6 +14,7 @@ class TSStagePlayLayerGame :
 {
 protected:
 #if defined(_DEBUG_INFO)
+	bool			_debug_info;
 	CCLabelTTF*		_pInfo;
 #endif
 	void _updateNumber(const char* prefix, int nValue);

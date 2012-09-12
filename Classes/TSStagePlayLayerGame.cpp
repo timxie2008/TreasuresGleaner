@@ -13,6 +13,7 @@ TSStagePlayLayerGame::TSStagePlayLayerGame(CAStage* pstage, CAStageLayer* player
 {
 	_Trace("%s allocated", __FUNCTION__);
 #if defined(_DEBUG_INFO)
+	_debug_info = false;
 	_pInfo = null;
 #endif
 }
@@ -87,16 +88,20 @@ void TSStagePlayLayerGame::onEnter()
 	CAStageLayer::onEnter();
 
 #if defined(_DEBUG_INFO)
-	CCSize size = CAWorld::getScreenSize();
-	size.width *= 0.9f;
-	size.height = 18 * 5;
-    _pInfo = CCLabelTTF::labelWithString(" ", size, kCCTextAlignmentLeft, "Arial", 16);
-	_pInfo->setAnchorPoint(ccp(0.0f, 0.0f));
-	_pInfo->setPosition( ccp(0, 20) );
-	_pInfo->setVertexZ(999);
-	//_pInfo->setOpacity(0x80);
-	this->stage()->addChild(_pInfo, 10000);
-	_pInfo->retain();
+	_debug_info = _settings.getBool("debug_info");
+	if (_debug_info)
+	{
+		CCSize size = CAWorld::getScreenSize();
+		size.width *= 0.9f;
+		size.height = 18 * 5;
+		_pInfo = CCLabelTTF::labelWithString(" ", size, kCCTextAlignmentLeft, "Arial", 16);
+		_pInfo->setAnchorPoint(ccp(0.0f, 0.0f));
+		_pInfo->setPosition( ccp(0, 20) );
+		_pInfo->setVertexZ(999);
+		//_pInfo->setOpacity(0x80);
+		this->stage()->addChild(_pInfo, 10000);
+		_pInfo->retain();
+	}
 #endif
 	//_pstage->setFocus(this);
 }
@@ -108,6 +113,9 @@ static ETouchState _old_touch_state = (ETouchState)-1;
 string TSStagePlayLayerGame::debuglog() 
 { 
 	string ret = "";
+
+	if (!_debug_info)
+		return ret;
 
 	CAStageLayer* pl;
 	
@@ -148,7 +156,10 @@ void TSStagePlayLayerGame::onUpdate()
 	CAStageLayer::onUpdate();
 
 #if defined(_DEBUG_INFO)
-	_pInfo->setString(debuglog().c_str());
+	if (_debug_info && null != _pInfo)
+	{
+		_pInfo->setString(debuglog().c_str());
+	}
 #endif
 };
 
