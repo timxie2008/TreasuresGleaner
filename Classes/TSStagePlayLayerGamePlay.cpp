@@ -41,13 +41,13 @@ string TSStagePlayLayerGamePlay::debuglog()
 	{
 		sprinfo += " ";
 	}
-	sprintf(sz, "%d ps=%s psp=%.2f ssp=%.2f sprs=%d, state=%s, %s", 
+	sprintf(sz, "%d ps=%s psp=%.2f ssp=%.2f sprs=%d, state=%s", 
 		_nCollected, _player() ? _player()->debuglog().c_str() : "N", 
 		_player() ? _player()->getPos().x : 0.0f,
 		this->stage()->getOffset().x,
 		this->_getNamedSpritesCount(), 
-		this->getCurrentState()->getLeafState()->getFullName().c_str(),
-		sprinfo.c_str());
+		this->getCurrentState()->getLeafState()->getFullName().c_str()/*,
+		sprinfo.c_str()*/);
 	return sz;
 }
 

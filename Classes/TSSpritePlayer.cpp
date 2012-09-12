@@ -414,7 +414,6 @@ bool TSSpritePlayer::onEvent(CAEvent* pEvent)
 					_direction = -1;
 					_timeTouchEvent = _pLayer->getTimeNow();
 				}
-				//this->resetTimer();
 			}
 			return true;
 		}
