@@ -7,34 +7,33 @@ LOCAL_MODULE := game_frame_shared
 LOCAL_MODULE_FILENAME := libgame_frame
 
 LOCAL_SRC_FILES := game_frame.cpp \
-                   ../../Classes/AppDelegate.cpp \
+                   ../../Classes/AAnimateObject.cpp \
                    ../../Classes/AAudio.cpp \
                    ../../Classes/ACache.cpp \
 				   ../../Classes/ADebug.cpp \
                    ../../Classes/AEnvironment.cpp \
                    ../../Classes/AEvent.cpp \
                    ../../Classes/AFixArray.cpp \
-                   ../../Classes/ASpritesPattern.cpp \
+                   ../../Classes/ALogger.cpp \
                    ../../Classes/AMachine.cpp \
 				   ../../Classes/AMath2d.cpp \
 				   ../../Classes/AMath3d.cpp \
                    ../../Classes/AObject.cpp \
-                   ../../Classes/AAnimateObject.cpp \
                    ../../Classes/ASettings.cpp \
                    ../../Classes/ASprite.cpp \
                    ../../Classes/ASpriteContainer.cpp \
                    ../../Classes/ASpriteModel.cpp \
+                   ../../Classes/ASpritesPattern.cpp \
                    ../../Classes/AStage.cpp \
                    ../../Classes/AStageLayer.cpp \
                    ../../Classes/AState.cpp \
                    ../../Classes/AString.cpp \
                    ../../Classes/ATransition.cpp \
-                   ../../Classes/AUtils.cpp \
                    ../../Classes/AValue.cpp \
 				   ../../Classes/AUserData.cpp \
+                   ../../Classes/AUtils.cpp \
                    ../../Classes/AWorld.cpp \
                    ../../Classes/AXML.cpp \
-                   ../../Classes/CCSpriteBatchNodeFix.cpp \
                    ../../Classes/TSSpriteBubble.cpp \
                    ../../Classes/TSSpriteButton.cpp \
                    ../../Classes/TSSpriteCommon.cpp \
@@ -43,8 +42,8 @@ LOCAL_SRC_FILES := game_frame.cpp \
                    ../../Classes/TSStageLogo.cpp \
                    ../../Classes/TSStageLogoLayerMain.cpp \
 				   ../../Classes/TSGroupNumber.cpp \
+				   ../../Classes/TSTraceLine.cpp \
                    ../../Classes/TSStagePlay.cpp \
-                   ../../Classes/TSStagePlayLayerCommon.cpp \
                    ../../Classes/TSStagePlayLayerGame.cpp \
                    ../../Classes/TSStagePlayLayerGamePrepare.cpp \
                    ../../Classes/TSStagePlayLayerGameShop.cpp \
@@ -54,6 +53,7 @@ LOCAL_SRC_FILES := game_frame.cpp \
                    ../../Classes/TSStageTestLayerTest.cpp \
                    ../../Classes/TSStageTestLayerTestBubbles.cpp \
                    ../../Classes/TSWorld.cpp \
+                   ../../Classes/AppDelegate.cpp \
 
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   
