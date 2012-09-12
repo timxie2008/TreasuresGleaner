@@ -497,7 +497,7 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			}
 
 			vd = v1 - v0;
-			if (abs(vd.y / vd.x) > _traceline_blocker_k)
+			if (_Abs(vd.y / vd.x) > _traceline_blocker_k)
 			{
 				continue;
 			}

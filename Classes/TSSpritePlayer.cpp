@@ -191,7 +191,7 @@ void TSSpritePlayer::_updateDirection(float dir)
 	float rot_frames = _settings().getFloat("rot_frames");
 	float rot_min_delta = _settings().getFloat("rot_min_delta");
 	float delta = (_toRotation - rot) / rot_frames;
-	if (abs(rot - _toRotation) < abs(delta))
+	if (_Abs(rot - _toRotation) < _Abs(delta))
 	{
 		rot = _toRotation;
 	}
