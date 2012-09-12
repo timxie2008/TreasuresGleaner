@@ -7,33 +7,33 @@ LOCAL_MODULE := game_frame_shared
 LOCAL_MODULE_FILENAME := libgame_frame
 
 LOCAL_SRC_FILES := game_frame.cpp \
-                   ../../Classes/AAnimateObject.cpp \
-                   ../../Classes/AAudio.cpp \
-                   ../../Classes/ACache.cpp \
-				   ../../Classes/ADebug.cpp \
-                   ../../Classes/AEnvironment.cpp \
-                   ../../Classes/AEvent.cpp \
-                   ../../Classes/AFixArray.cpp \
-                   ../../Classes/ALogger.cpp \
-                   ../../Classes/AMachine.cpp \
-				   ../../Classes/AMath2d.cpp \
-				   ../../Classes/AMath3d.cpp \
-                   ../../Classes/AObject.cpp \
-                   ../../Classes/ASettings.cpp \
-                   ../../Classes/ASprite.cpp \
-                   ../../Classes/ASpriteContainer.cpp \
-                   ../../Classes/ASpriteModel.cpp \
-                   ../../Classes/ASpritesPattern.cpp \
-                   ../../Classes/AStage.cpp \
-                   ../../Classes/AStageLayer.cpp \
-                   ../../Classes/AState.cpp \
-                   ../../Classes/AString.cpp \
-                   ../../Classes/ATransition.cpp \
-                   ../../Classes/AValue.cpp \
-				   ../../Classes/AUserData.cpp \
-                   ../../Classes/AUtils.cpp \
-                   ../../Classes/AWorld.cpp \
-                   ../../Classes/AXML.cpp \
+                   ../../../libcacore/Classes/AAudio.cpp \
+                   ../../../libcacore/Classes/ACache.cpp \
+				   ../../../libcacore/Classes/ADebug.cpp \
+				   ../../../libcacore/Classes/ADataBuf.cpp \
+                   ../../../libcacore/Classes/AEnvironment.cpp \
+                   ../../../libcacore/Classes/AEvent.cpp \
+                   ../../../libcacore/Classes/AFixArray.cpp \
+                   ../../../libcacore/Classes/ASpritesPattern.cpp \
+                   ../../../libcacore/Classes/AMachine.cpp \
+				   ../../../libcacore/Classes/AMath2d.cpp \
+				   ../../../libcacore/Classes/AMath3d.cpp \
+                   ../../../libcacore/Classes/AObject.cpp \
+                   ../../../libcacore/Classes/AAnimateObject.cpp \
+                   ../../../libcacore/Classes/ASettings.cpp \
+                   ../../../libcacore/Classes/ASprite.cpp \
+                   ../../../libcacore/Classes/ASpriteContainer.cpp \
+                   ../../../libcacore/Classes/ASpriteModel.cpp \
+                   ../../../libcacore/Classes/AStage.cpp \
+                   ../../../libcacore/Classes/AStageLayer.cpp \
+                   ../../../libcacore/Classes/AState.cpp \
+                   ../../../libcacore/Classes/AString.cpp \
+                   ../../../libcacore/Classes/ATransition.cpp \
+                   ../../../libcacore/Classes/AUtils.cpp \
+                   ../../../libcacore/Classes/AValue.cpp \
+				   ../../../libcacore/Classes/AUserData.cpp \
+                   ../../../libcacore/Classes/AWorld.cpp \
+                   ../../../libcacore/Classes/AXML.cpp \
                    ../../Classes/TSSpriteBubble.cpp \
                    ../../Classes/TSSpriteButton.cpp \
                    ../../Classes/TSSpriteCommon.cpp \
