@@ -7,9 +7,6 @@ class TSTraceLine
 {
 protected:
 	int _nSegments;
-	float _fOffsetNodeBegin;
-	float _fOffsetPoint;
-	float _fOffsetNodeEnd;
 	CCPoint _ptTraceLine[4];
 	int _nYSegmentLast;
 	int _nYSegmentMax;
@@ -27,6 +24,16 @@ protected:
 	float _node_rand_range;
     float _point_density;
 
+	float _seg_line[2];
+	float _seg_delta[2];
+	float _fOffsetSegBegin;
+	float _fOffsetSegStone;
+	float _fOffsetSegEnd;
+
+	float _fOffsetNodeBegin;
+	float _fOffsetPoint;
+	float _fOffsetNodeEnd;
+	
 	CCPoint _ptLast;
 public:
 	TSTraceLine();
@@ -40,8 +47,10 @@ public:
 		float node_density, float node_rand_range, float point_density, 
 		int nYSegmentMax = 5, int nYSegmentRange = 3);
 
+	void setSegPoints(float line, float linedelta, float gap, float gapdelta);
+
 	const CCPoint& getLastTracePoint() const;
-	CCPoint getNextTracePoint();
+	int getNextTracePoint(CCPoint& pos);
 };
 
 #endif //_TSTRACE_LINE_H_

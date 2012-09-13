@@ -34,7 +34,7 @@
       display something to identify game is over 
       save the record for this round
     -->
-    <transition condition="true" tostate="root.fadeout" />
+    <transition condition="gameover" tostate="root.fadeout" />
   </state>
   <state name="restart" >
     <!-- 

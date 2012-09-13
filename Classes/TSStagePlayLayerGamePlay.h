@@ -16,20 +16,17 @@ class TSStagePlayLayerGamePlay :
 {
 protected:
 	Define_Sprite_Getter(TSSpritePlayer, player);
-	Define_Sprite_Getter(TSSpriteCommon, rider);
 	Define_Sprite_Getter(TSSpriteButton, button_pause);
 
 	void _NullGetters()
 	{
 		Init_Sprite_Getter_Var(player);
-		Init_Sprite_Getter_Var(rider);
 		Init_Sprite_Getter_Var(button_pause);
 	}
 
 	void _InitGetters()
 	{
 		Init_Sprite_Getter(TSSpritePlayer, player);
-		//Init_Sprite_Getter(TSSpriteCommon, rider);
 		Init_Sprite_Getter(TSSpriteButton, button_pause);
 	}
 

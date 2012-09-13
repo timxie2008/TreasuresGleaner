@@ -7,6 +7,10 @@ TSTraceLine::TSTraceLine()
 	_nYSegmentLast = 2;
 	_nYSegmentMax = 5;
 	_nYSegmentRange = 3;
+
+	_fOffsetSegBegin = -1;
+	_fOffsetSegStone = -1;
+	_fOffsetSegEnd = -1;
 }
 
 TSTraceLine::~TSTraceLine(void)
@@ -218,7 +222,19 @@ const CCPoint& TSTraceLine::getLastTracePoint() const
 	return _ptLast;
 }
 
-CCPoint TSTraceLine::getNextTracePoint()
+void TSTraceLine::setSegPoints(float line, float linedelta, float gap, float gapdelta)
+{
+	_seg_line[0] = line;
+	_seg_line[1] = gap;
+	_seg_delta[0] = linedelta;
+	_seg_delta[1] = gapdelta;
+
+	_fOffsetSegBegin = -1;
+	_fOffsetSegStone = -1;
+	_fOffsetSegEnd = -1;
+}
+
+int TSTraceLine::getNextTracePoint(CCPoint& pos)
 {
 	float t;
 	
@@ -235,5 +251,17 @@ CCPoint TSTraceLine::getNextTracePoint()
 
 	_ptLast = a;
 
-	return a;
+	if (_fOffsetPoint > _fOffsetSegEnd)
+	{
+		_fOffsetSegBegin = _fOffsetPoint;
+		_fOffsetSegStone = _fOffsetSegBegin + _seg_line[0] + CAUtils::Rand() * _seg_delta[0];
+		_fOffsetSegEnd = _fOffsetSegStone + _seg_line[1] + CAUtils::Rand() * _seg_delta[1];
+	}
+	_Assert(_fOffsetPoint >= _fOffsetSegBegin);
+	_Assert(_fOffsetPoint < _fOffsetSegEnd);
+	bool online = (_fOffsetPoint < _fOffsetSegStone);
+
+	pos = a;
+
+	return online ? 0 : 1;
 }

@@ -7,14 +7,14 @@
   <settings>
     <key name="deadpose" string="dismiss"></key>
   </settings>
-  <pose name="stand" collid="0.8,0.8">
+  <pose name="stand" collid="0.7,0.7">
     <part name="body">
       <mesh ref="blocker_02" dt="1"></mesh>
-      <modifier mode="abcb">
-        <key time="0000" yardscalex="13%" rot="0"></key>
-        <key time="0100" yardscalex="13%" rot="1"></key>
-        <key time="0200" yardscalex="13%" rot="2"></key>
-        <key time="0300" yardscalex="13%" rot="4"></key>
+      <modifier mode="abcb" timescale="2">
+        <key time="0000" yardscalex="12%" rot="0"></key>
+        <key time="0100" yardscalex="14%" rot="10"></key>
+        <key time="0200" yardscalex="16%" rot="2"></key>
+        <key time="0300" yardscalex="18%" rot="4"></key>
       </modifier>
     </part>
   </pose>

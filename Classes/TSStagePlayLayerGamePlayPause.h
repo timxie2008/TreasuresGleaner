@@ -19,7 +19,7 @@ protected:
 	Define_Sprite_Getter(TSSpriteCommon, panel_frame);
 	Define_Sprite_Getter(TSSpriteButton, button_restart);
 	Define_Sprite_Getter(TSSpriteButton, button_resume);
-	Define_Sprite_Getter(TSSpriteButton, button_music);
+	//Define_Sprite_Getter(TSSpriteButton, button_music);
 	Define_Sprite_Getter(TSSpriteButton, button_sound);
 
 	void _NullGetters()
@@ -29,7 +29,7 @@ protected:
 		Init_Sprite_Getter_Var(panel_frame);
 		Init_Sprite_Getter_Var(button_restart);
 		Init_Sprite_Getter_Var(button_resume);
-		Init_Sprite_Getter_Var(button_music);
+		//Init_Sprite_Getter_Var(button_music);
 		Init_Sprite_Getter_Var(button_sound);
 	}
 
@@ -40,7 +40,7 @@ protected:
 		Init_Sprite_Getter(TSSpriteCommon, panel_frame);
 		Init_Sprite_Getter(TSSpriteButton, button_restart);
 		Init_Sprite_Getter(TSSpriteButton, button_resume);
-		Init_Sprite_Getter(TSSpriteButton, button_music);
+		//Init_Sprite_Getter(TSSpriteButton, button_music);
 		Init_Sprite_Getter(TSSpriteButton, button_sound);
 	}
 

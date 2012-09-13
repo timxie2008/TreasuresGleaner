@@ -85,6 +85,12 @@ bool TSStagePlayLayerGamePlay::checkCondition(CAState* from, const CATransition&
 	else if (fname == "root.diving")
 	{
 	}
+	else if (fname == "root.over")
+	{
+		CASprite* pspr = _getNamedSprite("lab_gameover");
+		if (pspr->isAnimationDone() && pspr->getState() == "gameover_fadeout")
+			return true;
+	}
 	else if (fname == "root.wait_resume")
 	{
 		CAStageLayer* pl = this->_getSubLayer("game.play.pause");
@@ -138,9 +144,9 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.create"))
 	{
-		//this->stage()->resetTimer();
-		//this->stage()->setOffset(ccp(0, 0), 0);
-		activeAllTimelines();
+		strings excludes;
+		excludes.push_back("gameover_bar");
+		activeAllTimelines(&excludes);
 
 		int seed = _settings.getInteger("traceline_seed");
 		float left = _settings.getFloat("traceline_left");
@@ -154,12 +160,29 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 
 		_traceline_coin2pearl = _settings.getInteger("traceline_coin2pearl");
 		_Assert(_traceline_coin2pearl > 1 && _traceline_coin2pearl < 400);
+
+		float point_line;
+		float point_line_delta;
+		float point_gap;
+		float point_gap_delta;
+
+		point_line = _settings.getFloat("traceline_point_line");
+		point_gap = _settings.getFloat("traceline_point_gap");
+		point_line_delta = _settings.getFloat("traceline_point_line_delta");
+		point_gap_delta = _settings.getFloat("traceline_point_gap_delta");
+		_Assert(point_line > point_line_delta);
+		_Assert(point_line > point_gap);
+		_Assert(point_gap > point_gap_delta);
+
+		//CAWorld::percent2view(point_line, true);
+		//CAWorld::percent2view(point_gap, true);
 		_traceline_blocker_k = _settings.getFloat("traceline_blocker_k");
 		_traceline_blocker_dy_percent_from_center = _settings.getFloat("traceline_blocker_dy_percent_from_center");
 		_traceline_block_density = _settings.getFloat("traceline_block_density");
 
 		_ptLastBlocker = CCPointZero;
 		_traceline.init(seed, left, top, bottom, node_density, node_rand_range, point_density, seg_max, seg_range);
+		_traceline.setSegPoints(point_line, point_line_delta, point_gap, point_gap_delta);
 
 		_fPlayerSpeedLast = 0;
 	}
@@ -201,6 +224,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	{
 		//set player swim speed to normal
 		_player()->setState(PS_Swiming);
+		_button_pause()->setVisible(true);
 	}
 	else if (fname == "root.pause")
 	{
@@ -233,7 +257,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		//save record here
 		CAUserData::sharedUserData().setInteger("last_score", this->_getDistance());
 		_player()->setState(PS_Prepare);
-		this->_playerParent->onEvent(new CAEventCommand(this, "play.finished"));
+		
+		setTimelineState("gameover_bar", "gameover_fadeout");
 	}
 	else if (CAString::startWith(fname, "root.fadeout"))
 	{
@@ -241,6 +266,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		//transite to idle
 		this->removeAllSpritesByGroupName("pearl");
 		this->removeAllSpritesByGroupName("blocker");
+
+		this->_playerParent->onEvent(new CAEventCommand(this, "play.finished"));
 	}
 	else ;
 };
@@ -354,6 +381,32 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 	if (_nCollected <= 0)
 	{
 		_player()->setState("dead");
+		
+		/*
+		CASprite* pspr;
+		CCPoint pos;
+
+		pspr = new TSSpriteCommon(this, "panel_black");
+		pos = ccp(0.5f, 0.5f);
+		//CCPoint pos = CCPointZero;
+		CAWorld::percent2view(pos);
+		pspr->setFollowCamera(false);
+		pspr->setPos(pos);
+		pspr->setState("gameover_fadein");
+		this->addSprite(pspr);
+
+		pspr = new TSSpriteCommon(this, "label_gameover");
+		pos = ccp(0.5f, 0.5f);
+		//CCPoint pos = CCPointZero;
+		CAWorld::percent2view(pos);
+		pspr->setFollowCamera(false);
+		pspr->setPos(pos);
+		pspr->setState("fadein");
+		this->addSprite(pspr);
+		*/
+
+		activeTimeline("gameover_bar");
+		_button_pause()->setVisible(false);
 	}
 	_updateScoreBar();
 }
@@ -466,7 +519,8 @@ void TSStagePlayLayerGamePlay::onUpdate()
 
 			Vector3 v0, v1, vc, vd, vr;
 			
-			CCPoint pt = _traceline.getNextTracePoint();
+			CCPoint pt;
+			int flag = _traceline.getNextTracePoint(pt);
 			CAWorld::percent2view(pt);
 			
 			v0.x = pt.x;
@@ -483,13 +537,15 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			rect.size.width = 4.0f;
 			rect.size.height = 1.0f;
 
-			pspr = new TSSpriteCommon(this, "pearl");
-			pspr->setLiveArea(rect);
-			pspr->setFollowCamera(true);
-			pspr->setPos(pt);
-			pspr->setState("golden");
-			this->addSprite(pspr);
-
+			if (0 == flag)
+			{
+				pspr = new TSSpriteCommon(this, "pearl");
+				pspr->setLiveArea(rect);
+				pspr->setFollowCamera(true);
+				pspr->setPos(pt);
+				pspr->setState("golden");
+				this->addSprite(pspr);
+			}
 			//random some blockers
 			if (_traceline.getSegmentsCount() <= 0)
 			{

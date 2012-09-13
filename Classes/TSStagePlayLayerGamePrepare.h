@@ -18,7 +18,7 @@ protected:
 	Define_Sprite_Getter(TSSpriteCommon, label_dist_max);
 	Define_Sprite_Getter(TSSpriteButton, button_play);
 	//Define_Sprite_Getter(TSSpriteButton, button_shop);
-	Define_Sprite_Getter(TSSpriteButton, button_music);
+	//Define_Sprite_Getter(TSSpriteButton, button_music);
 	Define_Sprite_Getter(TSSpriteButton, button_sound);
 	Define_Sprite_Getter(TSSpriteCommon, prepare_player);
 	Define_Sprite_Getter(TSSpriteCommon, prepare_shark);
@@ -35,7 +35,7 @@ protected:
 		//Init_Sprite_Getter_Var(panel_scores);
 		Init_Sprite_Getter_Var(button_play);
 		//Init_Sprite_Getter_Var(button_shop);
-		Init_Sprite_Getter_Var(button_music);
+		//Init_Sprite_Getter_Var(button_music);
 		Init_Sprite_Getter_Var(button_sound);
 		Init_Sprite_Getter_Var(prepare_player);
 		Init_Sprite_Getter_Var(prepare_shark);
@@ -51,7 +51,7 @@ protected:
 		Init_Sprite_Getter(TSSpriteCommon, label_dist_max);
 		Init_Sprite_Getter(TSSpriteButton, button_play);
 		//Init_Sprite_Getter(TSSpriteButton, button_shop);
-		Init_Sprite_Getter(TSSpriteButton, button_music);
+		//Init_Sprite_Getter(TSSpriteButton, button_music);
 		Init_Sprite_Getter(TSSpriteButton, button_sound);
 		Init_Sprite_Getter(TSSpriteCommon, prepare_player);
 		Init_Sprite_Getter(TSSpriteCommon, prepare_shark);

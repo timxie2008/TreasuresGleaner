@@ -85,10 +85,12 @@ void TSStagePlayLayerGamePlayPause::onStateBegin(CAState* from, void* param)
 		_InitGetters();
 
 		CASprite* pspr;
+		/*
 		pspr = _button_music();
 		_Assert(pspr);
 		pspr = _button_music();
 		pspr->setState(stage()->isMusicMute() ? "off_fadein" : "on_fadein");
+		*/
 		pspr = _button_sound();
 		_Assert(pspr);
 		pspr->setState(stage()->isSoundMute() ? "off_fadein" : "on_fadein");
@@ -118,10 +120,12 @@ void TSStagePlayLayerGamePlayPause::onStateBegin(CAState* from, void* param)
 	else if (CAString::startWith(fname, "root.fadeout"))	//_onStateBeginFadeout(from);
 	{
 		CASprite* pspr;
+		/*
 		pspr = _button_music();
 		_Assert(pspr);
 		pspr = _button_music();
 		pspr->setState(stage()->isMusicMute() ? "off_fadeout" : "on_fadeout");
+		*/
 		pspr = _button_sound();
 		_Assert(pspr);
 		pspr->setState(stage()->isSoundMute() ? "off_fadeout" : "on_fadeout");
@@ -295,6 +299,7 @@ void TSStagePlayLayerGamePlayPause::onEvent(CAEvent* pevt)
 				{
 					this->setConditionResult("root.running@user.resume", true);
 				}
+				/*
 				else if (name == "button_music")
 				{
 					if (stage()->isMusicMute())
@@ -308,16 +313,19 @@ void TSStagePlayLayerGamePlayPause::onEvent(CAEvent* pevt)
 						_button_music()->setState("off");
 					}
 				}
+				*/
 				else if (name == "button_sound")
 				{
-					if (stage()->isSoundMute())
+					if (stage()->isSoundMute() || stage()->isMusicMute())
 					{
 						stage()->enableSound(true);
+						stage()->enableMusic(true);
 						_button_sound()->setState("on");
 					}
 					else
 					{
 						stage()->enableSound(false);
+						stage()->enableMusic(false);
 						_button_sound()->setState("off");
 					}
 				}

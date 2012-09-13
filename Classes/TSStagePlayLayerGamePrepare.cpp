@@ -155,7 +155,8 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		};
 		_setSpritesState(STATE_Fadein, psprsStatic);
 		_setSpritesState(STATE_Fadein, psprsControls);
-		_button_music()->setState(stage()->isMusicMute() ? "off_fadein" : "on_fadein");
+
+		//_button_music()->setState(stage()->isMusicMute() ? "off_fadein" : "on_fadein");
 		_button_sound()->setState(stage()->isSoundMute() ? "off_fadein" : "on_fadein");
 	}
 	else if (CAString::startWith(fname, "root.running"))
@@ -192,7 +193,7 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		};
 		_setSpritesState(STATE_Fadeout, psprsStatic);
 		_setSpritesState(STATE_Fadeout, psprsControls);
-		_button_music()->setState(stage()->isMusicMute() ? "off_fadeout" : "on_fadeout");
+		//_button_music()->setState(stage()->isMusicMute() ? "off_fadeout" : "on_fadeout");
 		_button_sound()->setState(stage()->isSoundMute() ? "off_fadeout" : "on_fadeout");
 
 		_prepare_bubble_shark()->setState("ellipse_shark_fadeout");
@@ -216,7 +217,7 @@ void TSStagePlayLayerGamePrepare::onStateEnd(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.fadein"))		//_onStateEndFadein(from);
 	{
-		_button_music()->setState(stage()->isMusicMute() ? "off" : "on");
+		//_button_music()->setState(stage()->isMusicMute() ? "off" : "on");
 		_button_sound()->setState(stage()->isSoundMute() ? "off" : "on");
 	}
 	else if (CAString::startWith(fname, "root.running"))	//_onStateEndRunning(from);
@@ -365,6 +366,7 @@ void TSStagePlayLayerGamePrepare::onEvent(CAEvent* pevt)
 				{
 					this->setConditionResult("root.running@user.play", true);
 				}
+				/*
 				else if (name == "button_music")
 				{
 					if (stage()->isMusicMute())
@@ -378,16 +380,19 @@ void TSStagePlayLayerGamePrepare::onEvent(CAEvent* pevt)
 						_button_music()->setState("off");
 					}
 				}
+				*/
 				else if (name == "button_sound")
 				{
-					if (stage()->isSoundMute())
+					if (stage()->isSoundMute() || stage()->isMusicMute())
 					{
 						stage()->enableSound(true);
+						stage()->enableMusic(true);
 						_button_sound()->setState("on");
 					}
 					else
 					{
 						stage()->enableSound(false);
+						stage()->enableMusic(false);
 						_button_sound()->setState("off");
 					}
 				}
