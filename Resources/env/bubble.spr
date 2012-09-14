@@ -6,7 +6,7 @@
   <mesh name="env_bubble">
     <frame src="bubble.png" ></frame>
   </mesh>
-  <pose name="ellipse_shark">
+  <pose name="ellipse_whale">
     <part name="root">
       <mesh ref="env_bubble" dt="10"></mesh>
       <modifier mode="abc0" abs="false">
@@ -14,7 +14,7 @@
       </modifier>
     </part>
   </pose>
-  <pose name="ellipse_shark_fadeout">
+  <pose name="ellipse_whale_fadeout">
     <part name="root">
       <mesh ref="env_bubble" dt="10"></mesh>
       <modifier mode="abc0" timescale="4">

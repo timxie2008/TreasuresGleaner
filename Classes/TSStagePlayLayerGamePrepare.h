@@ -21,9 +21,9 @@ protected:
 	//Define_Sprite_Getter(TSSpriteButton, button_music);
 	Define_Sprite_Getter(TSSpriteButton, button_sound);
 	Define_Sprite_Getter(TSSpriteCommon, prepare_player);
-	Define_Sprite_Getter(TSSpriteCommon, prepare_shark);
+	Define_Sprite_Getter(TSSpriteCommon, prepare_whale);
 	Define_Sprite_Getter(TSSpriteCommon, prepare_dolphin);
-	Define_Sprite_Getter(TSSpriteCommon, prepare_bubble_shark);
+	Define_Sprite_Getter(TSSpriteCommon, prepare_bubble_whale);
 	Define_Sprite_Getter(TSSpriteCommon, prepare_bubble_dolphin);
 
 	void _NullGetters()
@@ -38,9 +38,9 @@ protected:
 		//Init_Sprite_Getter_Var(button_music);
 		Init_Sprite_Getter_Var(button_sound);
 		Init_Sprite_Getter_Var(prepare_player);
-		Init_Sprite_Getter_Var(prepare_shark);
+		Init_Sprite_Getter_Var(prepare_whale);
 		Init_Sprite_Getter_Var(prepare_dolphin);
-		Init_Sprite_Getter_Var(prepare_bubble_shark);
+		Init_Sprite_Getter_Var(prepare_bubble_whale);
 		Init_Sprite_Getter_Var(prepare_bubble_dolphin);
 	}
 	void _InitGetters()
@@ -54,9 +54,9 @@ protected:
 		//Init_Sprite_Getter(TSSpriteButton, button_music);
 		Init_Sprite_Getter(TSSpriteButton, button_sound);
 		Init_Sprite_Getter(TSSpriteCommon, prepare_player);
-		Init_Sprite_Getter(TSSpriteCommon, prepare_shark);
+		Init_Sprite_Getter(TSSpriteCommon, prepare_whale);
 		Init_Sprite_Getter(TSSpriteCommon, prepare_dolphin);
-		Init_Sprite_Getter(TSSpriteCommon, prepare_bubble_shark);
+		Init_Sprite_Getter(TSSpriteCommon, prepare_bubble_whale);
 		Init_Sprite_Getter(TSSpriteCommon, prepare_bubble_dolphin);
 	}
 

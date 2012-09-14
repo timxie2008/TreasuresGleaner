@@ -8,6 +8,7 @@
   <model id="bubble" src="env/bubble.spr"></model>
   <model id="pearl" src="env/pearl.spr"></model>
   <model id="coral" src="env/coral.spr"></model>
+  <model id="cloud_01" src="env/cloud_01.spr"></model>
   <model id="blocker-01" src="env/blocker_01.spr"></model>
   <model id="blocker-02" src="env/blocker_02.spr"></model>
   <model id="blocker-03" src="env/blocker_03.spr"></model>
@@ -34,7 +35,7 @@
   <!-- character -->
   <model id="player" src="character/player.spr"></model>
   <model id="dolphin" src="character/dolphin.spr"></model>
-  <model id="shark" src="character/shark.spr"></model>
+  <model id="whale" src="character/whale.spr"></model>
 
   <!-- pause -->
   <model id="panel_black" src="ui/ui_panel_black.spr"></model>

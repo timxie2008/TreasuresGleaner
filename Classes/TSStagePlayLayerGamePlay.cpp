@@ -382,31 +382,17 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 	{
 		_player()->setState("dead");
 		
-		/*
-		CASprite* pspr;
-		CCPoint pos;
-
-		pspr = new TSSpriteCommon(this, "panel_black");
-		pos = ccp(0.5f, 0.5f);
-		//CCPoint pos = CCPointZero;
-		CAWorld::percent2view(pos);
-		pspr->setFollowCamera(false);
-		pspr->setPos(pos);
-		pspr->setState("gameover_fadein");
-		this->addSprite(pspr);
-
-		pspr = new TSSpriteCommon(this, "label_gameover");
-		pos = ccp(0.5f, 0.5f);
-		//CCPoint pos = CCPointZero;
-		CAWorld::percent2view(pos);
-		pspr->setFollowCamera(false);
-		pspr->setPos(pos);
-		pspr->setState("fadein");
-		this->addSprite(pspr);
-		*/
-
 		activeTimeline("gameover_bar");
 		_button_pause()->setVisible(false);
+	}
+	else if (_nCollected / _traceline_coin2pearl >= 12)
+	{
+		//if we can put a dolphine 
+		
+	}
+	else if (_nCollected / _traceline_coin2pearl >= 6)
+	{
+		//if we can put a whale | whale
 	}
 	_updateScoreBar();
 }

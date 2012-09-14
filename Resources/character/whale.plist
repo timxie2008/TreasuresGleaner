@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>shark_01.png</key>
+            <key>whale_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{350,212},{208,85}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{210,119}</string>
             </dict>
-            <key>shark_04.png</key>
+            <key>whale_04.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{263,212},{208,85}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{210,119}</string>
             </dict>
-            <key>shark_08.png</key>
+            <key>whale_08.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{212,422},{208,85}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{210,119}</string>
             </dict>
-            <key>shark_12.png</key>
+            <key>whale_12.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,212},{208,85}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{210,119}</string>
             </dict>
-            <key>shark_16.png</key>
+            <key>whale_16.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{89,212},{208,85}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{210,119}</string>
             </dict>
-            <key>shark_20.png</key>
+            <key>whale_20.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,422},{208,85}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{210,119}</string>
             </dict>
-            <key>shark_24.png</key>
+            <key>whale_24.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,212},{208,85}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{210,119}</string>
             </dict>
-            <key>shark_28.png</key>
+            <key>whale_28.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{422,2},{208,85}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{210,119}</string>
             </dict>
-            <key>shark_32.png</key>
+            <key>whale_32.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{212,2},{208,85}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{210,119}</string>
             </dict>
-            <key>shark_36.png</key>
+            <key>whale_36.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{208,85}}</string>
@@ -140,13 +140,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>shark.png</string>
+            <string>whale.png</string>
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fae2aec75081baa1c1545d7f14a4d476$</string>
+            <string>$TexturePacker:SmartUpdate:2b531a5225d6280ae0cecb858755a2bd$</string>
             <key>textureFileName</key>
-            <string>shark.png</string>
+            <string>whale.png</string>
         </dict>
     </dict>
 </plist>

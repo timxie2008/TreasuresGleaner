@@ -182,7 +182,7 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 			_label_dist_last(),
 			_label_dist_max(),
 			_prepare_player(),
-			_prepare_shark(),
+			_prepare_whale(),
 			_prepare_dolphin(),
 			null,
 		};
@@ -196,7 +196,7 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		//_button_music()->setState(stage()->isMusicMute() ? "off_fadeout" : "on_fadeout");
 		_button_sound()->setState(stage()->isSoundMute() ? "off_fadeout" : "on_fadeout");
 
-		_prepare_bubble_shark()->setState("ellipse_shark_fadeout");
+		_prepare_bubble_whale()->setState("ellipse_whale_fadeout");
 		_prepare_bubble_dolphin()->setState("ellipse_dolphin_fadeout");
 
 		_dist_last.setState(STATE_Fadeout);

@@ -58,6 +58,9 @@ protected:
 	int _nCollected;
 	void _addCollected(int c);
 
+	float _fOffsetDolphin;
+	float _fOffsetWhale;
+
 	void _updateStageOffset();
 	void _checkBlockers();
 	void _checkRewards();

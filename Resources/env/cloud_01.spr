@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="env/env.plist" tex="env/env.png"></texture>
+  <mesh name="env_cloud_01">
+    <frame src="cloud_01.png"></frame>
+    <frame src="cloud_02.png"></frame>
+    <frame src="cloud_03.png"></frame>
+    <frame src="cloud_04.png"></frame>
+  </mesh>
+  <pose name="cloud_01_01">
+    <part name="body">
+      <mesh ref="env_cloud_01" dt="0.2"></mesh>
+      <modifier mode="abcb" timescale="4">
+        <key time="0000" yardscalex="12%" rot="0"   alpha="1.0" ></key>
+        <key time="0050" yardscalex="16%" rot="60"  alpha="0.8" ></key>
+        <key time="0100" yardscalex="16%" rot="120" alpha="0.5" ></key>
+        <key time="0150" yardscalex="25%" rot="120" alpha="0.0" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="cloud_01_02">
+    <part name="body">
+      <mesh ref="env_cloud_01" dt="0.2"></mesh>
+      <modifier mode="abca" timescale="5">
+        <key time="0000" yardscalex="10%" rot="120" alpha="1.0" ></key>
+        <key time="0050" yardscalex="12%" rot="60"  alpha="0.8" ></key>
+        <key time="0100" yardscalex="18%" rot="30"  alpha="0.5" ></key>
+        <key time="0150" yardscalex="14%" rot="0"   alpha="0.0" ></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

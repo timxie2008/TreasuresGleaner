@@ -132,16 +132,28 @@
         <candidate spr="player" pose="float" percent="10" gname="prepare_player" ></candidate>
       </emmitor>
       <emmitor spos="0.142,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="shark" pose="swim" percent="10" gname="prepare_shark" ></candidate>
+        <candidate spr="whale" pose="swim" percent="10" gname="prepare_whale" ></candidate>
       </emmitor>
       <emmitor spos="0.142,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="bubble" pose="ellipse_shark" percent="10" gname="prepare_bubble_shark" ></candidate>
+        <candidate spr="bubble" pose="ellipse_whale" percent="10" gname="prepare_bubble_whale" ></candidate>
       </emmitor>
       <emmitor spos="0.142,0.51,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
         <candidate spr="dolphin" pose="swim" percent="10" gname="prepare_dolphin" ></candidate>
       </emmitor>
       <emmitor spos="0.142,0.51,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
         <candidate spr="bubble" pose="ellipse_dolphin" percent="10" gname="prepare_bubble_dolphin" ></candidate>
+      </emmitor>
+      <emmitor spos="0.55,0.26,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="cloud_01" pose="cloud_01_01" percent="10" gname="prepare_cloud_01_01" ></candidate>
+      </emmitor>
+      <emmitor spos="0.54,0.26,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="cloud_01" pose="cloud_01_02" percent="10" gname="prepare_cloud_01_01" ></candidate>
+      </emmitor>
+      <emmitor spos="0.55,0.25,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="cloud_01" pose="cloud_01_01" percent="10" gname="prepare_cloud_01_01" ></candidate>
+      </emmitor>
+      <emmitor spos="0.86,0.32,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="cloud_01" pose="cloud_01_02" percent="10" gname="prepare_cloud_01_02" ></candidate>
       </emmitor>
       <!--emmitor spos="0.44,0.26,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
         <candidate spr="blocker-01" pose="stand" percent="10" gname="prepare_blocker-01" ></candidate>
