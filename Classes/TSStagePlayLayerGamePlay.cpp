@@ -20,6 +20,10 @@ TSStagePlayLayerGamePlay::TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer
 
 	_nCollected = 0;
 	_ptLastBlocker = CCPointZero;
+	_fOffsetDolphin = 0;
+	_fOffsetWhale = 0;
+	_bCreateDolphin = false;
+	_bCreateWhale = false;
 
 	memset(_psprIndicators, 0, sizeof(_psprIndicators));
 
@@ -148,6 +152,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		excludes.push_back("gameover_bar");
 		activeAllTimelines(&excludes);
 
+		_nCollected = 0;
+
 		int seed = _settings.getInteger("traceline_seed");
 		float left = _settings.getFloat("traceline_left");
 		float top = _settings.getFloat("traceline_top");
@@ -179,6 +185,13 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		_traceline_blocker_k = _settings.getFloat("traceline_blocker_k");
 		_traceline_blocker_dy_percent_from_center = _settings.getFloat("traceline_blocker_dy_percent_from_center");
 		_traceline_block_density = _settings.getFloat("traceline_block_density");
+
+		_traceline_dolphin_density = _settings.getFloat("traceline_dolphin_density");
+		_traceline_whale_density = _settings.getFloat("traceline_whale_density");
+		_fOffsetDolphin = 0;
+		_fOffsetWhale = 0;
+		_bCreateDolphin = false;
+		_bCreateWhale = false;
 
 		_ptLastBlocker = CCPointZero;
 		_traceline.init(seed, left, top, bottom, node_density, node_rand_range, point_density, seg_max, seg_range);
@@ -385,15 +398,28 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 		activeTimeline("gameover_bar");
 		_button_pause()->setVisible(false);
 	}
-	else if (_nCollected / _traceline_coin2pearl >= 12)
-	{
-		//if we can put a dolphine 
-		
-	}
 	else if (_nCollected / _traceline_coin2pearl >= 6)
 	{
-		//if we can put a whale | whale
+		//if we can put a whale | dolphin
+		_bCreateDolphin = false;
+		_bCreateWhale = false;
+		float x = stage()->getOffset().x;
+		if (_nCollected / _traceline_coin2pearl < 12)
+		{
+			if (x > _fOffsetDolphin + _traceline_dolphin_density)
+			{
+				_bCreateDolphin = true;
+			}
+		}
+		else
+		{
+			if (x > _fOffsetWhale + _traceline_whale_density)
+			{
+				_bCreateWhale = true;
+			}
+		}
 	}
+
 	_updateScoreBar();
 }
 
@@ -525,12 +551,47 @@ void TSStagePlayLayerGamePlay::onUpdate()
 
 			if (0 == flag)
 			{
-				pspr = new TSSpriteCommon(this, "pearl");
-				pspr->setLiveArea(rect);
-				pspr->setFollowCamera(true);
-				pspr->setPos(pt);
-				pspr->setState("golden");
-				this->addSprite(pspr);
+				if (_bCreateDolphin || _bCreateWhale)
+				{
+					float scale = 0.4f;
+
+					CASprite* psprBubble;
+					if (_bCreateDolphin)
+					{
+						pspr = new TSSpriteCommon(this, "dolphin");
+						psprBubble = new TSSpriteCommon(this, "bubble");
+						psprBubble->setState("ellipse_dolphin");
+					}
+					else
+					{
+						pspr = new TSSpriteCommon(this, "whale");
+						psprBubble = new TSSpriteCommon(this, "bubble");
+						psprBubble->setState("ellipse_whable");
+					}
+					pspr->setLiveArea(rect);
+					pspr->setFollowCamera(true);
+					pspr->setPos(pt);
+					pspr->setScl(scale);
+					pspr->setState("swim");
+					this->addSprite(pspr);
+
+					psprBubble->setLiveArea(rect);
+					psprBubble->setFollowCamera(true);
+					psprBubble->setPos(pt);
+					psprBubble->setScl(scale);
+					this->addSprite(psprBubble);
+				}
+				else
+				{
+					pspr = new TSSpriteCommon(this, "pearl");
+					pspr->setLiveArea(rect);
+					pspr->setFollowCamera(true);
+					pspr->setPos(pt);
+					pspr->setState("golden");
+					this->addSprite(pspr);
+				}
+				_bCreateDolphin = false;
+				_bCreateWhale = false;
 			}
 			//random some blockers
 			if (_traceline.getSegmentsCount() <= 0)

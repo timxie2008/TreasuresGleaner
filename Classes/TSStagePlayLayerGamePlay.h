@@ -55,11 +55,17 @@ protected:
 	float _traceline_blocker_dy_percent_from_center;
 	float _traceline_block_density;
 
-	int _nCollected;
-	void _addCollected(int c);
-
+	float _traceline_dolphin_density;
+	float _traceline_whale_density;
 	float _fOffsetDolphin;
 	float _fOffsetWhale;
+	bool _bCreateDolphin;
+	bool _bCreateWhale;
+	CASprite* _psprDolphin;
+	CASprite* _psprWhale;
+
+	int _nCollected;
+	void _addCollected(int c);
 
 	void _updateStageOffset();
 	void _checkBlockers();
