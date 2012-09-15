@@ -36,13 +36,6 @@ protected:
 	string _state;
 	
 	float _fDistanceInPixel;
-	float _fPlayerSpeedInPixel;
-	float _fPlayerSpeedAcc;
-	float _fPlayerSpeedMax;
-
-	float _fPlayerSpeedLast;
-	CAAnimated2Floats _animPlayerSpeed;
-
 	int _getDistance();
 	
 	CASprite* _psprIndicators[18];
@@ -70,6 +63,8 @@ protected:
 	void _updateStageOffset();
 	void _checkBlockers();
 	void _checkRewards();
+
+	TSSpriteCommon* _createCommonSprite(const char* name, const char* state, const CCPoint& pos, bool autoremove = false, float scale = 1.0f);
 public:
 	TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer* playerParent);
 	virtual ~TSStagePlayLayerGamePlay(void);

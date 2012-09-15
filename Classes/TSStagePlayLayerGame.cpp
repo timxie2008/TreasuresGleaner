@@ -93,7 +93,7 @@ void TSStagePlayLayerGame::onEnter()
 	{
 		CCSize size = CAWorld::getScreenSize();
 		size.width *= 0.9f;
-		size.height = 18 * 5;
+		size.height = 18 * 12;
 		_pInfo = CCLabelTTF::labelWithString(" ", size, kCCTextAlignmentLeft, "Arial", 16);
 		_pInfo->setAnchorPoint(ccp(0.0f, 0.0f));
 		_pInfo->setPosition( ccp(0, 20) );

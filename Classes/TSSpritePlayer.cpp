@@ -8,18 +8,49 @@
 
 static const char* POSE_BORN = "born";
 static const char* POSE_SWIM = "swim";
+static const char* POSE_HURT = "hurt";
+static const char* POSE_RIDING_DOLPHIN = "ride_dolphin";
+static const char* POSE_RIDING_WHALE = "ride_whale";
 static const char* POSE_DEAD = "dead";
 
 TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprite(player, name)
 {
 	_Trace("player created");
+
+	_psprRider = null;
+
+	_fPlayerSpeedLast = 0;
+
+	_fPlayerSpeedInPixel = 0;
+	_fPlayerSpeedAcc = 0;
+	_fPlayerSpeedMax = 0;
+	_animPlayerSpeed.setValid(false);
+
 	_direction = 0;
 	_toRotation = 0;
 	_timeTouchEvent = 0;
 	_rectYard = _settings().getRect("yard");
 	CAWorld::percent2view(_rectYard);
 
-	//this->setZOrder(_settings().getFloat("player_z"));
+	int i;
+	char* szNames[] = { "player", "dolphin", "whale" };
+	for (i = 0; i < 3; i++)
+	{
+		string name;
+		name = szNames[i];	name += "_a";			_swim_a[i] = _settings().getFloat(name.c_str());
+		name = szNames[i];	name += "_v0";			_swim_v0[i] = _settings().getFloat(name.c_str());
+		name = szNames[i];	name += "_hs_up";		_swim_hs_up[i] = _settings().getFloat(name.c_str());
+		name = szNames[i];	name += "_hs_down";		_swim_hs_down[i] = _settings().getFloat(name.c_str());
+		name = szNames[i];	name += "_app_frames";	_swim_app_frames[i] = _settings().getFloat(name.c_str());
+	}
+
+	_speed_weight_dolphin = _settings().getFloat("speed_weight_dolphin");
+	_speed_weight_whale = _settings().getFloat("speed_weight_whale");
+
+	_posOffsetDolphin = _settings().getPoint("offset_dolphin");
+	CAWorld::percent2view(_posOffsetDolphin);
+	_posOffsetWhale = _settings().getPoint("offset_whale");
+	CAWorld::percent2view(_posOffsetWhale);
 
 	this->setTouchable(true);
 	this->setControlOrder(100);
@@ -100,6 +131,13 @@ void TSSpritePlayer::_createBubbles(int c, bool bLow)
 	}
 }
 
+void TSSpritePlayer::setSpeedInfo(float fPlayerSpeedInPixel, float fPlayerSpeedAcc, float fPlayerSpeedMax)
+{
+	_fPlayerSpeedInPixel = fPlayerSpeedInPixel;
+	_fPlayerSpeedAcc = fPlayerSpeedAcc;
+	_fPlayerSpeedMax = fPlayerSpeedMax;
+}
+
 void TSSpritePlayer::_on_prepare(EStateFlag flag)
 {
 	switch(flag)
@@ -130,6 +168,9 @@ void TSSpritePlayer::_on_dive(EStateFlag flag)
 			this->setPos(0, 0);
 			this->setVisible(true);
 			this->switchPose(POSE_BORN);
+
+			_fPlayerSpeedLast = 0;
+			_animPlayerSpeed.init(_pLayer->getTimeNow(), 0, 0, 0);
 		}
 		break;
 	case SF_Update:
@@ -146,33 +187,13 @@ void TSSpritePlayer::_on_dive(EStateFlag flag)
 	}
 }
 
-
 //dir == +1, upward else downward
-void TSSpritePlayer::_updateDirection(float dir)
+float TSSpritePlayer::_updateDirection(float dir, float a, float v0, float hs_up, float hs_down, float app_frames)
 {
 	CCSize size = CAWorld::getScreenSize();
-
-	float a = _settings().getFloat("rot_rat");
-	float b = 0.0f;
-	float x = _pLayer->getTimeNow() - _timeTouchEvent;
-	float time = x;
-	float y = a * (x * x) + b;
-	float speed = this->getMoveSpeed();
-
-	//float vspeed = ac * time * size.width;
-	//float hspeed = speed;
-	float vspeed = y;
-	float hspeed = x;
-
-	float rot_max_tan;
-	if (dir > 0) //upward
-		rot_max_tan = _settings().getFloat("rot_max_up");
-	else
-		rot_max_tan = _settings().getFloat("rot_max_down");
-	if (vspeed / hspeed > rot_max_tan)
-		vspeed = rot_max_tan * hspeed;
-
-	float rot = CAUtils::getRotation(-dir * vspeed, hspeed);
+	float t = _pLayer->getTimeNow() - _timeTouchEvent;
+	float v1 = v0 + a * t;
+	float rot = CAUtils::getRotation(-dir * v1, dir > 0 ? hs_up : hs_down);
 
 	CCRect rect = this->getViewBoundingBox();
 	if (rect.origin.y < _rectYard.origin.y && rot > 0)
@@ -188,8 +209,8 @@ void TSSpritePlayer::_updateDirection(float dir)
 	_toRotation = rot;
 
 	rot = this->getMoveDirection();
-	float rot_frames = _settings().getFloat("rot_frames");
-	float rot_min_delta = _settings().getFloat("rot_min_delta");
+	float rot_frames = app_frames; //_settings().getFloat("rot_frames");
+	//float rot_min_delta = _settings().getFloat("rot_min_delta");
 	float delta = (_toRotation - rot) / rot_frames;
 	if (_Abs(rot - _toRotation) < _Abs(delta))
 	{
@@ -199,7 +220,35 @@ void TSSpritePlayer::_updateDirection(float dir)
 	{
 		rot += delta;
 	}
-	this->setMoveDirection(rot);
+	//this->setMoveDirection(rot);
+	return rot;
+}
+
+#define INDEX_PLAYER	0
+#define INDEX_DOLPHIN	1
+#define INDEX_WHALE		2
+float TSSpritePlayer::_updateSwimDirection(float dir)
+{
+	return _updateDirection(dir, _swim_a[INDEX_PLAYER], _swim_v0[INDEX_PLAYER], _swim_hs_up[INDEX_PLAYER], _swim_hs_down[INDEX_PLAYER], _swim_app_frames[INDEX_PLAYER]);
+}
+
+float TSSpritePlayer::_updateDolphinDirection(float dir)
+{
+	return _updateDirection(dir, _swim_a[INDEX_DOLPHIN], _swim_v0[INDEX_DOLPHIN], _swim_hs_up[INDEX_DOLPHIN], _swim_hs_down[INDEX_DOLPHIN], _swim_app_frames[INDEX_DOLPHIN]);
+}
+
+float TSSpritePlayer::_updateWhaleDirection(float dir)
+{
+	return _updateDirection(dir, _swim_a[INDEX_WHALE], _swim_v0[INDEX_WHALE], _swim_hs_up[INDEX_WHALE], _swim_hs_down[INDEX_WHALE], _swim_app_frames[INDEX_WHALE]);
+}
+
+void TSSpritePlayer::setDistance4CalculatingSpeed(float distance)
+{
+	float speed = _fPlayerSpeedInPixel + _fPlayerSpeedAcc * distance;
+	if (speed > _fPlayerSpeedMax) speed = _fPlayerSpeedMax;
+
+	_animPlayerSpeed.init(_pLayer->getTimeNow(), 0, _fPlayerSpeedLast, speed);
+	_fPlayerSpeedLast = speed;
 }
 
 void TSSpritePlayer::_on_swiming(EStateFlag flag)
@@ -215,17 +264,21 @@ void TSSpritePlayer::_on_swiming(EStateFlag flag)
 		}
 		break;
 	case SF_Update:
-#if defined(_DEBUG) || 1
 		{
+			if (_animPlayerSpeed.isValid())
+			{
+				this->setMoveSpeed(_animPlayerSpeed.getValue(_pLayer->getTimeNow()));
+			}
+
 			int n = (int)(_pLayer->getTimeNow() * 1000);
 			n %= 1000;
 			if (n < 100)
 			{
 				_createBubbles(1, true);
 			}
+			float rot = _updateSwimDirection(_direction);
+			this->setMoveDirection(rot);
 		}
-#endif
-		_updateDirection(_direction);
 		break;
 	default:
 		_Assert(false);
@@ -233,7 +286,7 @@ void TSSpritePlayer::_on_swiming(EStateFlag flag)
 	}
 }
 
-void TSSpritePlayer::_on_waitriding(EStateFlag flag)
+void TSSpritePlayer::_on_hurt(EStateFlag flag)
 {
 	switch(flag)
 	{
@@ -241,22 +294,25 @@ void TSSpritePlayer::_on_waitriding(EStateFlag flag)
 		{
 			this->setPos(ccp(
 				this->getCombinedKey().x, this->getCombinedKey().y));
-			this->switchPose(POSE_SWIM);
-			this->setMoveDirection(0);
+			this->switchPose(POSE_HURT);
+			//this->setMoveDirection(0);
+			if (null != _psprRider)
+			{
+				//_psprRider->killMyself();
+				_psprRider->setMoveSpeed(_fPlayerSpeedLast * 0.8f);
+				_psprRider = null;
+			}
 		}
 		break;
 	case SF_Update:
-#if defined(_DEBUG) || 1
 		{
-			int n = (int)(_pLayer->getTimeNow() * 1000);
-			n %= 1000;
-			if (n < 100)
+			if (this->isAnimationDone())
 			{
-				_createBubbles(1, true);
+				setState(PS_Swiming);
 			}
+			float rot = _updateSwimDirection(_direction);
+			this->setMoveDirection(rot);
 		}
-#endif
-		_updateDirection(_direction);
 		break;
 	default:
 		_Assert(false);
@@ -264,20 +320,29 @@ void TSSpritePlayer::_on_waitriding(EStateFlag flag)
 	}
 }
 
-void TSSpritePlayer::_on_riding(EStateFlag flag)
+void TSSpritePlayer::_on_riding_dolphin(EStateFlag flag)
 {
 	switch(flag)
 	{
 	case SF_Begin:
 		{
-			this->setPos(ccp(
-				this->getCombinedKey().x, this->getCombinedKey().y));
-			this->switchPose(POSE_SWIM);
+			this->setPos(ccp(this->getCombinedKey().x, this->getCombinedKey().y));
+			this->switchPose(POSE_RIDING_DOLPHIN);
 			this->setMoveDirection(0);
+			//create some bubbles
+			_createBubbles(5, true);
+			//create rider
+			_psprRider = new TSSpriteCommon(_pLayer, "dolphin");
+			_psprRider->setPos(this->getPos() + _posOffsetDolphin);
+			_psprRider->setState("swim");
+			_pLayer->addSprite(_psprRider);
+
+			float speed = this->getMoveSpeed();
+			speed *= _speed_weight_dolphin;
+			this->setMoveSpeed(speed);
 		}
 		break;
 	case SF_Update:
-#if defined(_DEBUG) || 1
 		{
 			int n = (int)(_pLayer->getTimeNow() * 1000);
 			n %= 1000;
@@ -285,9 +350,57 @@ void TSSpritePlayer::_on_riding(EStateFlag flag)
 			{
 				_createBubbles(1, true);
 			}
+
+			_Assert(_psprRider);
+			_psprRider->setPos(this->getPos() + _posOffsetDolphin);
+			float rot = _updateDolphinDirection(_direction);
+			this->setMoveDirection(rot);
+			_psprRider->setMoveDirection(rot);
 		}
-#endif
-		_updateDirection(_direction);
+		break;
+	default:
+		_Assert(false);
+		break;
+	}
+}
+
+void TSSpritePlayer::_on_riding_whale(EStateFlag flag)
+{
+	switch(flag)
+	{
+	case SF_Begin:
+		{
+			this->setPos(ccp(this->getCombinedKey().x, this->getCombinedKey().y));
+			this->switchPose(POSE_RIDING_WHALE);
+			this->setMoveDirection(0);
+			//create some bubbles
+			_createBubbles(5, true);
+			//create rider
+			_psprRider = new TSSpriteCommon(_pLayer, "whale");
+			_psprRider->setPos(this->getPos() + _posOffsetWhale);
+			_psprRider->setState("swim");
+			_pLayer->addSprite(_psprRider);
+
+			float speed = this->getMoveSpeed();
+			speed *= _speed_weight_whale;
+			this->setMoveSpeed(speed);
+		}
+		break;
+	case SF_Update:
+		{
+			int n = (int)(_pLayer->getTimeNow() * 1000);
+			n %= 1000;
+			if (n < 100)
+			{
+				_createBubbles(1, true);
+			}
+
+			_Assert(_psprRider);
+			_psprRider->setPos(this->getPos() + _posOffsetWhale);
+			float rot = _updateWhaleDirection(_direction);
+			this->setMoveDirection(rot);
+			_psprRider->setMoveDirection(rot);
+		}
 		break;
 	default:
 		_Assert(false);
@@ -340,8 +453,9 @@ void TSSpritePlayer::onStateChanged(const string& olds, const string& news)
 	_HandleState(news, prepare, SF_Begin);
 	_HandleState(news, dive, SF_Begin);
 	_HandleState(news, swiming, SF_Begin);
-	_HandleState(news, waitriding, SF_Begin);
-	_HandleState(news, riding, SF_Begin);
+	_HandleState(news, hurt, SF_Begin);
+	_HandleState(news, riding_dolphin, SF_Begin);
+	_HandleState(news, riding_whale, SF_Begin);
 	_HandleState(news, dead, SF_Begin);
 	_HandleState(news, fadeout, SF_Begin);
 }
@@ -370,24 +484,11 @@ void TSSpritePlayer::onUpdate()
 	_HandleState(_state, prepare, SF_Update);
 	_HandleState(_state, dive, SF_Update);
 	_HandleState(_state, swiming, SF_Update);
-	_HandleState(_state, waitriding, SF_Update);
-	_HandleState(_state, riding, SF_Update);
+	_HandleState(_state, hurt, SF_Update);
+	_HandleState(_state, riding_dolphin, SF_Update);
+	_HandleState(_state, riding_whale, SF_Update);
 	_HandleState(_state, dead, SF_Update);
 }
-
-/*
-void TSSpritePlayer::setMoveSpeed(float s)
-{
-	if (_state == PS_Swiming)
-	{
-		CASprite::setMoveSpeed(s);
-	}
-	else
-	{
-		CASprite::setMoveSpeed(0);
-	}
-}
-*/
 
 bool TSSpritePlayer::onEvent(CAEvent* pEvent)
 {
@@ -420,6 +521,22 @@ bool TSSpritePlayer::onEvent(CAEvent* pEvent)
 		break;
 	}
 	return false;
+}
+
+void TSSpritePlayer::ride(const string& rider)
+{
+	if (rider == "dolphin")
+	{
+		setState(PS_RidingDolphin);
+	}
+	else if (rider == "whale")
+	{
+		setState(PS_RidingWhale);
+	}
+	else
+	{
+		_Assert(false);
+	}
 }
 
 string TSSpritePlayer::debuglog() const

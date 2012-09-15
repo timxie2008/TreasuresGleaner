@@ -12,12 +12,20 @@
 #include "TSSpriteCommon.h"
 #include "TSSpriteButton.h"
 
+#if defined(_DEBUG)
+#define _STARS_WHALE	4
+#define _STARS_DOLPHIN	2
+#define _STARS_BLOCKER	1
+#else
+#define _STARS_WHALE	12
+#define _STARS_DOLPHIN	6
+#define _STARS_BLOCKER	5
+#endif
+
 TSStagePlayLayerGamePlay::TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer* playerParent) : CAStageLayer(pstage, playerParent)
 {
 	_Trace("%s allocated", __FUNCTION__);
 	
-	_fPlayerSpeedLast = 0;
-
 	_nCollected = 0;
 	_ptLastBlocker = CCPointZero;
 	_fOffsetDolphin = 0;
@@ -28,8 +36,6 @@ TSStagePlayLayerGamePlay::TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer
 	memset(_psprIndicators, 0, sizeof(_psprIndicators));
 
 	_NullGetters();
-
-	_animPlayerSpeed.setValid(false);
 }
 
 TSStagePlayLayerGamePlay::~TSStagePlayLayerGamePlay(void)
@@ -45,14 +51,27 @@ string TSStagePlayLayerGamePlay::debuglog()
 	{
 		sprinfo += " ";
 	}
-	sprintf(sz, "%d ps=%s psp=%.2f ssp=%.2f sprs=%d, state=%s", 
+	sprintf(sz, "%d ps=%s psp=%.2f ssp=%.2f sprs=%d, state=%s %s", 
 		_nCollected, _player() ? _player()->debuglog().c_str() : "N", 
 		_player() ? _player()->getPos().x : 0.0f,
 		this->stage()->getOffset().x,
 		this->_getNamedSpritesCount(), 
-		this->getCurrentState()->getLeafState()->getFullName().c_str()/*,
-		sprinfo.c_str()*/);
+		this->getCurrentState()->getLeafState()->getFullName().c_str(),
+		sprinfo.c_str());
 	return sz;
+}
+
+TSSpriteCommon* TSStagePlayLayerGamePlay::_createCommonSprite(const char* name, const char* state, const CCPoint& pos, bool autoremove, float scale)
+{
+	TSSpriteCommon* pspr = new TSSpriteCommon(this, name);
+	pspr->setPos(pos);
+	pspr->setScl(scale);
+	pspr->setState(state);
+	if (autoremove)
+	{
+		pspr->setDeadPose(state);
+	}
+	return pspr;
 }
 
 bool TSStagePlayLayerGamePlay::checkCondition(CAState* from, const CATransition& trans)
@@ -145,9 +164,12 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		//this->setVisible(false);
 		_NullGetters();
 		removeAllTimelines();
+		killAllSprites();
 	}
 	else if (CAString::startWith(fname, "root.create"))
 	{
+		//_Assert(0 == this->_getNamedSpritesCount());
+
 		strings excludes;
 		excludes.push_back("gameover_bar");
 		activeAllTimelines(&excludes);
@@ -180,14 +202,15 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		_Assert(point_line > point_gap);
 		_Assert(point_gap > point_gap_delta);
 
-		//CAWorld::percent2view(point_line, true);
-		//CAWorld::percent2view(point_gap, true);
 		_traceline_blocker_k = _settings.getFloat("traceline_blocker_k");
 		_traceline_blocker_dy_percent_from_center = _settings.getFloat("traceline_blocker_dy_percent_from_center");
 		_traceline_block_density = _settings.getFloat("traceline_block_density");
+		CAWorld::percent2view(_traceline_block_density, true);
 
 		_traceline_dolphin_density = _settings.getFloat("traceline_dolphin_density");
 		_traceline_whale_density = _settings.getFloat("traceline_whale_density");
+		CAWorld::percent2view(_traceline_dolphin_density, true);
+		CAWorld::percent2view(_traceline_whale_density, true);
 		_fOffsetDolphin = 0;
 		_fOffsetWhale = 0;
 		_bCreateDolphin = false;
@@ -196,11 +219,11 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		_ptLastBlocker = CCPointZero;
 		_traceline.init(seed, left, top, bottom, node_density, node_rand_range, point_density, seg_max, seg_range);
 		_traceline.setSegPoints(point_line, point_line_delta, point_gap, point_gap_delta);
-
-		_fPlayerSpeedLast = 0;
 	}
 	else if (CAString::startWith(fname, "root.fadein"))
 	{
+		_Info("spr count = %d", this->_getNamedSpritesCount());
+
 		_InitGetters();
 
 		const char* cm = "0123456789";
@@ -221,17 +244,18 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	{
 		stage()->setOffset(CCPointZero, 0);
 
-		_animPlayerSpeed.init(getTimeNow(), 0, 0, 0);
-		_fPlayerSpeedInPixel = _settings.getFloat("player_speed_in_percent");
-		CAWorld::percent2view(_fPlayerSpeedInPixel, true);
-		_fPlayerSpeedAcc = _settings.getFloat("player_speed_acc_in_distance");
-		_fPlayerSpeedMax = _settings.getFloat("player_speed_max_in_percent");
-		CAWorld::percent2view(_fPlayerSpeedMax, true);
-		_fDistanceInPixel = _settings.getFloat("distance_in_percent");
-		CAWorld::percent2view(_fDistanceInPixel, true);
+		float fPlayerSpeedInPixel = _settings.getFloat("player_speed_in_percent");
+		CAWorld::percent2view(fPlayerSpeedInPixel, true);
+		float fPlayerSpeedAcc = _settings.getFloat("player_speed_acc_in_distance");
+		float fPlayerSpeedMax = _settings.getFloat("player_speed_max_in_percent");
+		CAWorld::percent2view(fPlayerSpeedMax, true);
 
+		_player()->setSpeedInfo(fPlayerSpeedInPixel, fPlayerSpeedAcc, fPlayerSpeedMax);
 		_player()->setState(PS_Dive);
 		_player()->setMoveSpeed(0);
+
+		_fDistanceInPixel = _settings.getFloat("distance_in_percent");
+		CAWorld::percent2view(_fDistanceInPixel, true);
 	}
 	else if (CAString::startWith(fname, "root.running"))
 	{
@@ -277,8 +301,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	{
 		//show fadeout effects
 		//transite to idle
-		this->removeAllSpritesByGroupName("pearl");
-		this->removeAllSpritesByGroupName("blocker");
+		//this->removeAllSpritesByGroupName("pearl");
+		//this->removeAllSpritesByGroupName("blocker");
 
 		this->_playerParent->onEvent(new CAEventCommand(this, "play.finished"));
 	}
@@ -398,16 +422,17 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 		activeTimeline("gameover_bar");
 		_button_pause()->setVisible(false);
 	}
-	else if (_nCollected / _traceline_coin2pearl >= 6)
+	else if (_nCollected / _traceline_coin2pearl >= _STARS_DOLPHIN)
 	{
 		//if we can put a whale | dolphin
 		_bCreateDolphin = false;
 		_bCreateWhale = false;
 		float x = stage()->getOffset().x;
-		if (_nCollected / _traceline_coin2pearl < 12)
+		if (_nCollected / _traceline_coin2pearl < _STARS_WHALE)
 		{
 			if (x > _fOffsetDolphin + _traceline_dolphin_density)
 			{
+				_fOffsetDolphin = x;
 				_bCreateDolphin = true;
 			}
 		}
@@ -415,6 +440,7 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 		{
 			if (x > _fOffsetWhale + _traceline_whale_density)
 			{
+				_fOffsetWhale = x;
 				_bCreateWhale = true;
 			}
 		}
@@ -441,6 +467,37 @@ void TSStagePlayLayerGamePlay::_checkRewards()
 			}
 		}
 	}
+
+	CCPoint posCollid;
+	bool bCollided = false;
+	char* szRewards[] = { "rdolphin", "rwhale" };
+	string strReward = "";
+	int j;
+	for (j = 0; !bCollided && j < 2; j++)
+	{
+		count = _getNamedSpritesCount(szRewards[j]);
+		for (i = 0; !bCollided && i < count; i++)
+		{
+			CASprite* pspr = _getNamedSprite(szRewards[j], i);
+			if (psprPlayer->isCollidWith(pspr))
+			{
+				TSSpriteCommon* pspr;
+				pspr = _createCommonSprite("cloud_01", "cloud_01_01", psprPlayer->getPos(), true, 1.2f);
+				this->addSprite(pspr);
+
+				pspr = _createCommonSprite("cloud_01", "cloud_01_02", pspr->getPos(), true, 1.3f);
+				this->addSprite(pspr);
+
+				strReward = szRewards[j] + 1;
+				bCollided = true;
+			}
+		}
+	}
+	if (bCollided)
+	{
+		this->removeAllSpritesByGroupName("reward");
+		((TSSpritePlayer*)psprPlayer)->ride(strReward);
+	}
 }
 
 void TSStagePlayLayerGamePlay::_checkBlockers() 
@@ -458,8 +515,15 @@ void TSStagePlayLayerGamePlay::_checkBlockers()
 		{
 			if (psprPlayer->isCollidWith(pspr))
 			{
-				//psprPlayer->setState("hurt");
-				_addCollected(-5 *  _traceline_coin2pearl);
+				if (psprPlayer->getState() == PS_Swiming ||
+					psprPlayer->getState() == PS_RidingDolphin ||
+					psprPlayer->getState() == PS_RidingWhale || 
+					0
+					)
+				{
+					psprPlayer->setState("hurt");
+				}
+				_addCollected(-(_STARS_BLOCKER *  _traceline_coin2pearl));
 				pspr->setState("dismiss");
 			}
 		}
@@ -481,7 +545,10 @@ void TSStagePlayLayerGamePlay::_updateStageOffset()
 		pt = _player()->getPos();
 		pt.y = 0; 
 		pt.x -= size.width * _settings.getFloat("player_x");
-		if ((_player()->getState() == PS_Swiming || _player()->getState() == PS_Dead) && pt.x > 0)
+		if ((_player()->getState() != PS_Prepare &&
+			_player()->getState() != PS_Fadeout &&
+			_player()->getState() != PS_Dive) 
+			&& pt.x > 0)
 		{
 			pstage->setOffset(pt, _settings.getFloat("view_adj"));
 		}
@@ -494,25 +561,11 @@ void TSStagePlayLayerGamePlay::onUpdate()
 	string fname = this->getCurrentState()->getLeafState()->getFullName();
 	if (CAString::startWith(fname, "root.running"))
 	{
-		CASprite* psprPlayer = _player();
-
-		//if (fname == "root.running.swiming")
-		{
-			float speed = _fPlayerSpeedInPixel + _fPlayerSpeedAcc * _getDistance();
-			if (speed > _fPlayerSpeedMax) speed = _fPlayerSpeedMax;
-
-			_animPlayerSpeed.init(getTimeNow(), 0, _fPlayerSpeedLast, speed);
-			_fPlayerSpeedLast = speed;
-		}
-		//else if (fname == "root.running.waitriding")
-		{
-		}
-		//else if (fname == "root.running.riding")
-		{
-		}
+		int distance = _getDistance();
+		_player()->setDistance4CalculatingSpeed((float)distance);
 
 		char szTemp[32];
-		sprintf(szTemp, "%d", (int)_getDistance());
+		sprintf(szTemp, "%d", distance);
 		_distance.setText(szTemp);
 		_distance.onUpdate();
 
@@ -553,45 +606,47 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			{
 				if (_bCreateDolphin || _bCreateWhale)
 				{
-					float scale = 0.4f;
+					float scale = 0.7f;
 
-					CASprite* psprBubble;
 					if (_bCreateDolphin)
 					{
-						pspr = new TSSpriteCommon(this, "dolphin");
-						psprBubble = new TSSpriteCommon(this, "bubble");
-						psprBubble->setState("ellipse_dolphin");
+						pspr = _createCommonSprite("dolphin", "swim", pt, false, scale);
+						pspr->setLiveArea(rect);
+						pspr->setFollowCamera(true);
+						pspr->setGroupName("reward-rdolphin");
+						this->addSprite(pspr);
+
+						pspr = _createCommonSprite("bubble", "ellipse_dolphin", pt, false, scale);
+						pspr->setGroupName("reward-rbubble");
+						pspr->setLiveArea(rect);
+						pspr->setFollowCamera(true);
+						this->addSprite(pspr);
 					}
 					else
 					{
-						pspr = new TSSpriteCommon(this, "whale");
-						psprBubble = new TSSpriteCommon(this, "bubble");
-						psprBubble->setState("ellipse_whable");
-					}
-					pspr->setLiveArea(rect);
-					pspr->setFollowCamera(true);
-					pspr->setPos(pt);
-					pspr->setScl(scale);
-					pspr->setState("swim");
-					this->addSprite(pspr);
+						pspr = _createCommonSprite("whale", "swim", pt, false, scale);
+						pspr->setLiveArea(rect);
+						pspr->setFollowCamera(true);
+						pspr->setGroupName("reward-rwhale");
+						this->addSprite(pspr);
 
-					psprBubble->setLiveArea(rect);
-					psprBubble->setFollowCamera(true);
-					psprBubble->setPos(pt);
-					psprBubble->setScl(scale);
-					this->addSprite(psprBubble);
+						pspr = _createCommonSprite("bubble", "ellipse_whale", pt, false, scale);
+						pspr->setGroupName("reward-rbubble");
+						pspr->setLiveArea(rect);
+						pspr->setFollowCamera(true);
+						this->addSprite(pspr);
+					}
+
+					_bCreateDolphin = false;
+					_bCreateWhale = false;
 				}
 				else
 				{
-					pspr = new TSSpriteCommon(this, "pearl");
+					pspr = _createCommonSprite("pearl", "golden", pt);
 					pspr->setLiveArea(rect);
 					pspr->setFollowCamera(true);
-					pspr->setPos(pt);
-					pspr->setState("golden");
 					this->addSprite(pspr);
 				}
-				_bCreateDolphin = false;
-				_bCreateWhale = false;
 			}
 			//random some blockers
 			if (_traceline.getSegmentsCount() <= 0)
@@ -641,22 +696,11 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			char szBlocker[32];
 			sprintf(szBlocker, "blocker-%02d", n + 1);
 
-			pspr = new TSSpriteCommon(this, szBlocker);
+			pspr = _createCommonSprite(szBlocker, "stand", ptBlocker);
 			pspr->setLiveArea(rect);
 			pspr->setFollowCamera(true);
-			pspr->setPos(ptBlocker);
-			pspr->setState("stand");
 			this->addSprite(pspr);
 		}
-
-		//if (CAString::startWith(fname, "root.running"))
-		if (_animPlayerSpeed.isValid() && _player())
-		{
-			_player()->setMoveSpeed(_animPlayerSpeed.getValue(getTimeNow()));
-		}
-
-		//generate gas tank
-
 	}
 };
 

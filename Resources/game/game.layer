@@ -211,10 +211,12 @@
       <key name="traceline_yseg_max" int="5" />
       <key name="traceline_yseg_range" int="3" />
 
-      <key name="traceline_coin2pearl" int="12" />
+      <key name="traceline_coin2pearl" int="4" />
       <key name="traceline_blocker_k" float="0.15" />
       <key name="traceline_blocker_dy_percent_from_center" float="0.08" />
-      <key name="traceline_block_density" float="410" />
+      <key name="traceline_block_density" float="0.8" />
+      <key name="traceline_dolphin_density" float="2.1" />
+      <key name="traceline_whale_density" float="2.4" />
 
       <key name="traceline_point_line" float="2.2" />
       <key name="traceline_point_gap" float="0.8" />
