@@ -211,7 +211,7 @@
       <key name="traceline_yseg_max" int="5" />
       <key name="traceline_yseg_range" int="3" />
 
-      <key name="traceline_coin2pearl" int="4" />
+      <key name="traceline_coin2pearl" int="9" />
       <key name="traceline_blocker_k" float="0.15" />
       <key name="traceline_blocker_dy_percent_from_center" float="0.08" />
       <key name="traceline_block_density" float="0.8" />
