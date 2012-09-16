@@ -62,7 +62,9 @@ string TSStagePlayLayerGamePlay::debuglog()
 		this->_getNamedSpritesCount(), 
 		this->getCurrentState()->getLeafState()->getFullName().c_str());
 
+#if defined(_DEBUG)
 	strcat(sz, sprinfo.c_str());
+#endif
 
 	return sz;
 }
