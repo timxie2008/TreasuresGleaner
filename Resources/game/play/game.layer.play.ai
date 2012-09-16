@@ -14,7 +14,7 @@
   </state>
   <state name="running" init="">
     <transition condition="user.pause" tostate="root.pause@lE" />
-    <transition condition="player.dead" tostate="root.over" />
+    <transition condition="player.dead" tostate="root.showover" />
   </state>
   <state name="pause">
     <!-- stop something here -->
@@ -29,12 +29,11 @@
     <!-- resume something here-->
     <transition condition="true" tostate="root.running@Le" />
   </state>
+  <state name="showover">
+    <transition condition="pose.finished" tostate="root.over" />
+  </state>
   <state name="over">
-    <!-- 
-      display something to identify game is over 
-      save the record for this round
-    -->
-    <transition condition="gameover" tostate="root.fadeout" />
+    <transition condition="false" tostate="root.fadeout" />
   </state>
   <state name="restart" >
     <!-- 

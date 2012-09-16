@@ -116,6 +116,12 @@ bool TSStagePlayLayerGamePlay::checkCondition(CAState* from, const CATransition&
 	else if (fname == "root.diving")
 	{
 	}
+	else if (fname == "root.showover")
+	{
+		CASprite* pspr = _getNamedSprite("lab_gameover");
+		if (pspr->isAnimationDone() && pspr->getCurrentPose() && pspr->getCurrentPose()->name() == "gameover_fadein")
+			return true;
+	}
 	else if (fname == "root.over")
 	{
 		CASprite* pspr = _getNamedSprite("lab_gameover");
@@ -297,13 +303,16 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		_pstage->setFocus(this);
 		resume();
 	}
+	else if (CAString::startWith(fname, "root.showover"))	
+	{
+		CAUserData::sharedUserData().setInteger("last_score", this->_getDistance());
+		//show game over message
+		activeTimeline("gameover_bar");
+		_button_pause()->setVisible(false);
+	}
 	else if (CAString::startWith(fname, "root.over"))	
 	{
-		//show game over message
 		//save record here
-		CAUserData::sharedUserData().setInteger("last_score", this->_getDistance());
-		_player()->setState(PS_Prepare);
-		
 		setTimelineState("gameover_bar", "gameover_fadeout");
 	}
 	else if (CAString::startWith(fname, "root.fadeout"))
@@ -427,9 +436,7 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 	if (_nCollected <= 0)
 	{
 		_player()->setState("dead");
-		
-		activeTimeline("gameover_bar");
-		_button_pause()->setVisible(false);
+		this->setConditionResult("root.running@player.dead", true);
 	}
 	else if (_nCollected / _traceline_coin2pearl >= _STARS_DOLPHIN)
 	{
@@ -658,7 +665,7 @@ void TSStagePlayLayerGamePlay::onUpdate()
 				}
 			}
 			//random some blockers
-			if (_traceline.getSegmentsCount() <= 0)
+			if (_traceline.getSegmentsCount() <= 1)
 			{
 				continue;
 			}
@@ -711,6 +718,10 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			this->addSprite(pspr);
 		}
 	}
+	else if (fname == "root.showover")
+	{
+		_updateStageOffset();
+	}
 };
 
 void TSStagePlayLayerGamePlay::onExit()
@@ -756,7 +767,8 @@ void TSStagePlayLayerGamePlay::onEvent(CAEvent* pevt)
 			}
 			else if (pec->command() == "over")
 			{
-				this->setConditionResult("root.running@player.dead", true);
+				//this->setConditionResult("root.running@player.dead", true);
+				_player()->setState(PS_Prepare);
 			}
 			else if (pec->command() == EVENT_DIVE_FINISHED)
 			{

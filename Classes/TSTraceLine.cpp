@@ -125,8 +125,8 @@ void TSTraceLine::_createSegment()
 {
 	if (0 == _nSegments)
 	{
-		//    ____
-		//___/	  \___
+		//___		____
+		//   \_____/
 		_fOffsetNodeBegin = _left;
 		_fOffsetNodeEnd = _left;
 		_fOffsetPoint = _left;
@@ -134,11 +134,13 @@ void TSTraceLine::_createSegment()
 		_ptTraceLine[0].x = _frandx(_fOffsetNodeEnd, 0.01f);			_fOffsetNodeEnd += _node_density;
 		_ptTraceLine[0].y = _frandy();
 		_ptTraceLine[1].x = _frandx(_fOffsetNodeEnd, _node_rand_range);	_fOffsetNodeEnd += _node_density;
-		_ptTraceLine[1].y = _frandy();
+		do { _ptTraceLine[1].y = _frandy(0.3f, 0.45f); } while (_ptTraceLine[1].y > _ptTraceLine[0].y);
 		_ptTraceLine[2].x = _frandx(_fOffsetNodeEnd, _node_rand_range);	_fOffsetNodeEnd += _node_density;
 		_ptTraceLine[2].y = _frandy();
+		do { _ptTraceLine[2].y = _frandy(0.15f, 0.2f); } while (_ptTraceLine[2].y > _ptTraceLine[0].y);
 		_ptTraceLine[3].x = _frandx(_fOffsetNodeEnd, _node_rand_range);	_fOffsetNodeEnd += _node_density;
 		_ptTraceLine[3].y = _frandy();
+		do { _ptTraceLine[3].y = _frandy(); } while (_ptTraceLine[3].y > _ptTraceLine[0].y);
 	}
 	else
 	{

@@ -20,9 +20,9 @@
       <mesh ref="ui_pause_back" dt="1"></mesh>
       <modifier mode="abc0">
         <key time="000" apos="0.5,0.5" yardscale="100%,24%" alpha="50%"></key>
-        <key time="050" apos="0.5,0.5" yardscale="100%,12%" alpha="50%"></key>
-        <key time="100" apos="0.5,0.5" yardscale="100%,0%" alpha="40%"></key>
-        <key time="150" apos="0.5,0.5" yardscale="50%,0%" alpha="30%"></key>
+        <key time="150" apos="0.5,0.5" yardscale="100%,12%" alpha="50%"></key>
+        <key time="200" apos="0.5,0.5" yardscale="100%,0%" alpha="40%"></key>
+        <key time="350" apos="0.5,0.5" yardscale="50%,0%" alpha="30%"></key>
       </modifier>
     </part>
   </pose>
