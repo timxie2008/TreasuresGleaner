@@ -51,13 +51,19 @@ string TSStagePlayLayerGamePlay::debuglog()
 	{
 		sprinfo += " ";
 	}
-	sprintf(sz, "%d ps=%s psp=%.2f ssp=%.2f sprs=%d, state=%s %s", 
+	sprintf(sz, "(%.2f,%.2f) hs=%.2f,vs=%.2f c=%d ps=%s psp=%.2f ssp=%.2f sprs=%d, state=%s,", 
+		_player() ? _player()->getPos().x : 0,
+		_player() ? _player()->getPos().y : 0,
+		_player() ? _player()->getHMoveSpeed() : 0.0f,
+		_player() ? _player()->getVMoveSpeed() : 0.0f,
 		_nCollected, _player() ? _player()->debuglog().c_str() : "N", 
 		_player() ? _player()->getPos().x : 0.0f,
 		this->stage()->getOffset().x,
 		this->_getNamedSpritesCount(), 
-		this->getCurrentState()->getLeafState()->getFullName().c_str(),
-		sprinfo.c_str());
+		this->getCurrentState()->getLeafState()->getFullName().c_str());
+
+	strcat(sz, sprinfo.c_str());
+
 	return sz;
 }
 
@@ -252,7 +258,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 
 		_player()->setSpeedInfo(fPlayerSpeedInPixel, fPlayerSpeedAcc, fPlayerSpeedMax);
 		_player()->setState(PS_Dive);
-		_player()->setMoveSpeed(0);
+		_player()->setHMoveSpeed(0);
+		_player()->setVMoveSpeed(0);
 
 		_fDistanceInPixel = _settings.getFloat("distance_in_percent");
 		CAWorld::percent2view(_fDistanceInPixel, true);

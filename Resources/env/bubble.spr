@@ -6,9 +6,12 @@
   <mesh name="env_bubble">
     <frame src="bubble.png" ></frame>
   </mesh>
+  <mesh name="env_bubble_big">
+    <frame src="bubble_big.png" ></frame>
+  </mesh>
   <pose name="ellipse_whale">
     <part name="root">
-      <mesh ref="env_bubble" dt="10"></mesh>
+      <mesh ref="env_bubble_big" dt="10"></mesh>
       <modifier mode="abc0" abs="false">
         <key time="000" yardscalexy="0.28,0.12" alpha="100%"></key>
       </modifier>
@@ -16,7 +19,7 @@
   </pose>
   <pose name="ellipse_whale_fadeout">
     <part name="root">
-      <mesh ref="env_bubble" dt="10"></mesh>
+      <mesh ref="env_bubble_big" dt="10"></mesh>
       <modifier mode="abc0" timescale="4">
         <key time="000" yardscalexy="0.28,0.10" alpha="100%"></key>
         <key time="100" yardscalexy="0.38,0.20" alpha="0%"></key>
@@ -25,7 +28,7 @@
   </pose>
   <pose name="ellipse_dolphin">
     <part name="root">
-      <mesh ref="env_bubble" dt="10"></mesh>
+      <mesh ref="env_bubble_big" dt="10"></mesh>
       <modifier mode="abc0" abs="false">
         <key time="000" yardscalexy="0.23,0.10" alpha="100%"></key>
       </modifier>
@@ -33,7 +36,7 @@
   </pose>
   <pose name="ellipse_dolphin_fadeout">
     <part name="root">
-      <mesh ref="env_bubble" dt="10"></mesh>
+      <mesh ref="env_bubble_big" dt="10"></mesh>
       <modifier mode="abc0" timescale="4">
         <key time="000" yardscalexy="0.23,0.10" alpha="100%"></key>
         <key time="100" yardscalexy="0.28,0.20" alpha="0%"></key>

@@ -37,26 +37,26 @@
     <frame src="dying_11.png" ></frame>
   </mesh>
   <settings>
-    <key name="player_a" float="20"></key>
-    <key name="player_v0" float="20"></key>
-    <key name="player_hs_up" float="20"></key>
-    <key name="player_hs_down" float="20"></key>
+    <key name="player_a" float="0.8"></key>
+    <key name="player_v0" float="0.2"></key>
+    <key name="player_hs_up" float="2.3"></key>
+    <key name="player_hs_down" float="2.5"></key>
     <key name="player_app_frames" float="4"></key>
     
     <key name="offset_dolphin" point="0,-0.06"></key>
     
-    <key name="dolphin_a" float="20"></key>
-    <key name="dolphin_v0" float="20"></key>
-    <key name="dolphin_hs_up" float="20"></key>
-    <key name="dolphin_hs_down" float="20"></key>
+    <key name="dolphin_a" float="1.2"></key>
+    <key name="dolphin_v0" float="0.3"></key>
+    <key name="dolphin_hs_up" float="2.6"></key>
+    <key name="dolphin_hs_down" float="2.8"></key>
     <key name="dolphin_app_frames" float="4"></key>
     
     <key name="offset_whale" point="0,-0.06"></key>
     
-    <key name="whale_a" float="20"></key>
-    <key name="whale_v0" float="20"></key>
-    <key name="whale_hs_up" float="20"></key>
-    <key name="whale_hs_down" float="20"></key>
+    <key name="whale_a" float="1.0"></key>
+    <key name="whale_v0" float="0.3"></key>
+    <key name="whale_hs_up" float="2.5"></key>
+    <key name="whale_hs_down" float="2.7"></key>
     <key name="whale_app_frames" float="4"></key>
 
     <key name="speed_weight_dolphin" float="1.5"></key>

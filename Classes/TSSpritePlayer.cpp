@@ -37,10 +37,10 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 	for (i = 0; i < 3; i++)
 	{
 		string name;
-		name = szNames[i];	name += "_a";			_swim_a[i] = _settings().getFloat(name.c_str());
-		name = szNames[i];	name += "_v0";			_swim_v0[i] = _settings().getFloat(name.c_str());
-		name = szNames[i];	name += "_hs_up";		_swim_hs_up[i] = _settings().getFloat(name.c_str());
-		name = szNames[i];	name += "_hs_down";		_swim_hs_down[i] = _settings().getFloat(name.c_str());
+		name = szNames[i];	name += "_a";			_swim_a[i] = _settings().getFloat(name.c_str());			CAWorld::percent2view(_swim_a[i], false);
+		name = szNames[i];	name += "_v0";			_swim_v0[i] = _settings().getFloat(name.c_str());			CAWorld::percent2view(_swim_v0[i], false);
+		name = szNames[i];	name += "_hs_up";		_swim_hs_up[i] = _settings().getFloat(name.c_str());		CAWorld::percent2view(_swim_hs_up[i], false);
+		name = szNames[i];	name += "_hs_down";		_swim_hs_down[i] = _settings().getFloat(name.c_str());		CAWorld::percent2view(_swim_hs_down[i], false);
 		name = szNames[i];	name += "_app_frames";	_swim_app_frames[i] = _settings().getFloat(name.c_str());
 	}
 
@@ -51,6 +51,8 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 	CAWorld::percent2view(_posOffsetDolphin);
 	_posOffsetWhale = _settings().getPoint("offset_whale");
 	CAWorld::percent2view(_posOffsetWhale);
+
+	this->setFreeSpeedMode();
 
 	this->setTouchable(true);
 	this->setControlOrder(100);
@@ -65,6 +67,17 @@ TSSpritePlayer::~TSSpritePlayer(void)
 void TSSpritePlayer::release(void)
 {
 	CASprite::release();
+}
+
+bool TSSpritePlayer::isCollidWith(CASprite* pspr, bool bView)
+{
+	if (CASprite::isCollidWith(pspr, bView))
+		return true;
+	if (_psprRider)
+	{
+		return _psprRider->isCollidWith(pspr, bView);
+	}
+	return false;
 }
 
 void TSSpritePlayer::_onAnimationStart()
@@ -88,7 +101,8 @@ void TSSpritePlayer::_onAnimationStop()
 	{
 		GUARD_FIELD(_event_command);
 		setState("");
-		this->setMoveSpeed(0);
+		this->setHMoveSpeed(0);
+		this->setVMoveSpeed(0);
 		_pLayer->onEvent(new CAEventCommand(this, "over"));
 	}
 }
@@ -118,8 +132,6 @@ void TSSpritePlayer::_createBubbles(int c, bool bLow)
 		pspr->setScl(ats / 0.5f);
 
 		pspr->setPos(ccp(x, y));
-		//pspr->setMoveDirection(-90);
-		//pspr->setMoveSpeed(10);
 
 		pspr->setZOrder(this->getZOrder() + CAUtils::Rand(-2.0f,2.0f));
 		_pLayer->addSprite(pspr);
@@ -147,8 +159,8 @@ void TSSpritePlayer::_on_prepare(EStateFlag flag)
 			this->setVisible(false);
 			this->switchPose(POSE_SWIM);
 			this->setPos(-5000, -5000);
-			this->setMoveSpeed(0);
-			//_pLayer->stage()->setOffset(ccp(0,0), 0);
+			this->setHMoveSpeed(0);
+			this->setVMoveSpeed(0);
 		}
 		break;
 	case SF_Update:
@@ -267,8 +279,12 @@ void TSSpritePlayer::_on_swiming(EStateFlag flag)
 		{
 			if (_animPlayerSpeed.isValid())
 			{
-				this->setMoveSpeed(_animPlayerSpeed.getValue(_pLayer->getTimeNow()));
+				//this->setMoveSpeed(_animPlayerSpeed.getValue(_pLayer->getTimeNow()));
+				this->setHMoveSpeed(_animPlayerSpeed.getValue(_pLayer->getTimeNow()));
 			}
+			float t = _pLayer->getTimeNow() - _timeTouchEvent;
+			float v1 = _swim_v0[INDEX_PLAYER] + _swim_a[INDEX_PLAYER] * t;
+			this->setVMoveSpeed(_direction > 0 ? v1 : -v1);
 
 			int n = (int)(_pLayer->getTimeNow() * 1000);
 			n %= 1000;
@@ -295,11 +311,11 @@ void TSSpritePlayer::_on_hurt(EStateFlag flag)
 			this->setPos(ccp(
 				this->getCombinedKey().x, this->getCombinedKey().y));
 			this->switchPose(POSE_HURT);
-			//this->setMoveDirection(0);
 			if (null != _psprRider)
 			{
 				//_psprRider->killMyself();
-				_psprRider->setMoveSpeed(_fPlayerSpeedLast * 0.8f);
+				//follow the player speed and rotation
+				_psprRider->setMoveSpeed(_fPlayerSpeedLast * 0.7f);
 				_psprRider = null;
 			}
 		}
@@ -328,18 +344,19 @@ void TSSpritePlayer::_on_riding_dolphin(EStateFlag flag)
 		{
 			this->setPos(ccp(this->getCombinedKey().x, this->getCombinedKey().y));
 			this->switchPose(POSE_RIDING_DOLPHIN);
-			this->setMoveDirection(0);
+			//this->setMoveDirection(0);
 			//create some bubbles
 			_createBubbles(5, true);
 			//create rider
 			_psprRider = new TSSpriteCommon(_pLayer, "dolphin");
 			_psprRider->setPos(this->getPos() + _posOffsetDolphin);
+			//_psprRider->setFreeSpeedMode();
 			_psprRider->setState("swim");
 			_pLayer->addSprite(_psprRider);
 
-			float speed = this->getMoveSpeed();
+			float speed = this->getHMoveSpeed();
 			speed *= _speed_weight_dolphin;
-			this->setMoveSpeed(speed);
+			this->setHMoveSpeed(speed);
 		}
 		break;
 	case SF_Update:
@@ -351,8 +368,13 @@ void TSSpritePlayer::_on_riding_dolphin(EStateFlag flag)
 				_createBubbles(1, true);
 			}
 
+			float t = _pLayer->getTimeNow() - _timeTouchEvent;
+			float v1 = _swim_v0[INDEX_DOLPHIN] + _swim_a[INDEX_DOLPHIN] * t;
+			this->setVMoveSpeed(_direction > 0 ? v1 : -v1);
+
 			_Assert(_psprRider);
 			_psprRider->setPos(this->getPos() + _posOffsetDolphin);
+
 			float rot = _updateDolphinDirection(_direction);
 			this->setMoveDirection(rot);
 			_psprRider->setMoveDirection(rot);
@@ -372,7 +394,7 @@ void TSSpritePlayer::_on_riding_whale(EStateFlag flag)
 		{
 			this->setPos(ccp(this->getCombinedKey().x, this->getCombinedKey().y));
 			this->switchPose(POSE_RIDING_WHALE);
-			this->setMoveDirection(0);
+
 			//create some bubbles
 			_createBubbles(5, true);
 			//create rider
@@ -381,9 +403,9 @@ void TSSpritePlayer::_on_riding_whale(EStateFlag flag)
 			_psprRider->setState("swim");
 			_pLayer->addSprite(_psprRider);
 
-			float speed = this->getMoveSpeed();
+			float speed = this->getHMoveSpeed();
 			speed *= _speed_weight_whale;
-			this->setMoveSpeed(speed);
+			this->setHMoveSpeed(speed);
 		}
 		break;
 	case SF_Update:
@@ -394,6 +416,10 @@ void TSSpritePlayer::_on_riding_whale(EStateFlag flag)
 			{
 				_createBubbles(1, true);
 			}
+
+			float t = _pLayer->getTimeNow() - _timeTouchEvent;
+			float v1 = _swim_v0[INDEX_WHALE] + _swim_a[INDEX_WHALE] * t;
+			this->setVMoveSpeed(_direction > 0 ? v1 : -v1);
 
 			_Assert(_psprRider);
 			_psprRider->setPos(this->getPos() + _posOffsetWhale);
@@ -458,6 +484,14 @@ void TSSpritePlayer::onStateChanged(const string& olds, const string& news)
 	_HandleState(news, riding_whale, SF_Begin);
 	_HandleState(news, dead, SF_Begin);
 	_HandleState(news, fadeout, SF_Begin);
+}
+
+void TSSpritePlayer::_adjustGamePosition(float& x, float& y)
+{
+	CCPoint pos = ccp(x, y);
+	_adjustPosition(pos);
+	x = pos.x;
+	y = pos.y;
 }
 
 void TSSpritePlayer::_adjustPosition(CCPoint& pos)

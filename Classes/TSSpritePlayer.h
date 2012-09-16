@@ -47,6 +47,7 @@ protected:
 	CCPoint _posOffsetWhale;
 
 	virtual void _adjustPosition(CCPoint& pos);
+	virtual void _adjustGamePosition(float& x, float& y);
 
 	void _on_prepare(EStateFlag flag);
 	void _on_dive(EStateFlag flag);
@@ -61,6 +62,8 @@ public:
 	virtual ~TSSpritePlayer(void);
 
     virtual void release(void);
+
+	virtual bool isCollidWith(CASprite* pspr, bool bView = true);
 
 	void ride(const string& rider);
 	void setSpeedInfo(float fPlayerSpeedInPixel, float fPlayerSpeedAcc, float fPlayerSpeedMax);
