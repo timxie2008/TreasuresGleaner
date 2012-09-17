@@ -12,11 +12,14 @@ class TSSpritePlayer :
 protected:
 	CCRect _rectYard;
 	float _direction;
+	float _vSpeedWhenTouched;
+
+	//float _calcVSpeed(int index);
 
 	//CAEventTouch* _pEventTouch;
-	float _toRotation;
+	//float _toRotation;
 
-	float _fPlayerSpeedLast;
+	float _fPlayerHSpeedLast;
 	CAAnimated2Floats _animPlayerSpeed;
 
 	float _fPlayerSpeedInPixel;
@@ -31,16 +34,33 @@ protected:
 	void _createBubbles(int c, bool bRight);
 	float _timeTouchEvent;
 
+#define INDEX_PLAYER	0
+#define INDEX_DOLPHIN	1
+#define INDEX_WHALE		2
+
+	typedef struct tagPlayerSpeedParams
+	{
+		float touch_power;
+		float a;
+		float v0;
+		float v1;
+		float hs_up;
+		float hs_down;
+		float app_frames;
+	}
+	_TPlayerSpeedParams;
+	_TPlayerSpeedParams _speed_params[3];
+	//float _swim_a[3], _swim_v0[3], _swim_hs_up[3], _swim_hs_down[3], _swim_app_frames[3];
+
 	//a = acc
 	//v0 = v0
 	//hs_up ; hspeed for dir > 0, this is a weight for rot
 	//frames : the speed of approaching to spec rot
-	float _updateDirection(float dir, float a, float v0, float hs_up, float hs_down, float app_frames);
+	float _updateVSpeedAndRotation(int index);
 
-	float _swim_a[3], _swim_v0[3], _swim_hs_up[3], _swim_hs_down[3], _swim_app_frames[3];
-	float _updateSwimDirection(float dir);
-	float _updateWhaleDirection(float dir);
-	float _updateDolphinDirection(float dir);
+	inline float _updateSwim()		{ return _updateVSpeedAndRotation(INDEX_PLAYER);	};
+	inline float _updateWhale()		{ return _updateVSpeedAndRotation(INDEX_WHALE);		};
+	inline float _updateDolphin()	{ return _updateVSpeedAndRotation(INDEX_DOLPHIN);	};
 
 	float _speed_weight_dolphin, _speed_weight_whale;
 	CCPoint _posOffsetDolphin;
@@ -64,10 +84,9 @@ public:
     virtual void release(void);
 
 	virtual bool isCollidWith(CASprite* pspr, bool bView = true);
-
 	void ride(const string& rider);
 	void setSpeedInfo(float fPlayerSpeedInPixel, float fPlayerSpeedAcc, float fPlayerSpeedMax);
-	void setDistance4CalculatingSpeed(float distance);
+	void setDistance4CalculatingHSpeed(float distance);
 
 	string debuglog() const;
 
@@ -80,6 +99,10 @@ public:
 #	define PS_Dead			"dead"
 #	define PS_Fadeout		"fadeout"
 
+	bool isRidding() const
+	{
+		return PS_RidingDolphin == getState() || PS_RidingWhale == getState();
+	}
 	void onStateChanged(const string& olds, const string& news);
 
 	virtual void onUpdate();

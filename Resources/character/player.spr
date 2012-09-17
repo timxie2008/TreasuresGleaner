@@ -37,18 +37,20 @@
     <frame src="dying_11.png" ></frame>
   </mesh>
   <settings>
-    <key name="player_a" float="1.2"></key>
-    <key name="player_v0" float="0.15"></key>
-    <key name="player_v1" float="1.5"></key>
-    <key name="player_hs_up" float="1.6"></key>
-    <key name="player_hs_down" float="1.8"></key>
+    <key name="player_a" float="1.8"></key>
+    <key name="player_touch_power" float="0.2"></key>
+    <key name="player_v0" float="0.55"></key>
+    <key name="player_v1" float="2.5"></key>
+    <key name="player_hs_up" float="2.6"></key>
+    <key name="player_hs_down" float="2.8"></key>
     <key name="player_app_frames" float="4"></key>
     
-    <key name="offset_dolphin" point="0,-0.06"></key>
+    <key name="offset_dolphin" point="0.02,-0.04"></key>
     
     <key name="dolphin_a" float="1.6"></key>
-    <key name="dolphin_v0" float="0.15"></key>
-    <key name="dolphin_v1" float="1.8"></key>
+    <key name="dolphin_touch_power" float="0.3"></key>
+    <key name="dolphin_v0" float="0.25"></key>
+    <key name="dolphin_v1" float="2.1"></key>
     <key name="dolphin_hs_up" float="1.2"></key>
     <key name="dolphin_hs_down" float="1.4"></key>
     <key name="dolphin_app_frames" float="4"></key>
@@ -56,14 +58,15 @@
     <key name="offset_whale" point="0,-0.06"></key>
     
     <key name="whale_a" float="1.5"></key>
-    <key name="whale_v0" float="0.15"></key>
-    <key name="whale_v1" float="1.7"></key>
+    <key name="whale_touch_power" float="0.3"></key>
+    <key name="whale_v0" float="0.25"></key>
+    <key name="whale_v1" float="2.0"></key>
     <key name="whale_hs_up" float="1.5"></key>
     <key name="whale_hs_down" float="1.7"></key>
     <key name="whale_app_frames" float="4"></key>
 
-    <key name="speed_weight_dolphin" float="1.5"></key>
-    <key name="speed_weight_whale" float="1.8"></key>
+    <key name="speed_weight_dolphin" float="1.3"></key>
+    <key name="speed_weight_whale" float="1.5"></key>
 
     <!--碰撞区域定义-->
     <key name="collid" size="0.3,0.2" comment="default collid size"></key>

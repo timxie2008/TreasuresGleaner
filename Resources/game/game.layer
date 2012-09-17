@@ -210,10 +210,10 @@
       <key name="score" float="10" />
       <key name="score_max_count" float="10" />
 
-      <key name="distance_in_percent" float="5%" />
+      <key name="distance_in_percent" float="12%" />
       <key name="player_speed_in_percent" float="40%" />
-      <key name="player_speed_max_in_percent" float="180%" />
-      <key name="player_speed_acc_in_distance" float="0.1" />
+      <key name="player_speed_max_in_percent" float="150%" />
+      <key name="player_speed_acc_in_distance" float="0.08" />
 
       <key name="traceline_seed" int="3746287" />
       <key name="traceline_left" float="0.5" />

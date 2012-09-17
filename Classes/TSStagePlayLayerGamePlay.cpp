@@ -443,21 +443,26 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 		//if we can put a whale | dolphin
 		_bCreateDolphin = false;
 		_bCreateWhale = false;
-		float x = stage()->getOffset().x;
-		if (_nCollected / _traceline_coin2pearl < _STARS_WHALE)
+		if (!_player()->isRidding())
 		{
-			if (x > _fOffsetDolphin + _traceline_dolphin_density)
+			float x = stage()->getOffset().x;
+			if (_nCollected / _traceline_coin2pearl < _STARS_WHALE)
 			{
-				_fOffsetDolphin = x;
-				_bCreateDolphin = true;
+				if (x > _fOffsetDolphin + _traceline_dolphin_density)
+				{
+					_fOffsetDolphin = x;
+					_bCreateDolphin = true;
+					_Info("create dolphin");
+				}
 			}
-		}
-		else
-		{
-			if (x > _fOffsetWhale + _traceline_whale_density)
+			else
 			{
-				_fOffsetWhale = x;
-				_bCreateWhale = true;
+				if (x > _fOffsetWhale + _traceline_whale_density)
+				{
+					_fOffsetWhale = x;
+					_bCreateWhale = true;
+					_Info("create whale");
+				}
 			}
 		}
 	}
@@ -578,7 +583,7 @@ void TSStagePlayLayerGamePlay::onUpdate()
 	if (CAString::startWith(fname, "root.running"))
 	{
 		int distance = _getDistance();
-		_player()->setDistance4CalculatingSpeed((float)distance);
+		_player()->setDistance4CalculatingHSpeed((float)distance);
 
 		char szTemp[32];
 		sprintf(szTemp, "%d", distance);
@@ -748,6 +753,31 @@ void TSStagePlayLayerGamePlay::onEvent(CAEvent* pevt)
 				{
 				}
 				break;
+			}
+		}
+		break;
+	case ET_System:
+		{
+			CAEventSystem* psystem = (CAEventSystem*)pevt;
+			switch(psystem->evt())
+			{
+			case SE_Pause:
+				this->setConditionResult("root.running@user.pause", true);
+				break;
+			case SE_Resume:
+				break;
+			default:
+				_Assert(false);
+				break;
+			}
+		}
+		break;
+	case ET_Key:
+		{
+			CAEventKey* pek = (CAEventKey*)pevt;
+			if (KE_Back == pek->key() || KE_Menu == pek->key())
+			{
+				this->setConditionResult("root.running@user.pause", true);
 			}
 		}
 		break;

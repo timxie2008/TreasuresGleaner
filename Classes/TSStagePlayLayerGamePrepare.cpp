@@ -276,6 +276,8 @@ static int _goNear(int cur, int to, int range, int step)
 
 void TSStagePlayLayerGamePrepare::onUpdate() 
 {
+	GUARD_FUNCTION();
+
 	CAStageLayer::onUpdate();
 	if (this->getCurrentState()->getFullName() == "root.running")
 	{
@@ -346,6 +348,16 @@ void TSStagePlayLayerGamePrepare::onEvent(CAEvent* pevt)
 				{
 				}
 				break;
+			}
+		}
+		break;
+	case ET_Key:
+		{
+			CAEventKey* pek = (CAEventKey*)pevt;
+			if (KE_Back == pek->key()) // || KE_Menu == pek->key())
+			{
+				CCDirector::sharedDirector()->end();
+				//this->setConditionResult("root.running@user.pause", true);
 			}
 		}
 		break;

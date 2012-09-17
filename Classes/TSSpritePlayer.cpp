@@ -19,7 +19,8 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 
 	_psprRider = null;
 
-	_fPlayerSpeedLast = 0;
+	_fPlayerHSpeedLast = 0;
+	_vSpeedWhenTouched = 0;
 
 	_fPlayerSpeedInPixel = 0;
 	_fPlayerSpeedAcc = 0;
@@ -27,7 +28,7 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 	_animPlayerSpeed.setValid(false);
 
 	_direction = 0;
-	_toRotation = 0;
+	//_toRotation = 0;
 	_timeTouchEvent = 0;
 	_rectYard = _settings().getRect("yard");
 	CAWorld::percent2view(_rectYard);
@@ -36,12 +37,17 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 	char* szNames[] = { "player", "dolphin", "whale" };
 	for (i = 0; i < 3; i++)
 	{
+		_TPlayerSpeedParams& sp = _speed_params[i];
+
 		string name;
-		name = szNames[i];	name += "_a";			_swim_a[i] = _settings().getFloat(name.c_str());			CAWorld::percent2view(_swim_a[i], false);
-		name = szNames[i];	name += "_v0";			_swim_v0[i] = _settings().getFloat(name.c_str());			CAWorld::percent2view(_swim_v0[i], false);
-		name = szNames[i];	name += "_hs_up";		_swim_hs_up[i] = _settings().getFloat(name.c_str());		CAWorld::percent2view(_swim_hs_up[i], false);
-		name = szNames[i];	name += "_hs_down";		_swim_hs_down[i] = _settings().getFloat(name.c_str());		CAWorld::percent2view(_swim_hs_down[i], false);
-		name = szNames[i];	name += "_app_frames";	_swim_app_frames[i] = _settings().getFloat(name.c_str());
+
+		name = szNames[i];	name += "_touch_power";	sp.touch_power = 1.0f - _settings().getFloat(name.c_str());			
+		name = szNames[i];	name += "_a";			sp.a = _settings().getFloat(name.c_str());			CAWorld::percent2view(sp.a, false);
+		name = szNames[i];	name += "_v0";			sp.v0 = _settings().getFloat(name.c_str());			CAWorld::percent2view(sp.v0, false);
+		name = szNames[i];	name += "_v1";			sp.v1 = _settings().getFloat(name.c_str());			CAWorld::percent2view(sp.v1, false);
+		name = szNames[i];	name += "_hs_up";		sp.hs_up = _settings().getFloat(name.c_str());		CAWorld::percent2view(sp.hs_up, false);
+		name = szNames[i];	name += "_hs_down";		sp.hs_down = _settings().getFloat(name.c_str());	CAWorld::percent2view(sp.hs_down, false);
+		name = szNames[i];	name += "_app_frames";	sp.app_frames = _settings().getFloat(name.c_str());
 	}
 
 	_speed_weight_dolphin = _settings().getFloat("speed_weight_dolphin");
@@ -73,7 +79,7 @@ bool TSSpritePlayer::isCollidWith(CASprite* pspr, bool bView)
 {
 	if (CASprite::isCollidWith(pspr, bView))
 		return true;
-	if (_psprRider)
+	if (false && null != _psprRider)
 	{
 		return _psprRider->isCollidWith(pspr, bView);
 	}
@@ -82,7 +88,7 @@ bool TSSpritePlayer::isCollidWith(CASprite* pspr, bool bView)
 
 void TSSpritePlayer::_onAnimationStart()
 {
-	_toRotation = 0;
+	//_toRotation = 0;
 }
 
 void TSSpritePlayer::_onAnimationStop()
@@ -181,7 +187,8 @@ void TSSpritePlayer::_on_dive(EStateFlag flag)
 			this->setVisible(true);
 			this->switchPose(POSE_BORN);
 
-			_fPlayerSpeedLast = 0;
+			_fPlayerHSpeedLast = 0;
+			_vSpeedWhenTouched = 0;
 			_animPlayerSpeed.init(_pLayer->getTimeNow(), 0, 0, 0);
 		}
 		break;
@@ -200,67 +207,53 @@ void TSSpritePlayer::_on_dive(EStateFlag flag)
 }
 
 //dir == +1, upward else downward
-float TSSpritePlayer::_updateDirection(float dir, float a, float v0, float hs_up, float hs_down, float app_frames)
+float TSSpritePlayer::_updateVSpeedAndRotation(int index)
 {
-	CCSize size = CAWorld::getScreenSize();
+	_Assert(index >= 0 && index < 3);
+
 	float t = _pLayer->getTimeNow() - _timeTouchEvent;
-	float v1 = v0 + a * t;
-	float rot = CAUtils::getRotation(-dir * v1, dir > 0 ? hs_up : hs_down);
 
-	CCRect rect = this->getViewBoundingBox();
-	if (rect.origin.y < _rectYard.origin.y && rot > 0)
+	const _TPlayerSpeedParams& sp = _speed_params[index];
+	float vSpeed = sp.v0 + sp.a * t;
+	if (vSpeed > sp.v1) vSpeed = sp.v1;
+
+	if (_direction < 0) vSpeed = -vSpeed;
+
+	vSpeed = _vSpeedWhenTouched * sp.touch_power + vSpeed;
+
+	CCPoint pos = this->getPos();
+	if (CAUtils::almostEqual(pos.y, _rectYard.origin.y, 0.001f) && vSpeed < 0)
 	{
-		rot = 0;
+		vSpeed = 0;
 	}
-	else if (rect.origin.y + rect.size.height > _rectYard.origin.y + _rectYard.size.height
-		&& rot < 0)
+	else if (CAUtils::almostEqual(pos.y, _rectYard.origin.y + _rectYard.size.height, 0.001f) && vSpeed > 0)
 	{
-		rot = 0;
+		vSpeed = 0;
 	}
 
-	_toRotation = rot;
+	this->setVMoveSpeed(vSpeed);
 
-	rot = this->getMoveDirection();
-	float rot_frames = app_frames; //_settings().getFloat("rot_frames");
-	//float rot_min_delta = _settings().getFloat("rot_min_delta");
-	float delta = (_toRotation - rot) / rot_frames;
-	if (_Abs(rot - _toRotation) < _Abs(delta))
+	float rotOld = this->getMoveDirection();
+	float rotNew = CAUtils::getRotation(-vSpeed, _direction > 0 ? sp.hs_up : sp.hs_down);
+
+	float app_frames = sp.app_frames;
+	float delta = (rotNew - rotOld) / app_frames;
+	if (_Abs(rotNew - rotOld) > _Abs(delta))
 	{
-		rot = _toRotation;
+		rotNew = rotOld + delta;
 	}
-	else
-	{
-		rot += delta;
-	}
-	//this->setMoveDirection(rot);
-	return rot;
+	this->setMoveDirection(rotNew);
+	
+	return rotNew;
 }
 
-#define INDEX_PLAYER	0
-#define INDEX_DOLPHIN	1
-#define INDEX_WHALE		2
-float TSSpritePlayer::_updateSwimDirection(float dir)
-{
-	return _updateDirection(dir, _swim_a[INDEX_PLAYER], _swim_v0[INDEX_PLAYER], _swim_hs_up[INDEX_PLAYER], _swim_hs_down[INDEX_PLAYER], _swim_app_frames[INDEX_PLAYER]);
-}
-
-float TSSpritePlayer::_updateDolphinDirection(float dir)
-{
-	return _updateDirection(dir, _swim_a[INDEX_DOLPHIN], _swim_v0[INDEX_DOLPHIN], _swim_hs_up[INDEX_DOLPHIN], _swim_hs_down[INDEX_DOLPHIN], _swim_app_frames[INDEX_DOLPHIN]);
-}
-
-float TSSpritePlayer::_updateWhaleDirection(float dir)
-{
-	return _updateDirection(dir, _swim_a[INDEX_WHALE], _swim_v0[INDEX_WHALE], _swim_hs_up[INDEX_WHALE], _swim_hs_down[INDEX_WHALE], _swim_app_frames[INDEX_WHALE]);
-}
-
-void TSSpritePlayer::setDistance4CalculatingSpeed(float distance)
+void TSSpritePlayer::setDistance4CalculatingHSpeed(float distance)
 {
 	float speed = _fPlayerSpeedInPixel + _fPlayerSpeedAcc * distance;
 	if (speed > _fPlayerSpeedMax) speed = _fPlayerSpeedMax;
 
-	_animPlayerSpeed.init(_pLayer->getTimeNow(), 0, _fPlayerSpeedLast, speed);
-	_fPlayerSpeedLast = speed;
+	_animPlayerSpeed.init(_pLayer->getTimeNow(), 0, _fPlayerHSpeedLast, speed);
+	_fPlayerHSpeedLast = speed;
 }
 
 void TSSpritePlayer::_on_swiming(EStateFlag flag)
@@ -282,9 +275,6 @@ void TSSpritePlayer::_on_swiming(EStateFlag flag)
 				//this->setMoveSpeed(_animPlayerSpeed.getValue(_pLayer->getTimeNow()));
 				this->setHMoveSpeed(_animPlayerSpeed.getValue(_pLayer->getTimeNow()));
 			}
-			float t = _pLayer->getTimeNow() - _timeTouchEvent;
-			float v1 = _swim_v0[INDEX_PLAYER] + _swim_a[INDEX_PLAYER] * t;
-			this->setVMoveSpeed(_direction > 0 ? v1 : -v1);
 
 			int n = (int)(_pLayer->getTimeNow() * 1000);
 			n %= 1000;
@@ -292,8 +282,7 @@ void TSSpritePlayer::_on_swiming(EStateFlag flag)
 			{
 				_createBubbles(1, true);
 			}
-			float rot = _updateSwimDirection(_direction);
-			this->setMoveDirection(rot);
+			_updateSwim();
 		}
 		break;
 	default:
@@ -311,11 +300,12 @@ void TSSpritePlayer::_on_hurt(EStateFlag flag)
 			this->setPos(ccp(
 				this->getCombinedKey().x, this->getCombinedKey().y));
 			this->switchPose(POSE_HURT);
+			_createBubbles(5, true);
 			if (null != _psprRider)
 			{
 				//_psprRider->killMyself();
 				//follow the player speed and rotation
-				_psprRider->setMoveSpeed(_fPlayerSpeedLast * 0.7f);
+				_psprRider->setMoveSpeed(_fPlayerHSpeedLast * 0.7f);
 				_psprRider = null;
 			}
 		}
@@ -326,8 +316,7 @@ void TSSpritePlayer::_on_hurt(EStateFlag flag)
 			{
 				setState(PS_Swiming);
 			}
-			float rot = _updateSwimDirection(_direction);
-			this->setMoveDirection(rot);
+			_updateSwim();
 		}
 		break;
 	default:
@@ -368,15 +357,10 @@ void TSSpritePlayer::_on_riding_dolphin(EStateFlag flag)
 				_createBubbles(1, true);
 			}
 
-			float t = _pLayer->getTimeNow() - _timeTouchEvent;
-			float v1 = _swim_v0[INDEX_DOLPHIN] + _swim_a[INDEX_DOLPHIN] * t;
-			this->setVMoveSpeed(_direction > 0 ? v1 : -v1);
-
 			_Assert(_psprRider);
 			_psprRider->setPos(this->getPos() + _posOffsetDolphin);
 
-			float rot = _updateDolphinDirection(_direction);
-			this->setMoveDirection(rot);
+			float rot = _updateDolphin();
 			_psprRider->setMoveDirection(rot);
 		}
 		break;
@@ -417,13 +401,10 @@ void TSSpritePlayer::_on_riding_whale(EStateFlag flag)
 				_createBubbles(1, true);
 			}
 
-			float t = _pLayer->getTimeNow() - _timeTouchEvent;
-			float v1 = _swim_v0[INDEX_WHALE] + _swim_a[INDEX_WHALE] * t;
-			this->setVMoveSpeed(_direction > 0 ? v1 : -v1);
-
 			_Assert(_psprRider);
 			_psprRider->setPos(this->getPos() + _posOffsetWhale);
-			float rot = _updateWhaleDirection(_direction);
+
+			float rot = _updateWhale();
 			this->setMoveDirection(rot);
 			_psprRider->setMoveDirection(rot);
 		}
@@ -542,12 +523,20 @@ bool TSSpritePlayer::onEvent(CAEvent* pEvent)
 				if (pe->state() == kTouchStateGrabbed)
 				{
 					_direction = +1;
+					_createBubbles(5, true);
+					_vSpeedWhenTouched = this->getVMoveSpeed();
 					_timeTouchEvent = _pLayer->getTimeNow();
 				}
 				else if (pe->state() == kTouchStateUngrabbed)
 				{
 					_direction = -1;
+					_vSpeedWhenTouched = this->getVMoveSpeed();
 					_timeTouchEvent = _pLayer->getTimeNow();
+				}
+				else
+				{
+					//move
+					//DO NOT recored _timeTouchEvent
 				}
 			}
 			return true;
@@ -576,10 +565,7 @@ void TSSpritePlayer::ride(const string& rider)
 string TSSpritePlayer::debuglog() const
 {
 	char sz[256];
-	float t = _pLayer->getTimeNow();
-	sprintf(sz, "%s,%.2f=%.2f-%.2f ", 
-		_direction > 0 ? "U" : "D", 
-		t - _timeTouchEvent, t, _timeTouchEvent);
+	sprintf(sz, "%s,VS=%.2f ", _direction > 0 ? "U" : "D", this->getVMoveSpeed());
 	string r = sz;
 	return r;
 }
