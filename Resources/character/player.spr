@@ -37,10 +37,10 @@
     <frame src="dying_11.png" ></frame>
   </mesh>
   <settings>
-    <key name="player_a" float="1.9"></key>
+    <key name="player_a" float="1.5"></key>
     <key name="player_touch_power" float="0.2"></key>
-    <key name="player_v0" float="0.35"></key>
-    <key name="player_v1" float="1.8"></key>
+    <key name="player_v0" float="0.45"></key>
+    <key name="player_v1" float="1.6"></key>
     <key name="player_hs_up" float="2.6"></key>
     <key name="player_hs_down" float="2.8"></key>
     <key name="player_app_frames" float="4"></key>
