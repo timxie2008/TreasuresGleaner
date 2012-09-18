@@ -14,6 +14,7 @@ LOCAL_SRC_FILES := game_frame.cpp \
                    ../../../libcacore/Classes/AEnvironment.cpp \
                    ../../../libcacore/Classes/AEvent.cpp \
                    ../../../libcacore/Classes/AFixArray.cpp \
+		   ../../../libcacore/Classes/AHashSHA.cpp \
                    ../../../libcacore/Classes/ASpritesPattern.cpp \
                    ../../../libcacore/Classes/AMachine.cpp \
 				   ../../../libcacore/Classes/AMath2d.cpp \
