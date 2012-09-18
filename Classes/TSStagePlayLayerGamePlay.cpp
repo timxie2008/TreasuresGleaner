@@ -188,8 +188,6 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		excludes.push_back("gameover_bar");
 		activeAllTimelines(&excludes);
 
-		_nCollected = 0;
-
 		int seed = _settings.getInteger("traceline_seed");
 		float left = _settings.getFloat("traceline_left");
 		float top = _settings.getFloat("traceline_top");
@@ -230,6 +228,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		_bCreateDolphin = false;
 		_bCreateWhale = false;
 
+		_nCollected = 0;
+
 		_ptLastBlocker = CCPointZero;
 		_traceline.init(seed, left, top, bottom, node_density, node_rand_range, point_density, seg_max, seg_range);
 		_traceline.setSegPoints(point_line, point_line_delta, point_gap, point_gap_delta);
@@ -249,8 +249,9 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		
 		memset(_psprIndicators, 0, sizeof(_psprIndicators));
 		_findNumberSprites("score", _psprIndicators, SIZE_OF_ARRAY(_psprIndicators));
+
 		_nCollected = 0;
-		_updateScoreBar();
+		this->_addCollected(_traceline_coin2pearl + 1);
 
 		_pstage->setFocus(this);
 	}
