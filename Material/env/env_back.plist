@@ -7,7 +7,7 @@
             <key>background_building.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,684},{220,236}}</string>
+                <string>{{4,344},{220,236}}</string>
                 <key>offset</key>
                 <string>{-1,25}</string>
                 <key>rotated</key>
@@ -30,19 +30,6 @@
                 <key>sourceSize</key>
                 <string>{500,334}</string>
             </dict>
-            <key>background_ship1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{4,344},{500,334}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{500,334}}</string>
-                <key>sourceSize</key>
-                <string>{500,334}</string>
-            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -53,7 +40,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:aecc60226c91fc04a7f0b4b9171901f8$</string>
+            <string>$TexturePacker:SmartUpdate:a0c018ae16555e50205ceaab25020d80$</string>
             <key>textureFileName</key>
             <string>env_back.png</string>
         </dict>
