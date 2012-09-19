@@ -10,3 +10,8 @@
 *.lai
 *.la
 *.a
+Thumbs.db
+*.user
+docs/*
+win32/Debug.win32/
+win32/Release.win32/
