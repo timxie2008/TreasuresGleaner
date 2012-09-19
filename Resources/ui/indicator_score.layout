@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout version="1.0">
+<layout version="1.0" posscalex="1.3">
   <child name="1" ref="pearl"   xpos="0.02,0" pose="indicator_white" />
   <child name="2" ref="pearl"   xpos="0.04,0" pose="indicator_white" />
   <child name="3" ref="pearl"   xpos="0.06,0" pose="indicator_white" />

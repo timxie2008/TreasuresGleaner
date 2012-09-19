@@ -101,7 +101,7 @@ void TSStagePlayLayerGame::onEnter()
 		_pInfo = CCLabelTTF::labelWithString(" ", size, kCCTextAlignmentLeft, "Arial", 16);
 		_pInfo->setAnchorPoint(ccp(0.0f, 0.0f));
 		_pInfo->setPosition( ccp(0, 20) );
-		_pInfo->setVertexZ(999);
+		_pInfo->setVertexZ(99);
 		//_pInfo->setOpacity(0x80);
 		this->stage()->addChild(_pInfo, 10000);
 		_pInfo->retain();

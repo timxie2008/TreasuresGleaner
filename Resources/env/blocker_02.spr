@@ -6,6 +6,7 @@
   </mesh>
   <settings>
     <key name="deadpose" string="dismiss"></key>
+    <key name="damage" int="5" />
   </settings>
   <pose name="stand" collid="0.7,0.7">
     <part name="body">

@@ -158,16 +158,16 @@
         <candidate spr="grass" pose="grass_06" percent="10" ></candidate>
       </emmitor>
       <emmitor spos="0.55,0.26,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="cloud_01" pose="cloud_01_01" percent="10" gname="prepare_cloud_01_01" ></candidate>
+        <candidate spr="cloud" pose="cloud_01_01" percent="10" gname="prepare_cloud_01_01" ></candidate>
       </emmitor>
       <emmitor spos="0.54,0.26,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="cloud_01" pose="cloud_01_02" percent="10" gname="prepare_cloud_01_01" ></candidate>
+        <candidate spr="cloud" pose="cloud_01_02" percent="10" gname="prepare_cloud_01_01" ></candidate>
       </emmitor>
       <emmitor spos="0.55,0.25,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="cloud_01" pose="cloud_01_01" percent="10" gname="prepare_cloud_01_01" ></candidate>
+        <candidate spr="cloud" pose="cloud_01_01" percent="10" gname="prepare_cloud_01_01" ></candidate>
       </emmitor>
       <emmitor spos="0.86,0.32,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="cloud_01" pose="cloud_01_02" percent="10" gname="prepare_cloud_01_02" ></candidate>
+        <candidate spr="cloud" pose="cloud_01_02" percent="10" gname="prepare_cloud_01_02" ></candidate>
       </emmitor>
       <!--emmitor spos="0.44,0.26,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
         <candidate spr="blocker-01" pose="stand" percent="10" gname="prepare_blocker-01" ></candidate>
@@ -277,14 +277,30 @@
         <candidate spr="wave" pose="wave_03" percent="10"></candidate>
       </emmitor>
     </timeline>
+    <timeline name="background" mode="abca" range="3.0" chain="yes" chaindist="1.0,0" enable="true">
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="background" pose="land" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="background" pose="land" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="background" pose="land" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="background_buiding" mode="abca" range="2.3" enable="true">
+      <emmitor spos="0.5,0.3,2" range="0,0.05, 0" live="0,0,3,1" speed="0">
+        <candidate spr="background" pose="building" percent="10"></candidate>
+      </emmitor>
+    </timeline>
     <timeline name="sand-01" mode="abca" range="3.0" chain="yes" chaindist="1.0,0" enable="true">
-      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+      <emmitor spos="0,0,3" range="0,0,0" live="0,0,3,1" speed="0">
         <candidate spr="sand" pose="sand_01" percent="10"></candidate>
       </emmitor>
-      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+      <emmitor spos="0,0,3" range="0,0,0" live="0,0,3,1" speed="0">
         <candidate spr="sand" pose="sand_01" percent="10"></candidate>
       </emmitor>
-      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+      <emmitor spos="0,0,3" range="0,0,0" live="0,0,3,1" speed="0">
         <candidate spr="sand" pose="sand_01" percent="10"></candidate>
       </emmitor>
     </timeline>
@@ -400,18 +416,18 @@
       <emmitor spos="0.0,1.0,7" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate spr="panel_black" pose="float" percent="10"></candidate>
       </emmitor>
+      <emmitor spos="0.10,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate pat="ui/indicator_score.layout" percent="10" gname="score"></candidate>
+      </emmitor>
       <emmitor spos="0.05,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate spr="label_distance" pose="stand" percent="10" gname="lab_dist"></candidate>
       </emmitor>
-      <emmitor spos="0.112,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+      <emmitor spos="0.612,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate pat="ui/text_6_number.layout" pose="0" percent="10" gname="dist" ></candidate>
       </emmitor>
-      <emmitor spos="0.30,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+      <!--emmitor spos="0.30,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate spr="label_state" pose="stand" percent="10" gname="lab_state"></candidate>
-      </emmitor>
-      <emmitor spos="0.33,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
-        <candidate pat="ui/indicator_score.layout" pose="indicator" percent="10" gname="score"></candidate>
-      </emmitor>
+      </emmitor-->
       <emmitor spos="0.92,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate spr="button_pause" pose="stand" percent="10" touch="true"></candidate>
       </emmitor>

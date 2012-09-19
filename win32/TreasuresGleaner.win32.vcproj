@@ -234,6 +234,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\libcacore\Classes\ADef.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\libcacore\Classes\AEnvironment.cpp"
 					>
 				</File>
@@ -255,6 +259,14 @@
 				</File>
 				<File
 					RelativePath="..\..\libcacore\Classes\AFixArray.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\libcacore\Classes\AHashSHA.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\libcacore\Classes\AHashSHA.h"
 					>
 				</File>
 				<File

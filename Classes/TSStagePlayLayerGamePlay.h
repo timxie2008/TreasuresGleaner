@@ -52,8 +52,12 @@ protected:
 	float _traceline_whale_density;
 	float _fOffsetDolphin;
 	float _fOffsetWhale;
-	bool _bCreateDolphin;
-	bool _bCreateWhale;
+
+	//bool _bCreateDolphin;
+	//bool _bCreateWhale;
+	int _nRiderDolphinState;
+	int _nRiderWhaleState;
+
 	CASprite* _psprDolphin;
 	CASprite* _psprWhale;
 

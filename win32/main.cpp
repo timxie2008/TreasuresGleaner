@@ -1,9 +1,25 @@
 #include "main.h"
 #include "AppDelegate.h"
 #include "CCEGLView.h"
+#include "AString.h"
 
 USING_NS_CC;
 
+static void _test()
+{
+	unsigned short key52[56];
+	unsigned short key52d[56];
+	memset(key52, 0xaa, sizeof(key52));
+	memset(key52d, 0x55, sizeof(key52d));
+
+	CAString::ideaGenKey("helloe", key52);
+	const char* ins = "this is a string for testing idea";
+	unsigned char outs[256];
+
+	int ret = CAString::ideaCipher(ins, strlen(ins), outs, sizeof(outs), key52);
+	CAString::ideaInvKey(key52, key52d);
+	CAString::ideaCipher(outs, ret, outs, sizeof(outs), key52d);
+}
 
 //#define _HRES_
 #if defined(_HRES_)
@@ -24,6 +40,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
                        LPTSTR    lpCmdLine,
                        int       nCmdShow)
 {
+	_test();
+
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
@@ -35,5 +53,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     // set the design resolution screen size, if you want to use Design Resoulution scaled to current screen, please uncomment next line.
     // eglView.setDesignResolutionSize(480, 320);
 
+	GUARD_FUNCTION();
     return CCApplication::sharedApplication().run();
 }

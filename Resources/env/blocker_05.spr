@@ -6,6 +6,7 @@
   </mesh>
   <settings>
     <key name="deadpose" string="dismiss"></key>
+    <key name="damage" int="4" />
   </settings>
   <pose name="stand" collid="0.6,0.6">
     <part name="body">
@@ -14,7 +15,7 @@
         <key time="0000" apos="0.5,0.5" yardscalex="13%" rot="0"></key>
         <key time="0100" apos="0.5,0.4" yardscalex="13%" rot="90"></key>
         <key time="0200" apos="0.5,0.5" yardscalex="13%" rot="180"></key>
-        <key time="0300" apos="0.5,0.4" yardscalex="15%" rot="270"></key>
+        <key time="0300" apos="0.5,0.4" yardscalex="14%" rot="270"></key>
         <key time="0400" apos="0.5,0.5" yardscalex="13%" rot="359"></key>
       </modifier>
     </part>

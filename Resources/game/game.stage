@@ -9,12 +9,13 @@
   <model id="pearl" src="env/pearl.spr"></model>
   <model id="coral" src="env/coral.spr"></model>
   <model id="grass" src="env/grass.spr"></model>
-  <model id="cloud_01" src="env/cloud_01.spr"></model>
+  <model id="cloud" src="env/cloud.spr"></model>
   <model id="blocker-01" src="env/blocker_01.spr"></model>
   <model id="blocker-02" src="env/blocker_02.spr"></model>
   <model id="blocker-03" src="env/blocker_03.spr"></model>
   <model id="blocker-04" src="env/blocker_04.spr"></model>
   <model id="blocker-05" src="env/blocker_05.spr"></model>
+  <model id="background" src="env/background.spr"></model>
 
   <!-- ui -->
   <model id="label_title" src="ui/ui_label_title.spr"></model>

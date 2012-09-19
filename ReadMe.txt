@@ -1,4 +1,8 @@
-﻿
+﻿0.7.05
+* 修改 Android 图标
+* UserData 加密
+
+
 static inline float bezierat( float a, float b, float c, float d, float t )
 {
 	if (_mode)

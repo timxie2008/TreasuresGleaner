@@ -6,15 +6,16 @@
   </mesh>
   <settings>
     <key name="deadpose" string="dismiss"></key>
+    <key name="damage" int="3" />
   </settings>
   <pose name="stand" collid="0.6,0.6">
     <part name="body">
       <mesh ref="blocker_01" dt="1"></mesh>
       <modifier mode="abcb">
-        <key time="0000" yardscalex="13%" rot="0"></key>
-        <key time="0100" yardscalex="14%" rot="3"></key>
-        <key time="0200" yardscalex="13%" rot="6"></key>
-        <key time="0300" yardscalex="14%" rot="9"></key>
+        <key time="0000" yardscalex="10%" rot="0"></key>
+        <key time="0100" yardscalex="11%" rot="3"></key>
+        <key time="0200" yardscalex="12%" rot="6"></key>
+        <key time="0300" yardscalex="11%" rot="9"></key>
       </modifier>
     </part>
   </pose>

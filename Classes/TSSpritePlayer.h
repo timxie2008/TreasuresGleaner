@@ -99,10 +99,15 @@ public:
 #	define PS_Dead			"dead"
 #	define PS_Fadeout		"fadeout"
 
-	bool isRidding() const
+	bool isRidding(const char* state = null) const
 	{
-		return PS_RidingDolphin == getState() || PS_RidingWhale == getState();
+		if (null == state)
+		{
+			return PS_RidingDolphin == getState() || PS_RidingWhale == getState();
+		}
+		return state == getState();
 	}
+
 	void onStateChanged(const string& olds, const string& news);
 
 	virtual void onUpdate();

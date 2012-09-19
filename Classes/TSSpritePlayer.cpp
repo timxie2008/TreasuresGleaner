@@ -339,7 +339,7 @@ void TSSpritePlayer::_on_riding_dolphin(EStateFlag flag)
 			//create rider
 			_psprRider = new TSSpriteCommon(_pLayer, "dolphin");
 			_psprRider->setPos(this->getPos() + _posOffsetDolphin);
-			//_psprRider->setFreeSpeedMode();
+			_psprRider->setVertexZ(this->getVertexZ());
 			_psprRider->setState("swim");
 			_pLayer->addSprite(_psprRider);
 
@@ -384,6 +384,7 @@ void TSSpritePlayer::_on_riding_whale(EStateFlag flag)
 			//create rider
 			_psprRider = new TSSpriteCommon(_pLayer, "whale");
 			_psprRider->setPos(this->getPos() + _posOffsetWhale);
+			_psprRider->setVertexZ(this->getVertexZ());
 			_psprRider->setState("swim");
 			_pLayer->addSprite(_psprRider);
 
