@@ -11,13 +11,13 @@ copy .\env\env_back.png ..\Resources\env\ /Y
 copy .\ui\ui.plist ..\Resources\ui\ /Y
 copy .\ui\ui.png ..\Resources\ui\ /Y
 
-copy .\dolphin\dolphin.plist ..\Resources\character\ /Y
-copy .\dolphin\dolphin.png ..\Resources\character\ /Y
+copy .\items\items.plist ..\Resources\items\ /Y
+copy .\items\items.png ..\Resources\items\ /Y
 
-copy .\whale\whale.plist ..\Resources\character\ /Y
-copy .\whale\whale.png ..\Resources\character\ /Y
+copy .\characters\riders.plist ..\Resources\characters\ /Y
+copy .\characters\riders.png ..\Resources\characters\ /Y
 
-copy .\player\player.plist ..\Resources\character\ /Y
-copy .\player\player.png ..\Resources\character\ /Y
+copy .\characters\player.plist ..\Resources\characters\ /Y
+copy .\characters\player.png ..\Resources\characters\ /Y
 
 pause

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sprite version="1.0">
-  <texture src="character/dolphin.plist" tex="character/dolphin.png"></texture>
+  <texture src="character/riders.plist" tex="character/riders.png"></texture>
   <mesh name="dolphin_swim">
     <frame src="dolphin_01.png" ></frame>
     <frame src="dolphin_04.png" ></frame>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sprite version="1.0">
-  <texture src="character/whale.plist" tex="character/whale.png"></texture>
+  <texture src="character/riders.plist" tex="character/riders.png"></texture>
   <mesh name="whale_swim">
     <frame src="whale_01.png" ></frame>
     <frame src="whale_04.png" ></frame>

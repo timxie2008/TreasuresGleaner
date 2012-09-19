@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sprite version="1.0">
-  <texture src="env/env.plist" tex="env/env.png"></texture>
-  <mesh name="blocker_01">
-    <frame src="blocker_01.png"></frame>
+  <texture src="items/items.plist" tex="items/items.png"></texture>
+  <mesh name="blocker_03">
+    <frame src="blocker_03.png"></frame>
   </mesh>
   <settings>
     <key name="deadpose" string="dismiss"></key>
-    <key name="damage" int="3" />
+    <key name="damage" int="4" />
   </settings>
   <pose name="stand" collid="0.6,0.6">
     <part name="body">
-      <mesh ref="blocker_01" dt="1"></mesh>
-      <modifier mode="abcb">
-        <key time="0000" yardscalex="10%" rot="0"></key>
-        <key time="0100" yardscalex="11%" rot="3"></key>
-        <key time="0200" yardscalex="12%" rot="6"></key>
-        <key time="0300" yardscalex="11%" rot="9"></key>
+      <mesh ref="blocker_03" dt="1"></mesh>
+      <modifier mode="abcb" timescale="2.3">
+        <key time="0000" apos="0.5,0.5" yardscalex="15%" rot="0"></key>
+        <key time="0100" apos="0.5,0.4" yardscalex="15%" rot="1"></key>
+        <key time="0200" apos="0.5,0.3" yardscalex="15%" rot="2"></key>
+        <key time="0300" apos="0.5,0.1" yardscalex="15%" rot="4"></key>
       </modifier>
     </part>
   </pose>

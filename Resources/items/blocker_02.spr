@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sprite version="1.0">
-  <texture src="env/env.plist" tex="env/env.png"></texture>
+  <texture src="items/items.plist" tex="items/items.png"></texture>
   <mesh name="blocker_02">
     <frame src="blocker_02.png"></frame>
   </mesh>
