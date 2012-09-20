@@ -1,6 +1,7 @@
 md ..\Resources\env 
 md ..\Resources\ui
-md ..\Resources\character
+md ..\Resources\characters
+md ..\Resources\items
  
 copy .\env\env.plist ..\Resources\env\ /Y
 copy .\env\env.png ..\Resources\env\ /Y

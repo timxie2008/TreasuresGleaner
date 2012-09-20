@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sprite version="1.0">
-  <texture src="character/player.plist" tex="character/player.png"></texture>
+  <texture src="characters/player.plist" tex="characters/player.png"></texture>
   <!--mesh ref="xxx.spr"></mesh>
   <mesh ref="xxx.spr"></mesh-->
   <mesh name="player_swim">
@@ -37,15 +37,15 @@
     <frame src="dying_11.png" ></frame>
   </mesh>
   <settings>
-    <key name="player_a" float="1.3"></key>
-    <key name="player_touch_power" float="0.2"></key>
-    <key name="player_v0" float="0.45"></key>
+    <key name="player_a" float="1.5"></key>
+    <key name="player_touch_power" float="0.4"></key>
+    <key name="player_v0" float="0.35"></key>
     <key name="player_v1" float="1.6"></key>
     <key name="player_hs_up" float="2.6"></key>
     <key name="player_hs_down" float="2.8"></key>
     <key name="player_app_frames" float="4"></key>
     
-    <key name="offset_dolphin" point="0.02,-0.04"></key>
+    <key name="offset_dolphin" point="0.02,-0.03"></key>
     
     <key name="dolphin_a" float="1.6"></key>
     <key name="dolphin_touch_power" float="0.3"></key>

@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sprite version="1.0">
-  <texture src="character/riders.plist" tex="character/riders.png"></texture>
+  <texture src="characters/riders.plist" tex="characters/riders.png"></texture>
   <mesh name="whale_swim">
     <frame src="whale_01.png" ></frame>
-    <frame src="whale_04.png" ></frame>
-    <frame src="whale_08.png" ></frame>
-    <frame src="whale_12.png" ></frame>
-    <frame src="whale_16.png" ></frame>
-    <frame src="whale_20.png" ></frame>
-    <frame src="whale_24.png" ></frame>
-    <frame src="whale_28.png" ></frame>
-    <frame src="whale_32.png" ></frame>
-    <frame src="whale_36.png" ></frame>
+    <frame src="whale_05.png" ></frame>
+    <frame src="whale_09.png" ></frame>
+    <frame src="whale_13.png" ></frame>
+    <frame src="whale_17.png" ></frame>
+    <frame src="whale_21.png" ></frame>
+    <frame src="whale_25.png" ></frame>
+    <frame src="whale_29.png" ></frame>
+    <frame src="whale_33.png" ></frame>
   </mesh>
   <settings>
   </settings>
   <pose name="swim">
     <part name="root">
-      <mesh ref="whale_swim" dt="0.8"></mesh>
+      <mesh ref="whale_swim" dt="1.2"></mesh>
       <modifier mode="abca">
         <key time="0" yardscalex="22%" ></key>
       </modifier>
@@ -33,7 +32,7 @@
   </pose>
   <pose name="fadeout">
     <part name="root">
-      <mesh ref="whale_swim" dt="0.8"></mesh>
+      <mesh ref="whale_swim" dt="1.2"></mesh>
       <modifier mode="abc0" timescale="3">
         <key time="000" yardpos="0.0,0.00" yardscalex="22%" ></key>
         <key time="050" yardpos="0.2,0.02" yardscalex="22%" ></key>

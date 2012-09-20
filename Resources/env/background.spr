@@ -7,9 +7,6 @@
   <mesh name="bk_land">
     <frame src="background_land.png"></frame>
   </mesh>
-  <mesh name="bk_ship1">
-    <frame src="background_ship1.png"></frame>
-  </mesh>
   <settings>
     <key name="deadpose" string="dismiss"></key>
   </settings>
@@ -26,14 +23,6 @@
       <mesh ref="bk_land" dt="1"></mesh>
       <modifier mode="abc0" >
         <key time="0000" apos="0,1" yardpos="0%,100%" yardscale="100%,100%" alpha="0.6"></key>
-      </modifier>
-    </part>
-  </pose>
-  <pose name="ship1" collid="0.6,0.6">
-    <part name="body">
-      <mesh ref="bk_ship1" dt="1"></mesh>
-      <modifier mode="abc0" >
-        <key time="000" yardscalex="60%" />
       </modifier>
     </part>
   </pose>

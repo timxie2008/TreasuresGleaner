@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sprite version="1.0">
-  <texture src="character/riders.plist" tex="character/riders.png"></texture>
+  <texture src="characters/riders.plist" tex="characters/riders.png"></texture>
   <mesh name="dolphin_swim">
     <frame src="dolphin_01.png" ></frame>
-    <frame src="dolphin_04.png" ></frame>
-    <frame src="dolphin_08.png" ></frame>
-    <frame src="dolphin_12.png" ></frame>
-    <frame src="dolphin_16.png" ></frame>
-    <frame src="dolphin_20.png" ></frame>
-    <frame src="dolphin_24.png" ></frame>
-    <frame src="dolphin_28.png" ></frame>
-    <frame src="dolphin_32.png" ></frame>
-    <frame src="dolphin_36.png" ></frame>
+    <frame src="dolphin_05.png" ></frame>
+    <frame src="dolphin_09.png" ></frame>
+    <frame src="dolphin_13.png" ></frame>
+    <frame src="dolphin_17.png" ></frame>
+    <frame src="dolphin_21.png" ></frame>
+    <frame src="dolphin_25.png" ></frame>
+    <frame src="dolphin_29.png" ></frame>
+    <frame src="dolphin_33.png" ></frame>
   </mesh>
   <settings>
   </settings>
   <pose name="swim">
     <part name="root">
-      <mesh ref="dolphin_swim" dt="0.8"></mesh>
+      <mesh ref="dolphin_swim" dt="1.0"></mesh>
       <modifier mode="abca">
         <key time="0" yardscalex="18%" ></key>
       </modifier>
