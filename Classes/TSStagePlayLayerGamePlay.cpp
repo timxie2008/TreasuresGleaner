@@ -566,6 +566,24 @@ void TSStagePlayLayerGamePlay::_checkBlockers()
 
 	bool bDestroyBlocksInScreen = false;
 	unsigned int i, count;
+
+	//check missle
+	count = _getNamedSpritesCount("missle");
+	for (i = 0; i < count; i++)
+	{
+		CASprite* pspr = _getNamedSprite("missle", i);
+		if (pspr->getState() != "dismiss")
+		{
+			if (psprPlayer->isCollidWith(pspr))
+			{
+				pspr->setState("dismiss");
+				int damage = 10;
+				_Info("missle HIT!!!");
+				_addCollected(-(damage*  _traceline_coin2pearl));
+			}
+		}
+	}
+
 	count = _getNamedSpritesCount("blocker");
 	for (i = 0; i < count; i++)
 	{
@@ -603,11 +621,6 @@ void TSStagePlayLayerGamePlay::_checkBlockers()
 				}
 
 				pspr->setState("dismiss");
-				//TSSpriteCommon* pspr;
-				pspr = _createCommonSprite("cloud", "cloud_02_01", pspr->getPos(), true, 1.2f);
-				this->addSprite(pspr);
-				pspr = _createCommonSprite("cloud", "cloud_01_01", pspr->getPos(), true, 1.1f);
-				this->addSprite(pspr);
 			}
 		}
 	}
@@ -778,7 +791,6 @@ void TSStagePlayLayerGamePlay::onUpdate()
 					CCRect rectM = rect;
 					rectM.size.width = posM.x + size.width * 2.0f - _player()->getPos().x;
 					psprMissle->setLiveArea(rectM);
-					//psprMissle->setMoveDirection(180.0f);
 					psprMissle->setMoveSpeed(_missle_speed_01);
 					this->addSprite(psprMissle);
 #endif

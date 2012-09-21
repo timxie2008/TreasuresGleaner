@@ -17,4 +17,14 @@
       </modifier>
     </part>
   </pose>
+  <pose name="dismiss" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="{last}" dt="0.2"></mesh>
+      <modifier mode="abc0" timescale="0.5">
+        <key time="0000" apos="1,0.5" yardscalex="08%" alpha="1.0"></key>
+        <key time="0300" apos="1,0.5" yardscalex="05%" alpha="0.4"></key>
+        <key time="0400" apos="1,0.5" yardscalex="0%" alpha="0.5"></key>
+      </modifier>
+    </part>
+  </pose>
 </sprite>

@@ -9,6 +9,7 @@ TSSpriteMissle::TSSpriteMissle(CAStageLayer* player, const CCPoint& pos, const s
 {
 	this->setPos(pos);
 	this->setState(state);
+
 	_rotLast = 0;
 
 	_psprWarning = new TSSpriteCommon(player, "missle_warning");
@@ -33,6 +34,14 @@ TSSpriteMissle::~TSSpriteMissle(void)
 void TSSpriteMissle::onStateChanged(const string& olds, const string& news)
 {
 	this->switchPose(news);
+	if (news == "dismiss")
+	{
+		if (_psprWarning && _psprWarning->getState() != "dismiss")
+		{
+			_psprWarning->setState("dismiss");
+		}
+		//create some boooom effects
+	}
 }
 
 void TSSpriteMissle::onUpdate()
