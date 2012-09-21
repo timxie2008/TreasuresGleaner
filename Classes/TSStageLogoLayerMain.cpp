@@ -4,7 +4,6 @@
 #include "AWorld.h"
 #include "AStage.h"
 #include "TSSpritePlayer.h"
-#include "TSSpriteFish.h"
 #include "TSSpriteBubble.h"
 #include "TSSpriteCommon.h"
 

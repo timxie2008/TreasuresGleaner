@@ -4,7 +4,6 @@
 #include "AStage.h"
 #include "AString.h"
 #include "TSSpritePlayer.h"
-#include "TSSpriteFish.h"
 #include "TSSpriteCommon.h"
 #include "TSSpriteButton.h"
 

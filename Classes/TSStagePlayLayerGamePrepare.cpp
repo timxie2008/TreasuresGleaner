@@ -6,7 +6,6 @@
 #include "AUserData.h"
 
 #include "TSSpritePlayer.h"
-#include "TSSpriteFish.h"
 #include "TSSpriteCommon.h"
 #include "TSSpriteButton.h"
 #include "TSSpriteBubble.h"
