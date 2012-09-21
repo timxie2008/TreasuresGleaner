@@ -35,10 +35,11 @@ LOCAL_SRC_FILES := game_frame.cpp \
 				   ../../../libcacore/Classes/AUserData.cpp \
                    ../../../libcacore/Classes/AWorld.cpp \
                    ../../../libcacore/Classes/AXML.cpp \
+                   ../../Classes/TSSpriteBlocker.cpp \
                    ../../Classes/TSSpriteBubble.cpp \
                    ../../Classes/TSSpriteButton.cpp \
                    ../../Classes/TSSpriteCommon.cpp \
-                   ../../Classes/TSSpriteFish.cpp \
+                   ../../Classes/TSSpriteMissle.cpp \
                    ../../Classes/TSSpritePlayer.cpp \
                    ../../Classes/TSStageLogo.cpp \
                    ../../Classes/TSStageLogoLayerMain.cpp \
