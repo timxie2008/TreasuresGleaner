@@ -25,6 +25,7 @@ protected:
 	float _fPlayerSpeedInPixel;
 	float _fPlayerSpeedAcc;
 	float _fPlayerSpeedMax;
+	float _fPlayerSpeedJumpPower;
 
 	TSSpriteCommon* _psprRider;
 
@@ -77,6 +78,8 @@ protected:
 	void _on_riding_whale(EStateFlag flag);
 	void _on_dead(EStateFlag flag);
 	void _on_fadeout(EStateFlag flag);
+
+	bool _isRunningOnGround() const;
 public:
 	TSSpritePlayer(CAStageLayer* palyer, const char* name);
 	virtual ~TSSpritePlayer(void);
@@ -85,7 +88,7 @@ public:
 
 	virtual bool isCollidWith(CASprite* pspr, bool bView = true);
 	void ride(const string& rider);
-	void setSpeedInfo(float fPlayerSpeedInPixel, float fPlayerSpeedAcc, float fPlayerSpeedMax);
+	void setSpeedInfo(float fPlayerSpeedInPixel, float fPlayerSpeedAcc, float fPlayerSpeedMax, float _fPlayerSpeedJumpPower);
 	void setDistance4CalculatingHSpeed(float distance);
 
 	string debuglog() const;

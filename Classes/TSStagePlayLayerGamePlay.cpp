@@ -275,9 +275,12 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		CAWorld::percent2view(fPlayerSpeedInPixel, true);
 		float fPlayerSpeedAcc = _settings.getFloat("player_speed_acc_in_distance");
 		float fPlayerSpeedMax = _settings.getFloat("player_speed_max_in_percent");
-		CAWorld::percent2view(fPlayerSpeedMax, true);
+		CAWorld::percent2view(fPlayerSpeedMax, false);
 
-		_player()->setSpeedInfo(fPlayerSpeedInPixel, fPlayerSpeedAcc, fPlayerSpeedMax);
+		float fPlayerSpeedJumpPower = _settings.getFloat("player_speed_jump_power");
+		CAWorld::percent2view(fPlayerSpeedJumpPower, true);
+
+		_player()->setSpeedInfo(fPlayerSpeedInPixel, fPlayerSpeedAcc, fPlayerSpeedMax, fPlayerSpeedJumpPower);
 		_player()->setState(PS_Dive);
 		_player()->setHMoveSpeed(0);
 		_player()->setVMoveSpeed(0);

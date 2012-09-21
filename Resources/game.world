@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <world version="1.0">
   <settings>
-    <key name="fps" float="60" />
+    <key name="fps" float="30" />
     <key name="log" int="2" />
     <key name="entry" string="logo/logo" />
   </settings>

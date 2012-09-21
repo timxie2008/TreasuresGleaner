@@ -25,6 +25,8 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 	_fPlayerSpeedInPixel = 0;
 	_fPlayerSpeedAcc = 0;
 	_fPlayerSpeedMax = 0;
+	_fPlayerSpeedJumpPower = 0;
+
 	_animPlayerSpeed.setValid(false);
 
 	_direction = 0;
@@ -149,8 +151,9 @@ void TSSpritePlayer::_createBubbles(int c, bool bLow)
 	}
 }
 
-void TSSpritePlayer::setSpeedInfo(float fPlayerSpeedInPixel, float fPlayerSpeedAcc, float fPlayerSpeedMax)
+void TSSpritePlayer::setSpeedInfo(float fPlayerSpeedInPixel, float fPlayerSpeedAcc, float fPlayerSpeedMax, float fPlayerSpeedJumpPower)
 {
+	_fPlayerSpeedJumpPower = fPlayerSpeedJumpPower;
 	_fPlayerSpeedInPixel = fPlayerSpeedInPixel;
 	_fPlayerSpeedAcc = fPlayerSpeedAcc;
 	_fPlayerSpeedMax = fPlayerSpeedMax;
@@ -493,6 +496,14 @@ void TSSpritePlayer::_adjustPosition(CCPoint& pos)
 	}
 }
 
+bool TSSpritePlayer::_isRunningOnGround() const
+{
+	const CCPoint& pos = this->getPos();
+	if (CAUtils::almostEqual(pos.y, _rectYard.origin.y, 0.01f))
+		return true;
+	return false;
+}
+
 void TSSpritePlayer::onUpdate()
 {
 	CASprite::onUpdate();
@@ -525,6 +536,11 @@ bool TSSpritePlayer::onEvent(CAEvent* pEvent)
 				{
 					_direction = +1;
 					_createBubbles(5, true);
+					if (_isRunningOnGround() && !this->isRidding())
+					{
+						_Info("jump !!!");
+						this->setVMoveSpeed(_fPlayerSpeedJumpPower);
+					}
 					_vSpeedWhenTouched = this->getVMoveSpeed();
 					_timeTouchEvent = _pLayer->getTimeNow();
 				}
