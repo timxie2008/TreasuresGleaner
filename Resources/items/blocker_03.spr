@@ -4,6 +4,18 @@
   <mesh name="blocker_03">
     <frame src="blocker_03.png"></frame>
   </mesh>
+  <mesh name="blocker_boom_03_1">
+    <frame src="blocker_03_1.png"></frame>
+  </mesh>
+  <mesh name="blocker_boom_03_2">
+    <frame src="blocker_03_2.png"></frame>
+  </mesh>
+  <mesh name="blocker_boom_03_3">
+    <frame src="blocker_03_3.png"></frame>
+  </mesh>
+  <mesh name="blocker_boom_03_4">
+    <frame src="blocker_03_4.png"></frame>
+  </mesh>
   <settings>
     <key name="deadpose" string="dismiss"></key>
     <key name="damage" int="4" />
@@ -19,7 +31,50 @@
       </modifier>
     </part>
   </pose>
-  <pose name="dismiss" collid="0,0">
+  <pose name="slice_1" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="blocker_boom_03_1" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="18%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="17%" rot="3" alpha="0.8"></key>
+        <key time="0200" yardscalex="16%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="15%" rot="9" alpha="0.0"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="slice_2" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="blocker_boom_03_2" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="19%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="17%" rot="3" alpha="0.8"></key>
+        <key time="0200" yardscalex="12%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="11%" rot="9" alpha="0.0"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="slice_3" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="blocker_boom_03_3" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="18%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="13%" rot="3" alpha="0.8"></key>
+        <key time="0200" yardscalex="15%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="11%" rot="9" alpha="0.0"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="slice_4" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="blocker_boom_03_4" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="14%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="16%" rot="3" alpha="0.8"></key>
+        <key time="0200" yardscalex="11%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="11%" rot="9" alpha="0.0"></key>
+      </modifier>
+    </part>
+  </pose>  <pose name="dismiss" collid="0,0">
     <part name="body">
       <mesh ref="{last}" dt="1"></mesh>
       <modifier mode="abc0">

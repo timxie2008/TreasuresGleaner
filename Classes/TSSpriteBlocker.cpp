@@ -43,7 +43,7 @@ void TSSpriteBlocker::_on_state_event(EStateFlag flag)
 				_pLayer->addSprite(pspr);
 
 				int i, c;
-				c = 64;
+				c = 16;
 				for (i = 0; i < c; i++)
 				{
 					char szPose[32];
@@ -53,7 +53,8 @@ void TSSpriteBlocker::_on_state_event(EStateFlag flag)
 
 					float ms = (CAUtils::Rand() * 80.0f + 60.0f) * size.width / 100.0f * 2.0f;
 					float dir = CAUtils::Rand() * 360.0f;
-					pspr = _createCommonSprite("blocker-01", szPose, pos, true);
+					const string& mname = this->getModName();
+					pspr = _createCommonSprite(mname.c_str(), szPose, pos, true);
 					pspr->setGroupName("noname");
 					pspr->setMoveDirection(dir);
 					pspr->setMoveSpeed(ms);

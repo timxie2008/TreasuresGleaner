@@ -93,7 +93,7 @@ void TSStagePlayLayerGame::onEnter()
 		CCSize size = CAWorld::getScreenSize();
 		size.width *= 0.9f;
 #if defined(_DEBUG)
-		size.height = 18 * 12;
+		size.height = 18 * 9;
 #else
 		size.height = 18 * 4;
 #endif
@@ -101,7 +101,7 @@ void TSStagePlayLayerGame::onEnter()
 		_pInfo->setAnchorPoint(ccp(0.0f, 0.0f));
 		_pInfo->setPosition( ccp(0, 20) );
 		_pInfo->setVertexZ(99);
-		//_pInfo->setOpacity(0x80);
+		_pInfo->setOpacity(0x9b);
 		this->stage()->addChild(_pInfo, 10000);
 		_pInfo->retain();
 	}
@@ -143,11 +143,6 @@ string TSStagePlayLayerGame::debuglog()
 
 	pl = this->_getSubLayer("game.play");
 	ret += "play:";
-	ret += pl ? pl->debuglog() : "";
-	ret += "\n";
-
-	pl = this->_getSubLayer("game.shop");
-	ret += "shop:";
 	ret += pl ? pl->debuglog() : "";
 	ret += "\n";
 

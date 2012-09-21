@@ -4,16 +4,16 @@
   <mesh name="blocker_01">
     <frame src="blocker_01.png"></frame>
   </mesh>
-  <mesh name="blocker_01_boom1">
+  <mesh name="blocker_boom_01_1">
     <frame src="blocker_01_1.png"></frame>
   </mesh>
-  <mesh name="blocker_01_boom2">
+  <mesh name="blocker_boom_01_2">
     <frame src="blocker_01_2.png"></frame>
   </mesh>
-  <mesh name="blocker_01_boom3">
+  <mesh name="blocker_boom_01_3">
     <frame src="blocker_01_3.png"></frame>
   </mesh>
-  <mesh name="blocker_01_boom4">
+  <mesh name="blocker_boom_01_4">
     <frame src="blocker_01_4.png"></frame>
   </mesh>
   <settings>
@@ -33,7 +33,7 @@
   </pose>
   <pose name="slice_1" collid="0.6,0.6">
     <part name="body">
-      <mesh ref="blocker_01_boom1" dt="1"></mesh>
+      <mesh ref="blocker_boom_01_1" dt="1"></mesh>
       <modifier mode="abc0">
         <key time="0000" yardscalex="18%" rot="0" alpha="1.0"></key>
         <key time="0100" yardscalex="17%" rot="3" alpha="0.8"></key>
@@ -44,7 +44,7 @@
   </pose>
   <pose name="slice_2" collid="0.6,0.6">
     <part name="body">
-      <mesh ref="blocker_01_boom2" dt="1"></mesh>
+      <mesh ref="blocker_boom_01_2" dt="1"></mesh>
       <modifier mode="abc0">
         <key time="0000" yardscalex="19%" rot="0" alpha="1.0"></key>
         <key time="0100" yardscalex="17%" rot="3" alpha="0.8"></key>
@@ -55,7 +55,7 @@
   </pose>
   <pose name="slice_3" collid="0.6,0.6">
     <part name="body">
-      <mesh ref="blocker_01_boom3" dt="1"></mesh>
+      <mesh ref="blocker_boom_01_3" dt="1"></mesh>
       <modifier mode="abc0">
         <key time="0000" yardscalex="18%" rot="0" alpha="1.0"></key>
         <key time="0100" yardscalex="13%" rot="3" alpha="0.8"></key>
@@ -66,7 +66,7 @@
   </pose>
   <pose name="slice_4" collid="0.6,0.6">
     <part name="body">
-      <mesh ref="blocker_01_boom4" dt="1"></mesh>
+      <mesh ref="blocker_boom_01_4" dt="1"></mesh>
       <modifier mode="abc0">
         <key time="0000" yardscalex="14%" rot="0" alpha="1.0"></key>
         <key time="0100" yardscalex="16%" rot="3" alpha="0.8"></key>
