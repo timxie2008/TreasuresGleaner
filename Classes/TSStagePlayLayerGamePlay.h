@@ -7,6 +7,7 @@
 class TSSpritePlayer;
 class TSSpriteCommon;
 class TSSpriteButton;
+class TSSpriteBlocker;
 
 #include "TSGroupNumber.h"
 #include "TSTraceLine.h"
@@ -58,6 +59,8 @@ protected:
 	int _nRiderDolphinState;
 	int _nRiderWhaleState;
 
+	CCPoint _ptLastMissle;
+
 	CASprite* _psprDolphin;
 	CASprite* _psprWhale;
 
@@ -69,6 +72,7 @@ protected:
 	void _checkRewards();
 
 	TSSpriteCommon* _createCommonSprite(const char* name, const char* state, const CCPoint& pos, bool autoremove = false, float scale = 1.0f);
+	TSSpriteBlocker* _createBlockerSprite(const char* name, const char* state, const CCPoint& pos, bool autoremove = false, float scale = 1.0f);
 public:
 	TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer* playerParent);
 	virtual ~TSStagePlayLayerGamePlay(void);

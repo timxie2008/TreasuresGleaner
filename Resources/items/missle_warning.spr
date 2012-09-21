@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="items/items.plist" tex="items/items.png"></texture>
+  <mesh name="missle_wn">
+    <frame src="warning_sign.png"></frame>
+  </mesh>
+  <settings>
+    <!--key name="deadpose" string="dismiss"></key-->
+  </settings>
+  <pose name="stand" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="missle_wn" dt="0.2"></mesh>
+      <modifier mode="abca" timescale="0.5">
+        <key time="0000" apos="1,0.5" yardscalex="08%" alpha="1.0"></key>
+        <key time="0300" apos="1,0.5" yardscalex="15%" alpha="1.0"></key>
+        <key time="0400" apos="1,0.5" yardscalex="07%" alpha="0.5"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

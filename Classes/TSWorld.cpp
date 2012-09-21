@@ -34,7 +34,6 @@
 //lay on the road
 #	include "TSStagePlayLayerCommon.h"
 
-#include "TSSpriteFish.h"
 #include "TSSpritePlayer.h"
 #include "TSSpriteBubble.h"
 #include "TSSpriteCommon.h"
@@ -261,12 +260,7 @@ CASprite* TSWorld::createSprite(CAStageLayer* player, const char* _name)
 	{
 		//if (player->name() == _layer_game)
 		{
-			if (name.find("fish") == 0)
-			{
-				GUARD_FIELD(fish);
-				pspr = new TSSpriteFish(player, name.c_str());
-			}
-			else if (name == "player")
+			if (name == "player")
 			{
 				GUARD_FIELD(player);
 				pspr = new TSSpritePlayer(player, name.c_str());
@@ -282,17 +276,6 @@ CASprite* TSWorld::createSprite(CAStageLayer* player, const char* _name)
 			{
 				GUARD_FIELD(bubble);
 				pspr = new TSSpriteButton(player, name.c_str()); 
-			}
-			else if (
-				(name == "sea") || 
-				(name == "logo") ||
-				(name.find("wave") == 0) || 
-				(name.find("sand") == 0) || 
-				(name.find("coral") == 0) || 
-				(name == "light"))
-			{
-				GUARD_FIELD(common_sprite);
-				pspr = new TSSpriteCommon(player, name.c_str()); 
 			}
 			else
 			{

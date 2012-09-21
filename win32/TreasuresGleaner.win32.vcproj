@@ -466,6 +466,14 @@
 					Name="Sprites"
 					>
 					<File
+						RelativePath="..\Classes\TSSpriteBlocker.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Classes\TSSpriteBlocker.h"
+						>
+					</File>
+					<File
 						RelativePath="..\Classes\TSSpriteBubble.cpp"
 						>
 					</File>
@@ -495,6 +503,14 @@
 					</File>
 					<File
 						RelativePath="..\Classes\TSSpriteFish.h"
+						>
+					</File>
+					<File
+						RelativePath="..\Classes\TSSpriteMissle.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Classes\TSSpriteMissle.h"
 						>
 					</File>
 					<File

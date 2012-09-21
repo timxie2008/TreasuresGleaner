@@ -8,7 +8,8 @@
 #include "AUserData.h"
 
 #include "TSSpritePlayer.h"
-#include "TSSpriteFish.h"
+#include "TSSpriteBlocker.h"
+#include "TSSpriteMissle.h"
 #include "TSSpriteCommon.h"
 #include "TSSpriteButton.h"
 
@@ -66,6 +67,19 @@ string TSStagePlayLayerGamePlay::debuglog()
 TSSpriteCommon* TSStagePlayLayerGamePlay::_createCommonSprite(const char* name, const char* state, const CCPoint& pos, bool autoremove, float scale)
 {
 	TSSpriteCommon* pspr = new TSSpriteCommon(this, name);
+	pspr->setPos(pos);
+	pspr->setScl(scale);
+	pspr->setState(state);
+	if (autoremove)
+	{
+		pspr->setDeadPose(state);
+	}
+	return pspr;
+}
+
+TSSpriteBlocker* TSStagePlayLayerGamePlay::_createBlockerSprite(const char* name, const char* state, const CCPoint& pos, bool autoremove, float scale)
+{
+	TSSpriteBlocker* pspr = new TSSpriteBlocker(this, name);
 	pspr->setPos(pos);
 	pspr->setScl(scale);
 	pspr->setState(state);
@@ -227,7 +241,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 
 		_nCollected = 0;
 
-		_ptLastBlocker = CCPointZero;
+		_ptLastMissle = _ptLastBlocker = CCPointZero;
+
 		_traceline.init(seed, left, top, bottom, node_density, node_rand_range, point_density, seg_max, seg_range);
 		_traceline.setSegPoints(point_line, point_line_delta, point_gap, point_gap_delta);
 	}
@@ -439,6 +454,13 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 	else if (_nCollected / _traceline_coin2pearl >= _STARS_DOLPHIN)
 	{
 		//if we can put a whale | dolphin
+		if (!_player()->isRidding())
+		{
+			if (0 == this->_getNamedSpritesCount("reward-rdolphin"))
+				_nRiderDolphinState = 0;
+			if (0 == this->_getNamedSpritesCount("reward-rwhale"))
+				_nRiderWhaleState = 0;
+		}
 		if (0 == _nRiderDolphinState && 0 == _nRiderWhaleState)
 		{
 			float x = stage()->getOffset().x;
@@ -540,8 +562,6 @@ void TSStagePlayLayerGamePlay::_checkRewards()
 
 void TSStagePlayLayerGamePlay::_checkBlockers() 
 {
-	//this->stage()->playEffect("sfx_over");
-
 	CASprite* psprPlayer = _player();
 
 	bool bDestroyBlocksInScreen = false;
@@ -730,8 +750,46 @@ void TSStagePlayLayerGamePlay::onUpdate()
 					this->addSprite(pspr);
 				}
 			}
+			//random some missles
+			int nsegs = _traceline.getSegmentsCount();
+			{
+				float _missleline_density = 5 * size.width;
+				float _missle_speed_01 = -0.65f * size.width;
+
+				if (pt.x > _ptLastMissle.x + _missleline_density)
+				{
+					_ptLastMissle = pt;
+					//create a missle
+
+					CCPoint posM;
+					posM = _player()->getPos();
+					posM.x += size.width * 4.0f;
+
+#if 0
+					pspr = _createCommonSprite("missle", "m1_fly", posM);
+					pspr->setLiveArea(rect);
+					pspr->setFollowCamera(true);
+					this->addSprite(pspr);
+#else
+					//create missle
+					TSSpriteMissle* psprMissle = new TSSpriteMissle(this, posM, "m2_fly");
+					psprMissle->setFollowCamera(true);
+					psprMissle->setTarget(_player());
+					CCRect rectM = rect;
+					rectM.size.width = posM.x + size.width * 2.0f - _player()->getPos().x;
+					psprMissle->setLiveArea(rectM);
+					//psprMissle->setMoveDirection(180.0f);
+					psprMissle->setMoveSpeed(_missle_speed_01);
+					this->addSprite(psprMissle);
+#endif
+					_Info("missle created");
+
+					continue;
+				}
+			}
+
 			//random some blockers
-			if (_traceline.getSegmentsCount() <= 2)
+			if (nsegs <= 2)
 			{
 				continue;
 			}
@@ -761,7 +819,7 @@ void TSStagePlayLayerGamePlay::onUpdate()
 
 			if (0 == flag) //peral 
 			{
-				len = (CAUtils::Rand() * 0.8f + 1.8f) * len;
+				len = (CAUtils::Rand() * 1.0f + 1.6f) * len;
 			}
 			else
 			{
@@ -771,9 +829,13 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			vr.normalize();
 			vr *= len;
 			vr = v0 + vr;
-			if (vr.y < _traceline.bottom() * size.height || vr.y > _traceline.top() * size.height)
+			if (vr.y < _traceline.bottom() * size.height)
 			{
-				continue;
+				vr.y = _traceline.bottom() * size.height;
+			}
+			else if (vr.y > _traceline.top() * size.height)
+			{
+				vr.y = _traceline.top() * size.height;
 			}
 
 			//try to create a blocker
@@ -786,10 +848,10 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			char szBlocker[32];
 			sprintf(szBlocker, "blocker-%02d", n + 1);
 
-			pspr = _createCommonSprite(szBlocker, "stand", ptBlocker);
-			pspr->setLiveArea(rect);
-			pspr->setFollowCamera(true);
-			this->addSprite(pspr);
+			TSSpriteBlocker* psprBlocker = _createBlockerSprite(szBlocker, "stand", ptBlocker);
+			psprBlocker->setLiveArea(rect);
+			psprBlocker->setFollowCamera(true);
+			this->addSprite(psprBlocker);
 		}
 	}
 	else if (fname == "root.showover")
