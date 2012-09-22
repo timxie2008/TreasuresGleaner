@@ -51,7 +51,7 @@ void TSSpriteBlocker::_on_state_event(EStateFlag flag)
 					CCPoint pos;
 					pos = this->getPos();
 
-					float ms = (CAUtils::Rand() * 80.0f + 60.0f) * size.width / 100.0f * 2.0f;
+					float ms = (CAUtils::Rand() * 80.0f + 60.0f) * size.width / 100.0f * 0.7f;
 					float dir = CAUtils::Rand() * 360.0f;
 					const string& mname = this->getModName();
 					pspr = _createCommonSprite(mname.c_str(), szPose, pos, true);

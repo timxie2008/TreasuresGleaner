@@ -64,6 +64,15 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 	_posOffsetWhale = _settings().getPoint("offset_whale");
 	CAWorld::percent2view(_posOffsetWhale);
 
+	_fPlayerSpeedInPixel = _settings().getFloat("player_speed_in_percent");
+	CAWorld::percent2view(_fPlayerSpeedInPixel, true);
+	_fPlayerSpeedAcc = _settings().getFloat("player_speed_acc_in_distance");
+	_fPlayerSpeedMax = _settings().getFloat("player_speed_max_in_percent");
+	CAWorld::percent2view(_fPlayerSpeedMax, false);
+
+	_fPlayerSpeedJumpPower = _settings().getFloat("player_speed_jump_power");
+	CAWorld::percent2view(_fPlayerSpeedJumpPower, true);
+
 	this->setFreeSpeedMode();
 
 	this->setTouchable(true);
@@ -155,6 +164,7 @@ void TSSpritePlayer::_createBubbles(int c, bool bLow)
 	}
 }
 
+#if 0
 void TSSpritePlayer::setSpeedInfo(float fPlayerSpeedInPixel, float fPlayerSpeedAcc, float fPlayerSpeedMax, float fPlayerSpeedJumpPower)
 {
 	_fPlayerSpeedJumpPower = fPlayerSpeedJumpPower;
@@ -162,6 +172,7 @@ void TSSpritePlayer::setSpeedInfo(float fPlayerSpeedInPixel, float fPlayerSpeedA
 	_fPlayerSpeedAcc = fPlayerSpeedAcc;
 	_fPlayerSpeedMax = fPlayerSpeedMax;
 }
+#endif
 
 void TSSpritePlayer::_on_prepare(EStateFlag flag)
 {
@@ -247,6 +258,7 @@ float TSSpritePlayer::_updateVSpeedAndRotation(int index)
 		if (vSpeed < _climbing_v)
 		{
 			_Info("jump finished");
+			_vSpeedWhenTouched = _climbing_v;
 			_bJumping = false;
 		}
 	}

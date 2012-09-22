@@ -271,16 +271,6 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	{
 		stage()->setOffset(CCPointZero, 0);
 
-		float fPlayerSpeedInPixel = _settings.getFloat("player_speed_in_percent");
-		CAWorld::percent2view(fPlayerSpeedInPixel, true);
-		float fPlayerSpeedAcc = _settings.getFloat("player_speed_acc_in_distance");
-		float fPlayerSpeedMax = _settings.getFloat("player_speed_max_in_percent");
-		CAWorld::percent2view(fPlayerSpeedMax, false);
-
-		float fPlayerSpeedJumpPower = _settings.getFloat("player_speed_jump_power");
-		CAWorld::percent2view(fPlayerSpeedJumpPower, true);
-
-		_player()->setSpeedInfo(fPlayerSpeedInPixel, fPlayerSpeedAcc, fPlayerSpeedMax, fPlayerSpeedJumpPower);
 		_player()->setState(PS_Dive);
 		_player()->setHMoveSpeed(0);
 		_player()->setVMoveSpeed(0);
@@ -580,7 +570,7 @@ void TSStagePlayLayerGamePlay::_checkBlockers()
 			if (psprPlayer->isCollidWith(pspr))
 			{
 				pspr->setState("dismiss");
-				int damage = 10;
+				int damage = 20;
 				_Info("missle HIT!!!");
 				_addCollected(-(damage*  _traceline_coin2pearl));
 			}

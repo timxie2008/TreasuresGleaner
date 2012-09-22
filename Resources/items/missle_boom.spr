@@ -3,17 +3,19 @@
   <texture src="items/items.plist" tex="items/items.png"></texture>
   <mesh name="missle_boom_01">
     <frame src="missle_boom_01_01.png"></frame>
+    <frame src="missle_boom_01_02.png"></frame>
+    <frame src="missle_boom_01_03.png"></frame>
   </mesh>
   <settings>
-    <!--key name="deadpose" string="dismiss"></key-->
+    <key name="deadpose" string="stand"></key>
   </settings>
   <pose name="stand" collid="0.3,0.3">
     <part name="body">
-      <mesh ref="missle_boom_01" dt="0.2"></mesh>
-      <modifier mode="abc0" timescale="0.5">
-        <key time="0000" yardscalex="08%" alpha="0.5"></key>
-        <key time="0300" yardscalex="15%" alpha="0.5"></key>
-        <key time="0400" yardscalex="07%" alpha="0.2"></key>
+      <mesh ref="missle_boom_01" dt="0.8"></mesh>
+      <modifier mode="abc0" timescale="2">
+        <key time="0000" yardscalex="26%" alpha="0.9"></key>
+        <key time="0300" yardscalex="26%" alpha="0.9"></key>
+        <key time="0400" yardscalex="26%" alpha="0.2"></key>
       </modifier>
     </part>
   </pose>

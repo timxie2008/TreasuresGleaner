@@ -20,6 +20,7 @@
   <model id="pearl" src="items/pearl.spr"></model>
   <model id="missle" src="items/missle.spr"></model>
   <model id="missle_warning" src="items/missle_warning.spr"></model>
+  <model id="missle_boom" src="items/missle_boom.spr"></model>
 
   <!-- ui -->
   <model id="label_title" src="ui/ui_label_title.spr"></model>

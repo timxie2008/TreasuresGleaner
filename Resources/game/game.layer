@@ -157,10 +157,10 @@
       <emmitor spos="0.59,0.03,16" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
         <candidate spr="grass" pose="grass_06" percent="10" ></candidate>
       </emmitor>
-      <!--emmitor spos="0.55,0.66,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
-        <candidate spr="blocker-05" pose="slice_1" percent="10" gname="prepare_cloud_01_01" ></candidate>
+      <emmitor spos="0.55,0.26,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="missle_boom" pose="stand" percent="10" gname="prepare_cloud_01_01" ></candidate>
       </emmitor>
-      <emmitor spos="0.35,0.66,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+      <!--emmitor spos="0.35,0.66,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
         <candidate spr="missle" pose="m1_fly" percent="10" gname="prepare_cloud_01_01" ></candidate>
       </emmitor>
       <emmitor spos="0.55,0.26,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
@@ -217,10 +217,6 @@
       <key name="score_max_count" float="10" />
 
       <key name="distance_in_percent" float="12%" />
-      <key name="player_speed_in_percent" float="40%" />
-      <key name="player_speed_max_in_percent" float="150%" />
-      <key name="player_speed_acc_in_distance" float="0.08" />
-      <key name="player_speed_jump_power" float="0.95" />
       
       <key name="traceline_seed" int="3746287" />
       <key name="traceline_left" float="0.5" />

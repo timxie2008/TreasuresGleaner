@@ -35,10 +35,10 @@
     <part name="body">
       <mesh ref="blocker_boom_04_1" dt="1"></mesh>
       <modifier mode="abc0">
-        <key time="0000" yardscalex="18%" rot="0" alpha="1.0"></key>
-        <key time="0100" yardscalex="17%" rot="3" alpha="0.8"></key>
-        <key time="0200" yardscalex="16%" rot="6" alpha="0.4"></key>
-        <key time="0300" yardscalex="15%" rot="9" alpha="0.0"></key>
+        <key time="0000" yardscalex="12%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="11%" rot="3" alpha="0.8"></key>
+        <key time="0200" yardscalex="9%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="6%" rot="9" alpha="0.0"></key>
       </modifier>
     </part>
   </pose>
@@ -46,8 +46,8 @@
     <part name="body">
       <mesh ref="blocker_boom_04_2" dt="1"></mesh>
       <modifier mode="abc0">
-        <key time="0000" yardscalex="19%" rot="0" alpha="1.0"></key>
-        <key time="0100" yardscalex="17%" rot="3" alpha="0.8"></key>
+        <key time="0000" yardscalex="12%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="14%" rot="3" alpha="0.8"></key>
         <key time="0200" yardscalex="12%" rot="6" alpha="0.4"></key>
         <key time="0300" yardscalex="11%" rot="9" alpha="0.0"></key>
       </modifier>
@@ -57,10 +57,10 @@
     <part name="body">
       <mesh ref="blocker_boom_04_3" dt="1"></mesh>
       <modifier mode="abc0">
-        <key time="0000" yardscalex="18%" rot="0" alpha="1.0"></key>
+        <key time="0000" yardscalex="12%" rot="0" alpha="1.0"></key>
         <key time="0100" yardscalex="13%" rot="3" alpha="0.8"></key>
-        <key time="0200" yardscalex="15%" rot="6" alpha="0.4"></key>
-        <key time="0300" yardscalex="11%" rot="9" alpha="0.0"></key>
+        <key time="0200" yardscalex="9%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="6%" rot="9" alpha="0.0"></key>
       </modifier>
     </part>
   </pose>
@@ -68,13 +68,14 @@
     <part name="body">
       <mesh ref="blocker_boom_04_4" dt="1"></mesh>
       <modifier mode="abc0">
-        <key time="0000" yardscalex="14%" rot="0" alpha="1.0"></key>
-        <key time="0100" yardscalex="16%" rot="3" alpha="0.8"></key>
-        <key time="0200" yardscalex="11%" rot="6" alpha="0.4"></key>
-        <key time="0300" yardscalex="11%" rot="9" alpha="0.0"></key>
+        <key time="0000" yardscalex="9%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="8%" rot="3" alpha="0.8"></key>
+        <key time="0200" yardscalex="7%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="6%" rot="9" alpha="0.0"></key>
       </modifier>
     </part>
   </pose>
+
   <pose name="dismiss" collid="0,0">
     <part name="body">
       <mesh ref="{last}" dt="1"></mesh>

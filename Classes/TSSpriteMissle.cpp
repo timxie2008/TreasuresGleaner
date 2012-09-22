@@ -42,6 +42,9 @@ void TSSpriteMissle::onStateChanged(const string& olds, const string& news)
 			_psprWarning->setState("dismiss");
 		}
 		//create some boooom effects
+		TSSpriteCommon* pspr = _createCommonSprite("missle_boom", "stand", this->getPos(), true, 1.2f);
+		pspr->setVertexZ(this->getVertexZ() + 0.2f);
+		_pLayer->addSprite(pspr);
 	}
 }
 
@@ -93,13 +96,14 @@ void TSSpriteMissle::onUpdate()
 		}
 	}
 	
+	float delta_angle = 7;
 	if (!_animRot.isValid())
 	{
 		float rotNew = _rotLast;
-		if (_rotLast > angle) rotNew = -16 + angle;
-		else rotNew = 16 + angle;
+		if (_rotLast > angle) rotNew = -delta_angle + angle;
+		else rotNew = delta_angle + angle;
 		//rotNew = angle;
-		_animRot.init(_pLayer->getTimeNow(), 0.12f, _rotLast, rotNew);
+		_animRot.init(_pLayer->getTimeNow(), 0.18f, _rotLast, rotNew);
 		_rotLast = rotNew;
 	}
 	else
