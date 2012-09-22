@@ -74,7 +74,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener {
 
 		// 构造方法，设置快速模式
 		adsMogoLayoutCode = new AdsMogoLayout(this,
-				"3134b762c5ce433db76f0e09498fdef7", false);
+				"c87eaafe88444f02a866f87637ca9a53", false);
 
 		// 设置监听回调 其中包括 请求 展示 请求失败等事件的回调
 		adsMogoLayoutCode.setAdsMogoListener(this);
@@ -91,17 +91,20 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener {
 		// |
 		// \
 		/*------------------------------------------------------------*/
-		RelativeLayout parentLayput = new RelativeLayout(this);
-		RelativeLayout.LayoutParams parentLayputParams = new RelativeLayout.LayoutParams(
+		RelativeLayout.LayoutParams parentLayputParams;
+		parentLayputParams = new RelativeLayout.LayoutParams(
 				RelativeLayout.LayoutParams.FILL_PARENT,
 				RelativeLayout.LayoutParams.FILL_PARENT);
-		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+		
+		RelativeLayout.LayoutParams layoutParams;
+		layoutParams = new RelativeLayout.LayoutParams(
 				RelativeLayout.LayoutParams.FILL_PARENT,
 				RelativeLayout.LayoutParams.WRAP_CONTENT);
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,
 				RelativeLayout.TRUE);
-		parentLayput.addView(adsMogoLayoutCode, layoutParams);
 
+		RelativeLayout parentLayput = new RelativeLayout(this);
+		parentLayput.addView(adsMogoLayoutCode, layoutParams);
 		this.addContentView(parentLayput, parentLayputParams);
 	}
 	
