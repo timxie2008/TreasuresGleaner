@@ -220,7 +220,7 @@
       <key name="player_speed_in_percent" float="40%" />
       <key name="player_speed_max_in_percent" float="150%" />
       <key name="player_speed_acc_in_distance" float="0.08" />
-      <key name="player_speed_jump_power" float="1.0" />
+      <key name="player_speed_jump_power" float="0.95" />
       
       <key name="traceline_seed" int="3746287" />
       <key name="traceline_left" float="0.5" />

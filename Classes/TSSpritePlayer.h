@@ -13,6 +13,7 @@ protected:
 	CCRect _rectYard;
 	float _direction;
 	float _vSpeedWhenTouched;
+	bool  _bJumping;
 
 	//float _calcVSpeed(int index);
 
@@ -42,8 +43,8 @@ protected:
 	typedef struct tagPlayerSpeedParams
 	{
 		float touch_power;
-		float a;
-		float v0;
+		float climbing_a;
+		//float v0;
 		float v1;
 		float hs_up;
 		float hs_down;
@@ -51,6 +52,11 @@ protected:
 	}
 	_TPlayerSpeedParams;
 	_TPlayerSpeedParams _speed_params[3];
+
+	//global g
+	float _falling_a;
+	//only for player
+	float _climbing_v; 
 	//float _swim_a[3], _swim_v0[3], _swim_hs_up[3], _swim_hs_down[3], _swim_app_frames[3];
 
 	//a = acc

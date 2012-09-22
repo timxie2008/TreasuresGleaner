@@ -11,6 +11,7 @@ TSSpriteMissle::TSSpriteMissle(CAStageLayer* player, const CCPoint& pos, const s
 	this->setState(state);
 
 	_rotLast = 0;
+	_fTailPos = 9999999;
 
 	_psprWarning = new TSSpriteCommon(player, "missle_warning");
 	CCSize size = CAWorld::getScreenSize();
@@ -42,6 +43,19 @@ void TSSpriteMissle::onStateChanged(const string& olds, const string& news)
 		}
 		//create some boooom effects
 	}
+}
+
+TSSpriteCommon* TSSpriteMissle::_createCommonSprite(const char* name, const char* state, const CCPoint& pos, bool autoremove, float scale)
+{
+	TSSpriteCommon* pspr = new TSSpriteCommon(_pLayer, name);
+	pspr->setPos(pos);
+	pspr->setScl(scale);
+	pspr->setState(state);
+	if (autoremove)
+	{
+		pspr->setDeadPose(state);
+	}
+	return pspr;
 }
 
 void TSSpriteMissle::onUpdate()
@@ -91,6 +105,24 @@ void TSSpriteMissle::onUpdate()
 	else
 	{
 		this->setMoveDirection(_animRot.getValue(_pLayer->getTimeNow()));
+	}
+
+	if (null == _psprWarning)
+	{
+		CCPoint pos = this->getPos();
+		float dist = 0.03f;
+		CAWorld::percent2view(dist, true);
+		if (pos.x + dist < _fTailPos)
+		{
+			_fTailPos = pos.x;
+
+			char szPose[32];
+			sprintf(szPose, "cloud_01_%02d", (int)(CAUtils::Rand() * 2));
+			pos.x += dist;
+			TSSpriteCommon* pspr = _createCommonSprite("cloud", szPose, pos, true, 0.6f);
+			pspr->setVertexZ(this->getVertexZ() + 0.2f);
+			_pLayer->addSprite(pspr);
+		}
 	}
 }
 

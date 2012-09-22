@@ -777,25 +777,33 @@ void TSStagePlayLayerGamePlay::onUpdate()
 					_ptLastMissle = pt;
 					//create a missle
 
-					CCPoint posM;
-					posM = _player()->getPos();
-					posM.x += size.width * 4.0f;
-
 #if 0
 					pspr = _createCommonSprite("missle", "m1_fly", posM);
 					pspr->setLiveArea(rect);
 					pspr->setFollowCamera(true);
 					this->addSprite(pspr);
 #else
-					//create missle
-					TSSpriteMissle* psprMissle = new TSSpriteMissle(this, posM, "m2_fly");
-					psprMissle->setFollowCamera(true);
-					psprMissle->setTarget(_player());
-					CCRect rectM = rect;
-					rectM.size.width = posM.x + size.width * 2.0f - _player()->getPos().x;
-					psprMissle->setLiveArea(rectM);
-					psprMissle->setMoveSpeed(_missle_speed_01);
-					this->addSprite(psprMissle);
+					int m, count = 1 + (int)(CAUtils::Rand() * 2.0f);
+					for (m = 0; m < count; m++)
+					{
+						CCPoint posM;
+						posM = _player()->getPos();
+						posM.x += size.width * (3.0f + CAUtils::Rand() * 0.5f);
+						posM.y += m * size.height / 7.0f;
+						if (posM.y > _traceline.bottom() * size.height && posM.y < _traceline.top() * size.height)
+						{
+							//create missle
+							string state = CAUtils::Rand() > 0.5f ? "m1_fly" : "m2_fly";
+							TSSpriteMissle* psprMissle = new TSSpriteMissle(this, posM, state);
+							psprMissle->setFollowCamera(true);
+							psprMissle->setTarget(_player());
+							CCRect rectM = rect;
+							rectM.size.width = posM.x + size.width * 2.0f - _player()->getPos().x;
+							psprMissle->setLiveArea(rectM);
+							psprMissle->setMoveSpeed(_missle_speed_01);
+							this->addSprite(psprMissle);
+						}
+					}
 #endif
 					_Info("missle created");
 

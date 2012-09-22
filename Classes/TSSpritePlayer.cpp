@@ -19,6 +19,8 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 
 	_psprRider = null;
 
+	_bJumping = false;
+
 	_fPlayerHSpeedLast = 0;
 	_vSpeedWhenTouched = 0;
 
@@ -44,13 +46,15 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 		string name;
 
 		name = szNames[i];	name += "_touch_power";	sp.touch_power = 1.0f - _settings().getFloat(name.c_str());			
-		name = szNames[i];	name += "_a";			sp.a = _settings().getFloat(name.c_str());			CAWorld::percent2view(sp.a, false);
-		name = szNames[i];	name += "_v0";			sp.v0 = _settings().getFloat(name.c_str());			CAWorld::percent2view(sp.v0, false);
-		name = szNames[i];	name += "_v1";			sp.v1 = _settings().getFloat(name.c_str());			CAWorld::percent2view(sp.v1, false);
-		name = szNames[i];	name += "_hs_up";		sp.hs_up = _settings().getFloat(name.c_str());		CAWorld::percent2view(sp.hs_up, false);
-		name = szNames[i];	name += "_hs_down";		sp.hs_down = _settings().getFloat(name.c_str());	CAWorld::percent2view(sp.hs_down, false);
+		name = szNames[i];	name += "_climbing_a";	sp.climbing_a = _settings().getFloat(name.c_str());			CAWorld::percent2view(sp.climbing_a, false);
+		//name = szNames[i];	name += "_v0";			sp.v0 = _settings().getFloat(name.c_str());					CAWorld::percent2view(sp.v0, false);
+		name = szNames[i];	name += "_v1";			sp.v1 = _settings().getFloat(name.c_str());					CAWorld::percent2view(sp.v1, false);
+		name = szNames[i];	name += "_hs_up";		sp.hs_up = _settings().getFloat(name.c_str());				CAWorld::percent2view(sp.hs_up, false);
+		name = szNames[i];	name += "_hs_down";		sp.hs_down = _settings().getFloat(name.c_str());			CAWorld::percent2view(sp.hs_down, false);
 		name = szNames[i];	name += "_app_frames";	sp.app_frames = _settings().getFloat(name.c_str());
 	}
+	_falling_a = _settings().getFloat("falling_a", 1.42f);	CAWorld::percent2view(_falling_a, false);
+	_climbing_v = _settings().getFloat("climbing_v", 1.42f);	CAWorld::percent2view(_climbing_v, false);
 
 	_speed_weight_dolphin = _settings().getFloat("speed_weight_dolphin");
 	_speed_weight_whale = _settings().getFloat("speed_weight_whale");
@@ -217,13 +221,35 @@ float TSSpritePlayer::_updateVSpeedAndRotation(int index)
 	float t = _pLayer->getTimeNow() - _timeTouchEvent;
 
 	const _TPlayerSpeedParams& sp = _speed_params[index];
-	float vSpeed = sp.v0 + sp.a * t;
-	if (vSpeed > sp.v1) vSpeed = sp.v1;
-
-	if (_direction < 0) vSpeed = -vSpeed;
-
-	vSpeed = _vSpeedWhenTouched * sp.touch_power + vSpeed;
-
+	float vSpeed;
+	
+	float a;
+	if (_direction < 0)
+	{
+		//falling
+		a = -_falling_a;
+	}
+	else
+	{
+		//jumping
+		if (_bJumping)
+		{
+			a = -_falling_a;
+		}
+		else
+		{
+			a = sp.climbing_a;
+		}
+	}
+	vSpeed = _vSpeedWhenTouched * sp.touch_power + a * t;
+	if (_bJumping)
+	{
+		if (vSpeed < _climbing_v)
+		{
+			_Info("jump finished");
+			_bJumping = false;
+		}
+	}
 	CCPoint pos = this->getPos();
 	if (CAUtils::almostEqual(pos.y, _rectYard.origin.y, 0.001f) && vSpeed < 0)
 	{
@@ -540,8 +566,11 @@ bool TSSpritePlayer::onEvent(CAEvent* pEvent)
 					{
 						_Info("jump !!!");
 						this->setVMoveSpeed(_fPlayerSpeedJumpPower);
+						_bJumping = true;
+						//_vSpeedWhenTouched = 0;
 					}
 					_vSpeedWhenTouched = this->getVMoveSpeed();
+					
 					_timeTouchEvent = _pLayer->getTimeNow();
 				}
 				else if (pe->state() == kTouchStateUngrabbed)

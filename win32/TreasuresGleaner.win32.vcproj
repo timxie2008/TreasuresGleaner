@@ -498,14 +498,6 @@
 						>
 					</File>
 					<File
-						RelativePath="..\Classes\TSSpriteFish.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\Classes\TSSpriteFish.h"
-						>
-					</File>
-					<File
 						RelativePath="..\Classes\TSSpriteMissle.cpp"
 						>
 					</File>
