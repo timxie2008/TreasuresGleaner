@@ -91,11 +91,6 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener {
 		// |
 		// \
 		/*------------------------------------------------------------*/
-		RelativeLayout.LayoutParams parentLayputParams;
-		parentLayputParams = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.FILL_PARENT,
-				RelativeLayout.LayoutParams.FILL_PARENT);
-		
 		RelativeLayout.LayoutParams layoutParams;
 		layoutParams = new RelativeLayout.LayoutParams(
 				RelativeLayout.LayoutParams.FILL_PARENT,
@@ -103,9 +98,22 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener {
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,
 				RelativeLayout.TRUE);
 
+		RelativeLayout.LayoutParams layoutParamsAD;
+		layoutParamsAD = new RelativeLayout.LayoutParams(
+				RelativeLayout.LayoutParams.WRAP_CONTENT,
+				RelativeLayout.LayoutParams.WRAP_CONTENT);
+		layoutParamsAD.addRule(RelativeLayout.ALIGN_PARENT_LEFT,
+				RelativeLayout.TRUE);
+
+		RelativeLayout childLayout = new RelativeLayout(this);
+		childLayout.addView(adsMogoLayoutCode, layoutParamsAD);
+		
 		RelativeLayout parentLayput = new RelativeLayout(this);
-		parentLayput.addView(adsMogoLayoutCode, layoutParams);
-		this.addContentView(parentLayput, parentLayputParams);
+		parentLayput.addView(childLayout, layoutParams);
+
+		this.addContentView(parentLayput, new RelativeLayout.LayoutParams(
+				RelativeLayout.LayoutParams.FILL_PARENT,
+				RelativeLayout.LayoutParams.FILL_PARENT));
 	}
 	
 	/**
