@@ -23,10 +23,7 @@ THE SOFTWARE.
 ****************************************************************************/
 package org.cocos2dx.lib;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.opengl.GLSurfaceView;
 import android.os.Handler;
 import android.os.Message;
