@@ -1,4 +1,5 @@
 #include "TSStagePlayLayerGamePrepare.h"
+#include "TSStagePlayLayerGamePrepareQuit.h"
 
 #include "AWorld.h"
 #include "AStage.h"
@@ -160,12 +161,20 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.running"))
 	{
+		_pstage->setFocus(this);
 		_label_title()->setState("stand");
 	}
-	else if (CAString::startWith(fname, "root.onshop"))
+	else if (CAString::startWith(fname, "root.onquit"))
 	{
-		//_Assert(this->_playerParent);
-		//this->_playerParent->onEvent(new CAEventCommand(this, "onShop"));
+		CAStageLayer* pl = this->_getSubLayer("game.prepare.quit");
+		_Assert(pl);
+		pl->setConditionResult("root.idle@user.show", true);
+		_pstage->setFocus(pl);
+		//pause();
+	}
+	else if (CAString::startWith(fname, "root.onexit"))
+	{
+		CCDirector::sharedDirector()->end();
 	}
 	else if (CAString::startWith(fname, "root.onplay"))
 	{
@@ -222,7 +231,7 @@ void TSStagePlayLayerGamePrepare::onStateEnd(CAState* from, void* param)
 	else if (CAString::startWith(fname, "root.running"))	//_onStateEndRunning(from);
 	{
 	}
-	else if (CAString::startWith(fname, "root.onshop"))		//_onStateEndOnShop(from);
+	else if (CAString::startWith(fname, "root.onquit"))		//_onStateEndOnShop(from);
 	{
 	}
 	else if (CAString::startWith(fname, "root.onplay"))		//_onStateEndOnPlay(from);
@@ -355,43 +364,31 @@ void TSStagePlayLayerGamePrepare::onEvent(CAEvent* pevt)
 			CAEventKey* pek = (CAEventKey*)pevt;
 			if (KE_Back == pek->key()) // || KE_Menu == pek->key())
 			{
-				CCDirector::sharedDirector()->end();
-				//this->setConditionResult("root.running@user.pause", true);
+				this->setConditionResult("root.running@user.quit", true);
 			}
 		}
 		break;
 	case ET_Command:
 		{
 			CAEventCommand* pec = (CAEventCommand*)pevt;
-			if (pec->command() == "onClick")
+			if (pec->command() == EVENT_ONYES)
+			{
+				this->setConditionResult("root.onquit@user.yes", true);
+			}
+			else if (pec->command() == EVENT_ONNO)
+			{
+				this->setConditionResult("root.onquit@user.no", true);
+			}
+			else if (pec->command() == "onClick")
 			{
 				_Assert(pec->getSenderType() == ST_Sprite);
 				CASprite* pspr = (CASprite*)pec->sender();
 				string name;
 				name = pspr->getModName();
-				if (name == "button_shop")
-				{
-					this->setConditionResult("root.running@user.shop", true);
-				}
-				else if (name == "button_play")
+				if (name == "button_play")
 				{
 					this->setConditionResult("root.running@user.play", true);
 				}
-				/*
-				else if (name == "button_music")
-				{
-					if (stage()->isMusicMute())
-					{
-						stage()->enableMusic(true);
-						_button_music()->setState("on");
-					}
-					else
-					{
-						stage()->enableMusic(false);
-						_button_music()->setState("off");
-					}
-				}
-				*/
 				else if (name == "button_sound")
 				{
 					if (stage()->isSoundMute() || stage()->isMusicMute())

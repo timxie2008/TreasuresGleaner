@@ -7,8 +7,8 @@ class TSSpritePlayer;
 class TSSpriteCommon;
 class TSSpriteButton;
 
-#define EVENT_ONRESUME	"onResume"
-#define EVENT_ONRESTART	"onRestart"
+#define EVENT_ONYES	"onButtonYes"
+#define EVENT_ONNO	"onButtonNo"
 
 class TSStagePlayLayerGamePrepareQuit :
 	public CAStageLayer //, public CCTargetedTouchDelegate

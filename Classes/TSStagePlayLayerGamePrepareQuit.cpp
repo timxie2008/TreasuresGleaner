@@ -96,15 +96,15 @@ void TSStagePlayLayerGamePrepareQuit::onStateBegin(CAState* from, void* param)
 	else if (CAString::startWith(fname, "root.running"))	//_onStateBeginRunning(from);
 	{
 	}
-	else if (CAString::startWith(fname, "root.onresume"))	//_onStateBeginOnResume(from);
+	else if (CAString::startWith(fname, "root.onyes"))	//_onStateBeginOnResume(from);
 	{
 		_Assert(this->_playerParent);
-		this->_playerParent->onEvent(new CAEventCommand(this, EVENT_ONRESUME));
+		this->_playerParent->onEvent(new CAEventCommand(this, EVENT_ONYES));
 	}
-	else if (CAString::startWith(fname, "root.onrestart"))	//_onStateBeginOnRestart(from);
+	else if (CAString::startWith(fname, "root.onno"))	//_onStateBeginOnRestart(from);
 	{
 		_Assert(this->_playerParent);
-		this->_playerParent->onEvent(new CAEventCommand(this, EVENT_ONRESTART));
+		this->_playerParent->onEvent(new CAEventCommand(this, EVENT_ONNO));
 	}
 	else if (CAString::startWith(fname, "root.fadeout"))	//_onStateBeginFadeout(from);
 	{
@@ -135,10 +135,10 @@ void TSStagePlayLayerGamePrepareQuit::onStateEnd(CAState* from, void* param)
 	else if (CAString::startWith(fname, "root.running"))	//_onStateEndRunning(from);
 	{
 	}
-	else if (CAString::startWith(fname, "root.onresume"))	//_onStateEndOnResume(from);
+	else if (CAString::startWith(fname, "root.onyes"))	//_onStateEndOnResume(from);
 	{
 	}
-	else if (CAString::startWith(fname, "root.onrestart"))	//_onStateEndOnRestart(from);
+	else if (CAString::startWith(fname, "root.onno"))	//_onStateEndOnRestart(from);
 	{
 	}
 	else if (CAString::startWith(fname, "root.fadeout"))	//_onStateEndFadeout(from);
