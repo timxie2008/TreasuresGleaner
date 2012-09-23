@@ -78,6 +78,7 @@ protected:
 
 	void _on_prepare(EStateFlag flag);
 	void _on_dive(EStateFlag flag);
+	void _on_floating(EStateFlag flag);
 	void _on_swiming(EStateFlag flag);
 	void _on_hurt(EStateFlag flag);
 	void _on_riding_dolphin(EStateFlag flag);
@@ -102,6 +103,7 @@ public:
 #	define PS_Prepare		"prepare"
 #	define PS_Dive			"dive"
 #	define PS_Swiming		"swiming"
+#	define PS_Floating		"floating"
 #	define PS_Hurt			"hurt"
 #	define PS_RidingDolphin	"riding_dolphin"
 #	define PS_RidingWhale   "riding_whale"

@@ -37,17 +37,16 @@
     <frame src="dying_11.png" ></frame>
   </mesh>
   <settings>
-    <!--
-      falling: a = -global_g
-      jumping: a = -global_g
-      climbing:a = xxxx_a
-    -->
-
     <key name="player_speed_in_percent" float="40%" />
     <key name="player_speed_max_in_percent" float="150%" />
     <key name="player_speed_acc_in_distance" float="0.05" />
     <key name="player_speed_jump_power" float="1.05" />
 
+    <!--
+      falling: a = -global_g
+      jumping: a = -global_g
+      climbing:a = xxxx_a
+    -->
     <key name="climbing_v" float="0.41" />
     <key name="falling_a" float="1.65" />
     
@@ -100,7 +99,7 @@
       </modifier>
     </part>
   </pose>
-  <pose name="float">
+  <pose name="floating">
     <part name="root">
       <mesh ref="player_swim" dt="0.8"></mesh>
       <modifier mode="abcb" timescale="10">

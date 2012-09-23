@@ -566,6 +566,14 @@
 						>
 					</File>
 					<File
+						RelativePath="..\Classes\TSStagePlayLayerGamePrepareQuit.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Classes\TSStagePlayLayerGamePrepareQuit.h"
+						>
+					</File>
+					<File
 						RelativePath="..\Classes\TSStagePlayLayerGameShop.cpp"
 						>
 					</File>

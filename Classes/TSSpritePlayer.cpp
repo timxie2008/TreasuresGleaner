@@ -497,16 +497,36 @@ void TSSpritePlayer::_on_fadeout(EStateFlag flag)
 	}
 }
 
+void TSSpritePlayer::_on_floating(EStateFlag flag)
+{
+	switch(flag)
+	{
+	case SF_Begin:
+		{
+			this->switchPose(PS_Floating);
+		}
+		break;
+	case SF_Update:
+		{
+		}
+		break;
+	default:
+		_Assert(false);
+		break;
+	}
+}
+
 void TSSpritePlayer::onStateChanged(const string& olds, const string& news)
 {
 	_HandleState(news, prepare, SF_Begin);
-	_HandleState(news, dive, SF_Begin);
-	_HandleState(news, swiming, SF_Begin);
-	_HandleState(news, hurt, SF_Begin);
-	_HandleState(news, riding_dolphin, SF_Begin);
-	_HandleState(news, riding_whale, SF_Begin);
-	_HandleState(news, dead, SF_Begin);
-	_HandleState(news, fadeout, SF_Begin);
+	else _HandleState(news, dive, SF_Begin);
+	else _HandleState(news, swiming, SF_Begin);
+	else _HandleState(news, hurt, SF_Begin);
+	else _HandleState(news, riding_dolphin, SF_Begin);
+	else _HandleState(news, riding_whale, SF_Begin);
+	else _HandleState(news, dead, SF_Begin);
+	else _HandleState(news, fadeout, SF_Begin);
+	else _HandleState(news, floating, SF_Begin);
 }
 
 void TSSpritePlayer::_adjustGamePosition(float& x, float& y)
@@ -547,12 +567,13 @@ void TSSpritePlayer::onUpdate()
 	CASprite::onUpdate();
 
 	_HandleState(_state, prepare, SF_Update);
-	_HandleState(_state, dive, SF_Update);
-	_HandleState(_state, swiming, SF_Update);
-	_HandleState(_state, hurt, SF_Update);
-	_HandleState(_state, riding_dolphin, SF_Update);
-	_HandleState(_state, riding_whale, SF_Update);
-	_HandleState(_state, dead, SF_Update);
+	else _HandleState(_state, dive, SF_Update);
+	else _HandleState(_state, swiming, SF_Update);
+	else _HandleState(_state, hurt, SF_Update);
+	else _HandleState(_state, riding_dolphin, SF_Update);
+	else _HandleState(_state, riding_whale, SF_Update);
+	else _HandleState(_state, dead, SF_Update);
+	else _HandleState(_state, floating, SF_Update);
 }
 
 bool TSSpritePlayer::onEvent(CAEvent* pEvent)

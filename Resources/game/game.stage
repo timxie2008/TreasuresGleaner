@@ -46,10 +46,15 @@
 
   <!-- pause -->
   <model id="panel_black" src="ui/ui_panel_black.spr"></model>
-  <model id="panel_frame" src="ui/ui_panel_frame.spr"></model>
+  <model id="panel_pause" src="ui/ui_panel_pause.spr"></model>
   <model id="button_pause" src="ui/ui_button_pause.spr"></model>
   <model id="button_resume" src="ui/ui_button_resume.spr"></model>
   <model id="button_restart" src="ui/ui_button_restart.spr"></model>
+
+  <!-- quit -->
+  <model id="panel_quit" src="ui/ui_panel_quit.spr"></model>
+  <model id="button_yes" src="ui/ui_button_yes.spr"></model>
+  <model id="button_no" src="ui/ui_button_no.spr"></model>
 
   <!--music id="bgm1" src="audio/bgm/Main_bgm.mp3" duration="14"></music>
   <music id="bgm2" src="audio/bgm/pandora_bgm.mp3" duration="38"></music>

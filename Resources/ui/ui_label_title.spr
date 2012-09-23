@@ -11,8 +11,8 @@
     <part name="body">
       <mesh ref="lbl_title" dt="1000"></mesh>
       <modifier mode="abca">
-        <key time="0"   yardscaley="30%"   alpha="0%"></key>
-        <key time="1"   yardscaley="30%"   alpha="0%"></key>
+        <key time="0"   yardscalex="53%"   alpha="0%"></key>
+        <key time="1"   yardscalex="53%"   alpha="0%"></key>
       </modifier>
     </part>
   </pose>
@@ -20,11 +20,11 @@
     <part name="body">
       <mesh ref="lbl_title" dt="1000"></mesh>
       <modifier mode="abc0" timescale="1.2">
-        <key time="000" yardscaley="30%" yardpos="0.0,+0.80" alpha="100%"></key>
-        <key time="050" yardscaley="30%" yardpos="0.0,+0.50" alpha="100%"></key>
-        <key time="100" yardscaley="30%" yardpos="0.0,+0.00" alpha="100%"></key>
-        <key time="150" yardscaley="30%" yardpos="0.0,-0.10" alpha="100%"></key>
-        <key time="200" yardscaley="30%" yardpos="0.0,-0.00" alpha="100%"></key>
+        <key time="000" yardscalex="53%" yardpos="0.0,+0.80" alpha="100%"></key>
+        <key time="050" yardscalex="53%" yardpos="0.0,+0.50" alpha="100%"></key>
+        <key time="100" yardscalex="53%" yardpos="0.0,+0.00" alpha="100%"></key>
+        <key time="150" yardscalex="53%" yardpos="0.0,-0.10" alpha="100%"></key>
+        <key time="200" yardscalex="53%" yardpos="0.0,-0.00" alpha="100%"></key>
       </modifier>
     </part>
   </pose>
@@ -32,10 +32,10 @@
     <part name="body">
       <mesh ref="lbl_title" dt="1000"></mesh>
       <modifier mode="abcb" timescale="7.2">
-        <key time="000" yardscaley="30%"   apos="0.5,0.46" />
-        <key time="050" yardscaley="30%"   apos="0.5,0.47" />
-        <key time="100" yardscaley="30.2%" apos="0.5,0.49" />
-        <key time="150" yardscaley="30%"   apos="0.5,0.50" />
+        <key time="000" yardscalex="53%"   apos="0.5,0.46" />
+        <key time="050" yardscalex="53%"   apos="0.5,0.47" />
+        <key time="100" yardscalex="53.2%" apos="0.5,0.49" />
+        <key time="150" yardscalex="53%"   apos="0.5,0.50" />
       </modifier>
     </part>
   </pose>
@@ -43,11 +43,11 @@
     <part name="body">                               
       <mesh ref="lbl_title" dt="1000"></mesh>        
       <modifier mode="abc0">                         
-        <key time="000" yardscaley="30%" yardpos="0.0,-0.00" alpha="100%"></key>
-        <key time="050" yardscaley="30%" yardpos="0.0,-0.10" alpha="100%"></key>
-        <key time="100" yardscaley="30%" yardpos="0.0,+0.00" alpha="100%"></key>
-        <key time="150" yardscaley="30%" yardpos="0.0,+0.50" alpha="100%"></key>
-        <key time="200" yardscaley="30%" yardpos="0.0,+0.80" alpha="100%"></key>
+        <key time="000" yardscalex="53%" yardpos="0.0,-0.00" alpha="100%"></key>
+        <key time="050" yardscalex="53%" yardpos="0.0,-0.10" alpha="100%"></key>
+        <key time="100" yardscalex="53%" yardpos="0.0,+0.00" alpha="100%"></key>
+        <key time="150" yardscalex="53%" yardpos="0.0,+0.50" alpha="100%"></key>
+        <key time="200" yardscalex="53%" yardpos="0.0,+0.80" alpha="100%"></key>
       </modifier>
     </part>
   </pose>

@@ -13,6 +13,7 @@
 #include "TSStagePlay.h"
 #	include "TSStagePlayLayerGame.h"
 #	include "TSStagePlayLayerGamePrepare.h"
+#	include "TSStagePlayLayerGamePrepareQuit.h"
 #	include "TSStagePlayLayerGameShop.h"
 #	include "TSStagePlayLayerGamePlay.h"
 #	include "TSStagePlayLayerGamePlayPause.h"
@@ -50,6 +51,7 @@ TSWorld::~TSWorld(void)
 static const char* _stage_play			= "game/game";
 static		const char* _layer_game		= "game";
 static			const char* _layer_game_prepare	= "game.prepare";
+static			const char* _layer_game_prepare_quit = "game.prepare.quit";
 static			const char* _layer_game_shop	= "game.shop";
 static			const char* _layer_game_play	= "game.play";
 static			const char* _layer_game_play_pause	= "game.play.pause";
@@ -143,6 +145,11 @@ CAStageLayer* TSWorld::createLayer(CAStage* pstage, CAStageLayer* playerParent, 
 		{
 			GUARD_FIELD(layer_game_prepare);
 			return new TSStagePlayLayerGamePrepare(pstage, playerParent);
+		}
+		else if (name == _layer_game_prepare_quit)
+		{
+			GUARD_FIELD(layer_game_prepare_quit);
+			return new TSStagePlayLayerGamePrepareQuit(pstage, playerParent);
 		}
 		else if (name == _layer_game_play)
 		{

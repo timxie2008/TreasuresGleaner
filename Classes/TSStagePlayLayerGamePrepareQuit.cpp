@@ -1,5 +1,5 @@
 
-#include "TSStagePlayLayerGamePlayPause.h"
+#include "TSStagePlayLayerGamePrepareQuit.h"
 #include "AWorld.h"
 #include "AStage.h"
 #include "AString.h"
@@ -7,18 +7,18 @@
 #include "TSSpriteCommon.h"
 #include "TSSpriteButton.h"
 
-TSStagePlayLayerGamePlayPause::TSStagePlayLayerGamePlayPause(CAStage* pstage, CAStageLayer* playerParent) : CAStageLayer(pstage, playerParent)
+TSStagePlayLayerGamePrepareQuit::TSStagePlayLayerGamePrepareQuit(CAStage* pstage, CAStageLayer* playerParent) : CAStageLayer(pstage, playerParent)
 {
 	_Trace("%s allocated", __FUNCTION__);
 	_NullGetters();
 }
 
-TSStagePlayLayerGamePlayPause::~TSStagePlayLayerGamePlayPause(void)
+TSStagePlayLayerGamePrepareQuit::~TSStagePlayLayerGamePrepareQuit(void)
 {
 	_Trace("%s destroyed", __FUNCTION__);
 }
 
-bool TSStagePlayLayerGamePlayPause::checkCondition(CAState* from, const CATransition& trans)
+bool TSStagePlayLayerGamePrepareQuit::checkCondition(CAState* from, const CATransition& trans)
 {
 	//root.idle:	inner condition
 	//root.running:	button event
@@ -51,8 +51,8 @@ bool TSStagePlayLayerGamePlayPause::checkCondition(CAState* from, const CATransi
 			//check 3 controls pose
 			CASprite* psprs[] = 
 			{
-				_button_restart(),
-				_button_resume(),
+				_button_yes(),
+				_button_no(),
 				null,
 			};
 			result = _checkSpritePoseFinished(pszPose, psprs);
@@ -66,7 +66,7 @@ bool TSStagePlayLayerGamePlayPause::checkCondition(CAState* from, const CATransi
 	return false;
 }
 
-void TSStagePlayLayerGamePlayPause::onStateBegin(CAState* from, void* param) 
+void TSStagePlayLayerGamePrepareQuit::onStateBegin(CAState* from, void* param) 
 {
 	const string& fname = from->getFullName();
 	if (0) ;
@@ -83,22 +83,12 @@ void TSStagePlayLayerGamePlayPause::onStateBegin(CAState* from, void* param)
 	{
 		_InitGetters();
 
-		CASprite* pspr;
-		/*
-		pspr = _button_music();
-		_Assert(pspr);
-		pspr = _button_music();
-		pspr->setState(stage()->isMusicMute() ? "off_fadein" : "on_fadein");
-		*/
-		pspr = _button_sound();
-		_Assert(pspr);
-		pspr->setState(stage()->isSoundMute() ? "off_fadein" : "on_fadein");
 		CASprite* psprsControls[] =
 		{
 			//_label_pause_title(),
 			_panel_black(),
-			_button_restart(),
-			_button_resume(),
+			_button_yes(),
+			_button_no(),
 			null,
 		};
 		_setSpritesState(STATE_Fadein, psprsControls);
@@ -118,23 +108,13 @@ void TSStagePlayLayerGamePlayPause::onStateBegin(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.fadeout"))	//_onStateBeginFadeout(from);
 	{
-		CASprite* pspr;
-		/*
-		pspr = _button_music();
-		_Assert(pspr);
-		pspr = _button_music();
-		pspr->setState(stage()->isMusicMute() ? "off_fadeout" : "on_fadeout");
-		*/
-		pspr = _button_sound();
-		_Assert(pspr);
-		pspr->setState(stage()->isSoundMute() ? "off_fadeout" : "on_fadeout");
 		CASprite* psprsControls[] =
 		{
 			//_label_pause_title(),
 			_panel_black(),
-			_panel_pause(),
-			_button_restart(),
-			_button_resume(),
+			_panel_quit(),
+			_button_yes(),
+			_button_no(),
 			null,
 		};
 		_setSpritesState(STATE_Fadeout, psprsControls);
@@ -142,7 +122,7 @@ void TSStagePlayLayerGamePlayPause::onStateBegin(CAState* from, void* param)
 	else ;
 };
 
-void TSStagePlayLayerGamePlayPause::onStateEnd(CAState* from, void* param) 
+void TSStagePlayLayerGamePrepareQuit::onStateEnd(CAState* from, void* param) 
 {
 	const string& fname = from->getFullName();
 	if (0) ;
@@ -167,7 +147,7 @@ void TSStagePlayLayerGamePlayPause::onStateEnd(CAState* from, void* param)
 	else ;
 };
 
-void TSStagePlayLayerGamePlayPause::show(bool s)
+void TSStagePlayLayerGamePrepareQuit::show(bool s)
 {
 	if (s)
 	{
@@ -180,7 +160,7 @@ void TSStagePlayLayerGamePlayPause::show(bool s)
 	}
 }
 
-void TSStagePlayLayerGamePlayPause::onEnter()
+void TSStagePlayLayerGamePrepareQuit::onEnter()
 {
 	GUARD_FUNCTION();
 
@@ -204,7 +184,7 @@ static int _goNear(int cur, int to, int range, int step)
 	return cur;
 }
 
-void TSStagePlayLayerGamePlayPause::_updateNumber(const char* prefix, int nValue)
+void TSStagePlayLayerGamePrepareQuit::_updateNumber(const char* prefix, int nValue)
 {
 	if (nValue < 0)
 		return;
@@ -249,17 +229,17 @@ void TSStagePlayLayerGamePlayPause::_updateNumber(const char* prefix, int nValue
 	}
 }
 
-void TSStagePlayLayerGamePlayPause::onUpdate() 
+void TSStagePlayLayerGamePrepareQuit::onUpdate() 
 {
 	CAStageLayer::onUpdate();
 };
 
-void TSStagePlayLayerGamePlayPause::onExit()
+void TSStagePlayLayerGamePrepareQuit::onExit()
 {
 	CAStageLayer::onExit();
 }
 
-void TSStagePlayLayerGamePlayPause::onEvent(CAEvent* pevt)
+void TSStagePlayLayerGamePrepareQuit::onEvent(CAEvent* pevt)
 {
 	CAStageLayer::onEvent(pevt);
 
@@ -290,43 +270,13 @@ void TSStagePlayLayerGamePlayPause::onEvent(CAEvent* pevt)
 				CASprite* pspr = (CASprite*)pec->sender();
 				string name;
 				name = pspr->getModName();
-				if (name == "button_restart")
+				if (name == "button_yes")
 				{
-					this->setConditionResult("root.running@user.restart", true);
+					this->setConditionResult("root.running@user.yes", true);
 				}
-				else if (name == "button_resume")
+				else if (name == "button_no")
 				{
-					this->setConditionResult("root.running@user.resume", true);
-				}
-				/*
-				else if (name == "button_music")
-				{
-					if (stage()->isMusicMute())
-					{
-						stage()->enableMusic(true);
-						_button_music()->setState("on");
-					}
-					else
-					{
-						stage()->enableMusic(false);
-						_button_music()->setState("off");
-					}
-				}
-				*/
-				else if (name == "button_sound")
-				{
-					if (stage()->isSoundMute() || stage()->isMusicMute())
-					{
-						stage()->enableSound(true);
-						stage()->enableMusic(true);
-						_button_sound()->setState("on");
-					}
-					else
-					{
-						stage()->enableSound(false);
-						stage()->enableMusic(false);
-						_button_sound()->setState("off");
-					}
+					this->setConditionResult("root.running@user.no", true);
 				}
 			}
 		}

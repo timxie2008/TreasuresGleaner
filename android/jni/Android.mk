@@ -48,6 +48,7 @@ LOCAL_SRC_FILES := game_frame.cpp \
                    ../../Classes/TSStagePlay.cpp \
                    ../../Classes/TSStagePlayLayerGame.cpp \
                    ../../Classes/TSStagePlayLayerGamePrepare.cpp \
+                   ../../Classes/TSStagePlayLayerGamePrepareQuit.cpp \
                    ../../Classes/TSStagePlayLayerGameShop.cpp \
                    ../../Classes/TSStagePlayLayerGamePlay.cpp \
                    ../../Classes/TSStagePlayLayerGamePlayPause.cpp \
