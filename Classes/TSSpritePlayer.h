@@ -44,7 +44,7 @@ protected:
 	{
 		float touch_power;
 		float climbing_a;
-		//float v0;
+		float v0;
 		float v1;
 		float hs_up;
 		float hs_down;
@@ -87,6 +87,7 @@ protected:
 	void _on_fadeout(EStateFlag flag);
 
 	bool _isRunningOnGround() const;
+	bool _isRunningOnCeil() const;
 public:
 	TSSpritePlayer(CAStageLayer* palyer, const char* name);
 	virtual ~TSSpritePlayer(void);

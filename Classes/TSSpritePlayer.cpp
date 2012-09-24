@@ -47,7 +47,7 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 
 		name = szNames[i];	name += "_touch_power";	sp.touch_power = 1.0f - _settings().getFloat(name.c_str());			
 		name = szNames[i];	name += "_climbing_a";	sp.climbing_a = _settings().getFloat(name.c_str());			CAWorld::percent2view(sp.climbing_a, false);
-		//name = szNames[i];	name += "_v0";			sp.v0 = _settings().getFloat(name.c_str());					CAWorld::percent2view(sp.v0, false);
+		name = szNames[i];	name += "_v0";			sp.v0 = _settings().getFloat(name.c_str());					CAWorld::percent2view(sp.v0, false);
 		name = szNames[i];	name += "_v1";			sp.v1 = _settings().getFloat(name.c_str());					CAWorld::percent2view(sp.v1, false);
 		name = szNames[i];	name += "_hs_up";		sp.hs_up = _settings().getFloat(name.c_str());				CAWorld::percent2view(sp.hs_up, false);
 		name = szNames[i];	name += "_hs_down";		sp.hs_down = _settings().getFloat(name.c_str());			CAWorld::percent2view(sp.hs_down, false);
@@ -562,6 +562,14 @@ bool TSSpritePlayer::_isRunningOnGround() const
 	return false;
 }
 
+bool TSSpritePlayer::_isRunningOnCeil() const
+{
+	const CCPoint& pos = this->getPos();
+	if (CAUtils::almostEqual(pos.y, _rectYard.origin.y + _rectYard.size.height, 0.01f))
+		return true;
+	return false;
+}
+
 void TSSpritePlayer::onUpdate()
 {
 	CASprite::onUpdate();
@@ -600,7 +608,7 @@ bool TSSpritePlayer::onEvent(CAEvent* pEvent)
 						_Info("jump !!!");
 						this->setVMoveSpeed(_fPlayerSpeedJumpPower);
 						_bJumping = true;
-						//_vSpeedWhenTouched = 0;
+						//_vSpeedWhenTouched = _speed_params[0].v0;
 					}
 					_vSpeedWhenTouched = this->getVMoveSpeed();
 					
@@ -610,6 +618,10 @@ bool TSSpritePlayer::onEvent(CAEvent* pEvent)
 				{
 					_direction = -1;
 					_vSpeedWhenTouched = this->getVMoveSpeed();
+					if (!this->isRidding() && _isRunningOnCeil())
+					{
+						_vSpeedWhenTouched = _speed_params[INDEX_PLAYER].v0;
+					}
 					_timeTouchEvent = _pLayer->getTimeNow();
 				}
 				else

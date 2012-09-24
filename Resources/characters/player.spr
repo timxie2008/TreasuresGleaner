@@ -47,12 +47,12 @@
       jumping: a = -global_g
       climbing:a = xxxx_a
     -->
-    <key name="climbing_v" float="0.41" />
+    <key name="climbing_v" float="0.81" />
     <key name="falling_a" float="1.65" />
     
     <key name="player_climbing_a" float="1.5" />
     <key name="player_touch_power" float="0.4" />
-    <!--key name="player_v0" float="0.56"></key-->
+    <key name="player_v0" float="0.26"></key>
     <key name="player_v1" float="1.6" />
     <key name="player_hs_up" float="2.6" />
     <key name="player_hs_down" float="2.8" />
@@ -62,7 +62,7 @@
     
     <key name="dolphin_climbing_a" float="1.6" />
     <key name="dolphin_touch_power" float="0.3" />
-    <!--key name="dolphin_v0" float="0.25"></key-->
+    <key name="dolphin_v0" float="0.25"></key>
     <key name="dolphin_v1" float="2.1" />
     <key name="dolphin_hs_up" float="1.2" />
     <key name="dolphin_hs_down" float="1.4" />
@@ -72,7 +72,7 @@
     
     <key name="whale_climbing_a" float="1.5" />
     <key name="whale_touch_power" float="0.4" />
-    <!--key name="whale_v0" float="0.25"></key-->
+    <key name="whale_v0" float="0.25"></key>
     <key name="whale_v1" float="2.0" />
     <key name="whale_hs_up" float="1.5" />
     <key name="whale_hs_down" float="1.7" />
