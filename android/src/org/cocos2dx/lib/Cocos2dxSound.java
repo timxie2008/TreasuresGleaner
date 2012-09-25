@@ -43,6 +43,7 @@ public class Cocos2dxSound {
 	private SoundPool mSoundPool;
 	private float mLeftVolume;
 	private float mRightVolume;
+	private AudioManager _am;
 	
 	// sound id and stream id map
 	private HashMap<Integer,Integer> mSoundIdStreamIdMap;
@@ -60,6 +61,8 @@ public class Cocos2dxSound {
 	
 	public Cocos2dxSound(Context context){
 		this.mContext = context;	
+		_am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+		_am.getStreamVolume(AudioManager.STREAM_RING);
 		initData();
 	}
 	
