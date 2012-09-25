@@ -62,6 +62,7 @@
   <music id="bgm4" src="audio/bgm/Birzzle_HurryUp.mp3" duration="6"></music>
   <music id="bgm5" src="audio/bgm/facebook_rank_bgm.m4a" duration="7"></music>
   <sound id="sfx_over" src="audio/SFX/event_rouletteOpen.ogg"></sound-->
+  
   <layer id="game" ref="game/game.layer">
   </layer>
 </stage>
