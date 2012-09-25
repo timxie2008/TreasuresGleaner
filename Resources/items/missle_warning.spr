@@ -2,7 +2,8 @@
 <sprite version="1.0">
   <texture src="items/items.plist" tex="items/items.png"></texture>
   <mesh name="missle_wn">
-    <frame src="warning_sign.png"></frame>
+    <frame src="warning_sign_01.png"></frame>
+    <frame src="warning_sign_02.png"></frame>
   </mesh>
   <settings>
     <!--key name="deadpose" string="dismiss"></key-->
