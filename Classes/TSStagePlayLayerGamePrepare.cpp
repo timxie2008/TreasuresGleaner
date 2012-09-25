@@ -156,8 +156,7 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		_setSpritesState(STATE_Fadein, psprsStatic);
 		_setSpritesState(STATE_Fadein, psprsControls);
 
-		//_button_music()->setState(stage()->isMusicMute() ? "off_fadein" : "on_fadein");
-		_button_sound()->setState(stage()->isSoundMute() ? "off_fadein" : "on_fadein");
+		_button_sound()->setState(stage()->isSoundMute() ? "off" : "on");
 	}
 	else if (CAString::startWith(fname, "root.running"))
 	{
@@ -201,8 +200,8 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		};
 		_setSpritesState(STATE_Fadeout, psprsStatic);
 		_setSpritesState(STATE_Fadeout, psprsControls);
-		//_button_music()->setState(stage()->isMusicMute() ? "off_fadeout" : "on_fadeout");
-		_button_sound()->setState(stage()->isSoundMute() ? "off_fadeout" : "on_fadeout");
+		
+		//_button_sound()->setState(stage()->isSoundMute() ? "off" : "on");
 
 		_prepare_bubble_whale()->setState("ellipse_whale_fadeout");
 		_prepare_bubble_dolphin()->setState("ellipse_dolphin_fadeout");

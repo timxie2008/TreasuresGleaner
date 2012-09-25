@@ -84,15 +84,9 @@ void TSStagePlayLayerGamePlayPause::onStateBegin(CAState* from, void* param)
 		_InitGetters();
 
 		CASprite* pspr;
-		/*
-		pspr = _button_music();
-		_Assert(pspr);
-		pspr = _button_music();
-		pspr->setState(stage()->isMusicMute() ? "off_fadein" : "on_fadein");
-		*/
 		pspr = _button_sound();
 		_Assert(pspr);
-		pspr->setState(stage()->isSoundMute() ? "off_fadein" : "on_fadein");
+		pspr->setState(stage()->isSoundMute() ? "off" : "on");
 		CASprite* psprsControls[] =
 		{
 			//_label_pause_title(),
@@ -119,15 +113,9 @@ void TSStagePlayLayerGamePlayPause::onStateBegin(CAState* from, void* param)
 	else if (CAString::startWith(fname, "root.fadeout"))	//_onStateBeginFadeout(from);
 	{
 		CASprite* pspr;
-		/*
-		pspr = _button_music();
-		_Assert(pspr);
-		pspr = _button_music();
-		pspr->setState(stage()->isMusicMute() ? "off_fadeout" : "on_fadeout");
-		*/
 		pspr = _button_sound();
 		_Assert(pspr);
-		pspr->setState(stage()->isSoundMute() ? "off_fadeout" : "on_fadeout");
+		pspr->setState(stage()->isSoundMute() ? "off" : "on");
 		CASprite* psprsControls[] =
 		{
 			//_label_pause_title(),

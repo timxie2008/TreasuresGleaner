@@ -2,11 +2,9 @@
 <sprite version="1.0">
   <texture src="ui/ui.plist" tex="ui/ui.png"></texture>
   <mesh name="sound_on">
-    <frame src="button_sound_off.png"></frame>
     <frame src="button_sound_on.png"></frame>
   </mesh>
   <mesh name="sound_off">
-    <frame src="button_sound_on.png"></frame>
     <frame src="button_sound_off.png"></frame>
   </mesh>
   <settings>
@@ -14,61 +12,23 @@
   </settings>
   <pose name="on" collid="0.99,0.99">
     <part name="body">
-      <mesh ref="sound_on" dt="200"></mesh>
+      <mesh ref="sound_on" dt="0.2"></mesh>
       <modifier mode="abc0">
-        <key time="000" yardscaley="15.3%" alpha="100%"></key>
-        <key time="098" yardscaley="15.3%" alpha="60%"></key>
-        <key time="138" yardscaley="15.3%" alpha="100%"></key>
+        <key time="000" yardscaley="15.3%" alpha="40%"></key>
+        <key time="098" yardscaley="17.3%" alpha="90%"></key>
+        <key time="138" yardscaley="16.5%" alpha="98%"></key>
         <key time="200" yardscaley="15.3%" alpha="100%"></key>
       </modifier>
     </part>
   </pose>
   <pose name="off" collid="0.99,0.99">
     <part name="body">
-      <mesh ref="sound_off" dt="200"></mesh>
+      <mesh ref="sound_off" dt="0.2"></mesh>
       <modifier mode="abc0" >
-        <key time="000" yardscaley="15.3%" alpha="100%"></key>
-        <key time="098" yardscaley="15.3%" alpha="60%"></key>
-        <key time="138" yardscaley="15.3%" alpha="100%"></key>
+        <key time="000" yardscaley="15.3%" alpha="30%"></key>
+        <key time="098" yardscaley="14.2%" alpha="60%"></key>
+        <key time="138" yardscaley="13.0%" alpha="90%"></key>
         <key time="200" yardscaley="15.3%" alpha="100%"></key>
-      </modifier>
-    </part>
-  </pose>
-  <pose name="off_fadein" collid="0.99,0.99">
-    <part name="body">
-      <mesh ref="sound_off" dt="200"></mesh>
-      <modifier mode="abc0" >
-        <key time="000" yardscaley="15.3%" alpha="000%"></key>
-        <key time="098" yardscaley="15.3%" alpha="100%"></key>
-      </modifier>
-    </part>
-  </pose>
-  <pose name="on_fadein" collid="0.99,0.99">
-    <part name="body">
-      <mesh ref="sound_on" dt="200"></mesh>
-      <modifier mode="abc0" >
-        <key time="000" yardscaley="15.3%" alpha="000%"></key>
-        <key time="098" yardscaley="15.3%" alpha="100%"></key>
-      </modifier>
-    </part>
-  </pose>
-  <pose name="off_fadeout" collid="0,0">
-    <part name="body">
-      <mesh ref="sound_off" dt="200"></mesh>
-      <modifier mode="abc0" timescale="0.5">
-        <key time="000" yardscaley="15.3%" alpha="1.0"></key>
-        <key time="400" yardscaley="13.9%" alpha="0.8"></key>
-        <key time="800" yardscaley="15.3%" alpha="0"></key>
-      </modifier>
-    </part>
-  </pose>
-  <pose name="on_fadeout" collid="0,0">
-    <part name="body">
-      <mesh ref="sound_on" dt="200"></mesh>
-      <modifier mode="abc0" timescale="0.5" >
-        <key time="000" yardscaley="15.3%" alpha="1.0"></key>
-        <key time="400" yardscaley="13.9%" alpha="0.8"></key>
-        <key time="800" yardscaley="15.3%" alpha="0"></key>
       </modifier>
     </part>
   </pose>
