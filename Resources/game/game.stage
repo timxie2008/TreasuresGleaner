@@ -62,7 +62,23 @@
   <music id="bgm4" src="audio/bgm/Birzzle_HurryUp.mp3" duration="6"></music>
   <music id="bgm5" src="audio/bgm/facebook_rank_bgm.m4a" duration="7"></music>
   <sound id="sfx_over" src="audio/SFX/event_rouletteOpen.ogg"></sound-->
-  
+
+  <sound id="blocker_hit_1" src="sounds/blocker_hit_1.ogg" />
+  <sound id="blocker_hit_2" src="sounds/blocker_hit_2.ogg" />
+  <sound id="button_click_1" src="sounds/button_click_1.ogg" />
+  <sound id="button_click_2" src="sounds/button_click_2.ogg" />
+  <sound id="foot_step_1" src="sounds/foot_step_1.ogg" />
+  <sound id="foot_step_2" src="sounds/foot_step_2.ogg" />
+  <sound id="foot_step_3" src="sounds/foot_step_3.ogg" />
+  <sound id="foot_step_4" src="sounds/foot_step_4.ogg" />
+  <sound id="missle_hit" src="sounds/missle_hit.ogg" />
+  <sound id="missle_launch" src="sounds/missle_launch.ogg" />
+  <sound id="missle_warning" src="sounds/missle_warning.ogg" />
+  <sound id="pick_coin_1" src="sounds/pick_coin_1.ogg" />
+  <sound id="pick_coin_2" src="sounds/pick_coin_2.ogg" />
+  <sound id="pick_coin_3" src="sounds/pick_coin_3.ogg" />
+  <sound id="pick_coin_4" src="sounds/pick_coin_4.ogg" />
+
   <layer id="game" ref="game/game.layer">
   </layer>
 </stage>

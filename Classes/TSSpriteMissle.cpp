@@ -20,6 +20,8 @@ TSSpriteMissle::TSSpriteMissle(CAStageLayer* player, const CCPoint& pos, const s
 	_psprWarning->setFollowCamera(false);
 	player->addSprite(_psprWarning);
 
+	this->layer()->stage()->playEffect("missle_warning");
+
 	_psprTarget = null;
 }
 
@@ -84,7 +86,7 @@ void TSSpriteMissle::onUpdate()
 		{
 			_psprWarning->killMyself();
 			_psprWarning = null;
-
+			this->layer()->stage()->playEffect("missle_launch");
 		}
 		//if missle visible, missle will NOT track player any more
 		if (null != _psprTarget && null != _psprWarning)

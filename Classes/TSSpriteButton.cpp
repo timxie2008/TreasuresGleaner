@@ -1,6 +1,7 @@
 
 #include "TSSpriteButton.h"
 #include "AStageLayer.h"
+#include "AStage.h"
 
 #define ButtonPose_Stand	"stand"
 #define ButtonPose_Pressed	"pressed"
@@ -94,6 +95,7 @@ void TSSpriteButton::onTouched(CAEventTouch* pEvent)
 	case kTouchStateGrabbed:
 		_nClickState = 1;
 		setState(ButtonPose_Pressed);
+		this->layer()->stage()->playEffect("button_click_1");
 		//_Trace("button %s pressed", this->getModName().c_str());
 		break;
 	case kTouchStateUngrabbed:

@@ -2,6 +2,7 @@ md ..\Resources\env
 md ..\Resources\ui
 md ..\Resources\characters
 md ..\Resources\items
+md ..\Resources\sounds
  
 copy .\env\env.plist ..\Resources\env\ /Y
 copy .\env\env.png ..\Resources\env\ /Y
@@ -20,5 +21,7 @@ copy .\characters\riders.png ..\Resources\characters\ /Y
 
 copy .\characters\player.plist ..\Resources\characters\ /Y
 copy .\characters\player.png ..\Resources\characters\ /Y
+
+copy .\sounds\* ..\Resources\sounds\ /Y
 
 pause

@@ -64,6 +64,7 @@ protected:
 	CASprite* _psprDolphin;
 	CASprite* _psprWhale;
 
+	int _nCollectedLast;
 	int _nCollected;
 	void _addCollected(int c);
 

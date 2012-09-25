@@ -429,6 +429,14 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 {
 	_nCollected += c;
 
+	int blackcount_last = _nCollectedLast / _traceline_coin2pearl;
+	int blackcount_now = _nCollected / _traceline_coin2pearl;
+	if (blackcount_last != blackcount_now)
+	{
+		stage()->playEffect("pick_coin_4");
+	}
+	_nCollectedLast = _nCollected;
+
 	int cmax = _traceline_coin2pearl * (SIZE_OF_ARRAY(_psprIndicators) - 4);
 	if (_nCollected < 0) 
 	{
@@ -444,7 +452,7 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 		_player()->setState("dead");
 		this->setConditionResult("root.running@player.dead", true);
 	}
-	else if (_nCollected / _traceline_coin2pearl >= _STARS_DOLPHIN)
+	else if (blackcount_now >= _STARS_DOLPHIN)
 	{
 		//if we can put a whale | dolphin
 		if (!_player()->isRidding())
@@ -467,7 +475,7 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 			}
 			else if ((_player()->isRidding(PS_RidingDolphin) || !_player()->isRidding())
 				&&
-				(_nCollected / _traceline_coin2pearl > _STARS_WHALE) 
+				(blackcount_now > _STARS_WHALE) 
 				&&
 				x > _fOffsetWhale + _traceline_whale_density)
 			{
@@ -496,6 +504,9 @@ void TSStagePlayLayerGamePlay::_checkRewards()
 			{
 				_addCollected(1);
 				pspr->setState("dismiss");
+				char szSound[32];
+				sprintf(szSound, "pick_coin_%d", 1 + (_nCollected % 3));
+				stage()->playEffect(szSound);
 			}
 		}
 	}
