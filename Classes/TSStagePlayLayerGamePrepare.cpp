@@ -122,7 +122,7 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 	{
 		_InitGetters();
 
-		this->stage()->playMusic("music_back_1");
+		//this->stage()->playMusic("music_back_1");
 
 		_bScoreDirty = true;
 		_score_last = CAUserData::sharedUserData().getInteger("last_score");;
