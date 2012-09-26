@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-****************************************************************************/
+ ****************************************************************************/
 package org.cocos2dx.lib;
 
 import java.util.Hashtable;
@@ -28,16 +28,21 @@ import java.util.Hashtable;
 import android.content.Context;
 import android.graphics.Typeface;
 
-public class Cocos2dxTypefaces {
+public class Cocos2dxTypefaces
+{
 	private static final Hashtable<String, Typeface> cache = new Hashtable<String, Typeface>();
-	
-	public static Typeface get(Context context, String name){
-		synchronized(cache){
-			if (! cache.containsKey(name)){
-				Typeface t = Typeface.createFromAsset(context.getAssets(), name);
+
+	public static Typeface get(Context context, String name)
+	{
+		synchronized (cache)
+		{
+			if (!cache.containsKey(name))
+			{
+				Typeface t = Typeface
+						.createFromAsset(context.getAssets(), name);
 				cache.put(name, t);
 			}
-			
+
 			return cache.get(name);
 		}
 	}

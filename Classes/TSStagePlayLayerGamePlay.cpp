@@ -431,9 +431,9 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 
 	int blackcount_last = _nCollectedLast / _traceline_coin2pearl;
 	int blackcount_now = _nCollected / _traceline_coin2pearl;
-	if (blackcount_last != blackcount_now)
+	if (blackcount_last < blackcount_now)
 	{
-		stage()->playEffect("pick_coin_4");
+		stage()->playEffect("gain_coin_black");
 	}
 	_nCollectedLast = _nCollected;
 
@@ -504,9 +504,7 @@ void TSStagePlayLayerGamePlay::_checkRewards()
 			{
 				_addCollected(1);
 				pspr->setState("dismiss");
-				char szSound[32];
-				sprintf(szSound, "pick_coin_%d", 1 + (_nCollected % 3));
-				stage()->playEffect(szSound);
+				stage()->playEffect("pick_coin_yellow");
 			}
 		}
 	}
@@ -551,6 +549,7 @@ void TSStagePlayLayerGamePlay::_checkRewards()
 				}
 
 				strReward = szRewards[j] + 1;
+
 				bCollided = true;
 			}
 		}
@@ -583,6 +582,7 @@ void TSStagePlayLayerGamePlay::_checkBlockers()
 				pspr->setState("dismiss");
 				int damage = 20;
 				_Info("missle HIT!!!");
+				this->stage()->playEffect("missle_boom");
 				_addCollected(-(damage*  _traceline_coin2pearl));
 			}
 		}
@@ -605,6 +605,8 @@ void TSStagePlayLayerGamePlay::_checkBlockers()
 
 				_Info("hurt damage=%d", damage);
 				_addCollected(-(damage*  _traceline_coin2pearl));
+
+				this->stage()->playEffect("blocker_hit_1");
 
 				if (psprPlayer->getState() == PS_Swiming ||
 					psprPlayer->getState() == PS_RidingDolphin ||

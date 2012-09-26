@@ -36,12 +36,6 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <supports-screens
-        android:anyDensity="true"
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:smallScreens="false" />
-
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
@@ -65,14 +59,13 @@
         </activity>
 
         <!-- 声明力美的Activity -->
-        <!--
         <activity
             android:name="com.lmmob.ad.sdk.LmMobAdWebView"
             android:configChanges="keyboardHidden|orientation" />
         <activity
             android:name="com.lmmob.ad.sdk.LmMobFullImageActivity"
             android:configChanges="keyboardHidden|orientation" />
-        -->
+
         <!-- 声明艾德思奇的Activity和Service -->
         <activity
             android:name="com.mobisage.android.MobiSageActivity"
@@ -82,6 +75,16 @@
         <service
             android:name="com.mobisage.android.MobiSageApkService"
             android:exported="true" />
+
+        <!-- 声明有米的Activity和receiver -->
+        <activity
+            android:name="net.youmi.android.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
+
+        <!-- 声明多盟的Activity -->
+        <activity
+            android:name="cn.domob.android.ads.DomobActivity"
+            android:theme="@android:style/Theme.Translucent" />
 
         <!-- 声明安沃的Activity -->
         <activity
@@ -93,6 +96,7 @@
             android:label="@string/app_name" />
 
         <!-- 声明Vpon的Activity -->
+
         <activity
             android:name="com.vpon.adon.android.WebInApp"
             android:configChanges="orientation|keyboardHidden|navigation|keyboard"
@@ -130,38 +134,15 @@
             </intent-filter>
         </activity>
 
-        <!-- 声明聚赢的Activity -->
-        <activity android:name="com.tencent.mobwin.MobinWINBrowserActivity" />
-
-        <!-- 添加百度应用详情Activity -->
-        <meta-data
-            android:name="Market_ID"
-            android:value="1" />
-
-        <activity
-            android:name="com.baidu.mobads.AppActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation" />
-
-        <!-- 声明AppMedia的Activity -->
-        <activity android:name="cn.appmedia.ad.AdActivity" >
-        </activity>
-
-        <!-- 添加友盟的Activity -->
-        <activity
-            android:name="com.umengAd.android.UmengAdDetailActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent" />
-
         <!-- 声明AdMob的Activity -->
         <!--
-		<activity
+             <activity
             android:name="com.google.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         -->
 
 
         <!-- 声明AdChina的Activity -->
-        <!--
         <activity
             android:name="com.adchina.android.ads.views.AdBrowserView"
             android:configChanges="orientation|keyboard|keyboardHidden"
@@ -171,9 +152,11 @@
             android:configChanges="orientation|keyboard|keyboardHidden"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent" />
-        -->
+        <!-- 声明AppMedia的Activity -->
+        <activity android:name="cn.appmedia.ad.AdActivity" >
+        </activity>
+
         <!-- 声明赢告的Activity -->
-        <!--
         <activity android:name="com.winad.android.ads.VideoPlayerActivity" />
 
         <receiver android:name="com.winad.android.ads.ReciveInstallPackage" >
@@ -183,9 +166,8 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-        -->
+
         <!-- 声明微云 -->
-        <!--
         <receiver android:name="com.wiyun.common.WiLauncher" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -205,9 +187,8 @@
             android:name="com.wiyun.common.SimpleBrowserActivity"
             android:launchMode="singleTask" >
         </activity>
-        -->
+
         <!-- 声明Greystripe的Activity -->
-        <!--
         <provider
             android:name="com.greystripe.android.sdk.AdContentProvider"
             android:authorities="com.admogo.AdContentProvider"
@@ -221,9 +202,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        -->
+
         <!-- 声明MdotM的Activity -->
-        <!--
         <activity
             android:name="com.mdotm.android.ads.MdotmLandingPage"
             android:label="@string/app_name" >
@@ -231,9 +211,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-        -->
+
         <!-- 声明Millennial的Activity -->
-        <!--
         <activity
             android:name="com.millennialmedia.android.MMAdViewOverlayActivity"
             android:configChanges="orientation|keyboard|keyboardHidden"
@@ -242,23 +221,21 @@
             android:name="com.millennialmedia.android.VideoPlayer"
             android:configChanges="keyboardHidden|orientation|keyboard"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        -->
+
         <!-- 声明AirAD的Activity -->
-        <!--
         <activity
             android:name="com.mt.airad.MultiAD"
             android:configChanges="orientation|keyboard|keyboardHidden"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        -->
+
         <!-- 声明LSense的Activity -->
-        <!--
         <activity
             android:name="com.l.adlib_android.AdBrowseActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        -->
+
         <!-- 声明哇棒的Activity -->
-        <!--
+
         <activity
             android:name="com.wooboo.adlib_android.AdActivity"
             android:configChanges="orientation|keyboardHidden" />
@@ -278,22 +255,25 @@
         <meta-data
             android:name="Market_ID"
             android:value="1" />
-        -->
 
+        <!-- 声明聚赢的Activity -->
+        <activity android:name="com.tencent.mobwin.MobinWINBrowserActivity" />
 
-        <!-- 声明有米的Activity和receiver -->
-        <!--
+        <!-- 添加百度应用详情Activity -->
+        <meta-data
+            android:name="Market_ID"
+            android:value="1" />
+
         <activity
-            android:name="net.youmi.android.AdActivity"
+            android:name="com.baidu.mobads.AppActivity"
             android:configChanges="keyboard|keyboardHidden|orientation" />
-        -->
-        <!-- 声明多盟的Activity -->
-        <!--
-		<activity
-            android:name="cn.domob.android.ads.DomobActivity"
-            android:theme="@android:style/Theme.Translucent" />
-        -->
 
+        <!-- 添加友盟的Activity -->
+
+        <activity
+            android:name="com.umengAd.android.UmengAdDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent" />
 
         <!-- 注册Service，应用下载所需 -->
         <service
@@ -313,13 +293,20 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="Testing" >
+            android:value="Umeng" >
         </meta-data>
+
         <service
             android:name="com.umeng.common.net.DownloadingService"
             android:exported="true"
             android:process=":DownloadingService" >
         </service>
     </application>
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="false" />
 
 </manifest>

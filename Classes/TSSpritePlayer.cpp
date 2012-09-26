@@ -208,6 +208,8 @@ void TSSpritePlayer::_on_dive(EStateFlag flag)
 			_fPlayerHSpeedLast = 0;
 			_vSpeedWhenTouched = 0;
 			_animPlayerSpeed.init(_pLayer->getTimeNow(), 0, 0, 0);
+
+			this->_pLayer->stage()->playEffect("player_dive");
 		}
 		break;
 	case SF_Update:
@@ -374,6 +376,9 @@ void TSSpritePlayer::_on_riding_dolphin(EStateFlag flag)
 		{
 			this->setPos(ccp(this->getCombinedKey().x, this->getCombinedKey().y));
 			this->switchPose(POSE_RIDING_DOLPHIN);
+
+			this->_pLayer->stage()->playEffect("ride_dolphin");
+
 			//this->setMoveDirection(0);
 			//create some bubbles
 			_createBubbles(5, true);
@@ -419,6 +424,8 @@ void TSSpritePlayer::_on_riding_whale(EStateFlag flag)
 		{
 			this->setPos(ccp(this->getCombinedKey().x, this->getCombinedKey().y));
 			this->switchPose(POSE_RIDING_WHALE);
+
+			this->_pLayer->stage()->playEffect("ride_whale");
 
 			//create some bubbles
 			_createBubbles(5, true);
@@ -466,6 +473,7 @@ void TSSpritePlayer::_on_dead(EStateFlag flag)
 			this->switchPose(POSE_DEAD);
 			this->setMoveDirection(0);
 			//this->setMoveSpeed(0);
+			this->_pLayer->stage()->playEffect("player_die");
 		}
 		break;
 	case SF_Update:

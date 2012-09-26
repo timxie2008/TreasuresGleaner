@@ -95,7 +95,7 @@ void TSSpriteButton::onTouched(CAEventTouch* pEvent)
 	case kTouchStateGrabbed:
 		_nClickState = 1;
 		setState(ButtonPose_Pressed);
-		this->layer()->stage()->playEffect("button_click_1");
+		this->layer()->stage()->playEffect("button_click");
 		//_Trace("button %s pressed", this->getModName().c_str());
 		break;
 	case kTouchStateUngrabbed:

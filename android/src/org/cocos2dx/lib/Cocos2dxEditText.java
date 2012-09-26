@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-****************************************************************************/
+ ****************************************************************************/
 
 package org.cocos2dx.lib;
 
@@ -29,37 +29,44 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.widget.EditText;
 
-public class Cocos2dxEditText extends EditText {
-	
+public class Cocos2dxEditText extends EditText
+{
+
 	private Cocos2dxGLSurfaceView mView;
 
-	public Cocos2dxEditText(Context context) {
+	public Cocos2dxEditText(Context context)
+	{
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Cocos2dxEditText(Context context, AttributeSet attrs) {
+
+	public Cocos2dxEditText(Context context, AttributeSet attrs)
+	{
 		super(context, attrs);
 	}
-	
-	public Cocos2dxEditText(Context context, AttributeSet attrs, int defStyle) {
+
+	public Cocos2dxEditText(Context context, AttributeSet attrs, int defStyle)
+	{
 		super(context, attrs, defStyle);
 	}
-	
-	public void setMainView(Cocos2dxGLSurfaceView glSurfaceView) {
+
+	public void setMainView(Cocos2dxGLSurfaceView glSurfaceView)
+	{
 		mView = glSurfaceView;
 	}
-	
+
 	/*
 	 * Let GlSurfaceView get focus if back key is input
 	 */
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
 		super.onKeyDown(keyCode, event);
-		
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+		if (keyCode == KeyEvent.KEYCODE_BACK)
+		{
 			mView.requestFocus();
 		}
-		
+
 		return true;
 	}
 }

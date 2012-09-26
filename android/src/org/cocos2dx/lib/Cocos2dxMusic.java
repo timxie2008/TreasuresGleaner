@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-****************************************************************************/
+ ****************************************************************************/
 package org.cocos2dx.lib;
 
 import android.content.Context;
@@ -31,10 +31,11 @@ import android.util.Log;
 /**
  * 
  * This class is used for controlling background music
- *
+ * 
  */
-public class Cocos2dxMusic {
-	
+public class Cocos2dxMusic
+{
+
 	private static final String TAG = "Cocos2dxMusic";
 	private float mLeftVolume;
 	private float mRightVolume;
@@ -42,187 +43,241 @@ public class Cocos2dxMusic {
 	private MediaPlayer mBackgroundMediaPlayer;
 	private boolean mIsPaused;
 	private String mCurrentPath;
-	
-	public Cocos2dxMusic(Context context){
+
+	public Cocos2dxMusic(Context context)
+	{
 		this.mContext = context;
 		initData();
 	}
-	
-	public void preloadBackgroundMusic(String path){
-		if ((mCurrentPath == null) || (! mCurrentPath.equals(path))){
+
+	public void preloadBackgroundMusic(String path)
+	{
+		if ((mCurrentPath == null) || (!mCurrentPath.equals(path)))
+		{
 			// preload new background music
-			
+
 			// release old resource and create a new one
-			if (mBackgroundMediaPlayer != null){
-				mBackgroundMediaPlayer.release();				
-			}				
+			if (mBackgroundMediaPlayer != null)
+			{
+				mBackgroundMediaPlayer.release();
+			}
 
 			mBackgroundMediaPlayer = createMediaplayerFromAssets(path);
-			
+
 			// record the path
 			mCurrentPath = path;
 		}
 	}
-	
-	public void playBackgroundMusic(String path, boolean isLoop){
-		if (mCurrentPath == null){
+
+	public void playBackgroundMusic(String path, boolean isLoop)
+	{
+		if (mCurrentPath == null)
+		{
 			// it is the first time to play background music
 			// or end() was called
-			mBackgroundMediaPlayer = createMediaplayerFromAssets(path);	
+			mBackgroundMediaPlayer = createMediaplayerFromAssets(path);
 			mCurrentPath = path;
-		} 
-		else {
-			if (! mCurrentPath.equals(path)){
+		}
+		else
+		{
+			if (!mCurrentPath.equals(path))
+			{
 				// play new background music
-				
+
 				// release old resource and create a new one
-				if (mBackgroundMediaPlayer != null){
-					mBackgroundMediaPlayer.release();				
-				}				
+				if (mBackgroundMediaPlayer != null)
+				{
+					mBackgroundMediaPlayer.release();
+				}
 				mBackgroundMediaPlayer = createMediaplayerFromAssets(path);
-				
+
 				// record the path
 				mCurrentPath = path;
 			}
 		}
-		
-		if (mBackgroundMediaPlayer == null){
+
+		if (mBackgroundMediaPlayer == null)
+		{
 			Log.e(TAG, "playBackgroundMusic: background media player is null");
-		} else {		
+		}
+		else
+		{
 			// if the music is playing or paused, stop it
-			mBackgroundMediaPlayer.stop();			
-			
+			mBackgroundMediaPlayer.stop();
+
 			mBackgroundMediaPlayer.setLooping(isLoop);
-			
-			try {
+
+			try
+			{
 				mBackgroundMediaPlayer.prepare();
 				mBackgroundMediaPlayer.seekTo(0);
 				mBackgroundMediaPlayer.start();
-				
+
 				this.mIsPaused = false;
-			} catch (Exception e){
+			}
+			catch (Exception e)
+			{
 				Log.e(TAG, "playBackgroundMusic: error state");
-			}			
+			}
 		}
 	}
-	
-	public void stopBackgroundMusic(){
-		if (mBackgroundMediaPlayer != null){
+
+	public void stopBackgroundMusic()
+	{
+		if (mBackgroundMediaPlayer != null)
+		{
 			mBackgroundMediaPlayer.stop();
-			
+
 			// should set the state, if not , the following sequence will be error
 			// play -> pause -> stop -> resume
 			this.mIsPaused = false;
 		}
 	}
-	
-	public void pauseBackgroundMusic(){		
-		if (mBackgroundMediaPlayer != null && mBackgroundMediaPlayer.isPlaying()){
+
+	public void pauseBackgroundMusic()
+	{
+		if (mBackgroundMediaPlayer != null
+				&& mBackgroundMediaPlayer.isPlaying())
+		{
 			mBackgroundMediaPlayer.pause();
 			this.mIsPaused = true;
 		}
 	}
-	
-	public void resumeBackgroundMusic(){
-		if (mBackgroundMediaPlayer != null && this.mIsPaused){
+
+	public void resumeBackgroundMusic()
+	{
+		if (mBackgroundMediaPlayer != null && this.mIsPaused)
+		{
 			mBackgroundMediaPlayer.start();
 			this.mIsPaused = false;
 		}
 	}
-	
-	public void rewindBackgroundMusic(){		
-		if (mBackgroundMediaPlayer != null){
-			mBackgroundMediaPlayer.stop();			
-			
-			try {
+
+	public void rewindBackgroundMusic()
+	{
+		if (mBackgroundMediaPlayer != null)
+		{
+			mBackgroundMediaPlayer.stop();
+
+			try
+			{
 				mBackgroundMediaPlayer.prepare();
 				mBackgroundMediaPlayer.seekTo(0);
 				mBackgroundMediaPlayer.start();
-				
+
 				this.mIsPaused = false;
-			} catch (Exception e){
+			}
+			catch (Exception e)
+			{
 				Log.e(TAG, "rewindBackgroundMusic: error state");
-			}			
+			}
 		}
 	}
-	
-	public boolean isBackgroundMusicPlaying(){
+
+	public boolean isBackgroundMusicPlaying()
+	{
 		boolean ret = false;
-		
-		if (mBackgroundMediaPlayer == null){
+
+		if (mBackgroundMediaPlayer == null)
+		{
 			ret = false;
-		} else {
+		}
+		else
+		{
 			ret = mBackgroundMediaPlayer.isPlaying();
 		}
-		
+
 		return ret;
 	}
-	
-	public void end(){
-		if (mBackgroundMediaPlayer != null){
+
+	public void end()
+	{
+		if (mBackgroundMediaPlayer != null)
+		{
 			mBackgroundMediaPlayer.release();
 		}
 
 		initData();
 	}
-	
-	public float getBackgroundVolume(){
-		if (this.mBackgroundMediaPlayer != null){
+
+	public float getBackgroundVolume()
+	{
+		if (this.mBackgroundMediaPlayer != null)
+		{
 			return (this.mLeftVolume + this.mRightVolume) / 2;
-		} else {
+		}
+		else
+		{
 			return 0.0f;
 		}
 	}
-	
-	public void setBackgroundVolume(float volume){
-		if (volume < 0.0f){
+
+	public void setBackgroundVolume(float volume)
+	{
+		if (volume < 0.0f)
+		{
 			volume = 0.0f;
 		}
-		
-		if (volume > 1.0f){
+
+		if (volume > 1.0f)
+		{
 			volume = 1.0f;
 		}
-		
-	    this.mLeftVolume = this.mRightVolume = volume;
-		if (this.mBackgroundMediaPlayer != null){
-			this.mBackgroundMediaPlayer.setVolume(this.mLeftVolume, this.mRightVolume);
+
+		this.mLeftVolume = this.mRightVolume = volume;
+		if (this.mBackgroundMediaPlayer != null)
+		{
+			this.mBackgroundMediaPlayer.setVolume(this.mLeftVolume,
+					this.mRightVolume);
 		}
 	}
-	
-	private void initData(){
-		mLeftVolume =0.5f;
+
+	private void initData()
+	{
+		mLeftVolume = 0.5f;
 		mRightVolume = 0.5f;
 		mBackgroundMediaPlayer = null;
 		mIsPaused = false;
 		mCurrentPath = null;
 	}
-	
+
 	/**
 	 * create mediaplayer for music
-	 * @param path the path relative to assets
-	 * @return 
+	 * 
+	 * @param path
+	 *            the path relative to assets
+	 * @return
 	 */
-	private MediaPlayer createMediaplayerFromAssets(String path){
+	private MediaPlayer createMediaplayerFromAssets(String path)
+	{
 		MediaPlayer mediaPlayer = new MediaPlayer();
-		
-		try{
-			if (path.startsWith("/")) {
+
+		try
+		{
+			if (path.startsWith("/"))
+			{
 				mediaPlayer.setDataSource(path);
 			}
-			else {
-				AssetFileDescriptor assetFileDescritor = mContext.getAssets().openFd(path);			
-		        mediaPlayer.setDataSource(assetFileDescritor.getFileDescriptor(), 
-		        		assetFileDescritor.getStartOffset(), assetFileDescritor.getLength());				
+			else
+			{
+				AssetFileDescriptor assetFileDescritor = mContext.getAssets()
+						.openFd(path);
+				mediaPlayer.setDataSource(
+						assetFileDescritor.getFileDescriptor(),
+						assetFileDescritor.getStartOffset(),
+						assetFileDescritor.getLength());
 			}
-			
-	        mediaPlayer.prepare();
-	        
-	        mediaPlayer.setVolume(mLeftVolume, mRightVolume);
-		}catch (Exception e) {
+
+			mediaPlayer.prepare();
+
+			mediaPlayer.setVolume(mLeftVolume, mRightVolume);
+		}
+		catch (Exception e)
+		{
 			mediaPlayer = null;
-            Log.e(TAG, "error: " + e.getMessage(), e);
-        }
-		
-        return mediaPlayer;
+			Log.e(TAG, "error: " + e.getMessage(), e);
+		}
+
+		return mediaPlayer;
 	}
 }

@@ -56,28 +56,21 @@
   <model id="button_yes" src="ui/ui_button_yes.spr"></model>
   <model id="button_no" src="ui/ui_button_no.spr"></model>
 
-  <!--music id="bgm1" src="audio/bgm/Main_bgm.mp3" duration="14"></music>
-  <music id="bgm2" src="audio/bgm/pandora_bgm.mp3" duration="38"></music>
-  <music id="bgm3" src="audio/bgm/pandora_comboBgm.mp3" duration="17"></music>
-  <music id="bgm4" src="audio/bgm/Birzzle_HurryUp.mp3" duration="6"></music>
-  <music id="bgm5" src="audio/bgm/facebook_rank_bgm.m4a" duration="7"></music>
-  <sound id="sfx_over" src="audio/SFX/event_rouletteOpen.ogg"></sound-->
+  <music id="music_back_1" src="audio/music_back_1.ogg" duration="6" volume="0.5"></music>
 
-  <sound id="blocker_hit_1" src="sounds/blocker_hit_1.ogg" />
-  <sound id="blocker_hit_2" src="sounds/blocker_hit_2.ogg" />
-  <sound id="button_click_1" src="sounds/button_click_1.ogg" />
-  <sound id="button_click_2" src="sounds/button_click_2.ogg" />
-  <sound id="foot_step_1" src="sounds/foot_step_1.ogg" />
-  <sound id="foot_step_2" src="sounds/foot_step_2.ogg" />
-  <sound id="foot_step_3" src="sounds/foot_step_3.ogg" />
-  <sound id="foot_step_4" src="sounds/foot_step_4.ogg" />
-  <sound id="missle_hit" src="sounds/missle_hit.ogg" />
-  <sound id="missle_launch" src="sounds/missle_launch.ogg" />
-  <sound id="missle_warning" src="sounds/missle_warning.ogg" />
-  <sound id="pick_coin_1" src="sounds/pick_coin_1.ogg" />
-  <sound id="pick_coin_2" src="sounds/pick_coin_2.ogg" />
-  <sound id="pick_coin_3" src="sounds/pick_coin_3.ogg" />
-  <sound id="pick_coin_4" src="sounds/pick_coin_4.ogg" />
+  <sound id="blocker_hit_1" src="audio/blocker_hit_1.ogg" />
+  <sound id="blocker_hit_2" src="audio/blocker_hit_1.ogg" />
+  <sound id="button_click" src="audio/button_click.ogg" />
+  <sound id="foot_step" src="audio/foot_step.ogg" />
+  <sound id="missle_boom" src="audio/missle_boom.ogg" />
+  <sound id="missle_launch" src="audio/missle_launch.ogg" />
+  <sound id="missle_warning" src="audio/missle_warning.ogg" />
+  <sound id="pick_coin_yellow" src="audio/pick_coin_yellow.ogg" />
+  <sound id="gain_coin_black" src="audio/gain_coin_black.ogg" />
+  <sound id="player_die" src="audio/player_die.ogg" />
+  <sound id="player_dive" src="audio/player_dive.ogg" />
+  <sound id="ride_dolphin" src="audio/ride_dolphin.ogg" />
+  <sound id="ride_whale" src="audio/ride_whale.ogg" />
 
   <layer id="game" ref="game/game.layer">
   </layer>

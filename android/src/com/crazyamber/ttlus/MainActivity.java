@@ -36,51 +36,108 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-
 import com.adsmogo.adview.AdsMogoLayout;
 import com.adsmogo.controller.listener.AdsMogoListener;
 import com.adsmogo.util.AdsMogoUtil;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.update.UmengDownloadListener;
+import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UmengUpdateListener;
+import com.umeng.update.UpdateResponse;
+
 import android.widget.RelativeLayout;
 
-
-public class MainActivity extends Cocos2dxActivity implements AdsMogoListener {
+public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
+{
 	private Cocos2dxGLSurfaceView mGLView;
 	private AdsMogoLayout adsMogoLayoutCode;
-	
-	private void initAD() 
+	private boolean _fda = false;
+
+	private UmengUpdateListener _updateListener = new UmengUpdateListener()
+	{
+		@Override
+		public void onUpdateReturned(int updateStatus, UpdateResponse updateInfo)
+		{
+			switch (updateStatus)
+			{
+			case 0: // has update
+				UmengUpdateAgent.showUpdateDialog(MainActivity.this, updateInfo);
+				break;
+			case 1: // has no update
+				break;
+			case 2: // none wifi
+				break;
+			case 3: // time out
+				break;
+			}
+
+		}
+	};
+
+	private void _initUMeng()
+	{
+		MobclickAgent.setSessionContinueMillis(60000 * 10);
+		MobclickAgent.setDebugMode(false);
+		MobclickAgent.onError(this);
+		MobclickAgent.updateOnlineConfig(this);
+
+		com.umeng.common.Log.LOG = true;
+		UmengUpdateAgent.setUpdateOnlyWifi(false); // ç›®å‰æˆ‘ä»¬é»˜è®¤åœ¨Wi-FiæŽ¥å…¥æƒ…å†µä¸‹æ‰è¿›è¡Œè‡ªåŠ¨æé†’ã€‚å¦‚éœ€è¦åœ¨å…¶ä»–ç½‘ç»œçŽ¯å¢ƒä¸‹è¿›è¡Œæ›´æ–°è‡ªåŠ¨æé†’ï¼Œåˆ™è¯·æ·»åŠ è¯¥è¡Œä»£ç 
+		UmengUpdateAgent.setUpdateAutoPopup(false);
+		UmengUpdateAgent.setUpdateListener(_updateListener);
+
+		UmengUpdateAgent.setOnDownloadListener(new UmengDownloadListener()
+		{
+
+			@Override
+			public void OnDownloadEnd(int result)
+			{
+				//"download result : " + result
+			}
+
+		});
+
+		UmengUpdateAgent.update(this);
+
+		String da= MobclickAgent.getConfigParams(this, "da");
+		_fda = da.equals("T") | da.equals("Y");
+	}
+
+	private void _initAD()
 	{
 		/*------------------------------------------------------------*/
-		// ³õÊ¼»¯AdsMogoLayout ³õÊ¼»¯·ÖÎªÒÔÏÂ¼¸ÖÖ·½Ê½
-		// ¹¹Ôì·½·¨£¬ÉèÖÃ¹ã¸æÀàÐÍ£¬ÈçÈ«ÆÁ¹ã¸æ£¬banner¹ã¸æ
+		// ï¿½ï¿½Ê¼ï¿½ï¿½AdsMogoLayout ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ö·ï¿½Ê½
+		// ï¿½ï¿½ï¿½ì·½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½æ£¬bannerï¿½ï¿½ï¿½
 		// public AdsMogoLayout(final Activity context, final String keyAdMogo,
 		// final int ad_type) {
 		// }
 
-		// Ä¬ÈÏµÄ¹¹Ôì·½·¨£¬Ä¬ÈÏ¿ªÆô¿ìËÙÄ£Ê½£¬banner¹ã¸æ
+		// Ä¬ï¿½ÏµÄ¹ï¿½ï¿½ì·½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½bannerï¿½ï¿½ï¿½
 		// public AdsMogoLayout(final Activity context, final String keyAdMogo)
 		// {
 		// }
 
-		// ¹¹Ôì·½·¨£¬ÉèÖÃ¿ìËÙÄ£Ê½
+		// ï¿½ï¿½ï¿½ì·½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½Ä£Ê½
 		// public AdsMogoLayout(final Activity context, final String keyAdMogo,
 		// boolean expressMode) {
 		// }
 
-		// ¹¹Ôì·½·¨£¬ÉèÖÃ¹ã¸æÀàÐÍºÍ¿ìËÙÄ£Ê½
+		// ï¿½ï¿½ï¿½ì·½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ÍºÍ¿ï¿½ï¿½ï¿½Ä£Ê½
 		// public AdsMogoLayout(final Activity context, final String keyAdMogo,
 		// final int ad_type, final boolean expressMode) {
 		// }
 		/*------------------------------------------------------------*/
 
-		// ¹¹Ôì·½·¨£¬ÉèÖÃ¿ìËÙÄ£Ê½
-		adsMogoLayoutCode = new AdsMogoLayout(this,
-				"c87eaafe88444f02a866f87637ca9a53", false);
+		if (_fda)
+			return;
+		// ï¿½ï¿½ï¿½ì·½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½Ä£Ê½
+		adsMogoLayoutCode = new AdsMogoLayout(this, "c87eaafe88444f02a866f87637ca9a53", false);
 
-		// ÉèÖÃ¼àÌý»Øµ÷ ÆäÖÐ°üÀ¨ ÇëÇó Õ¹Ê¾ ÇëÇóÊ§°ÜµÈÊÂ¼þµÄ»Øµ÷
+		// ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½Øµï¿½ ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Õ¹Ê¾ ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Üµï¿½ï¿½Â¼ï¿½ï¿½Ä»Øµï¿½
 		adsMogoLayoutCode.setAdsMogoListener(this);
 
 		/*------------------------------------------------------------*/
-		// Í¨¹ýCode·½Ê½Ìí¼Ó¹ã¸æÌõ ±¾ÀýµÄ½á¹¹ÈçÏÂ(½ö¹©²Î¿¼)
+		// Í¨ï¿½ï¿½Codeï¿½ï¿½Ê½ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä½á¹¹ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½)
 		// -RelativeLayout/(FILL_PARENT,FILL_PARENT)
 		// |
 		// +RelativeLayout/(FILL_PARENT,WRAP_CONTENT)
@@ -92,167 +149,173 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener {
 		// \
 		/*------------------------------------------------------------*/
 		RelativeLayout.LayoutParams layoutParams;
-		layoutParams = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.FILL_PARENT,
-				RelativeLayout.LayoutParams.WRAP_CONTENT);
-		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,
-				RelativeLayout.TRUE);
+		layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 
 		RelativeLayout.LayoutParams layoutParamsAD;
-		layoutParamsAD = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.WRAP_CONTENT,
-				RelativeLayout.LayoutParams.WRAP_CONTENT);
-		layoutParamsAD.addRule(RelativeLayout.ALIGN_PARENT_LEFT,
-				RelativeLayout.TRUE);
+		layoutParamsAD = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+		layoutParamsAD.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
 
 		RelativeLayout childLayout = new RelativeLayout(this);
 		childLayout.addView(adsMogoLayoutCode, layoutParamsAD);
-		
+
 		RelativeLayout parentLayput = new RelativeLayout(this);
 		parentLayput.addView(childLayout, layoutParams);
 
-		this.addContentView(parentLayput, new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.FILL_PARENT,
-				RelativeLayout.LayoutParams.FILL_PARENT));
+		this.addContentView(parentLayput, new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.FILL_PARENT));
 	}
-	
+
 	/**
-	 * µ±ÓÃ»§µã»÷¹ã¸æ*(²¢ÇÒMogo·þÎñ¼ÇÂ¼µã»÷Êý)
+	 * ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*(ï¿½ï¿½ï¿½ï¿½Mogoï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½)
 	 */
 	@Override
-	public void onClickAd(String arg0) {
+	public void onClickAd(String arg0)
+	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onClickAd=-");
 
 	}
 
 	/**
-	 * µ±ÓÃ»§µã»÷ÁË¹ã¸æ¹Ø±Õ°´Å¥Ê±»Øµ÷(¹Ø±Õ¹ã¸æ°´Å¥¹¦ÄÜ¿ÉÒÔÔÚMogoµÄApp¹ÜÀíÖÐÉèÖÃ)
+	 * ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ë¹ï¿½ï¿½Ø±Õ°ï¿½Å¥Ê±ï¿½Øµï¿½(ï¿½Ø±Õ¹ï¿½æ°´Å¥ï¿½ï¿½ï¿½Ü¿ï¿½ï¿½ï¿½ï¿½ï¿½Mogoï¿½ï¿½Appï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	 */
 	@Override
-	public void onCloseAd() {
+	public void onCloseAd()
+	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onCloseAd=-");
 	}
 
 	/**
-	 * µ±ÓÃ»§¹Ø±ÕÁËÏÂÔØÀàÐÍ¹ã¸æµÄÏêÏ¸½çÃæÊ±»Øµ÷(¹ã¸æÎïÁÏÀàÐÍÎªÏÂÔØ¹ã¸æ²¢ÇÒÊÇµ¯³ö¼ò½éÏÂÔØµÄ²Å»áÓÐ´ËDialog)
+	 * ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¹ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Øµï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ø¹ï¿½æ²¢ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ØµÄ²Å»ï¿½ï¿½Ð´ï¿½
+	 * Dialog)
 	 */
 	@Override
-	public void onCloseMogoDialog() {
+	public void onCloseMogoDialog()
+	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onCloseMogoDialog=-");
 	}
 
 	/**
-	 * ËùÓÐ¹ã¸æÆ½Ì¨ÇëÇóÊ§°ÜÊ±»Øµ÷
+	 * ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½Æ½Ì¨ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½Ê±ï¿½Øµï¿½
 	 */
 	@Override
-	public void onFailedReceiveAd() {
+	public void onFailedReceiveAd()
+	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onFailedReceiveAd=-");
 
 	}
 
 	/**
-	 * µ±ÓÃ»§µã»÷¹ã¸æ*(ÕæÊµµã»÷ Mogo²»Ò»¶¨ÔÚµ÷ÓÃ´Ë»Øµ÷Ê±¼ÇÂ¼µã»÷Êý)
+	 * ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*(ï¿½ï¿½Êµï¿½ï¿½ï¿½ Mogoï¿½ï¿½Ò»ï¿½ï¿½ï¿½Úµï¿½ï¿½Ã´Ë»Øµï¿½Ê±ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½)
 	 */
 	@Override
-	public void onRealClickAd() {
+	public void onRealClickAd()
+	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onRealClickAd=-");
 
 	}
 
 	/**
-	 * ÇëÇó¹ã¸æ³É¹¦Ê±»Øµ÷
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½Ê±ï¿½Øµï¿½
 	 */
 	@Override
-	public void onReceiveAd(ViewGroup arg0, String arg1) {
+	public void onReceiveAd(ViewGroup arg0, String arg1)
+	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onReceiveAd=-");
 
 	}
 
 	/**
-	 * ¿ªÊ¼ÇëÇó¹ã¸æÊ±»Øµ÷
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Øµï¿½
 	 */
 	@Override
-	public void onRequestAd(String arg0) {
+	public void onRequestAd(String arg0)
+	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onRequestAd=-");
 
 	}
-	
-	protected void onCreate(Bundle savedInstanceState){
+
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
-		
-		if (detectOpenGLES20()) {
+
+		if (detectOpenGLES20())
+		{
 			// get the packageName,it's used to set the resource path
 			String packageName = getApplication().getPackageName();
 			super.setPackageName(packageName);
-			
-            // FrameLayout
-            ViewGroup.LayoutParams framelayout_params =
-                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
-                                           ViewGroup.LayoutParams.FILL_PARENT);
-            FrameLayout framelayout = new FrameLayout(this);
-            framelayout.setLayoutParams(framelayout_params);
 
-            // Cocos2dxEditText layout
-            ViewGroup.LayoutParams edittext_layout_params =
-                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
-                                           ViewGroup.LayoutParams.WRAP_CONTENT);
-            Cocos2dxEditText edittext = new Cocos2dxEditText(this);
-            edittext.setLayoutParams(edittext_layout_params);
+			// FrameLayout
+			ViewGroup.LayoutParams framelayout_params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+			FrameLayout framelayout = new FrameLayout(this);
+			framelayout.setLayoutParams(framelayout_params);
 
-            // ...add to FrameLayout
-            framelayout.addView(edittext);
+			// Cocos2dxEditText layout
+			ViewGroup.LayoutParams edittext_layout_params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			Cocos2dxEditText edittext = new Cocos2dxEditText(this);
+			edittext.setLayoutParams(edittext_layout_params);
 
-            // Cocos2dxGLSurfaceView
-	        mGLView = new Cocos2dxGLSurfaceView(this);
+			// ...add to FrameLayout
+			framelayout.addView(edittext);
 
-            // ...add to FrameLayout
-            framelayout.addView(mGLView);
+			// Cocos2dxGLSurfaceView
+			mGLView = new Cocos2dxGLSurfaceView(this);
 
-	        mGLView.setEGLContextClientVersion(2);
-	        mGLView.setCocos2dxRenderer(new Cocos2dxRenderer());
-            mGLView.setTextField(edittext);
+			// ...add to FrameLayout
+			framelayout.addView(mGLView);
 
-            // Set framelayout as the content view
+			mGLView.setEGLContextClientVersion(2);
+			mGLView.setCocos2dxRenderer(new Cocos2dxRenderer());
+			mGLView.setTextField(edittext);
+
+			// Set framelayout as the content view
 			setContentView(framelayout);
-			
-			initAD();
+
+			_initUMeng();
+			_initAD();
 		}
-		else {
+		else
+		{
 			Log.d("activity", "don't support gles2.0");
 			finish();
-		}	
+		}
 	}
-	
-	 @Override
-	 protected void onPause() {
-	     super.onPause();
-	     mGLView.onPause();
-	 }
 
-	 @Override
-	 protected void onResume() {
-	     super.onResume();
-	     mGLView.onResume();
-	 }
-	 
 	@Override
-	protected void onDestroy() {
-		// Çå³ý adsMogoLayout ÊµÀý Ëù²úÉúÓÃÓÚ¶àÏß³Ì»º³å»úÖÆµÄÏß³Ì³Ø
-		if (adsMogoLayoutCode != null) {
+	protected void onPause()
+	{
+		super.onPause();
+		MobclickAgent.onPause(this);
+		mGLView.onPause();
+	}
+
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		MobclickAgent.onResume(this);
+		mGLView.onResume();
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		// ï¿½ï¿½ï¿½ adsMogoLayout Êµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ß³Ì»ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ß³Ì³ï¿½
+		if (adsMogoLayoutCode != null)
+		{
 			adsMogoLayoutCode.clearThread();
 		}
 		super.onDestroy();
 	}
-	 
-	 private boolean detectOpenGLES20() 
-	 {
-	     ActivityManager am =
-	            (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-	     ConfigurationInfo info = am.getDeviceConfigurationInfo();
-	     return (info.reqGlEsVersion >= 0x20000);
-	 }
-		
-	static {
+
+	private boolean detectOpenGLES20()
+	{
+		ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+		ConfigurationInfo info = am.getDeviceConfigurationInfo();
+		return (info.reqGlEsVersion >= 0x20000);
+	}
+
+	static
+	{
 		System.loadLibrary("game_frame");
 	}
 }
