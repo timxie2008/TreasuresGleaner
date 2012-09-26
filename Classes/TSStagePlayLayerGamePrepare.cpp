@@ -122,6 +122,7 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 	{
 		_InitGetters();
 
+		//disable music for testing 
 		//this->stage()->playMusic("music_back_1");
 
 		_bScoreDirty = true;
