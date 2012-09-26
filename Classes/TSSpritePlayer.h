@@ -88,6 +88,9 @@ protected:
 
 	bool _isRunningOnGround() const;
 	bool _isRunningOnCeil() const;
+
+	void _onTouchClimbing();
+	void _onTouchFalling();
 public:
 	TSSpritePlayer(CAStageLayer* palyer, const char* name);
 	virtual ~TSSpritePlayer(void);

@@ -56,7 +56,7 @@
   <model id="button_yes" src="ui/ui_button_yes.spr"></model>
   <model id="button_no" src="ui/ui_button_no.spr"></model>
 
-  <!--music id="music_back_1" src="audio/music_back_1.ogg" duration="6" volume="0.5"></music-->
+  <music id="music_back_1" src="audio/music_back_1.ogg" duration="14" volume="0.5"></music>
 
   <sound id="blocker_hit_1" src="audio/blocker_hit_1.ogg" />
   <sound id="blocker_hit_2" src="audio/blocker_hit_1.ogg" />
@@ -71,6 +71,7 @@
   <sound id="player_dive" src="audio/player_dive.ogg" />
   <sound id="ride_dolphin" src="audio/ride_dolphin.ogg" />
   <sound id="ride_whale" src="audio/ride_whale.ogg" />
+  <sound id="pop_bubble" src="audio/bubble.ogg" />
 
   <layer id="game" ref="game/game.layer">
   </layer>

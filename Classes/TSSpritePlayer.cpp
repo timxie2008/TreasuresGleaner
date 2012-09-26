@@ -592,6 +592,35 @@ void TSSpritePlayer::onUpdate()
 	else _HandleState(_state, floating, SF_Update);
 }
 
+void TSSpritePlayer::_onTouchClimbing()
+{
+	_direction = +1;
+	_createBubbles(5, true);
+	if (_isRunningOnGround() && !this->isRidding())
+	{
+		_Info("jump !!!");
+		this->setVMoveSpeed(_fPlayerSpeedJumpPower);
+		_bJumping = true;
+		//_vSpeedWhenTouched = _speed_params[0].v0;
+	}
+	_vSpeedWhenTouched = this->getVMoveSpeed();
+
+	_timeTouchEvent = _pLayer->getTimeNow();
+
+	_pLayer->stage()->playEffect("pop_bubble");
+}
+
+void TSSpritePlayer::_onTouchFalling()
+{
+	_direction = -1;
+	_vSpeedWhenTouched = this->getVMoveSpeed();
+	if (!this->isRidding() && _isRunningOnCeil())
+	{
+		_vSpeedWhenTouched = _speed_params[INDEX_PLAYER].v0;
+	}
+	_timeTouchEvent = _pLayer->getTimeNow();
+}
+
 bool TSSpritePlayer::onEvent(CAEvent* pEvent)
 {
 	switch (pEvent->type())
@@ -609,28 +638,11 @@ bool TSSpritePlayer::onEvent(CAEvent* pEvent)
 			{
 				if (pe->state() == kTouchStateGrabbed)
 				{
-					_direction = +1;
-					_createBubbles(5, true);
-					if (_isRunningOnGround() && !this->isRidding())
-					{
-						_Info("jump !!!");
-						this->setVMoveSpeed(_fPlayerSpeedJumpPower);
-						_bJumping = true;
-						//_vSpeedWhenTouched = _speed_params[0].v0;
-					}
-					_vSpeedWhenTouched = this->getVMoveSpeed();
-					
-					_timeTouchEvent = _pLayer->getTimeNow();
+					_onTouchClimbing();
 				}
 				else if (pe->state() == kTouchStateUngrabbed)
 				{
-					_direction = -1;
-					_vSpeedWhenTouched = this->getVMoveSpeed();
-					if (!this->isRidding() && _isRunningOnCeil())
-					{
-						_vSpeedWhenTouched = _speed_params[INDEX_PLAYER].v0;
-					}
-					_timeTouchEvent = _pLayer->getTimeNow();
+					_onTouchFalling();
 				}
 				else
 				{
