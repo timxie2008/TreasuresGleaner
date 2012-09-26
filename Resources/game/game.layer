@@ -3,7 +3,7 @@
   <machine ref="game/game.layer.ai"></machine>
 
   <settings>
-    <key name="debug_info" bool="false" />
+    <key name="debug_info" bool="true" />
   </settings>
   
   <!-- add random player, fishes and treasures here -->
