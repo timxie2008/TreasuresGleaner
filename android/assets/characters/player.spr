@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="characters/player.plist" tex="characters/player.png"></texture>
+  <!--mesh ref="xxx.spr"></mesh>
+  <mesh ref="xxx.spr"></mesh-->
+  <mesh name="player_swim">
+    <frame src="swim_01.png" ></frame>
+    <frame src="swim_02.png" ></frame>
+    <frame src="swim_03.png" ></frame>
+    <frame src="swim_04.png" ></frame>
+  </mesh>
+  <mesh name="player_hurt">
+    <frame src="hurt_01.png" ></frame>
+    <frame src="hurt_02.png" ></frame>
+  </mesh>
+  <mesh name="player_rdolphin">
+    <frame src="riding_01_01.png" ></frame>
+    <frame src="riding_01_02.png" ></frame>
+    <frame src="riding_01_03.png" ></frame>
+  </mesh>
+  <mesh name="player_rwhale">
+    <frame src="riding_02_01.png" ></frame>
+    <frame src="riding_02_02.png" ></frame>
+    <frame src="riding_02_03.png" ></frame>
+  </mesh>
+  <mesh name="player_dying">
+    <frame src="dying_01.png" ></frame>
+    <frame src="dying_02.png" ></frame>
+    <frame src="dying_03.png" ></frame>
+    <frame src="dying_04.png" ></frame>
+    <frame src="dying_05.png" ></frame>
+    <frame src="dying_06.png" ></frame>
+    <frame src="dying_07.png" ></frame>
+    <frame src="dying_08.png" ></frame>
+    <frame src="dying_09.png" ></frame>
+    <frame src="dying_10.png" ></frame>
+    <frame src="dying_11.png" ></frame>
+  </mesh>
+  <settings>
+    <key name="player_speed_in_percent" float="40%" />
+    <key name="player_speed_max_in_percent" float="150%" />
+    <key name="player_speed_acc_in_distance" float="0.05" />
+    <key name="player_speed_jump_power" float="1.05" />
+
+    <!--
+      falling: a = -global_g
+      jumping: a = -global_g
+      climbing:a = xxxx_a
+    -->
+    <key name="climbing_v" float="0.81" />
+    <key name="falling_a" float="1.65" />
+    
+    <key name="player_climbing_a" float="1.5" />
+    <key name="player_touch_power" float="0.4" />
+    <key name="player_v0" float="0.26"></key>
+    <key name="player_v1" float="1.6" />
+    <key name="player_hs_up" float="2.6" />
+    <key name="player_hs_down" float="2.8" />
+    <key name="player_app_frames" float="4" />
+    
+    <key name="offset_dolphin" point="0.02,-0.03" />
+    
+    <key name="dolphin_climbing_a" float="1.6" />
+    <key name="dolphin_touch_power" float="0.3" />
+    <key name="dolphin_v0" float="0.25"></key>
+    <key name="dolphin_v1" float="2.1" />
+    <key name="dolphin_hs_up" float="1.2" />
+    <key name="dolphin_hs_down" float="1.4" />
+    <key name="dolphin_app_frames" float="4" />
+    
+    <key name="offset_whale" point="0,-0.06" />
+    
+    <key name="whale_climbing_a" float="1.5" />
+    <key name="whale_touch_power" float="0.4" />
+    <key name="whale_v0" float="0.25"></key>
+    <key name="whale_v1" float="2.0" />
+    <key name="whale_hs_up" float="1.5" />
+    <key name="whale_hs_down" float="1.7" />
+    <key name="whale_app_frames" float="4" />
+
+    <key name="speed_weight_dolphin" float="1.3" />
+    <key name="speed_weight_whale" float="1.45" />
+
+    <!--碰撞区域定义-->
+    <key name="collid" size="0.3,0.2" comment="default collid size" />
+    <!--活动范围定义-->
+    <key name="yard" rect="0,0.15,1.0,0.75" />
+  </settings>
+  <pose name="born">
+    <part name="root">
+      <mesh ref="player_swim" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0"    yardpos="0%,100%"   yardscalex="13%" rot="90" alpha="50%"></key>
+        <key time="70"   yardpos="2.5%,80%"  yardscalex="13%" rot="85" alpha="60%"></key>
+        <key time="140"  yardpos="5%,65%"    yardscalex="13%" rot="70" alpha="70%"></key>
+        <key time="210"  yardpos="7.5%,55%"  yardscalex="13%" rot="65" alpha="80%"></key>
+        <key time="280"  yardpos="12%,40%"   yardscalex="13%" rot="30" alpha="90%"></key>
+        <key time="350"  yardpos="18.5%,50%" yardscalex="13%" rot="0"  alpha="100%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="floating">
+    <part name="root">
+      <mesh ref="player_swim" dt="0.8"></mesh>
+      <modifier mode="abcb" timescale="10">
+        <key time="000" yardscaley="48%" apos="0.5,0.43" />
+        <key time="050" yardscaley="47.6%" apos="0.5,0.45" />
+        <key time="100" yardscaley="48%" apos="0.5,0.47" />
+        <key time="150" yardscaley="48.8%" apos="0.5,0.50" />
+      </modifier>
+    </part>
+  </pose>
+  <pose name="fadeout">
+    <part name="root">
+      <mesh ref="player_swim" dt="0.8"></mesh>
+      <modifier mode="abc0" timescale="1.37">
+        <key time="350"  yardpos="-0.00,3.30" yardscalex="13%" alpha="00%"></key>
+        <key time="280"  yardpos="-0.00,1.10" yardscalex="14%" alpha="30%"></key>
+        <key time="210"  yardpos="-0.00,0.65" yardscalex="25%" alpha="50%"></key>
+        <key time="140"  yardpos="-0.00,0.55" yardscalex="36%" alpha="80%"></key>
+        <key time="070"  yardpos="-0.00,-0.10" yardscalex="47%" alpha="90%"></key>
+        <key time="000"  yardpos="-0.00,0.00" yardscalex="48%" alpha="100%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="hurt"  collid="0.68,0.58">
+    <part name="root">
+      <mesh ref="player_hurt" dt="0.2"></mesh>
+      <modifier mode="abc0">
+        <key time="000" yardscalex="13%" ></key>
+        <key time="450" yardscalex="12%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="ride_dolphin"  collid="0.68,0.58">
+    <part name="root">
+      <mesh ref="player_rdolphin" dt="0.8"></mesh>
+      <modifier mode="abca">
+        <key time="0" yardscalex="13%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="ride_whale"  collid="0.68,0.58">
+    <part name="root">
+      <mesh ref="player_rwhale" dt="0.8"></mesh>
+      <modifier mode="abca">
+        <key time="0" yardscalex="13%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="swim"  collid="0.68,0.58">
+    <part name="root">
+      <mesh ref="player_swim" dt="0.8"></mesh>
+      <modifier mode="abca">
+        <key time="0" yardscalex="13%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="dead">
+    <part name="root">
+      <mesh ref="player_dying" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="000"  yardpos="0%,0%"      yardscalex="13%" alpha="100%"></key>
+        <key time="170"  yardpos="2%,-0.7%"   yardscalex="13%" alpha="100%"></key>
+        <key time="340"  yardpos="3%,-2.8%"   yardscalex="13%" alpha="100%"></key>
+        <key time="510"  yardpos="5%,-6.25%"  yardscalex="13%" alpha="100%"></key>
+        <key time="680"  yardpos="5%,-11.5%"  yardscalex="13%" alpha="100%"></key>
+        <key time="1050"  yardpos="5%,-25%"   yardscalex="13%" alpha="100%"></key>
+        <key time="1220"  yardpos="5%,-37.2%" yardscalex="13%" alpha="100%"></key>
+        <key time="1420"  yardpos="5%,-50.4%" yardscalex="13%" alpha="100%"></key>
+        <key time="1620"  yardpos="5%,-65.6%" yardscalex="13%" alpha="100%"></key>
+        <key time="1820"  yardpos="5%,-82%"   yardscalex="13%" alpha="100%"></key>
+        <key time="2020"  yardpos="5%,-100%"  yardscalex="13%" alpha="000%"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

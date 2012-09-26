@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stage>
+  <!-- env -->
+  <model id="sea" src="env/sea.spr"></model>
+  <model id="light" src="env/light.spr"></model>
+  <model id="wave" src="env/wave.spr"></model>
+  <model id="sand" src="env/sand.spr"></model>
+  <model id="bubble" src="env/bubble.spr"></model>
+  <model id="coral" src="env/coral.spr"></model>
+  <model id="grass" src="env/grass.spr"></model>
+  <model id="cloud" src="env/cloud.spr"></model>
+  <model id="background" src="env/background.spr"></model>
+
+  <!-- items -->
+  <model id="blocker-01" src="items/blocker_01.spr"></model>
+  <model id="blocker-02" src="items/blocker_02.spr"></model>
+  <model id="blocker-03" src="items/blocker_03.spr"></model>
+  <model id="blocker-04" src="items/blocker_04.spr"></model>
+  <model id="blocker-05" src="items/blocker_05.spr"></model>
+  <model id="pearl" src="items/pearl.spr"></model>
+  <model id="missle" src="items/missle.spr"></model>
+  <model id="missle_warning" src="items/missle_warning.spr"></model>
+  <model id="missle_boom" src="items/missle_boom.spr"></model>
+
+  <!-- ui -->
+  <model id="label_title" src="ui/ui_label_title.spr"></model>
+  <model id="info_dist_back" src="ui/ui_info_dist_back.spr"></model>
+  <model id="label_dist_last" src="ui/ui_label_dist_last.spr"></model>
+  <model id="label_dist_max" src="ui/ui_label_dist_max.spr"></model>
+  <model id="text_yellow" src="ui/text_yellow.spr"></model>
+  <model id="button_music" src="ui/ui_button_music.spr"></model>
+  <model id="button_sound" src="ui/ui_button_sound.spr"></model>
+  <model id="button_play" src="ui/ui_button_play.spr"></model>
+  <!--model id="button_shop" src="ui/ui_button_shop.spr"></model-->
+
+  <!-- play ui -->
+  <model id="label_distance" src="ui/ui_label_distance.spr"></model>
+  <model id="label_gameover" src="ui/ui_label_gameover.spr"></model>
+  <model id="text_blue" src="ui/text_blue.spr"></model>
+  <model id="label_gas" src="ui/ui_label_gas.spr"></model>
+  <model id="label_state" src="ui/ui_label_state.spr"></model>
+  <!-- character -->
+  <model id="player" src="characters/player.spr"></model>
+  <model id="dolphin" src="characters/dolphin.spr"></model>
+  <model id="whale" src="characters/whale.spr"></model>
+
+  <!-- pause -->
+  <model id="panel_black" src="ui/ui_panel_black.spr"></model>
+  <model id="panel_pause" src="ui/ui_panel_pause.spr"></model>
+  <model id="button_pause" src="ui/ui_button_pause.spr"></model>
+  <model id="button_resume" src="ui/ui_button_resume.spr"></model>
+  <model id="button_restart" src="ui/ui_button_restart.spr"></model>
+
+  <!-- quit -->
+  <model id="panel_quit" src="ui/ui_panel_quit.spr"></model>
+  <model id="button_yes" src="ui/ui_button_yes.spr"></model>
+  <model id="button_no" src="ui/ui_button_no.spr"></model>
+
+  <music id="music_back_1" src="audio/music_back_1.ogg" duration="6" volume="0.5"></music>
+
+  <sound id="blocker_hit_1" src="audio/blocker_hit_1.ogg" />
+  <sound id="blocker_hit_2" src="audio/blocker_hit_1.ogg" />
+  <sound id="button_click" src="audio/button_click.ogg" />
+  <sound id="foot_step" src="audio/foot_step.ogg" />
+  <sound id="missle_boom" src="audio/missle_boom.ogg" />
+  <sound id="missle_launch" src="audio/missle_launch.ogg" />
+  <sound id="missle_warning" src="audio/missle_warning.ogg" />
+  <sound id="pick_coin_yellow" src="audio/pick_coin_yellow.ogg" />
+  <sound id="gain_coin_black" src="audio/gain_coin_black.ogg" />
+  <sound id="player_die" src="audio/player_die.ogg" />
+  <sound id="player_dive" src="audio/player_dive.ogg" />
+  <sound id="ride_dolphin" src="audio/ride_dolphin.ogg" />
+  <sound id="ride_whale" src="audio/ride_whale.ogg" />
+
+  <layer id="game" ref="game/game.layer">
+  </layer>
+</stage>

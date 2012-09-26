@@ -11,7 +11,6 @@
 *.la
 *.a
 .DS_Store
-android/assets/
 android/bin/
 android/obj/
 android/gen/

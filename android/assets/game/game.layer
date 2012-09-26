@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer version="1.0">
+  <machine ref="game/game.layer.ai"></machine>
+
+  <settings>
+    <key name="debug_info" bool="false" />
+  </settings>
+  
+  <!-- add random player, fishes and treasures here -->
+  <layer id="game.prepare">
+    <machine ref="game/prepare/game.layer.prepare.ai"></machine>
+
+    <timeline name="back" mode="abc0" range="0" enable="true">
+      <emmitor spos="0,0,1" range="0,0,0" follow="no">
+        <candidate spr="sea" pose="stand" percent="100%"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="wave-01" mode="abca" range="3.0" chain="yes" chaindist="1.0,0"  enable="true">
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_01" dname="w1" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_01" dname="w2" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_01" dname="w3" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="wave-02" mode="abca" range="3.0" chain="yes" chaindist="1.0,0" enable="true">
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_02" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_02" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_02" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="wave-03" mode="abca" range="3.0" chain="yes" chaindist="1.0,0" enable="true">
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_03" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_03" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_03" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="sand-01" mode="abca" range="3.0" chain="yes" chaindist="1.0,0" enable="true">
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="sand" pose="sand_01" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="sand" pose="sand_01" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="sand" pose="sand_01" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="coral-01" mode="abca" range="3.0" enable="true">
+      <emmitor spos="0,0.01,4" range="0,0.05, 0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0.3,0.02,4" range="0,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0.7,0.03,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="1.0,0.04,4" range="0,0.04,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="1.7,0.014,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="2.0,0.015,4" range="0,0.12,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="2.3,0.014,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="2.8,0.014,4" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="light" mode="abc0" range="0">
+      <emmitor spos="0,0,5" range="0,0,0" follow="no">
+        <candidate spr="light" pose="stand" percent="100%"></candidate>
+      </emmitor>
+    </timeline>
+
+    <!--- add random fishes & pearl here -->
+    <timeline name="info" mode="abc0" range="0" enable="true">
+      <emmitor spos="0.32,0.78,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="label_title" pose="idle" percent="10" touch="true"></candidate>
+      </emmitor>
+      <emmitor spos="0.0,0.50,20" range="0,0,0" live="-1,0,2,1" speed="0" follow="no">
+        <candidate spr="info_dist_back" pose="idle" percent="10" touch="false"></candidate>
+      </emmitor>
+      <emmitor spos="0.0,0.50,20" range="0,0,0" live="-1,0,2,1" speed="0" follow="no">
+        <candidate spr="label_dist_last" pose="idle" percent="10" touch="false"></candidate>
+      </emmitor>
+      <emmitor spos="0.67,0.53,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate pat="ui/prepare_text_7_number.layout" pose="0" percent="10" gname="dist_last" ></candidate>
+      </emmitor>
+      <emmitor spos="0.0,0.4,20" range="0,0,0" live="-1,0,2,1" speed="0" follow="no">
+        <candidate spr="label_dist_max" pose="idle" percent="10" touch="false"></candidate>
+      </emmitor>
+      <emmitor spos="0.68,0.41,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate pat="ui/prepare_text_7_number.layout" pose="0" percent="10" gname="dist_max" ></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="prepare_chars" mode="abc0" range="0" enable="true">
+      <emmitor spos="0.35,0.41,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="player" pose="floating" percent="10" gname="prepare_player" ></candidate>
+      </emmitor>
+      <emmitor spos="0.142,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="whale" pose="swim" percent="10" gname="prepare_whale" ></candidate>
+      </emmitor>
+      <emmitor spos="0.142,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="bubble" pose="ellipse_whale" percent="10" gname="prepare_bubble_whale" ></candidate>
+      </emmitor>
+      <emmitor spos="0.142,0.51,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="dolphin" pose="swim" percent="10" gname="prepare_dolphin" ></candidate>
+      </emmitor>
+      <emmitor spos="0.142,0.51,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="bubble" pose="ellipse_dolphin" percent="10" gname="prepare_bubble_dolphin" ></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="prepare_test" mode="abc0" range="0" enable="true">
+      <emmitor spos="0.15,0.02,16" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate pat="env/grass_02_1.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="0.05,0.06,16" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate pat="env/grass_03_1.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="0.45,0.03,16" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate pat="env/grass_02_2.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="0.59,0.03,16" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="grass" pose="grass_06" percent="10" ></candidate>
+      </emmitor>
+      <!--emmitor spos="0.55,0.26,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="missle_boom" pose="stand" percent="10" gname="prepare_cloud_01_01" ></candidate>
+      </emmitor>
+      <emmitor spos="0.35,0.66,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="missle" pose="m1_fly" percent="10" gname="prepare_cloud_01_01" ></candidate>
+      </emmitor>
+      <emmitor spos="0.55,0.26,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="cloud" pose="cloud_01_01" percent="10" gname="prepare_cloud_01_01" ></candidate>
+      </emmitor>
+      <emmitor spos="0.54,0.26,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="cloud" pose="cloud_01_02" percent="10" gname="prepare_cloud_01_01" ></candidate>
+      </emmitor>
+      <emmitor spos="0.55,0.25,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="cloud" pose="cloud_01_01" percent="10" gname="prepare_cloud_01_01" ></candidate>
+      </emmitor>
+      <emmitor spos="0.86,0.32,21" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="cloud" pose="cloud_01_02" percent="10" gname="prepare_cloud_01_02" ></candidate>
+      </emmitor-->
+      <!--emmitor spos="0.44,0.26,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="blocker-01" pose="stand" percent="10" gname="prepare_blocker-01" ></candidate>
+      </emmitor>
+      <emmitor spos="0.55,0.26,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="blocker-02" pose="stand" percent="10" gname="prepare_blocker-02" ></candidate>
+      </emmitor>
+      <emmitor spos="0.86,0.32,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="blocker-03" pose="stand" percent="10" gname="prepare_blocker-03" ></candidate>
+      </emmitor-->
+      <!--emmitor spos="0.77,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="blocker-04" pose="stand" percent="10" gname="prepare_blocker-04" ></candidate>
+      </emmitor>
+      <emmitor spos="0.88,0.31,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="blocker-05" pose="stand" percent="10" gname="prepare_blocker-05" ></candidate>
+      </emmitor-->
+    </timeline>
+    <timeline name="prepare_buttons" mode="abc0" range="0" enable="true">
+      <!--emmitor spos="0.95,0.935,20" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="button_music" pose="on" percent="10" touch="true"></candidate>
+      </emmitor-->
+      <emmitor spos="0.92,0.935,20" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="button_sound" pose="on" percent="10" touch="true"></candidate>
+      </emmitor>
+      <!--emmitor spos="0.0,0.38,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="button_shop" pose="idle" percent="10" touch="true"></candidate>
+      </emmitor-->
+      <emmitor spos="0.0,0.15,20" range="0,0,0" live="-1,-1,3,3" speed="0" follow="no">
+        <candidate spr="button_play" pose="idle" percent="10" touch="true"></candidate>
+      </emmitor>
+    </timeline>
+    <layer id="game.prepare.quit">
+      <machine ref="game/prepare/game.layer.prepare.quit.ai"></machine>
+      <timeline name="prepare_quit_dialog" mode="abc0" range="0" enable="false">
+        <emmitor spos="0.5,0.5,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="panel_black" pose="stand" percent="10"></candidate>
+        </emmitor>
+        <emmitor spos="0.5,0.5,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="panel_quit" pose="stand" percent="10"></candidate>
+        </emmitor>
+        <emmitor spos="0.42,0.45,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="button_yes" pose="stand" percent="10" touch="true"></candidate>
+        </emmitor>
+        <emmitor spos="0.58,0.45,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="button_no" pose="stand" percent="10" touch="true"></candidate>
+        </emmitor>
+        <!--emmitor spos="0.54,0.46,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="button_music" pose="on" percent="10" touch="true"></candidate>
+        </emmitor-->
+      </timeline>
+    </layer>
+  </layer>
+  <layer id="game.play">
+    <settings>
+      <!--视角校正速度，秒，一般0.2较合适-->
+      <key name="view_adj" float="0.03" />
+      <!--玩家位置，屏幕百分比，因为视角滞后，这个值和玩家速度有关-->
+      <key name="player_x" float="22%" />
+
+      <key name="score" float="10" />
+      <key name="score_max_count" float="10" />
+
+      <key name="distance_in_percent" float="12%" />
+      
+      <key name="traceline_seed" int="3746287" />
+      <key name="traceline_left" float="0.5" />
+      <key name="traceline_top" float="0.8" />
+      <key name="traceline_bottom" float="0.2" />
+      <key name="traceline_node_density" float="0.25" />
+      <key name="traceline_node_rand_range" float="0.01" />
+      <key name="traceline_point_density" float="0.15" />
+      <key name="traceline_yseg_max" int="5" />
+      <key name="traceline_yseg_range" int="3" />
+
+      <key name="traceline_coin2pearl" int="9" />
+      <key name="traceline_blocker_k" float="0.15" />
+      <key name="traceline_blocker_dy_percent_from_center" float="0.08" />
+      <key name="traceline_block_density" float="0.8" />
+      <key name="traceline_dolphin_density" float="2.1" />
+      <key name="traceline_whale_density" float="2.4" />
+
+      <key name="traceline_point_line" float="2.2" />
+      <key name="traceline_point_gap" float="0.8" />
+      <key name="traceline_point_line_delta" float="0.6" />
+      <key name="traceline_point_gap_delta" float="0.2" />
+    </settings>
+    <machine ref="game/play/game.layer.play.ai"></machine>
+
+    <timeline name="back" mode="abc0" range="0" enable="true">
+      <emmitor spos="0,0,1" range="0,0,0" follow="no">
+        <candidate spr="sea" pose="stand" percent="100%"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="wave-01" mode="abca" range="3.0" chain="yes" chaindist="1.0,0"  enable="true">
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_01" dname="w1" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_01" dname="w2" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_01" dname="w3" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="wave-02" mode="abca" range="3.0" chain="yes" chaindist="1.0,0" enable="true">
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_02" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_02" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_02" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="wave-03" mode="abca" range="3.0" chain="yes" chaindist="1.0,0" enable="true">
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_03" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_03" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="wave" pose="wave_03" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="background" mode="abca" range="3.0" chain="yes" chaindist="1.0,0" enable="true">
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="background" pose="land" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="background" pose="land" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,2" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="background" pose="land" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="background_buiding" mode="abca" range="2.3" enable="true">
+      <emmitor spos="0.5,0.3,2" range="0,0.05, 0" live="0,0,3,1" speed="0">
+        <candidate spr="background" pose="building" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="sand-01" mode="abca" range="3.0" chain="yes" chaindist="1.0,0" enable="true">
+      <emmitor spos="0,0,3" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="sand" pose="sand_01" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,3" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="sand" pose="sand_01" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0,0,3" range="0,0,0" live="0,0,3,1" speed="0">
+        <candidate spr="sand" pose="sand_01" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="coral-01" mode="abca" range="3.0" enable="true">
+      <emmitor spos="0,0.01,23" range="0,0.05, 0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0.3,0.02,23" range="0,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0.7,0.03,23" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="1.0,0.04,23" range="0,0.04,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="1.7,0.014,23" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_01" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="2.0,0.015,23" range="0,0.12,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="2.3,0.014,23" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_03" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_05" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="2.8,0.014,23" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="coral" pose="coral_04" percent="10"></candidate>
+        <candidate spr="coral" pose="coral_02" percent="10"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="grass-01" mode="abca" range="3.0" enable="true">
+      <emmitor spos="0,0.01,22" range="0,0.05, 0" live="0,0,3,1" speed="0">
+        <candidate pat="env/grass_02_1.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="0.2,0.02,22" range="0,0.05,0" live="0,0,3,1" speed="0">
+        <candidate pat="env/grass_03_1.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="0.4,0.03,17" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate pat="env/grass_03_2.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="0.7,0.04,17" range="0,0.04,0" live="0,0,3,1" speed="0">
+        <candidate pat="env/grass_02_3.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="1.0,0.014,22" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate pat="env/grass_02_2.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="1.1,0.015,22" range="0,0.12,0" live="0,0,3,1" speed="0">
+        <candidate pat="env/grass_03_1.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="1.5,0.014,22" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate pat="env/grass_03_3.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="1.8,0.014,17" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="grass" pose="grass_06" percent="10" ></candidate>
+        <candidate spr="grass" pose="grass_02" percent="10" ></candidate>
+        <candidate pat="env/grass_02_1.layout" percent="10" ></candidate>
+        <candidate pat="env/grass_02_3.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="2.2,0.014,22" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="grass" pose="grass_01" percent="10" ></candidate>
+        <candidate spr="grass" pose="grass_02" percent="10" ></candidate>
+        <candidate spr="grass" pose="grass_05" percent="10" ></candidate>
+        <candidate pat="env/grass_03_1.layout" percent="10" ></candidate>
+        <candidate pat="env/grass_03_2.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="2.3,0.014,22" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="grass" pose="grass_01" percent="10" ></candidate>
+        <candidate pat="env/grass_02_1.layout" percent="10" ></candidate>
+        <candidate pat="env/grass_02_2.layout" percent="10" ></candidate>
+        <candidate pat="env/grass_03_2.layout" percent="10" ></candidate>
+        <candidate pat="env/grass_03_1.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="2.6,0.014,17" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="grass" pose="grass_02" percent="10" ></candidate>
+        <candidate pat="env/grass_03_1.layout" percent="10" ></candidate>
+        <candidate pat="env/grass_03_2.layout" percent="10" ></candidate>
+        <candidate pat="env/grass_03_3.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="2.8,0.014,22" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="grass" pose="grass_03" percent="10" ></candidate>
+        <candidate pat="env/grass_02_2.layout" percent="10" ></candidate>
+        <candidate pat="env/grass_03_2.layout" percent="10" ></candidate>
+      </emmitor>
+      <emmitor spos="2.9,0.014,17" range="0.1,0.05,0" live="0,0,3,1" speed="0">
+        <candidate spr="grass" pose="grass_05" percent="10" ></candidate>
+        <candidate pat="env/grass_03_2.layout" percent="10" ></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="light" mode="abc0" range="0">
+      <emmitor spos="0,0,5" range="0,0,0" follow="no">
+        <candidate spr="light" pose="stand" percent="100%"></candidate>
+      </emmitor>
+    </timeline>
+
+    <timeline name="player" mode="abc0" range="0" enable="false">
+      <emmitor spos="0,0,18" range="0,0,0">
+        <candidate spr="player" pose="prepare" percent="100%"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="play_title_bar" mode="abc0" range="0" enable="false">
+      <emmitor spos="0.0,1.0,7" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="panel_black" pose="float" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0.05,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="label_distance" pose="stand" percent="10" gname="lab_dist"></candidate>
+      </emmitor>
+      <emmitor spos="0.10,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate pat="ui/text_6_number.layout" pose="0" percent="10" gname="dist" ></candidate>
+      </emmitor>
+      <!--emmitor spos="0.30,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="label_state" pose="stand" percent="10" gname="lab_state"></candidate>
+      </emmitor-->
+      <emmitor spos="0.32,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate pat="ui/indicator_score.layout" percent="10" gname="score"></candidate>
+      </emmitor>
+      <emmitor spos="0.92,0.935,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="button_pause" pose="stand" percent="10" touch="true"></candidate>
+      </emmitor>
+    </timeline>
+    <timeline name="gameover_bar" mode="abc0" range="0" enable="false">
+      <emmitor spos="0.5,0.5,29" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="panel_black" pose="gameover_fadein" percent="10"></candidate>
+      </emmitor>
+      <emmitor spos="0.5,0.5,29" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+        <candidate spr="label_gameover" pose="gameover_fadein" percent="10" gname="lab_gameover"></candidate>
+      </emmitor>
+    </timeline>
+    <layer id="game.play.pause">
+      <machine ref="game/play/game.layer.play.pause.ai"></machine>
+      <timeline name="play_pause_dialog" mode="abc0" range="0" enable="false">
+        <emmitor spos="0.5,0.5,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="panel_black" pose="stand" percent="10"></candidate>
+        </emmitor>
+        <emmitor spos="0.5,0.5,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="panel_pause" pose="stand" percent="10"></candidate>
+        </emmitor>
+        <emmitor spos="0.37,0.45,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="button_sound" pose="on" percent="10" touch="true"></candidate>
+        </emmitor>
+        <emmitor spos="0.50,0.45,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="button_restart" pose="stand" percent="10" touch="true"></candidate>
+        </emmitor>
+        <emmitor spos="0.62,0.45,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="button_resume" pose="stand" percent="10" touch="true"></candidate>
+        </emmitor>
+        <!--emmitor spos="0.54,0.46,100" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+          <candidate spr="button_music" pose="on" percent="10" touch="true"></candidate>
+        </emmitor-->
+      </timeline>
+    </layer>
+  </layer>
+</layer>

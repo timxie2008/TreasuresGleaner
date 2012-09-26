@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="items/items.plist" tex="items/items.png"></texture>
+  <mesh name="missle_01">
+    <frame src="missle_01_01.png"></frame>
+    <frame src="missle_01_02.png"></frame>
+  </mesh>
+  <mesh name="missle_02">
+    <frame src="missle_02_01.png"></frame>
+    <frame src="missle_02_02.png"></frame>
+  </mesh>
+  <settings>
+    <key name="deadpose" string="dismiss"></key>
+  </settings>
+  <pose name="m1_fly" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="missle_01" dt="0.2"></mesh>
+      <modifier mode="abcb">
+        <key time="0000" yardscalex="13%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="m2_fly" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="missle_02" dt="0.13"></mesh>
+      <modifier mode="abcb">
+        <key time="0000" yardscalex="11%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="dismiss" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="{last}" dt="0.13"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="18%" alpha="0.8"></key>
+        <key time="0100" yardscalex="38%" alpha="0.2"></key>
+        <key time="0200" yardscalex="18%" alpha="0.01"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>
