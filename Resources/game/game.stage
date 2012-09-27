@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <stage>
   <settings>
-    <key name="language" val="en" />
+    <key name="language" string="en" />
   </settings>
 
   <!-- env -->
@@ -27,16 +27,19 @@
   <model id="missle_boom" src="items/missle_boom.spr"></model>
 
   <!-- ui -->
-  <model id="label_title" src="ui/ui_label_title.spr" lang="ch"></model>
+  <model id="label_title" src="ui/ui_label_title.spr" lang="cn"></model>
   <model id="label_title" src="ui/ui_label_title_en.spr" lang="en"></model>
 
   <model id="info_dist_back" src="ui/ui_info_dist_back.spr"></model>
-  <model id="label_dist_last" src="ui/ui_label_dist_last.spr"></model>
-  <model id="label_dist_max" src="ui/ui_label_dist_max.spr"></model>
+  <model id="label_dist_last" src="ui/ui_label_dist_last.spr" lang="cn"></model>
+  <model id="label_dist_last" src="ui/ui_label_dist_last_en.spr" lang="en"></model>
+  <model id="label_dist_max" src="ui/ui_label_dist_max.spr" lang="cn"></model>
+  <model id="label_dist_max" src="ui/ui_label_dist_max_en.spr" lang="en"></model>
   <model id="text_yellow" src="ui/text_yellow.spr"></model>
   <model id="button_music" src="ui/ui_button_music.spr"></model>
   <model id="button_sound" src="ui/ui_button_sound.spr"></model>
-  <model id="button_play" src="ui/ui_button_play.spr"></model>
+  <model id="button_play" src="ui/ui_button_play.spr" lang="cn"></model>
+  <model id="button_play" src="ui/ui_button_play_en.spr" lang="en"></model>
   <!--model id="button_shop" src="ui/ui_button_shop.spr"></model-->
   <model id="ui_hand" src="ui/ui_hand.spr"></model>
   <model id="ui_hand_spot" src="ui/ui_hand_spot.spr"></model>
@@ -61,8 +64,10 @@
 
   <!-- quit -->
   <model id="panel_quit" src="ui/ui_panel_quit.spr"></model>
-  <model id="button_yes" src="ui/ui_button_yes.spr"></model>
-  <model id="button_no" src="ui/ui_button_no.spr"></model>
+  <model id="button_yes" src="ui/ui_button_yes.spr" lang="cn"></model>
+  <model id="button_yes" src="ui/ui_button_yes_en.spr" lang="en"></model>
+  <model id="button_no" src="ui/ui_button_no.spr" lang="cn"></model>
+  <model id="button_no" src="ui/ui_button_no_en.spr" lang="en"></model>
 
   <music id="music_back_1" src="audio/music_back_1.ogg" duration="14" volume="0.5"></music>
 
@@ -81,6 +86,6 @@
   <sound id="ride_whale" src="audio/ride_whale.ogg" />
   <sound id="pop_bubble" src="audio/bubble.ogg" />
 
-  <layer id="game" ref="game/game.layer">
-  </layer>
+  <layer id="game" ref="game/game.layer" />
+
 </stage>
