@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="ui/ui.plist" tex="ui/ui.png"></texture>
+  <mesh name="ui_hand">
+    <frame src="hand.png"></frame>
+  </mesh>
+  <settings>
+    <!--key name="deadpose" string="dismiss"></key-->
+  </settings>
+  <pose name="stand" collid="0.99,0.99">
+    <part name="body">
+      <mesh ref="ui_hand" dt="0.2"></mesh>
+      <modifier mode="abcb">
+        <key time="000" apos="0.15,0.85"  yardscaley="15.3%" alpha="70%"></key>
+        <key time="100" apos="0.14,0.865" yardscaley="15.3%" alpha="70%"></key>
+        <key time="200" apos="0.13,0.88"  yardscaley="15.3%" alpha="70%"></key>
+        <key time="300" apos="0.12,0.895" yardscaley="15.3%" alpha="70%"></key>
+        <key time="400" apos="0.11,0.91"  yardscaley="15.3%" alpha="70%"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>
