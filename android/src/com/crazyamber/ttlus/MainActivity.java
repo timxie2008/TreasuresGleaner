@@ -100,7 +100,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		UmengUpdateAgent.update(this);
 
 		String da= MobclickAgent.getConfigParams(this, "da");
-		_fda = da.equals("T") | da.equals("Y");
+		_fda = da.equals("true");
 	}
 
 	private void _initAD()
