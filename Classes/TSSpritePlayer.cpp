@@ -592,6 +592,16 @@ void TSSpritePlayer::onUpdate()
 	else _HandleState(_state, floating, SF_Update);
 }
 
+void TSSpritePlayer::pause()
+{
+}
+
+void TSSpritePlayer::resume(float paused)
+{
+	_timeTouchEvent += paused;
+	_onTouchFalling();
+}
+
 void TSSpritePlayer::_onTouchClimbing()
 {
 	_direction = +1;

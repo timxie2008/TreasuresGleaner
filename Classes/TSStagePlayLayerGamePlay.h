@@ -59,6 +59,8 @@ protected:
 	int _nRiderDolphinState;
 	int _nRiderWhaleState;
 
+	float _missleline_density;
+	float _missleline_begin;
 	CCPoint _ptLastMissle;
 
 	CASprite* _psprDolphin;
@@ -71,6 +73,13 @@ protected:
 	void _updateStageOffset();
 	void _checkBlockers();
 	void _checkRewards();
+
+	int _nHelpLife;
+	CASprite* _psprHand;
+	CASprite* _psprHandSpot;
+
+	void _updateHelper();
+	void _removeHelper();
 
 	TSSpriteCommon* _createCommonSprite(const char* name, const char* state, const CCPoint& pos, bool autoremove = false, float scale = 1.0f);
 	TSSpriteBlocker* _createBlockerSprite(const char* name, const char* state, const CCPoint& pos, bool autoremove = false, float scale = 1.0f);
@@ -85,7 +94,7 @@ public:
 	virtual void onExit();
 
 	virtual void pause(bool bsub = false);
-	virtual void resume(bool bsub = false);
+	virtual float resume(bool bsub = false);
 
 	virtual void onEvent(CAEvent* pevt);
 

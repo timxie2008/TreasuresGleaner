@@ -32,6 +32,8 @@
   <model id="button_sound" src="ui/ui_button_sound.spr"></model>
   <model id="button_play" src="ui/ui_button_play.spr"></model>
   <!--model id="button_shop" src="ui/ui_button_shop.spr"></model-->
+  <model id="ui_hand" src="ui/ui_hand.spr"></model>
+  <model id="ui_hand_spot" src="ui/ui_hand_spot.spr"></model>
 
   <!-- play ui -->
   <model id="label_distance" src="ui/ui_label_distance.spr"></model>

@@ -97,6 +97,9 @@ public:
 
     virtual void release(void);
 
+	void pause();
+	void resume(float paused);
+
 	virtual bool isCollidWith(CASprite* pspr, bool bView = true);
 	void ride(const string& rider);
 	//void setSpeedInfo(float fPlayerSpeedInPixel, float fPlayerSpeedAcc, float fPlayerSpeedMax, float _fPlayerSpeedJumpPower);

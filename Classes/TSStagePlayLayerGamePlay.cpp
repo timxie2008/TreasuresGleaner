@@ -26,6 +26,16 @@ TSStagePlayLayerGamePlay::TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer
 	_fOffsetDolphin = 0;
 	_fOffsetWhale = 0;
 
+	_missleline_density = 0;
+	_missleline_begin = 0;
+
+	_psprDolphin = null;
+	_psprWhale = null;
+
+	_nHelpLife = -1;
+	_psprHand = null;
+	_psprHandSpot = null;
+
 	_nRiderWhaleState = _nRiderDolphinState = 0;
 
 	memset(_psprIndicators, 0, sizeof(_psprIndicators));
@@ -183,6 +193,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	if (0) ;
 	else if (CAString::startWith(fname, "root.idle"))
 	{
+		_removeHelper();
 		//this->setVisible(false);
 		_NullGetters();
 		removeAllTimelines();
@@ -241,10 +252,23 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 
 		_nCollected = 0;
 
+		_missleline_begin = _settings.getFloat("missleline_begin");		CAWorld::percent2view(_missleline_begin, true);
+		_missleline_density = _settings.getFloat("missleline_density");	CAWorld::percent2view(_missleline_density, true);
 		_ptLastMissle = _ptLastBlocker = CCPointZero;
 
 		_traceline.init(seed, left, top, bottom, node_density, node_rand_range, point_density, seg_max, seg_range);
 		_traceline.setSegPoints(point_line, point_line_delta, point_gap, point_gap_delta);
+
+		_removeHelper();
+
+		int run = CAUserData::sharedUserData().getInteger("run");
+		CAUserData::sharedUserData().setInteger("run", run + 1);
+		_nHelpLife = -1;
+		if (run < 3)
+		{
+			_Info("helper enable");
+			_nHelpLife = 11;
+		}
 	}
 	else if (CAString::startWith(fname, "root.fadein"))
 	{
@@ -291,6 +315,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		pl->setConditionResult("root.idle@user.show", true);
 		_pstage->setFocus(pl);
 		pause();
+		_player()->pause();
 	}
 	else if (CAString::startWith(fname, "root.restart"))
 	{
@@ -307,7 +332,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	{
 		//wait plPause's state in idle
 		_pstage->setFocus(this);
-		resume();
+		float diff = resume();
+		_player()->resume(diff);
 	}
 	else if (CAString::startWith(fname, "root.showover"))	
 	{
@@ -327,7 +353,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		//transite to idle
 		//this->removeAllSpritesByGroupName("pearl");
 		//this->removeAllSpritesByGroupName("blocker");
-
+		_removeHelper();
 		this->_playerParent->onEvent(new CAEventCommand(this, "play.finished"));
 	}
 	else ;
@@ -375,11 +401,12 @@ void TSStagePlayLayerGamePlay::pause(bool bsub)
 	CAStageLayer::pause(bsub);
 }
 
-void TSStagePlayLayerGamePlay::resume(bool bsub)
+float TSStagePlayLayerGamePlay::resume(bool bsub)
 {
-	CAStageLayer::resume(bsub);
+	float paused = CAStageLayer::resume(bsub);
 	showTimeline("play_ui_buttons", true);
 	_button_pause()->setState(STATE_Stand);
+	return paused;
 }
 
 void TSStagePlayLayerGamePlay::onEnter()
@@ -675,12 +702,45 @@ void TSStagePlayLayerGamePlay::_updateStageOffset()
 	}
 }
 
+void TSStagePlayLayerGamePlay::_updateHelper()
+{
+	if (null == _psprHand && null == _psprHandSpot)
+	{
+		CCPoint pos = ccp(0.7f, 0.5f);
+		CAWorld::percent2view(pos);
+
+		_psprHand = _createCommonSprite("ui_hand", "stand", pos, false, 1.0f);
+		_psprHandSpot = _createCommonSprite("ui_hand_spot", "stand", pos, false, 1.0f);
+		_psprHand->setFollowCamera(false);
+		//_psprHand->setVertexZ(_player()->getVertexZ() + 1.0f);
+		_psprHandSpot->setFollowCamera(false);
+		//_psprHandSpot->setVertexZ(_player()->getVertexZ() + 1.0f);
+		this->addSprite(_psprHand);
+		this->addSprite(_psprHandSpot);
+	}
+}
+
+void TSStagePlayLayerGamePlay::_removeHelper()
+{
+	if (null != _psprHand && null != _psprHandSpot)
+	{
+		this->removeSprite(_psprHand);
+		this->removeSprite(_psprHandSpot);
+		_psprHand = _psprHandSpot = null;
+	}
+}
+
 void TSStagePlayLayerGamePlay::onUpdate() 
 {
 	CAStageLayer::onUpdate();
 	string fname = this->getCurrentState()->getLeafState()->getFullName();
-	if (CAString::startWith(fname, "root.running"))
+	if ("root.running" == fname)
 	{
+		if (_nHelpLife > 0)
+		{
+			_updateHelper();
+		}
+
 		int distance = _getDistance();
 		_player()->setDistance4CalculatingHSpeed((float)distance);
 
@@ -772,10 +832,10 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			//random some missles
 			int nsegs = _traceline.getSegmentsCount();
 			{
-				float _missleline_density = 5 * size.width;
-				float _missle_speed_01 = -0.65f * size.width;
+				//float _missleline_density = 5 * size.width;
+				float _missle_speed_01 = -0.85f * size.width;
 
-				if (pt.x > _ptLastMissle.x + _missleline_density)
+				if (pt.x > _ptLastMissle.x + _missleline_density && pt.x > _missleline_begin)
 				{
 					_ptLastMissle = pt;
 					//create a missle
@@ -786,12 +846,12 @@ void TSStagePlayLayerGamePlay::onUpdate()
 					pspr->setFollowCamera(true);
 					this->addSprite(pspr);
 #else
-					int m, count = 1 + (int)(CAUtils::Rand() * 2.0f);
+					int m, count = 1 + (int)(CAUtils::Rand() * 3.0f);
 					for (m = 0; m < count; m++)
 					{
 						CCPoint posM;
 						posM = _player()->getPos();
-						posM.x += size.width * (3.0f + CAUtils::Rand() * 0.5f);
+						posM.x += size.width * (2.0f + m * 0.6f + CAUtils::Rand() * 0.2f);
 						posM.y += m * size.height / 7.0f;
 						if (posM.y > _traceline.bottom() * size.height && posM.y < _traceline.top() * size.height)
 						{
@@ -815,7 +875,7 @@ void TSStagePlayLayerGamePlay::onUpdate()
 			}
 
 			//random some blockers
-			if (nsegs <= 2)
+			if (nsegs <= 4)
 			{
 				continue;
 			}
@@ -904,6 +964,15 @@ void TSStagePlayLayerGamePlay::onEvent(CAEvent* pevt)
 			{
 			case kTouchStateGrabbed:
 				{
+					if (_nHelpLife > 0)
+					{
+						_nHelpLife--;
+					}
+					if (_nHelpLife == 0)
+					{
+						_removeHelper();
+						_nHelpLife--;
+					}
 				}
 				break;
 			case kTouchStateUngrabbed:
