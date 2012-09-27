@@ -2,7 +2,7 @@
 <sprite version="1.0">
   <texture src="ui/ui.plist" tex="ui/ui.png"></texture>
   <mesh name="info_dist_last">
-    <frame src="dist_lab_last.png"></frame>
+    <frame src="dist_lab_last_en.png"></frame>
   </mesh>
   <settings>
     <!--key name="deadpose" string="dismiss"></key-->
@@ -19,11 +19,11 @@
     <part name="body">
       <mesh ref="info_dist_last" dt="1000"></mesh>
       <modifier mode="abc0" timescale="1.0" timeoffset="0">
-        <key time="000" apos="1.0,0.5" yardscaley="08%"  yardpos="-0.80,0.0" rot="-7"></key>
-        <key time="240" apos="1.0,0.5" yardscaley="08%"  yardpos="-0.30,0.0" rot="-7"></key>
-        <key time="280" apos="1.0,0.5" yardscaley="08%"  yardpos="0.11,0.0"  rot="-7"></key>
+        <key time="000" apos="1.0,0.5" yardscaley="07%"  yardpos="-0.80,0.0" rot="-7"></key>
+        <key time="240" apos="1.0,0.5" yardscaley="07%"  yardpos="-0.30,0.0" rot="-7"></key>
+        <key time="280" apos="1.0,0.5" yardscaley="07%"  yardpos="0.11,0.0"  rot="-7"></key>
         <key time="320" apos="1.0,0.5" yardscaley="07%"  yardpos="0.32,0.0"  rot="-7"></key>
-        <key time="360" apos="1.0,0.5" yardscaley="07%"  yardpos="0.63,0.01" rot="-7"></key>
+        <key time="360" apos="1.0,0.5" yardscaley="07%"  yardpos="0.63,0.01"  rot="-7"></key>
       </modifier>
     </part>
   </pose>
