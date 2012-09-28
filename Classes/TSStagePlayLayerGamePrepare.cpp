@@ -295,11 +295,11 @@ void TSStagePlayLayerGamePrepare::onUpdate()
 		{
 			char szNumber[32];
 
-			sprintf(szNumber, "%dm", _score_last);
+			sprintf(szNumber, "%d", _score_last);
 			_dist_last.setText(szNumber);
 			_dist_last.onUpdate();
 
-			sprintf(szNumber, "%dm", _score_max);
+			sprintf(szNumber, "%d", _score_max);
 			_dist_max.setText(szNumber);
 			_dist_max.onUpdate();
 		}
