@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <stage>
   <settings>
-    <key name="language" string="cn" />
+    <key name="language" string="en" />
   </settings>
 
   <!-- env -->
