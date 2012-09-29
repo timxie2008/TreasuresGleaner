@@ -63,8 +63,8 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 				if (val.equals("game.prepare") || val.equals("game.play"))
 				{
 					//show ad
-					MobclickAgent.onEvent(MainActivity.this, val);
 				}
+				MobclickAgent.onEvent(MainActivity.this, val);
 			}
 			else if (evt.equals("play_state"))
 			{
@@ -101,7 +101,8 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		MobclickAgent.onError(this);
 		MobclickAgent.updateOnlineConfig(this);
 
-		com.umeng.common.Log.LOG = true;
+		com.umeng.common.Log.LOG = false;
+		
 		UmengUpdateAgent.setUpdateOnlyWifi(false); // 目前我们默认在Wi-Fi接入情况下才进行自动提醒。如需要在其他网络环境下进行更新自动提醒，则请添加该行代码
 		UmengUpdateAgent.setUpdateAutoPopup(false);
 		UmengUpdateAgent.setUpdateListener(_updateListener);
