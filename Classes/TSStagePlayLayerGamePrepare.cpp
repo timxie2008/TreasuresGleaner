@@ -120,6 +120,8 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.fadein"))
 	{
+		postGameEvent("ui_enter", "game.prepare");
+
 		_InitGetters();
 
 		//disable music for testing 

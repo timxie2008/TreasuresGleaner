@@ -35,6 +35,11 @@ static void _test()
 #define DEVICE_WIDTH	(int)(_DEVICE_WIDTH * _DEVICE_SCALE)
 #define DEVICE_HEIGHT	(int)(_DEVICE_HEIGHT * _DEVICE_SCALE)
 
+void postGameEvent(const char* key, const char* value)
+{
+	_Info("Game Event:%s=%s", key, value);
+}
+
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                        HINSTANCE hPrevInstance,
                        LPTSTR    lpCmdLine,

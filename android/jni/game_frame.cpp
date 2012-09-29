@@ -21,6 +21,28 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved)
     return JNI_VERSION_1_4;
 }
 
+void postGameEvent(const char* key, const char* value)
+{
+	if (null == key || null == value)
+	{
+		return;
+	}
+
+	JniMethodInfo t;
+	if (JniHelper::getStaticMethodInfo(t
+		, "org/crazyamber/ttlus/GameEventHandler"
+		, "onJNIEvent"
+		, "(Ljava/lang/String;Ljava/lang/String;)V"))
+	{
+		jstring stringArg1 = t.env->NewStringUTF(key);
+		jstring stringArg2 = t.env->NewStringUTF(value);
+		t.env->CallStaticVoidMethod(t.classID, t.methodID, stringArg1, stringArg2);
+		t.env->DeleteLocalRef(stringArg1);
+		t.env->DeleteLocalRef(stringArg2);
+		t.env->DeleteLocalRef(t.classID);
+	}
+}
+
 void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv*  env, jobject thiz, jint w, jint h)
 {
     if (!CCDirector::sharedDirector()->getOpenGLView())

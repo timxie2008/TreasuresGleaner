@@ -202,6 +202,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	else if (CAString::startWith(fname, "root.create"))
 	{
 		//_Assert(0 == this->_getNamedSpritesCount());
+		postGameEvent("ui_enter", "game.play");
 
 		strings excludes;
 		excludes.push_back("gameover_bar");
@@ -304,12 +305,15 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.running"))
 	{
+		postGameEvent("play_state", "running");
 		//set player swim speed to normal
 		_player()->setState(PS_Swiming);
 		_button_pause()->setVisible(true);
 	}
 	else if (fname == "root.pause")
 	{
+		postGameEvent("play_state", "pause");
+
 		CAStageLayer* pl = this->_getSubLayer("game.play.pause");
 		_Assert(pl);
 		pl->setConditionResult("root.idle@user.show", true);
@@ -319,6 +323,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.restart"))
 	{
+		postGameEvent("play_state", "restart");
 		//wait plPause's state in idle
 		//_pstage->setFocus(this);
 		resume();
@@ -330,6 +335,8 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.resume"))
 	{
+		postGameEvent("play_state", "resume");
+		postGameEvent("play_state", "running");
 		//wait plPause's state in idle
 		_pstage->setFocus(this);
 		float diff = resume();
@@ -337,7 +344,23 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	}
 	else if (CAString::startWith(fname, "root.showover"))	
 	{
-		CAUserData::sharedUserData().setInteger("last_score", this->_getDistance());
+		//postGameEvent("play_state", "gameover");
+
+		int dist = this->_getDistance();
+		CAUserData::sharedUserData().setInteger("last_score", dist);
+		
+		string score = "score_";
+		if (dist < 300)  score += "300";
+		else if (dist < 500)  score += "500";
+		else if (dist < 1000) score += "1000";
+		else if (dist < 1500) score += "1500";
+		else if (dist < 2000) score += "2000";
+		else if (dist < 3000) score += "3000";
+		else if (dist < 5000) score += "5000";
+		else score += "5000_";
+		
+		postGameEvent("play_state", score.c_str());
+
 		//show game over message
 		activeTimeline("gameover_bar");
 		_button_pause()->setVisible(false);

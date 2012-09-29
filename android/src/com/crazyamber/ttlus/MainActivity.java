@@ -53,6 +53,26 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	private AdsMogoLayout adsMogoLayoutCode;
 	private boolean _fda = false;
 
+	private GameEventHandler.GameEventListener _eventListener = new GameEventHandler.GameEventListener()
+	{
+		@Override
+		public void onEvent(String evt, String val)
+		{
+			if ("ui_enter" == evt)
+			{
+				if (val == "game.prepare" || val == "game.play")
+				{
+					//show ad
+					MobclickAgent.onEvent(MainActivity.this, val);
+				}
+			}
+			else if ("play_state" == evt)
+			{
+				MobclickAgent.onEvent(MainActivity.this, val);
+			}
+		}
+	};
+			
 	private UmengUpdateListener _updateListener = new UmengUpdateListener()
 	{
 		@Override
@@ -272,6 +292,8 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 
 			_initUMeng();
 			_initAD();
+			
+			GameEventHandler.setListener(_eventListener);
 		}
 		else
 		{

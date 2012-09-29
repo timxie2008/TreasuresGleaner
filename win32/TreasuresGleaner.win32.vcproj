@@ -728,18 +728,10 @@
 						>
 					</File>
 					<File
-						RelativePath="..\android\jni\src\jni_game_frame.cpp"
+						RelativePath="..\android\jni\game_frame.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
-							ExcludedFromBuild="true"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool

@@ -52,6 +52,8 @@ void TSStageLogoLayerMain::onEnter()
 	CAStageLayer::onEnter();
 
 	_setState(STATE_LOADING);
+
+	postGameEvent("ui_enter", "logo");
 }
 
 void TSStageLogoLayerMain::onUpdate() 
