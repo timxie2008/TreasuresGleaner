@@ -32,7 +32,7 @@ void postGameEvent(const char* key, const char* value)
 
 	JniMethodInfo t;
 	if (JniHelper::getStaticMethodInfo(t
-		, "org/crazyamber/ttlus/GameEventHandler"
+		, "com/crazyamber/ttlus/GameEventHandler"
 		, "onJNIEvent"
 		, "(Ljava/lang/String;Ljava/lang/String;)V"))
 	{
