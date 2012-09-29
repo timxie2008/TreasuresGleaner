@@ -49,7 +49,7 @@ void TSStagePlayLayerGame::onStateBegin(CAState* from, void* param)
 		_Assert(this->_getSubLayer("play")		->getCurrentState()->getFullName() == "root.idle");
 		_Assert(this->_getSubLayer("shop")		->getCurrentState()->getFullName() == "root.idle");
 
-		postGameEvent("ui_enter", "game");
+		//postGameEvent("ui_enter", "game");
 	}
 	else if (fname == "root.prepare")
 	{

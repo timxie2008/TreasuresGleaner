@@ -202,7 +202,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 	else if (CAString::startWith(fname, "root.create"))
 	{
 		//_Assert(0 == this->_getNamedSpritesCount());
-		postGameEvent("ui_enter", "game.play");
+		postGameEvent("ui_enter", "game_play");
 
 		strings excludes;
 		excludes.push_back("gameover_bar");
