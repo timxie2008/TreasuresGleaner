@@ -2,6 +2,8 @@ package com.crazyamber.ttlus;
 
 import java.util.HashMap;
 
+import android.util.Log;
+
 public class GameEventHandler
 {
 	public interface GameEventListener
@@ -22,6 +24,7 @@ public class GameEventHandler
 		{
 			_listener.onEvent(key,  val);
 		}
+		Log.d("gameevent", val);
 	}
 	public static Object getEvent(String key)
 	{

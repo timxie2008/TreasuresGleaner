@@ -28,6 +28,8 @@ void postGameEvent(const char* key, const char* value)
 		return;
 	}
 
+	LOGD("postGameEvent %s=%s", key, value);
+
 	JniMethodInfo t;
 	if (JniHelper::getStaticMethodInfo(t
 		, "org/crazyamber/ttlus/GameEventHandler"
@@ -40,6 +42,10 @@ void postGameEvent(const char* key, const char* value)
 		t.env->DeleteLocalRef(stringArg1);
 		t.env->DeleteLocalRef(stringArg2);
 		t.env->DeleteLocalRef(t.classID);
+	}
+	else
+	{
+		LOGD("can not get static function");
 	}
 }
 
