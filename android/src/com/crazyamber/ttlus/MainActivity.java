@@ -58,15 +58,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		@Override
 		public void onEvent(String evt, String val)
 		{
-			if (evt.equals("ui_enter"))
-			{
-				if (val.equals("game.prepare") || val.equals("game.play"))
-				{
-					//show ad
-				}
-				MobclickAgent.onEvent(MainActivity.this, val);
-			}
-			else if (evt.equals("play_state"))
+			if (evt.equals("play_state"))
 			{
 				MobclickAgent.onEvent(MainActivity.this, val);
 			}

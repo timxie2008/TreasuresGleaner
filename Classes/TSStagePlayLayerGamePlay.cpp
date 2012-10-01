@@ -15,7 +15,6 @@
 
 #define _STARS_WHALE	12
 #define _STARS_DOLPHIN	6
-#define _STARS_BLOCKER	5
 
 TSStagePlayLayerGamePlay::TSStagePlayLayerGamePlay(CAStage* pstage, CAStageLayer* playerParent) : CAStageLayer(pstage, playerParent)
 {
@@ -288,7 +287,7 @@ void TSStagePlayLayerGamePlay::onStateBegin(CAState* from, void* param)
 		_findNumberSprites("score", _psprIndicators, SIZE_OF_ARRAY(_psprIndicators));
 
 		_nCollected = 0;
-		this->_addCollected(_traceline_coin2pearl + 1);
+		//this->_addCollected(_traceline_coin2pearl + 1);
 
 		_pstage->setFocus(this);
 	}
@@ -525,7 +524,7 @@ void TSStagePlayLayerGamePlay::_addCollected(int c)
 			}
 			else if ((_player()->isRidding(PS_RidingDolphin) || !_player()->isRidding())
 				&&
-				(blackcount_now > _STARS_WHALE) 
+				(blackcount_now >= _STARS_WHALE) 
 				&&
 				x > _fOffsetWhale + _traceline_whale_density)
 			{
@@ -629,8 +628,8 @@ void TSStagePlayLayerGamePlay::_checkBlockers()
 		{
 			if (psprPlayer->isCollidWith(pspr))
 			{
+				int damage = pspr->getSettings().getInteger("damage", 16);
 				pspr->setState("dismiss");
-				int damage = 20;
 				_Info("missle HIT!!!");
 				this->stage()->playEffect("missle_boom");
 				_addCollected(-(damage*  _traceline_coin2pearl));

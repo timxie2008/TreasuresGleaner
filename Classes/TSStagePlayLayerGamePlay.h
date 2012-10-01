@@ -39,7 +39,7 @@ protected:
 	float _fDistanceInPixel;
 	int _getDistance();
 	
-	CASprite* _psprIndicators[18];
+	CASprite* _psprIndicators[16];
 	void _updateScoreBar();
 
 	TSTraceLine _traceline;
