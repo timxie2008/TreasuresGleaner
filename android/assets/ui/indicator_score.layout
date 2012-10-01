@@ -19,7 +19,8 @@
 
   <child name="15" ref="bubble"  xpos="0.28,0" pose="indicator" />
   <child name="16" ref="whale"   xpos="0.28,0" pose="indicator" />
-
+  <!--
   <child name="17" ref="pearl"   xpos="0.30,0" pose="indicator_white" />
   <child name="18" ref="pearl"   xpos="0.32,0" pose="indicator_white" />
+  -->
 </layout>

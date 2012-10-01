@@ -11,6 +11,7 @@
   </mesh>
   <settings>
     <key name="deadpose" string="dismiss"></key>
+    <key name="damage" int="16" />
   </settings>
   <pose name="m1_fly" collid="0.3,0.3">
     <part name="body">

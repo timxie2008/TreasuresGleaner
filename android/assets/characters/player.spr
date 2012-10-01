@@ -39,14 +39,9 @@
   <settings>
     <key name="player_speed_in_percent" float="40%" />
     <key name="player_speed_max_in_percent" float="150%" />
-    <key name="player_speed_acc_in_distance" float="0.05" />
+    <key name="player_speed_acc_in_distance" float="0.07" />
     <key name="player_speed_jump_power" float="1.05" />
 
-    <!--
-      falling: a = -global_g
-      jumping: a = -global_g
-      climbing:a = xxxx_a
-    -->
     <key name="climbing_v" float="0.81" />
     <key name="falling_a" float="1.65" />
     
@@ -78,8 +73,8 @@
     <key name="whale_hs_down" float="1.7" />
     <key name="whale_app_frames" float="4" />
 
-    <key name="speed_weight_dolphin" float="1.3" />
-    <key name="speed_weight_whale" float="1.45" />
+    <key name="speed_weight_dolphin" float="1.35" />
+    <key name="speed_weight_whale" float="1.65" />
 
     <!--碰撞区域定义-->
     <key name="collid" size="0.3,0.2" comment="default collid size" />
