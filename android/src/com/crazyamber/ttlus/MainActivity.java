@@ -30,7 +30,9 @@ import org.cocos2dx.lib.Cocos2dxRenderer;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.ConfigurationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -63,6 +65,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	private boolean _bEnableAD = true;
 	private boolean _bEnablePush = true;
 	private boolean _bEnableAppDownload = true;
+	private String _channel_id = "";
 	
 	private String _bytesToHex(byte[] data)
 	{
@@ -254,6 +257,16 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 
 	private void _initUMeng()
 	{
+		try
+		{
+			ApplicationInfo appInfo = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+			this._channel_id = appInfo.metaData.getString("UMENG_CHANNEL");
+		}
+		catch (Exception e)
+		{
+		
+		}
+		
 		MobclickAgent.setSessionContinueMillis(60000 * 10);
 		MobclickAgent.setDebugMode(false);
 		MobclickAgent.onError(this);
@@ -278,12 +291,43 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 
 		UmengUpdateAgent.update(this);
 
-		String ea = MobclickAgent.getConfigParams(this, "ea");
-		_bEnableAD = ea.equals("true");
-		String strEnablePush = MobclickAgent.getConfigParams(this, "ep");
-		_bEnablePush = strEnablePush.equals("true");
-		String strEnableAppDownload = MobclickAgent.getConfigParams(this, "ed");
-		_bEnableAppDownload = strEnableAppDownload.equals("true");
+		try
+		{
+			String config = MobclickAgent.getConfigParams(this, _channel_id);
+			if (null == config || config.length() <= 0)
+			{
+				config = MobclickAgent.getConfigParams(this, "all");
+			}
+			if (null != config)
+			{
+				String[] params = config.split(";");
+				for (String param : params)
+				{
+					String[] items = param.split("=");
+					if (items.length == 2)
+					{
+						if (items[0].equals("ea"))
+						{
+							_bEnableAD = !items[1].equals("false");
+						}
+						if (items[0].equals("ep"))
+						{
+							_bEnablePush = !items[1].equals("false");
+						}
+						if (items[0].equals("ed"))
+						{
+							_bEnableAppDownload = !items[1].equals("false");
+						}
+					}
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			_bEnableAD = true;
+			_bEnablePush = true;
+			_bEnableAppDownload = true;
+		}
 	}
 
 	private void _initAD()
