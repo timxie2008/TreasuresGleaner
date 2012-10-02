@@ -449,10 +449,10 @@
       <emmitor spos="0.0,1.0,7" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate spr="panel_black" pose="float" percent="10"></candidate>
       </emmitor>
-      <emmitor spos="0.05,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+      <emmitor spos="0.10,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate spr="label_distance" pose="stand" percent="10" gname="lab_dist"></candidate>
       </emmitor>
-      <emmitor spos="0.10,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
+      <emmitor spos="0.155,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
         <candidate pat="ui/text_6_number.layout" pose="0" percent="10" gname="dist" ></candidate>
       </emmitor>
       <!--emmitor spos="0.30,0.93,28" range="0,0,0" live="0,0,1,1" speed="0" follow="no">
