@@ -39,6 +39,7 @@ import android.widget.FrameLayout;
 import com.adsmogo.adview.AdsMogoLayout;
 import com.adsmogo.controller.listener.AdsMogoListener;
 import com.adsmogo.util.AdsMogoUtil;
+import com.kuguo.ad.KuguoAdsManager;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengDownloadListener;
 import com.umeng.update.UmengUpdateAgent;
@@ -51,8 +52,10 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 {
 	private Cocos2dxGLSurfaceView mGLView;
 	private AdsMogoLayout adsMogoLayoutCode;
-	private boolean _fda = false;
-
+	private boolean _bDisableMongo = false;
+	private boolean _bEnablePush = false;
+	private boolean _bEnableAppDownload = false;
+	
 	private GameEventHandler.GameEventListener _eventListener = new GameEventHandler.GameEventListener()
 	{
 		@Override
@@ -61,6 +64,13 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			if (evt.equals("play_state"))
 			{
 				MobclickAgent.onEvent(MainActivity.this, val);
+				if (val.equals("running"))
+				{
+					if (_bEnablePush)
+					{
+						KuguoAdsManager.getInstance().receivePushMessage(MainActivity.this, true);
+					}
+				}
 			}
 		}
 	};
@@ -112,8 +122,12 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 
 		UmengUpdateAgent.update(this);
 
-		String da= MobclickAgent.getConfigParams(this, "da");
-		_fda = da.equals("true");
+		String da = MobclickAgent.getConfigParams(this, "da");
+		_bDisableMongo = da.equals("true");
+		String strEnablePush = MobclickAgent.getConfigParams(this, "ep");
+		_bEnablePush = strEnablePush.equals("true");
+		String strEnableAppDownload = MobclickAgent.getConfigParams(this, "ep");
+		_bEnableAppDownload = strEnableAppDownload.equals("true");
 	}
 
 	private void _initAD()
@@ -141,7 +155,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		// }
 		/*------------------------------------------------------------*/
 
-		if (_fda)
+		if (_bDisableMongo)
 			return;
 		// ���췽�������ÿ���ģʽ
 		adsMogoLayoutCode = new AdsMogoLayout(this, "c87eaafe88444f02a866f87637ca9a53", false);
@@ -287,6 +301,12 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			_initAD();
 			
 			GameEventHandler.setListener(_eventListener);
+
+			if (_bEnableAppDownload)
+			{
+				KuguoAdsManager.getInstance().showKuguoSprite(this, KuguoAdsManager.STYLE_KUZAI);
+				KuguoAdsManager.getInstance().setKuzaiPosition(true, 0);
+			}
 		}
 		else
 		{
@@ -320,6 +340,8 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			adsMogoLayoutCode.clearThread();
 		}
 		super.onDestroy();
+    	//回收接口，退出酷仔及回收酷仔资源
+    	KuguoAdsManager.getInstance().recycle(this);
 	}
 
 	private boolean detectOpenGLES20()
