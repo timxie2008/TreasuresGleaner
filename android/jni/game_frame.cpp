@@ -23,14 +23,15 @@ string getLanguage()
 
 		jstring result = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
 		ret = JniHelper::jstring2string(result);
-		LOGD("Jave::getLanugage returns:%s", ret.c_str());
-
+		LOGD("Jave 1::getLanugage returns:%s", ret.c_str());
 		t.env->DeleteLocalRef(t.classID);
+		LOGD("Jave 2::getLanugage returns:%s", ret.c_str());
 	}
 	else
 	{
 		LOGD("can not get static function:getLanugage");
 	}
+	return ret;
 }
 
 void postGameEvent(const char* key, const char* value)
