@@ -21,7 +21,7 @@ string getLanguage()
 		, "()Ljava/lang/String;"))
 	{
 
-		jstring result = t.env->CallStaticObjectMethod(t.classID, t.methodID);
+		jstring result = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
 		ret = JniHelper::jstring2string(result);
 		LOGD("Jave::getLanugage returns:%s", ret.c_str());
 
