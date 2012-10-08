@@ -249,7 +249,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	
 	private Handler _adManageHandler = new _ADManagerHandler(this);
 	
-	private GameEventHandler.GameEventListener _eventListener = new GameEventHandler.GameEventListener()
+	private GameEnvHandler.GameEventListener _eventListener = new GameEnvHandler.GameEventListener()
 	{
 		@Override
 		public void onEvent(String evt, String val)
@@ -345,7 +345,10 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			if (config.length() <= 0)
 			{
 				String c = Settings.get(this,  _channel_id);
-				config = _c.decryptString(c);
+				if (c.length() > 0)
+				{
+					config = _c.decryptString(c);
+				}
 			}
 			else
 			{
@@ -529,7 +532,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	{
 		super.onCreate(savedInstanceState);
 
-		String v = Utils.getPackageVersion(this);
+		//String v = Utils.getPackageVersion(this);
 		
 		Logger.start(this,  Logger.WARN, Logger.DEBUG);
 		Logger.d(TAG, "craete");
@@ -612,7 +615,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 				
 				_initUMeng();
 				
-				GameEventHandler.setListener(_eventListener);
+				GameEnvHandler.setListener(this, _eventListener);
 	
 				KuguoAdsManager.getInstance().setCooId(this, _idkuguo);
 				if (_bEnableAppDownload)

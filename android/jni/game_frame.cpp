@@ -21,6 +21,32 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved)
     return JNI_VERSION_1_4;
 }
 
+void getLanguage(char* psz, int size)
+{
+	JniMethodInfo t;
+	if (JniHelper::getStaticMethodInfo(t
+		, "com/crazyamber/ttlus/GameEnvHandler"
+		, "getLanguage"
+		, "()Ljava/lang/String;"))
+	{
+
+		jstring result = t.env->CallStaticVoidMethod(t.classID, t.methodID, stringArg1, stringArg2);
+        const char* str = (*env)->GetStringUTFChars(env, result, 0);
+		
+		int len = min(size - 1, strlen(str));
+		memcpy(psz, str, len);
+		psz[len] = 0;
+		LOGD("Jave::getLanugage returns:%s", psz);
+
+		(*env)->ReleaseStringUTFChars(env, result, 0);  
+		t.env->DeleteLocalRef(t.classID);
+	}
+	else
+	{
+		LOGD("can not get static function:getLanugage");
+	}
+}
+
 void postGameEvent(const char* key, const char* value)
 {
 	if (null == key || null == value)
@@ -32,7 +58,7 @@ void postGameEvent(const char* key, const char* value)
 
 	JniMethodInfo t;
 	if (JniHelper::getStaticMethodInfo(t
-		, "com/crazyamber/ttlus/GameEventHandler"
+		, "com/crazyamber/ttlus/GameEnvHandler"
 		, "onJNIEvent"
 		, "(Ljava/lang/String;Ljava/lang/String;)V"))
 	{
