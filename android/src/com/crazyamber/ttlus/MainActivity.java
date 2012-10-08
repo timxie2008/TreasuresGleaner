@@ -34,6 +34,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.ConfigurationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -50,6 +52,7 @@ import com.umeng.update.UpdateResponse;
 
 import android.widget.RelativeLayout;
 
+import java.lang.ref.WeakReference;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Cipher;
@@ -59,24 +62,27 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 {
+	private static final String	TAG	= MainActivity.class.getSimpleName();
 
 	private Cocos2dxGLSurfaceView mGLView;
-	private AdsMogoLayout adsMogoLayoutCode;
-	private boolean _bEnableAD = true;
+	private AdsMogoLayout _adsMogoLayoutCode;
+	private RelativeLayout _adLayout = null;
+	private boolean _bEnableADMenu = true;
+	private boolean _bEnableADPlay = true;
 	private boolean _bEnablePush = true;
 	private boolean _bEnableAppDownload = true;
 	private String _channel_id = "";
 	
 	private String _bytesToHex(byte[] data)
 	{
-		if (data==null)
+		if (data == null)
 		{
 			return null;
 		}
 		
 		int len = data.length;
 		String str = "";
-		for (int i=0; i < len; i++) 
+		for (int i = 0; i < len; i++) 
 		{
 			String hs = java.lang.Integer.toHexString(data[i] & 0xFF);
 			if ((data[i] & 0xFF) < 16)
@@ -99,9 +105,10 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		}
 		else
 		{
+			int i;
 			int len = str.length() / 2;
 			byte[] buffer = new byte[len];
-			for (int i = 0; i < len; i++)
+			for (i = 0; i < len; i++)
 			{
 				buffer[i] = (byte) Integer.parseInt(
 						str.substring(i * 2, i * 2 + 2), 16);
@@ -139,11 +146,13 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Logger.e(e);
 			}
 			catch (NoSuchPaddingException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Logger.e(e);
 			}
 		}
 
@@ -152,6 +161,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			byte[] r = encrypt(text);
 			return _bytesToHex(r);
 		}
+		
 		public String decryptString(String text) throws Exception
 		{
 			byte[] r = decrypt(text);
@@ -172,6 +182,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			}
 			catch (Exception e)
 			{
+				Logger.e(e);
 				throw new Exception("[encrypt] " + e.getMessage());
 			}
 
@@ -192,6 +203,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			}
 			catch (Exception e)
 			{
+				Logger.e(e);
 				throw new Exception("[decrypt] " + e.getMessage());
 			}
 			return decrypted;
@@ -201,7 +213,8 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		{
 			char paddingChar = ' ';
 			int size = 16;
-			int align = source.length() + (size - 1) / size;
+			int align = (source.length() + (size - 1)) / size;
+			align *= size;
 			int padLength = align - source.length();
 
 			for (int i = 0; i < padLength; i++)
@@ -213,6 +226,29 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		}
 	}
 
+	private static class _ADManagerHandler extends Handler
+	{
+		WeakReference<MainActivity> mActivity;  
+		  
+		_ADManagerHandler(MainActivity activity) {  
+		        mActivity = new WeakReference<MainActivity>(activity);  
+		}  
+		@Override
+	    public void handleMessage(Message msg) {
+           MainActivity theActivity = mActivity.get();  
+           if (msg.what != 0)
+		   {
+        	   theActivity._createAD();
+		   }
+		   else
+		   {
+			   theActivity._destroyAD();
+		   }
+	    }
+	};
+	
+	private Handler _adManageHandler = new _ADManagerHandler(this);
+	
 	private GameEventHandler.GameEventListener _eventListener = new GameEventHandler.GameEventListener()
 	{
 		@Override
@@ -221,13 +257,17 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			if (evt.equals("play_state"))
 			{
 				MobclickAgent.onEvent(MainActivity.this, val);
+				if (val.equals("prepare"))
+				{
+					Message msg = new Message();
+					msg.what = _bEnableADMenu ? 1 : 0;
+					_adManageHandler.sendMessage(msg);
+				}
 				if (val.equals("running"))
 				{
-					if (_bEnablePush)
-					{
-						KuguoAdsManager.getInstance().receivePushMessage(
-								MainActivity.this, true);
-					}
+					Message msg = new Message();
+					msg.what = _bEnableADPlay ? 1 : 0;
+					_adManageHandler.sendMessage(msg);
 				}
 			}
 		}
@@ -241,8 +281,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			switch (updateStatus)
 			{
 			case 0: // has update
-				UmengUpdateAgent
-						.showUpdateDialog(MainActivity.this, updateInfo);
+				UmengUpdateAgent.showUpdateDialog(MainActivity.this, updateInfo);
 				break;
 			case 1: // has no update
 				break;
@@ -264,7 +303,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		}
 		catch (Exception e)
 		{
-		
+			Logger.e(e);
 		}
 		
 		MobclickAgent.setSessionContinueMillis(60000 * 10);
@@ -280,7 +319,6 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 
 		UmengUpdateAgent.setOnDownloadListener(new UmengDownloadListener()
 		{
-
 			@Override
 			public void OnDownloadEnd(int result)
 			{
@@ -293,111 +331,134 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 
 		try
 		{
-			String config = MobclickAgent.getConfigParams(this, _channel_id);
-			if (null == config || config.length() <= 0)
+			String config = "";
+			int retry = 2;
+			while ((null == config || config.length() <= 0) && retry > 0)
 			{
-				config = MobclickAgent.getConfigParams(this, "all");
-			}
-			if (null != config)
-			{
-				String[] params = config.split(";");
-				for (String param : params)
+				config = MobclickAgent.getConfigParams(this, _channel_id);
+				if (null == config || config.length() <= 0)
 				{
-					String[] items = param.split("=");
-					if (items.length == 2)
+					config = MobclickAgent.getConfigParams(this, "all");
+				}
+				retry--;
+			}
+			if (config.length() <= 0)
+			{
+				String c = Settings.get(this,  _channel_id);
+				config = _c.decryptString(c);
+			}
+			else
+			{
+				String c = _c.encryptString(config);
+				Settings.set(this, _channel_id, c);
+			}
+			_bEnableADMenu = true;
+			_bEnableADPlay = true;
+			_bEnablePush = true;
+			_bEnableAppDownload = true;
+
+			String[] params = config.split(";");
+			for (String param : params)
+			{
+				String[] items = param.split("=");
+				if (items.length == 2)
+				{
+					if (items[0].equals("eam"))
 					{
-						if (items[0].equals("ea"))
-						{
-							_bEnableAD = !items[1].equals("false");
-						}
-						if (items[0].equals("ep"))
-						{
-							_bEnablePush = !items[1].equals("false");
-						}
-						if (items[0].equals("ed"))
-						{
-							_bEnableAppDownload = !items[1].equals("false");
-						}
+						_bEnableADMenu = !items[1].equals("false");
+					}
+					else if (items[0].equals("eap"))
+					{
+						_bEnableADPlay = !items[1].equals("false");
+					}
+					else if (items[0].equals("ep"))
+					{
+						_bEnablePush = !items[1].equals("false");
+					}
+					else if (items[0].equals("ed"))
+					{
+						_bEnableAppDownload = !items[1].equals("false");
 					}
 				}
 			}
 		}
 		catch (Exception e)
 		{
-			_bEnableAD = true;
+			Logger.e(e);
+
+			_bEnableADMenu = true;
+			_bEnableADPlay = true;
 			_bEnablePush = true;
 			_bEnableAppDownload = true;
 		}
 	}
 
-	private void _initAD()
+	private void _createAD()
 	{
-		/*------------------------------------------------------------*/
-		// ��ʼ��AdsMogoLayout ��ʼ����Ϊ���¼��ַ�ʽ
-		// ���췽�������ù�����ͣ���ȫ����棬banner���
-		// public AdsMogoLayout(final Activity context, final String keyAdMogo,
-		// final int ad_type) {
-		// }
-
-		// Ĭ�ϵĹ��췽����Ĭ�Ͽ�������ģʽ��banner���
-		// public AdsMogoLayout(final Activity context, final String keyAdMogo)
-		// {
-		// }
-
-		// ���췽�������ÿ���ģʽ
-		// public AdsMogoLayout(final Activity context, final String keyAdMogo,
-		// boolean expressMode) {
-		// }
-
-		// ���췽�������ù�����ͺͿ���ģʽ
-		// public AdsMogoLayout(final Activity context, final String keyAdMogo,
-		// final int ad_type, final boolean expressMode) {
-		// }
-		/*------------------------------------------------------------*/
-
-		if (!_bEnableAD) return;
-		
-		// ���췽�������ÿ���ģʽ
-		adsMogoLayoutCode = new AdsMogoLayout(this, _idmogo, false);
-
-		// ���ü���ص� ���а��� ���� չʾ ����ʧ�ܵ��¼��Ļص�
-		adsMogoLayoutCode.setAdsMogoListener(this);
-
-		/*------------------------------------------------------------*/
-		// ͨ��Code��ʽ��ӹ���� ����Ľṹ����(�����ο�)
-		// -RelativeLayout/(FILL_PARENT,FILL_PARENT)
-		// |
-		// +RelativeLayout/(FILL_PARENT,WRAP_CONTENT)
-		// |
-		// +AdsMogoLayout(FILL_PARENT,WRAP_CONTENT)
-		// |
-		// \
-		// |
-		// \
-		/*------------------------------------------------------------*/
-		RelativeLayout.LayoutParams layoutParams;
-		layoutParams = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.FILL_PARENT,
-				RelativeLayout.LayoutParams.WRAP_CONTENT);
-		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,
-				RelativeLayout.TRUE);
-
-		RelativeLayout.LayoutParams layoutParamsAD;
-		layoutParamsAD = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.WRAP_CONTENT,
-				RelativeLayout.LayoutParams.WRAP_CONTENT);
-		layoutParamsAD.addRule(RelativeLayout.ALIGN_PARENT_LEFT,
-				RelativeLayout.TRUE);
-
-		RelativeLayout childLayout = new RelativeLayout(this);
-		childLayout.addView(adsMogoLayoutCode, layoutParamsAD);
-
-		RelativeLayout parentLayput = new RelativeLayout(this);
-		parentLayput.addView(childLayout, layoutParams);
-
-		this.addContentView(parentLayput, new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.FILL_PARENT,
-				RelativeLayout.LayoutParams.FILL_PARENT));
+		try
+		{
+			if (null != _adsMogoLayoutCode)
+				return;
+			
+			// ���췽�������ÿ���ģʽ
+			_adsMogoLayoutCode = new AdsMogoLayout(this, _idmogo, false);
+	
+			// ���ü���ص� ���а��� ���� չʾ ����ʧ�ܵ��¼��Ļص�
+			_adsMogoLayoutCode.setAdsMogoListener(this);
+	
+			/*------------------------------------------------------------*/
+			// ͨ��Code��ʽ��ӹ���� ����Ľṹ����(�����ο�)
+			// -RelativeLayout/(FILL_PARENT,FILL_PARENT)
+			// |
+			// +RelativeLayout/(FILL_PARENT,WRAP_CONTENT)
+			// |
+			// +AdsMogoLayout(FILL_PARENT,WRAP_CONTENT)
+			// |
+			// \
+			// |
+			// \
+			/*------------------------------------------------------------*/
+			RelativeLayout.LayoutParams layoutParams;
+			layoutParams = new RelativeLayout.LayoutParams(
+					RelativeLayout.LayoutParams.FILL_PARENT,
+					RelativeLayout.LayoutParams.WRAP_CONTENT);
+			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,
+					RelativeLayout.TRUE);
+	
+			RelativeLayout.LayoutParams layoutParamsAD;
+			layoutParamsAD = new RelativeLayout.LayoutParams(
+					RelativeLayout.LayoutParams.WRAP_CONTENT,
+					RelativeLayout.LayoutParams.WRAP_CONTENT);
+			layoutParamsAD.addRule(RelativeLayout.ALIGN_PARENT_LEFT,
+					RelativeLayout.TRUE);
+	
+			RelativeLayout childLayout = new RelativeLayout(this);
+			childLayout.addView(_adsMogoLayoutCode, layoutParamsAD);
+	
+			_adLayout.removeAllViews();
+			_adLayout.addView(childLayout, layoutParams);
+		}
+		catch (Exception e)
+		{
+			Logger.e(e);
+		}
+	}
+	
+	private void _destroyAD()
+	{
+		try
+		{
+			if (null != _adsMogoLayoutCode)
+			{
+				_adsMogoLayoutCode.clearThread();
+				_adsMogoLayoutCode = null;
+			}
+			_adLayout.removeAllViews();
+		}
+		catch (Exception e)
+		{
+			Logger.e(e);
+		}
 	}
 
 	/**
@@ -407,7 +468,6 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	public void onClickAd(String arg0)
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onClickAd=-");
-
 	}
 
 	/**
@@ -436,7 +496,6 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	public void onFailedReceiveAd()
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onFailedReceiveAd=-");
-
 	}
 
 	/**
@@ -446,7 +505,6 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	public void onRealClickAd()
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onRealClickAd=-");
-
 	}
 
 	/**
@@ -456,7 +514,6 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	public void onReceiveAd(ViewGroup arg0, String arg1)
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onReceiveAd=-");
-
 	}
 
 	/**
@@ -466,13 +523,19 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	public void onRequestAd(String arg0)
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onRequestAd=-");
-
 	}
 
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
+		String v = Utils.getPackageVersion(this);
+		
+		Logger.start(this,  Logger.WARN, Logger.DEBUG);
+		Logger.d(TAG, "craete");
+		
+		Utils.killUnrelatedActivityProcesses(this);
+		
 		//encrypt mogo
 //		try
 //		{
@@ -497,99 +560,148 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		}
 		catch (Exception e)
 		{
-			String em = e.getMessage();
+			//String em = e.getMessage();
+			Logger.e(e);
 		}
 		
-		if (detectOpenGLES20())
+		try
 		{
-			// get the packageName,it's used to set the resource path
-			String packageName = getApplication().getPackageName();
-			super.setPackageName(packageName);
-
-			// FrameLayout
-			ViewGroup.LayoutParams framelayout_params = new ViewGroup.LayoutParams(
-					ViewGroup.LayoutParams.FILL_PARENT,
-					ViewGroup.LayoutParams.FILL_PARENT);
-			FrameLayout framelayout = new FrameLayout(this);
-			framelayout.setLayoutParams(framelayout_params);
-
-			// Cocos2dxEditText layout
-			ViewGroup.LayoutParams edittext_layout_params = new ViewGroup.LayoutParams(
-					ViewGroup.LayoutParams.FILL_PARENT,
-					ViewGroup.LayoutParams.WRAP_CONTENT);
-			Cocos2dxEditText edittext = new Cocos2dxEditText(this);
-			edittext.setLayoutParams(edittext_layout_params);
-
-			// ...add to FrameLayout
-			framelayout.addView(edittext);
-
-			// Cocos2dxGLSurfaceView
-			mGLView = new Cocos2dxGLSurfaceView(this);
-
-			// ...add to FrameLayout
-			framelayout.addView(mGLView);
-
-			mGLView.setEGLContextClientVersion(2);
-			mGLView.setCocos2dxRenderer(new Cocos2dxRenderer());
-			mGLView.setTextField(edittext);
-
-			// Set framelayout as the content view
-			setContentView(framelayout);
-
-			_initUMeng();
-			_initAD();
-
-			GameEventHandler.setListener(_eventListener);
-
-			KuguoAdsManager.getInstance().setCooId(this, _idkuguo);
-			if (_bEnableAppDownload)
+			if (detectOpenGLES20())
 			{
-				KuguoAdsManager.getInstance().showKuguoSprite(this,
-						KuguoAdsManager.STYLE_KUZAI);
-				KuguoAdsManager.getInstance().setKuzaiPosition(true, -20);
+				// get the packageName,it's used to set the resource path
+				String packageName = getApplication().getPackageName();
+				super.setPackageName(packageName);
+	
+				// FrameLayout
+				ViewGroup.LayoutParams framelayout_params = new ViewGroup.LayoutParams(
+						ViewGroup.LayoutParams.FILL_PARENT,
+						ViewGroup.LayoutParams.FILL_PARENT);
+				FrameLayout framelayout = new FrameLayout(this);
+				framelayout.setLayoutParams(framelayout_params);
+	
+				// Cocos2dxEditText layout
+				ViewGroup.LayoutParams edittext_layout_params = new ViewGroup.LayoutParams(
+						ViewGroup.LayoutParams.FILL_PARENT,
+						ViewGroup.LayoutParams.WRAP_CONTENT);
+				Cocos2dxEditText edittext = new Cocos2dxEditText(this);
+				edittext.setLayoutParams(edittext_layout_params);
+	
+				// ...add to FrameLayout
+				framelayout.addView(edittext);
+	
+				// Cocos2dxGLSurfaceView
+				mGLView = new Cocos2dxGLSurfaceView(this);
+	
+				// ...add to FrameLayout
+				framelayout.addView(mGLView);
+	
+				mGLView.setEGLContextClientVersion(2);
+				mGLView.setCocos2dxRenderer(new Cocos2dxRenderer());
+				mGLView.setTextField(edittext);
+	
+				// Set framelayout as the content view
+				setContentView(framelayout);
+	
+				//create ad view holder
+				RelativeLayout parentLayout = new RelativeLayout(this);
+				_adLayout = parentLayout; 
+				this.addContentView(_adLayout, new RelativeLayout.LayoutParams(
+						RelativeLayout.LayoutParams.FILL_PARENT,
+						RelativeLayout.LayoutParams.FILL_PARENT));
+				
+				
+				_initUMeng();
+				
+				GameEventHandler.setListener(_eventListener);
+	
+				KuguoAdsManager.getInstance().setCooId(this, _idkuguo);
+				if (_bEnableAppDownload)
+				{
+					KuguoAdsManager.getInstance().showKuguoSprite(this,
+							KuguoAdsManager.STYLE_KUZAI);
+					KuguoAdsManager.getInstance().setKuzaiPosition(true, 0);
+				}
+	
+				if (_bEnablePush)
+				{
+					KuguoAdsManager.getInstance().receivePushMessage(
+							MainActivity.this, false);
+					MobclickAgent.onEvent(MainActivity.this, "push");
+				}
+			}
+			else
+			{
+				Log.d("activity", "don't support gles2.0");
+				finish();
 			}
 		}
-		else
+		catch (Exception e)
 		{
-			Log.d("activity", "don't support gles2.0");
-			finish();
+			Logger.e(e);
 		}
 	}
 
 	@Override
 	protected void onPause()
 	{
-		super.onPause();
-		MobclickAgent.onPause(this);
-		mGLView.onPause();
+		try
+		{
+			super.onPause();
+			MobclickAgent.onPause(this);
+			mGLView.onPause();
+		}
+		catch (Exception e)
+		{
+			Logger.e(e);
+		}
 	}
 
 	@Override
 	protected void onResume()
 	{
-		super.onResume();
-		MobclickAgent.onResume(this);
-		mGLView.onResume();
+		try
+		{
+			super.onResume();
+			MobclickAgent.onResume(this);
+			mGLView.onResume();
+		}
+		catch (Exception e)
+		{
+			Logger.e(e);
+		}
 	}
 
 	@Override
 	protected void onDestroy()
 	{
-		// ��� adsMogoLayout ʵ�� ��������ڶ��̻߳�����Ƶ��̳߳�
-		if (adsMogoLayoutCode != null)
+		try
 		{
-			adsMogoLayoutCode.clearThread();
+			_destroyAD();
+			super.onDestroy();
+			//回收接口，退出酷仔及回收酷仔资源
+			KuguoAdsManager.getInstance().recycle(this);
 		}
-		super.onDestroy();
-		//回收接口，退出酷仔及回收酷仔资源
-		KuguoAdsManager.getInstance().recycle(this);
+		catch (Exception e)
+		{
+			Logger.e(e);
+		}
+		
+		Logger.stop();
 	}
 
 	private boolean detectOpenGLES20()
 	{
-		ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-		ConfigurationInfo info = am.getDeviceConfigurationInfo();
-		return (info.reqGlEsVersion >= 0x20000);
+		try
+		{
+			ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+			ConfigurationInfo info = am.getDeviceConfigurationInfo();
+			return (info.reqGlEsVersion >= 0x20000);
+		}
+		catch (Exception e)
+		{
+			Logger.e(e);
+		}
+		return false;
 	}
 
 	static

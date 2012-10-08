@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.crazyamber.ttlus"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="010105"
+    android:versionName="1.1.05" >
 
     <uses-sdk
-        android:minSdkVersion="4"
+        android:minSdkVersion="7"
         android:targetSdkVersion="15" />
 
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -68,6 +68,11 @@
             android:label="@string/app_name" >
         </activity>
 
+        <!-- 声明AdMob的Activity -->
+        <activity
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode" />
+        
         <!-- 声明艾德思奇的Activity和Service -->
         <activity
             android:name="com.mobisage.android.MobiSageActivity"
@@ -320,7 +325,7 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="Testing" >
+            android:value="Common" >
         </meta-data>
         <service
             android:name="com.umeng.common.net.DownloadingService"
