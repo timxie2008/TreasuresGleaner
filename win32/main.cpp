@@ -40,10 +40,9 @@ void postGameEvent(const char* key, const char* value)
 	_Info("Game Event:%s=%s", key, value);
 }
 
-void getLanguage(char* lang, int size)
+string getLanguage()
 {
-	strcpy(lang, "cn");
-	return;
+	return "en";
 }
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,

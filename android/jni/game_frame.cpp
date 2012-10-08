@@ -21,8 +21,9 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved)
     return JNI_VERSION_1_4;
 }
 
-void getLanguage(char* psz, int size)
+string getLanguage()
 {
+	string ret = "";
 	JniMethodInfo t;
 	if (JniHelper::getStaticMethodInfo(t
 		, "com/crazyamber/ttlus/GameEnvHandler"
@@ -30,15 +31,10 @@ void getLanguage(char* psz, int size)
 		, "()Ljava/lang/String;"))
 	{
 
-		jstring result = t.env->CallStaticVoidMethod(t.classID, t.methodID, stringArg1, stringArg2);
-        const char* str = (*env)->GetStringUTFChars(env, result, 0);
-		
-		int len = min(size - 1, strlen(str));
-		memcpy(psz, str, len);
-		psz[len] = 0;
-		LOGD("Jave::getLanugage returns:%s", psz);
+		jstring result = t.env->CallStaticObjectMethod(t.classID, t.methodID);
+		ret = JniHelper::jstring2string(result);
+		LOGD("Jave::getLanugage returns:%s", ret.c_str());
 
-		(*env)->ReleaseStringUTFChars(env, result, 0);  
 		t.env->DeleteLocalRef(t.classID);
 	}
 	else
