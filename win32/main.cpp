@@ -42,7 +42,7 @@ void postGameEvent(const char* key, const char* value)
 
 string getLanguage()
 {
-	return "en";
+	return "cn";
 }
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
