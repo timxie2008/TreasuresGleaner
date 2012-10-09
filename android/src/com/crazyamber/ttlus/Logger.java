@@ -103,7 +103,6 @@ public class Logger
 				}
 				catch (Exception e)
 				{
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				file += _context.getPackageName() + ".log.txt";
@@ -155,7 +154,6 @@ public class Logger
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

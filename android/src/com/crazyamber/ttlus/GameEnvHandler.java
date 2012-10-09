@@ -29,7 +29,9 @@ public class GameEnvHandler
 		
 		Configuration config = resources.getConfiguration();//获得设置对象
 		//DisplayMetrics dm = resources .getDisplayMetrics();//获得屏幕参数：主要是分辨率，像素等。
-		if (config.locale == Locale.SIMPLIFIED_CHINESE) //简体中文
+		String cn = Locale.SIMPLIFIED_CHINESE.toString();
+		String lg = config.locale.toString(); 
+		if (lg.equals(cn)) //简体中文
 		{
 			return "cn";
 		}

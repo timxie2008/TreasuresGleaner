@@ -96,6 +96,11 @@ public class Utils
 		if (null == s) return "";
 		return s;
 	}
+	
+	public static String boolean2str(boolean b)
+	{
+		return b ? "true" : "false";
+	}
 
 	public static String readStringFromStream(InputStream is) throws Exception
 	{

@@ -724,10 +724,6 @@
 					Name="src"
 					>
 					<File
-						RelativePath="..\android\jni\src\Android.mk"
-						>
-					</File>
-					<File
 						RelativePath="..\android\jni\game_frame.cpp"
 						>
 						<FileConfiguration
