@@ -21,3 +21,4 @@ docs/*
 win32/Debug.win32/
 win32/Release.win32/
 temp/*
+publish/*

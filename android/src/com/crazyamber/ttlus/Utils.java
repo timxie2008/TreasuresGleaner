@@ -206,7 +206,7 @@ public class Utils
 			NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
 			// 2.创建一个Notification对象
 			Notification notification = new Notification(Ricon, // R.drawable.ic_message,
-			"IESS消息", System.currentTimeMillis());
+			"TTLUS", System.currentTimeMillis());
 			// 3.创建PendingIntent对象
 			notification.defaults |= Notification.DEFAULT_SOUND;
 			notification.defaults |= Notification.DEFAULT_VIBRATE;

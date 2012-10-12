@@ -15,7 +15,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
-public class Logger
+class Logger
 {
 	public interface ILoggerTarget
 	{
@@ -162,7 +162,10 @@ public class Logger
 	{
 		try
 		{
-			_outputStream.close();
+			if (null != _outputStream)
+			{
+				_outputStream.close();
+			}
 		}
 		catch (IOException e)
 		{

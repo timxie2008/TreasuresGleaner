@@ -68,14 +68,122 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	private AdsMogoLayout _adsMogoLayoutCode;
 	private RelativeLayout _adLayout = null;
 	
-	private boolean _bEnableADMenu = true;
-	private boolean _bEnableADPlay = true;
-	private boolean _bEnablePush = true;
-	private boolean _bEnableAppDownload = true;
-	private boolean _bADStrategyChanged = true;
-	private boolean _bPushStrategyChanged = true;
+	private class _ADConfig
+	{
+		private String channel = "";
+		private String idcn = "";
+		private String iden = "";
+		
+		private int nClickLimit = 0x7fffffff;
+		private boolean bEnableADMenu = false;
+		private boolean bEnableADPlay = false;
+		private boolean bEnablePush = false;
+		private boolean bEnableAppDownload = false;
+		
+		private boolean bDirty = false;
+		
+		private int _hashCode()
+		{
+			int n = 0;
+			n ^= channel.hashCode();
+			n ^= idcn.hashCode();
+			n ^= iden.hashCode();
+			n ^= nClickLimit;
+			n ^= bEnableADMenu ? 0xabcdef : 0x23deba;
+			n ^= bEnableADPlay ? 0x7ba8fa : 0x456792;
+			n ^= bEnablePush ? 0x35dea6 : 0xdeacb6;
+			n ^= bEnableAppDownload ? 0x45fba7 : 0x235dae;
+			return n;
+		}
+		private String adid()
+		{
+			String lang = GameEnvHandler.getLanguage();
+			if (lang.equals("en"))
+				return iden;
+			return idcn;
+		}
+		public void setDirty(boolean b) { bDirty = b; }
+		public boolean isDirty()
+		{
+			return bDirty;
+		}
+		
+		public boolean parse(String ch, String config)
+		{
+			if (null == config || config.length() <= 0)
+				return false;
+			
+			String[] params = config.split(";");
+			if (params.length <= 0)
+				return false;
+			
+			int hc = _hashCode();
+			if (!channel.equals(ch))
+			{
+				channel = ch;
+			}
+			for (String param : params)
+			{
+				String[] items = param.split("=");
+				if (items.length == 2)
+				{
+					if (items[0].equals("iden"))
+					{
+						if (!iden.equals(items[1]))
+						{
+							iden = items[1];
+						}
+					}
+					if (items[0].equals("idcn"))
+					{
+						if (!idcn.equals(items[1]))
+						{
+							idcn = items[1];
+						}
+					}
+					if (items[0].equals("eam"))
+					{
+						boolean b = !items[1].equals("false");
+						if (b != bEnableADMenu)
+						{
+							bEnableADMenu = b;
+						}
+					}
+					else if (items[0].equals("eap"))
+					{
+						boolean b = !items[1].equals("false");
+						if (b != bEnableADPlay)
+						{
+							bEnableADPlay = b;
+						}
+					}
+					else if (items[0].equals("ep"))
+					{
+						boolean b = !items[1].equals("false");
+						if (b != bEnablePush)
+						{
+							bEnablePush = b;
+						}
+					}
+					else if (items[0].equals("ed"))
+					{
+						boolean b = !items[1].equals("false");
+						if (b != bEnableAppDownload)
+						{
+							bEnableAppDownload = b;
+						}
+					}
+				}
+			}
+			int hcn = _hashCode();
+			bDirty = hc != hcn;
+
+			return true;
+		}
+	};
 	
 	private String _channel_id = "";
+	private _ADConfig _config = new _ADConfig();
 	
 	private String _bytesToHex(byte[] data)
 	{
@@ -125,9 +233,6 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 			_hexToBytes("37ca9a53c87eaa66f8fe88444f02a876"), 
 			_hexToBytes("a3bb37149550b256009d23fc34b85836"));
 	
-	private String _idmogo = "38cc93f2f24666776bfd35924671a5691c6e1719857815d926e32ebc282c6f12";
-	private String _idkuguo = "3279cf578b5ae4f064f3c80b5fbfc5ea8a5e0cd51d61f5c83e3570c9b79bbba3";
-
 	private class Crypt
 	{
 		private IvParameterSpec ivspec;
@@ -172,8 +277,8 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		
 		public byte[] encrypt(String text) throws Exception
 		{
-			if (text == null || text.length() == 0) throw new Exception(
-					"Empty string");
+			if (text == null || text.length() == 0) 
+				throw new Exception("Empty string");
 
 			byte[] encrypted = null;
 
@@ -193,8 +298,8 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 
 		public byte[] decrypt(String code) throws Exception
 		{
-			if (code == null || code.length() == 0) throw new Exception(
-					"Empty string");
+			if (code == null || code.length() == 0) 
+				throw new Exception("Empty string");
 
 			byte[] decrypted = null;
 
@@ -240,7 +345,7 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
      	   	_rebuildAD();
      	   	break;
         case _EVENT_Play:
-        	if (!_bEnableADPlay)
+        	if (!_config.bEnableADPlay)
         	{
         		_destroyAD();
         	}
@@ -311,16 +416,6 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 
 	private void _initUMeng()
 	{
-		try
-		{
-			ApplicationInfo appInfo = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
-			this._channel_id = appInfo.metaData.getString("UMENG_CHANNEL");
-		}
-		catch (Exception e)
-		{
-			Logger.e(e);
-		}
-		
 		MobclickAgent.setSessionContinueMillis(60000 * 10);
 		MobclickAgent.setDebugMode(false);
 		MobclickAgent.onError(this);
@@ -345,152 +440,114 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 		UmengUpdateAgent.update(this);
 	}
 
+	
 	private void _updateADConfig()
 	{
-		boolean eam = true;
-		boolean eap = true;
-		boolean ep = true;
-		boolean ed = true;
-		try
+//		eam=true;eap=true;ep=false;ed=false;iden=5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30;idcn=24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9
+//		new String ("all;cn;24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9"),
+//		new String ("all;en;5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30"),
+//		new String ("douding;cn;24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9"),
+//		new String ("douding;en;5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30"),
+		String config;
+		String[] channels = { _channel_id, "all" };
+		
+		boolean hit = false;
+		for (String channel : channels)
 		{
-			//read configure
-			String config = "";
-			int retry = 2;
-			while ((null == config || config.length() <= 0) && retry > 0)
+			config = MobclickAgent.getConfigParams(this, channel);
+			if (_config.parse(channel, config))
 			{
-				config = MobclickAgent.getConfigParams(this, _channel_id);
-				if (null == config || config.length() <= 0)
+				try
 				{
-					config = MobclickAgent.getConfigParams(this, "all");
+					config = _c.encryptString(config);
+					Settings.set(this, channel, config);
 				}
-				retry--;
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+				hit = true;
+				break;
 			}
-			if (config.length() <= 0)
-			{
-				String c = Settings.get(this,  _channel_id);
-				if (c.length() > 0)
-				{
-					config = _c.decryptString(c);
-				}
-				else
-				{
-					eam = true;
-					eap = true;
-					ep = false;
-					ed = false;
-				}
-			}
-			String c = _c.encryptString(config);
-			Settings.set(this, _channel_id, c);
+		}
+		
+		if (!hit)
+		{
+			//fill default params
+			_config.bEnableADMenu = true;
+			_config.bEnableADPlay = true;
+			_config.bEnablePush = false;
+			_config.bEnableAppDownload = false;
+			_config.channel = _channel_id;
+			_config.iden = "5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30";
+			_config.idcn = "24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9";
+			_config.setDirty(true);
 			
-			String[] params = config.split(";");
-			for (String param : params)
+			for (String channel : channels)
 			{
-				String[] items = param.split("=");
-				if (items.length == 2)
+				String rc = Settings.get(this,  channel);
+				try
 				{
-					if (items[0].equals("eam"))
-					{
-						eam = !items[1].equals("false");
-					}
-					else if (items[0].equals("eap"))
-					{
-						eap = !items[1].equals("false");
-					}
-					else if (items[0].equals("ep"))
-					{
-						ep = !items[1].equals("false");
-					}
-					else if (items[0].equals("ed"))
-					{
-						ed = !items[1].equals("false");
-					}
+					config = _c.decryptString(rc);
+				}
+				catch (Exception e)
+				{
+					config = "";
+				}
+				
+				if (_config.parse(channel, config))
+				{
+					break;
 				}
 			}
 		}
-		catch (Exception e)
-		{
-			Logger.e(e);
-
-			eam = true;
-			eap = true;
-			ep = false;
-			ed = false;
-		}
-		
-		String lang = GameEnvHandler.getLanguage();
-		if (lang.equals("en"))
-		{
-			ep = false;
-			ed = false;
-		}
-		
-		if (eam != _bEnableADMenu)
-		{
-			_bEnableADMenu = eam;
-			_bADStrategyChanged = true;
-		}
-		if (eap != _bEnableADPlay)
-		{
-			_bEnableADPlay = eap;
-			_bADStrategyChanged = true;
-		}
-		if (ep != _bEnablePush)
-		{
-			_bEnablePush = ep;
-			_bPushStrategyChanged = true;
-		}
-		if (ed != _bEnableAppDownload)
-		{
-			_bEnableAppDownload = ed;
-			_bPushStrategyChanged = true;
-		}
-		String log = String.format("eam=%s, eap=%s, ep=%s, ed=%s", 
-				Utils.boolean2str(eam),
-				Utils.boolean2str(eap),
-				Utils.boolean2str(ep),
-				Utils.boolean2str(ed)
-				);
-		Log.d(TAG, log);
+		Log.d(TAG, "uac");
 	}
 	
 	private void _rebuildAD()
 	{
 		try
 		{
-			if (_bADStrategyChanged)
+			if (_config.isDirty())
 			{
-				_bADStrategyChanged = false;
+				_config.setDirty(false);
 				if (null != _adsMogoLayoutCode)
 				{
+					Log.d(TAG, "ar");
 					_destroyAD();
 				}
 			}
 	        
 			if (null != _adsMogoLayoutCode)
+			{
+				Log.d(TAG, "a1");
 				return;
+			}
 			
-			// ���췽�������ÿ���ģʽ
-			_adsMogoLayoutCode = new AdsMogoLayout(this, _idmogo, false);
+			Log.d(TAG, "a0");
+			String adid = "";
+			try
+			{
+				adid = _c.decryptString(_config.adid());
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+			if (adid.length() <= 0)
+			{
+				Log.d(TAG, "ae");
+				return;
+			}
+
+			Log.d(TAG, "ab");
+			_adsMogoLayoutCode = new AdsMogoLayout(this, adid, false);
 	
-			// ���ü���ص� ���а��� ���� չʾ ����ʧ�ܵ��¼��Ļص�
 			_adsMogoLayoutCode.setAdsMogoListener(this);
 	
-			/*------------------------------------------------------------*/
-			// ͨ��Code��ʽ��ӹ���� ����Ľṹ����(�����ο�)
-			// -RelativeLayout/(FILL_PARENT,FILL_PARENT)
-			// |
-			// +RelativeLayout/(FILL_PARENT,WRAP_CONTENT)
-			// |
-			// +AdsMogoLayout(FILL_PARENT,WRAP_CONTENT)
-			// |
-			// \
-			// |
-			// \
-			/*------------------------------------------------------------*/
 			RelativeLayout.LayoutParams layoutParams;
 			layoutParams = new RelativeLayout.LayoutParams(
-					RelativeLayout.LayoutParams.FILL_PARENT,
+					RelativeLayout.LayoutParams.MATCH_PARENT,
 					RelativeLayout.LayoutParams.WRAP_CONTENT);
 			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,
 					RelativeLayout.TRUE);
@@ -533,83 +590,78 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 
 	private void _rebuildPush()
 	{
-		if (!_bPushStrategyChanged)
+		if (_config.bEnablePush || _config.bEnableAppDownload)
+		{
+		}
+		else
+		{
 			return;
-		_bPushStrategyChanged = false;
+		}
 		
-		KuguoAdsManager.getInstance().setCooId(this, _idkuguo);
-		if (_bEnableAppDownload)
+		String idkuguo = "";
+		try
+		{
+			idkuguo = _c.decryptString("bba364f3c80b5fbfc53279cd51d61f5c83e3570c9b79bcf578b5ae4f0e0ea8a5");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		if (idkuguo.length() <= 0)
+			return;
+		
+		KuguoAdsManager.getInstance().setCooId(this, idkuguo);
+		if (_config.bEnableAppDownload)
 		{
 			KuguoAdsManager.getInstance().showKuguoSprite(this,
 					KuguoAdsManager.STYLE_KUZAI);
 			KuguoAdsManager.getInstance().setKuzaiPosition(true, 0);
 		}
 
-		if (_bEnablePush)
+		if (_config.bEnablePush)
 		{
 			KuguoAdsManager.getInstance().receivePushMessage(
 					MainActivity.this, false);
 			MobclickAgent.onEvent(MainActivity.this, "push");
 		}
 	}
-	/**
-	 * ���û�������*(����Mogo�����¼�����)
-	 */
+
 	@Override
 	public void onClickAd(String arg0)
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onClickAd=-");
 	}
 
-	/**
-	 * ���û�����˹��رհ�ťʱ�ص�(�رչ�水ť���ܿ�����Mogo��App����������)
-	 */
 	@Override
 	public void onCloseAd()
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onCloseAd=-");
 	}
 
-	/**
-	 * ���û��ر����������͹�����ϸ����ʱ�ص�(�����������Ϊ���ع�沢���ǵ���������صĲŻ��д�
-	 * Dialog)
-	 */
 	@Override
 	public void onCloseMogoDialog()
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onCloseMogoDialog=-");
 	}
 
-	/**
-	 * ���й��ƽ̨����ʧ��ʱ�ص�
-	 */
 	@Override
 	public void onFailedReceiveAd()
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onFailedReceiveAd=-");
 	}
 
-	/**
-	 * ���û�������*(��ʵ��� Mogo��һ���ڵ��ô˻ص�ʱ��¼�����)
-	 */
 	@Override
 	public void onRealClickAd()
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onRealClickAd=-");
 	}
 
-	/**
-	 * ������ɹ�ʱ�ص�
-	 */
 	@Override
 	public void onReceiveAd(ViewGroup arg0, String arg1)
 	{
 		Log.d(AdsMogoUtil.ADMOGO, "-=onReceiveAd=-");
 	}
 
-	/**
-	 * ��ʼ������ʱ�ص�
-	 */
 	@Override
 	public void onRequestAd(String arg0)
 	{
@@ -622,11 +674,21 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 
 		//String v = Utils.getPackageVersion(this);
 		
-		Logger.start(this,  Logger.WARN, Logger.DEBUG);
+		Logger.start(this,  Logger.ERROR, Logger.DEBUG);
 		Logger.d(TAG, "craete");
 		
 		Utils.killUnrelatedActivityProcesses(this);
 		GameEnvHandler.setListener(this, _eventListener);
+		
+		try
+		{
+			ApplicationInfo appInfo = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+			this._channel_id = appInfo.metaData.getString("UMENG_CHANNEL");
+		}
+		catch (Exception e)
+		{
+			Logger.e(e);
+		}
 		
 		//encrypt mogo
 //		try
@@ -644,24 +706,14 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 //		{
 //			String em = e.getMessage();
 //		}
+//		//("c87eaafe88444f02a866f87637ca9a53");
+//		//("17b388b8b05841899761b326f2f4fa86");
+//		//("0b25685800144b9da3bb373695523fc3");
+//		//_idmogo = _c.decryptString(id);
+//		//idkuguo = _c.decryptString("bba364f3c80b5fbfc53279cd51d61f5c83e3570c9b79bcf578b5ae4f0e0ea8a5");
 		
-		try
-		{
-			//("c87eaafe88444f02a866f87637ca9a53");
-			//("17b388b8b05841899761b326f2f4fa86");
-			//("0b25685800144b9da3bb373695523fc3");
-			String lang = GameEnvHandler.getLanguage();
-			String idmogo = lang.equals("en") ? 
-					"5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30" : 
-					"24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9";
-			_idmogo = _c.decryptString(idmogo);
-			_idkuguo = _c.decryptString("bba364f3c80b5fbfc53279cd51d61f5c83e3570c9b79bcf578b5ae4f0e0ea8a5");
-		}
-		catch (Exception e)
-		{
-			//String em = e.getMessage();
-			Logger.e(e);
-		}
+		_initUMeng();
+		_updateADConfig();
 		
 		try
 		{
@@ -673,14 +725,14 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 	
 				// FrameLayout
 				ViewGroup.LayoutParams framelayout_params = new ViewGroup.LayoutParams(
-						ViewGroup.LayoutParams.FILL_PARENT,
-						ViewGroup.LayoutParams.FILL_PARENT);
+						ViewGroup.LayoutParams.MATCH_PARENT,
+						ViewGroup.LayoutParams.MATCH_PARENT);
 				FrameLayout framelayout = new FrameLayout(this);
 				framelayout.setLayoutParams(framelayout_params);
 	
 				// Cocos2dxEditText layout
 				ViewGroup.LayoutParams edittext_layout_params = new ViewGroup.LayoutParams(
-						ViewGroup.LayoutParams.FILL_PARENT,
+						ViewGroup.LayoutParams.MATCH_PARENT,
 						ViewGroup.LayoutParams.WRAP_CONTENT);
 				Cocos2dxEditText edittext = new Cocos2dxEditText(this);
 				edittext.setLayoutParams(edittext_layout_params);
@@ -705,11 +757,8 @@ public class MainActivity extends Cocos2dxActivity implements AdsMogoListener
 				RelativeLayout parentLayout = new RelativeLayout(this);
 				_adLayout = parentLayout; 
 				this.addContentView(_adLayout, new RelativeLayout.LayoutParams(
-						RelativeLayout.LayoutParams.FILL_PARENT,
-						RelativeLayout.LayoutParams.FILL_PARENT));
-				
-				_initUMeng();
-				_updateADConfig();
+						RelativeLayout.LayoutParams.MATCH_PARENT,
+						RelativeLayout.LayoutParams.MATCH_PARENT));
 				
 				_rebuildPush();
 			}

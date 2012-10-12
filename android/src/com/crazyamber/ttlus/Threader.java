@@ -1,6 +1,6 @@
 package com.crazyamber.ttlus;
 
-public class Threader extends Thread
+class Threader extends Thread
 {
 	private boolean _bRunning = false;
 	private boolean _bOnce = false;
