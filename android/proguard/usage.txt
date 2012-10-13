@@ -12,6 +12,11 @@ com.adsmogo.adview.AdsMogoWebView$AdViewJsObj:
     793:803:public void setWinth(int)
 com.adsmogo.util.AdsMogoRequestDomain$DomainList:
     private static final long serialVersionUID
+com.crazyamber.ttlus.ADAdapter:
+    private static final java.lang.String TAG
+    public static final int EVENT_Loaded
+    public static final int EVENT_Prepare
+    public static final int EVENT_Play
 com.crazyamber.ttlus.BuildConfig
 com.crazyamber.ttlus.Logger:
     public static final int NONE
@@ -22,12 +27,9 @@ com.crazyamber.ttlus.Logger:
     public static final int VERBOSE
     18:18:Logger()
     29:31:public static void addTarget(java.lang.String,com.crazyamber.ttlus.Logger$ILoggerTarget)
-    343:351:public static void w(java.lang.String,java.lang.String)
-    355:363:public static void i(java.lang.String,java.lang.String)
-    379:387:public static void v(java.lang.String,java.lang.String)
-com.crazyamber.ttlus.MainActivity:
-    private static final int _EVENT_Prepare
-    private static final int _EVENT_Play
+    350:358:public static void w(java.lang.String,java.lang.String)
+    362:370:public static void i(java.lang.String,java.lang.String)
+    386:394:public static void v(java.lang.String,java.lang.String)
 com.crazyamber.ttlus.R:
     10:10:public R()
 com.crazyamber.ttlus.Settings:
@@ -44,18 +46,16 @@ com.crazyamber.ttlus.Utils:
     102:102:public static java.lang.String boolean2str(boolean)
     107:121:public static java.lang.String readStringFromStream(java.io.InputStream)
     128:150:public static java.lang.String getIpAddress()
-    159:199:public static void showNotification(android.content.Context,int,java.lang.String,java.lang.String,android.content.Intent)
-    206:226:public static void showNotification2(android.content.Context,int,java.lang.String,java.lang.String)
-    236:237:public static android.telephony.TelephonyManager getTelephonyManager(android.content.Context)
-    242:258:public static boolean isApplicationHasInstalled(android.content.Context,java.lang.String)
-    263:318:public static int hashString2Integer(java.lang.String)
-    324:347:public static java.lang.String replace(java.lang.String,java.lang.String,java.lang.String)
-    355:364:public static void createShortcut(android.content.Context,java.lang.String,int,java.lang.Class)
-    373:392:public static boolean hasShortCut(android.content.Context,java.lang.String)
-    404:415:public static void sleep(long)
-    419:441:public static void run(java.lang.String,java.lang.String)
-    487:488:public static boolean fileExists(java.lang.String)
-    548:557:public static int parseInt(java.lang.String)
+    238:239:public static android.telephony.TelephonyManager getTelephonyManager(android.content.Context)
+    244:260:public static boolean isApplicationHasInstalled(android.content.Context,java.lang.String)
+    265:320:public static int hashString2Integer(java.lang.String)
+    326:349:public static java.lang.String replace(java.lang.String,java.lang.String,java.lang.String)
+    357:366:public static void createShortcut(android.content.Context,java.lang.String,int,java.lang.Class)
+    375:394:public static boolean hasShortCut(android.content.Context,java.lang.String)
+    406:417:public static void sleep(long)
+    421:443:public static void run(java.lang.String,java.lang.String)
+    489:490:public static boolean fileExists(java.lang.String)
+    550:559:public static int parseInt(java.lang.String)
 com.kuguo.ad.JsonEntity
 com.kuguo.ad.KuguoAdsManager:
     public static final int STYLE_KUZAI

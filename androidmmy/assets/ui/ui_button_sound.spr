@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="ui/ui.plist" tex="ui/ui.png"></texture>
+  <mesh name="sound_on">
+    <frame src="button_sound_on.png"></frame>
+  </mesh>
+  <mesh name="sound_off">
+    <frame src="button_sound_off.png"></frame>
+  </mesh>
+  <settings>
+    <!--key name="deadpose" string="dismiss"></key-->
+  </settings>
+  <pose name="on" collid="0.99,0.99">
+    <part name="body">
+      <mesh ref="sound_on" dt="0.2"></mesh>
+      <modifier mode="abc0">
+        <key time="000" yardscaley="15.3%" alpha="40%"></key>
+        <key time="098" yardscaley="17.3%" alpha="90%"></key>
+        <key time="138" yardscaley="16.5%" alpha="98%"></key>
+        <key time="200" yardscaley="15.3%" alpha="100%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="off" collid="0.99,0.99">
+    <part name="body">
+      <mesh ref="sound_off" dt="0.2"></mesh>
+      <modifier mode="abc0" >
+        <key time="000" yardscaley="15.3%" alpha="30%"></key>
+        <key time="098" yardscaley="14.2%" alpha="60%"></key>
+        <key time="138" yardscaley="13.0%" alpha="90%"></key>
+        <key time="200" yardscaley="15.3%" alpha="100%"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

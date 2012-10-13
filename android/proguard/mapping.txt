@@ -1962,6 +1962,70 @@ com.adsmogo.util.RepeatCheck -> com.adsmogo.util.RepeatCheck:
     boolean isAppRepeated(android.content.Context,java.lang.String) -> isAppRepeated
     void getInstalledApps(android.content.Context) -> getInstalledApps
     boolean isAppInstalled(android.content.Context,java.lang.String) -> isAppInstalled
+com.crazyamber.ttlus.ADAdapter -> com.crazyamber.ttlus.a:
+    com.adsmogo.adview.AdsMogoLayout _adsMogoLayoutCode -> d
+    android.widget.RelativeLayout _adLayout -> e
+    android.app.Activity _activity -> a
+    android.content.Context _context -> b
+    com.crazyamber.ttlus.AnalyzerAdapter _analyzer -> c
+    com.crazyamber.ttlus.SimpleCrypt _c -> f
+    java.lang.String _channel_id -> g
+    com.crazyamber.ttlus.ADAdapter$_ADConfig _config -> h
+    void _rebuildAD() -> b
+    void _destroyAD() -> c
+    void _rebuildPush() -> d
+    void onClickAd(java.lang.String) -> onClickAd
+    void onCloseAd() -> onCloseAd
+    void onCloseMogoDialog() -> onCloseMogoDialog
+    void onFailedReceiveAd() -> onFailedReceiveAd
+    void onRealClickAd() -> onRealClickAd
+    void onReceiveAd(android.view.ViewGroup,java.lang.String) -> onReceiveAd
+    void onRequestAd(java.lang.String) -> onRequestAd
+    void _updateADConfig() -> e
+    void setup(android.app.Activity,android.widget.RelativeLayout,com.crazyamber.ttlus.AnalyzerAdapter) -> a
+    void cleanup() -> a
+    void update(int) -> a
+com.crazyamber.ttlus.ADAdapter$_ADConfig -> com.crazyamber.ttlus.b:
+    java.lang.String channel -> b
+    java.lang.String idcn -> c
+    java.lang.String iden -> d
+    int nClickLimit -> e
+    boolean bEnableADMenu -> f
+    boolean bEnableADPlay -> g
+    boolean bEnablePush -> h
+    boolean bEnableAppDownload -> i
+    boolean bDirty -> j
+    com.crazyamber.ttlus.ADAdapter this$0 -> a
+    int _hashCode() -> b
+    java.lang.String adid() -> c
+    void setDirty(boolean) -> a
+    boolean isDirty() -> a
+    boolean parse(java.lang.String,java.lang.String) -> a
+    java.lang.String access$1(com.crazyamber.ttlus.ADAdapter$_ADConfig) -> a
+    boolean access$2(com.crazyamber.ttlus.ADAdapter$_ADConfig) -> b
+    boolean access$3(com.crazyamber.ttlus.ADAdapter$_ADConfig) -> c
+    void access$4(com.crazyamber.ttlus.ADAdapter$_ADConfig,boolean) -> a
+    void access$5(com.crazyamber.ttlus.ADAdapter$_ADConfig,boolean) -> b
+    void access$6(com.crazyamber.ttlus.ADAdapter$_ADConfig,boolean) -> c
+    void access$7(com.crazyamber.ttlus.ADAdapter$_ADConfig,boolean) -> d
+    void access$8(com.crazyamber.ttlus.ADAdapter$_ADConfig,java.lang.String) -> a
+    void access$9(com.crazyamber.ttlus.ADAdapter$_ADConfig,java.lang.String) -> b
+    void access$10(com.crazyamber.ttlus.ADAdapter$_ADConfig,java.lang.String) -> c
+    boolean access$11(com.crazyamber.ttlus.ADAdapter$_ADConfig) -> d
+com.crazyamber.ttlus.AnalyzerAdapter -> com.crazyamber.ttlus.c:
+    android.content.Context _context -> a
+    void setup(android.content.Context) -> a
+    void pause(android.content.Context) -> b
+    void resume(android.content.Context) -> c
+    void onEvent(android.content.Context,java.lang.String) -> a
+    java.lang.String getConfigParams(java.lang.String) -> a
+    android.content.Context access$0(com.crazyamber.ttlus.AnalyzerAdapter) -> a
+com.crazyamber.ttlus.AnalyzerAdapter$1 -> com.crazyamber.ttlus.d:
+    com.crazyamber.ttlus.AnalyzerAdapter this$0 -> a
+    void onUpdateReturned(int,com.umeng.update.UpdateResponse) -> onUpdateReturned
+com.crazyamber.ttlus.AnalyzerAdapter$2 -> com.crazyamber.ttlus.e:
+    com.crazyamber.ttlus.AnalyzerAdapter this$0 -> a
+    void OnDownloadEnd(int) -> OnDownloadEnd
 com.crazyamber.ttlus.GameEnvHandler -> com.crazyamber.ttlus.GameEnvHandler:
     java.util.HashMap _events -> a
     com.crazyamber.ttlus.GameEnvHandler$GameEventListener _listener -> b
@@ -1970,9 +2034,9 @@ com.crazyamber.ttlus.GameEnvHandler -> com.crazyamber.ttlus.GameEnvHandler:
     java.lang.String getLanguage() -> getLanguage
     void onJNIEvent(java.lang.String,java.lang.String) -> onJNIEvent
     java.lang.Object getEvent(java.lang.String) -> getEvent
-com.crazyamber.ttlus.GameEnvHandler$GameEventListener -> com.crazyamber.ttlus.a:
+com.crazyamber.ttlus.GameEnvHandler$GameEventListener -> com.crazyamber.ttlus.f:
     void onEvent(java.lang.String,java.lang.String) -> a
-com.crazyamber.ttlus.Logger -> com.crazyamber.ttlus.b:
+com.crazyamber.ttlus.Logger -> com.crazyamber.ttlus.g:
     java.util.HashMap _targets -> b
     int _counter -> c
     int _logLevel -> d
@@ -2000,92 +2064,30 @@ com.crazyamber.ttlus.Logger -> com.crazyamber.ttlus.b:
     boolean access$1() -> b
     java.util.LinkedList access$2() -> c
     void access$3(java.lang.String) -> a
-com.crazyamber.ttlus.Logger$1 -> com.crazyamber.ttlus.c:
+com.crazyamber.ttlus.Logger$1 -> com.crazyamber.ttlus.h:
     void run() -> run
-com.crazyamber.ttlus.Logger$ILoggerTarget -> com.crazyamber.ttlus.d:
+com.crazyamber.ttlus.Logger$ILoggerTarget -> com.crazyamber.ttlus.i:
     void writeLogLine(java.lang.String) -> a
 com.crazyamber.ttlus.MainActivity -> com.crazyamber.ttlus.MainActivity:
     java.lang.String TAG -> a
     org.cocos2dx.lib.Cocos2dxGLSurfaceView mGLView -> b
-    com.adsmogo.adview.AdsMogoLayout _adsMogoLayoutCode -> c
-    android.widget.RelativeLayout _adLayout -> d
-    java.lang.String _channel_id -> e
-    com.crazyamber.ttlus.MainActivity$_ADConfig _config -> f
-    com.crazyamber.ttlus.MainActivity$Crypt _c -> g
-    android.os.Handler _adManageHandler -> h
-    com.crazyamber.ttlus.GameEnvHandler$GameEventListener _eventListener -> i
-    com.umeng.update.UmengUpdateListener _updateListener -> j
-    java.lang.String _bytesToHex(byte[]) -> a
-    byte[] _hexToBytes(java.lang.String) -> a
-    void _onGameEvent(int) -> a
-    void _initUMeng() -> a
-    void _updateADConfig() -> b
-    void _rebuildAD() -> c
-    void _destroyAD() -> d
-    void _rebuildPush() -> e
-    void onClickAd(java.lang.String) -> onClickAd
-    void onCloseAd() -> onCloseAd
-    void onCloseMogoDialog() -> onCloseMogoDialog
-    void onFailedReceiveAd() -> onFailedReceiveAd
-    void onRealClickAd() -> onRealClickAd
-    void onReceiveAd(android.view.ViewGroup,java.lang.String) -> onReceiveAd
-    void onRequestAd(java.lang.String) -> onRequestAd
+    android.widget.RelativeLayout _adLayout -> c
+    com.crazyamber.ttlus.ADAdapter _ad -> d
+    com.crazyamber.ttlus.AnalyzerAdapter _analyzer -> e
+    android.os.Handler _adManageHandler -> f
+    com.crazyamber.ttlus.GameEnvHandler$GameEventListener _eventListener -> g
     void onCreate(android.os.Bundle) -> onCreate
     void onPause() -> onPause
     void onResume() -> onResume
     void onDestroy() -> onDestroy
-    boolean detectOpenGLES20() -> f
-    android.os.Handler access$0(com.crazyamber.ttlus.MainActivity) -> a
-    java.lang.String access$1(com.crazyamber.ttlus.MainActivity,byte[]) -> a
-    byte[] access$2(com.crazyamber.ttlus.MainActivity,java.lang.String) -> a
-    void access$3(com.crazyamber.ttlus.MainActivity,int) -> a
-com.crazyamber.ttlus.MainActivity$1 -> com.crazyamber.ttlus.e:
+    boolean detectOpenGLES20() -> a
+    com.crazyamber.ttlus.AnalyzerAdapter access$0(com.crazyamber.ttlus.MainActivity) -> a
+    android.os.Handler access$1(com.crazyamber.ttlus.MainActivity) -> b
+    com.crazyamber.ttlus.ADAdapter access$2(com.crazyamber.ttlus.MainActivity) -> c
+com.crazyamber.ttlus.MainActivity$1 -> com.crazyamber.ttlus.j:
     com.crazyamber.ttlus.MainActivity this$0 -> a
     void onEvent(java.lang.String,java.lang.String) -> a
-com.crazyamber.ttlus.MainActivity$2 -> com.crazyamber.ttlus.f:
-    com.crazyamber.ttlus.MainActivity this$0 -> a
-    void onUpdateReturned(int,com.umeng.update.UpdateResponse) -> onUpdateReturned
-com.crazyamber.ttlus.MainActivity$3 -> com.crazyamber.ttlus.g:
-    com.crazyamber.ttlus.MainActivity this$0 -> a
-    void OnDownloadEnd(int) -> OnDownloadEnd
-com.crazyamber.ttlus.MainActivity$Crypt -> com.crazyamber.ttlus.h:
-    javax.crypto.spec.IvParameterSpec ivspec -> b
-    javax.crypto.spec.SecretKeySpec keyspec -> c
-    javax.crypto.Cipher cipher -> d
-    com.crazyamber.ttlus.MainActivity this$0 -> a
-    java.lang.String encryptString(java.lang.String) -> a
-    java.lang.String decryptString(java.lang.String) -> b
-    byte[] encrypt(java.lang.String) -> c
-    byte[] decrypt(java.lang.String) -> d
-    java.lang.String padString(java.lang.String) -> e
-com.crazyamber.ttlus.MainActivity$_ADConfig -> com.crazyamber.ttlus.i:
-    java.lang.String channel -> b
-    java.lang.String idcn -> c
-    java.lang.String iden -> d
-    int nClickLimit -> e
-    boolean bEnableADMenu -> f
-    boolean bEnableADPlay -> g
-    boolean bEnablePush -> h
-    boolean bEnableAppDownload -> i
-    boolean bDirty -> j
-    com.crazyamber.ttlus.MainActivity this$0 -> a
-    int _hashCode() -> b
-    java.lang.String adid() -> c
-    void setDirty(boolean) -> a
-    boolean isDirty() -> a
-    boolean parse(java.lang.String,java.lang.String) -> a
-    boolean access$1(com.crazyamber.ttlus.MainActivity$_ADConfig) -> a
-    void access$2(com.crazyamber.ttlus.MainActivity$_ADConfig,boolean) -> a
-    void access$3(com.crazyamber.ttlus.MainActivity$_ADConfig,boolean) -> b
-    void access$4(com.crazyamber.ttlus.MainActivity$_ADConfig,boolean) -> c
-    void access$5(com.crazyamber.ttlus.MainActivity$_ADConfig,boolean) -> d
-    void access$6(com.crazyamber.ttlus.MainActivity$_ADConfig,java.lang.String) -> a
-    void access$7(com.crazyamber.ttlus.MainActivity$_ADConfig,java.lang.String) -> b
-    void access$8(com.crazyamber.ttlus.MainActivity$_ADConfig,java.lang.String) -> c
-    java.lang.String access$9(com.crazyamber.ttlus.MainActivity$_ADConfig) -> b
-    boolean access$10(com.crazyamber.ttlus.MainActivity$_ADConfig) -> c
-    boolean access$11(com.crazyamber.ttlus.MainActivity$_ADConfig) -> d
-com.crazyamber.ttlus.MainActivity$_ADManagerHandler -> com.crazyamber.ttlus.j:
+com.crazyamber.ttlus.MainActivity$_ADManagerHandler -> com.crazyamber.ttlus.k:
     java.lang.ref.WeakReference mActivity -> a
     void handleMessage(android.os.Message) -> handleMessage
 com.crazyamber.ttlus.R -> com.crazyamber.ttlus.R:
@@ -2094,13 +2096,26 @@ com.crazyamber.ttlus.R$drawable -> com.crazyamber.ttlus.R$drawable:
     int icon -> icon
 com.crazyamber.ttlus.R$string -> com.crazyamber.ttlus.R$string:
     int app_name -> app_name
-com.crazyamber.ttlus.Settings -> com.crazyamber.ttlus.k:
+com.crazyamber.ttlus.Settings -> com.crazyamber.ttlus.l:
     void set(android.content.Context,java.lang.String,java.lang.String) -> a
     java.lang.String get(android.content.Context,java.lang.String) -> a
-com.crazyamber.ttlus.Utils -> com.crazyamber.ttlus.l:
-    int _nid -> a
+com.crazyamber.ttlus.SimpleCrypt -> com.crazyamber.ttlus.m:
+    javax.crypto.spec.IvParameterSpec ivspec -> a
+    javax.crypto.spec.SecretKeySpec keyspec -> b
+    javax.crypto.Cipher cipher -> c
+    java.lang.String encryptString(java.lang.String) -> a
+    java.lang.String decryptString(java.lang.String) -> b
+    byte[] encrypt(java.lang.String) -> c
+    byte[] decrypt(java.lang.String) -> d
+    java.lang.String padString(java.lang.String) -> e
+com.crazyamber.ttlus.Utils -> com.crazyamber.ttlus.n:
     int getSystemVersion() -> a
     void killUnrelatedActivityProcesses(android.content.Context) -> a
+    java.lang.String bytesToHex(byte[]) -> a
+    byte[] hexToBytes(java.lang.String) -> a
+    void msgBox(android.content.Context,java.lang.String,java.lang.String) -> a
+com.crazyamber.ttlus.Utils$1 -> com.crazyamber.ttlus.o:
+    void onClick(android.content.DialogInterface,int) -> onClick
 com.google.ads.Ad -> com.google.ads.Ad:
     boolean isReady() -> isReady
     void loadAd(com.google.ads.AdRequest) -> loadAd

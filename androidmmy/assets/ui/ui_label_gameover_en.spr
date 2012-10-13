@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="ui/ui.plist" tex="ui/ui.png"></texture>
+  <mesh name="lab_gameover">
+    <frame src="label_gameover_en.png"></frame>
+  </mesh>
+  <settings>
+    <!--key name="deadpose" string="dismiss"></key-->
+  </settings>
+  <pose name="gameover_fadein" collid="0.0,0.0">
+    <part name="body">
+      <mesh ref="lab_gameover" dt="1000"></mesh>
+      <modifier mode="abc0" timescale="3.0" timeoffset="0">
+        <key time="000" apos="0.5,0.5" yardscale="30%,1%" alpha="50%"></key>
+        <key time="080" apos="0.5,0.5" yardscale="40%,6%" alpha="60%"></key>
+        <key time="160" apos="0.5,0.5" yardscale="50%,8%" alpha="80%"></key>
+        <key time="200" apos="0.5,0.5" yardscale="40%,12%" alpha="100%"></key>
+        <key time="800" apos="0.5,0.5" yardscale="40%,12%" alpha="100%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="gameover_fadeout" collid="0.0,0.0">
+    <part name="body">
+      <mesh ref="lab_gameover" dt="1000"></mesh>
+      <modifier mode="abc0" timescale="1.0" timeoffset="0">
+        <key time="000" apos="0.5,0.5" yardscale="40%,18%" alpha="50%"></key>
+        <key time="150" apos="0.5,0.5" yardscale="50%,12%" alpha="50%"></key>
+        <key time="200" apos="0.5,0.5" yardscale="40%,6%" alpha="40%"></key>
+        <key time="350" apos="0.5,0.5" yardscale="30%,0%" alpha="30%"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

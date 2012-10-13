@@ -16,7 +16,7 @@ string getLanguage()
 	string ret = "";
 	JniMethodInfo t;
 	if (JniHelper::getStaticMethodInfo(t
-		, "com/crazyamber/ttlus/GameEnvHandler"
+		, "com/crazyamber/core/GameEnvHandler"
 		, "getLanguage"
 		, "()Ljava/lang/String;"))
 	{
