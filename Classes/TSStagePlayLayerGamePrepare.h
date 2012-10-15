@@ -17,6 +17,7 @@ protected:
 	Define_Sprite_Getter(TSSpriteCommon, label_dist_last);
 	Define_Sprite_Getter(TSSpriteCommon, label_dist_max);
 	Define_Sprite_Getter(TSSpriteButton, button_play);
+	Define_Sprite_Getter(TSSpriteButton, button_moregames);
 	//Define_Sprite_Getter(TSSpriteButton, button_shop);
 	//Define_Sprite_Getter(TSSpriteButton, button_music);
 	Define_Sprite_Getter(TSSpriteButton, button_sound);
@@ -34,6 +35,7 @@ protected:
 		Init_Sprite_Getter_Var(label_dist_max);
 		//Init_Sprite_Getter_Var(panel_scores);
 		Init_Sprite_Getter_Var(button_play);
+		Init_Sprite_Getter_Var(button_moregames);
 		//Init_Sprite_Getter_Var(button_shop);
 		//Init_Sprite_Getter_Var(button_music);
 		Init_Sprite_Getter_Var(button_sound);
@@ -50,6 +52,7 @@ protected:
 		Init_Sprite_Getter(TSSpriteCommon, label_dist_last);
 		Init_Sprite_Getter(TSSpriteCommon, label_dist_max);
 		Init_Sprite_Getter(TSSpriteButton, button_play);
+		Init_Sprite_Getter(TSSpriteButton, button_moregames);
 		//Init_Sprite_Getter(TSSpriteButton, button_shop);
 		//Init_Sprite_Getter(TSSpriteButton, button_music);
 		Init_Sprite_Getter(TSSpriteButton, button_sound);

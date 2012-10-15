@@ -40,6 +40,8 @@
   <model id="button_sound" src="ui/ui_button_sound.spr" />
   <model id="button_play" src="ui/ui_button_play.spr" lang="cn" />
   <model id="button_play" src="ui/ui_button_play_en.spr" lang="en" />
+  <model id="button_moregames" src="ui/ui_button_moregames.spr" lang="cn" />
+  <model id="button_moregames" src="ui/ui_button_moregames_en.spr" lang="en" />
   <!--model id="button_shop" src="ui/ui_button_shop.spr"></model-->
   <model id="ui_hand" src="ui/ui_hand.spr" />
   <model id="ui_hand_spot" src="ui/ui_hand_spot.spr" />

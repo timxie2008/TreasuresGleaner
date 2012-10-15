@@ -69,6 +69,7 @@ bool TSStagePlayLayerGamePrepare::checkCondition(CAState* from, const CATransiti
 			{
 				_label_title(),
 				_button_play(),
+				_button_moregames(),
 				null,
 			};
 			result = _checkSpritePoseFinished(pszPose, psprs);
@@ -156,6 +157,7 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		CASprite* psprsControls[] =
 		{
 			_button_play(),
+			_button_moregames(),
 			null,
 		};
 		_setSpritesState(STATE_Fadein, psprsStatic);
@@ -201,6 +203,7 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 		CASprite* psprsControls[] =
 		{
 			_button_play(),
+			_button_moregames(),
 			null,
 		};
 		_setSpritesState(STATE_Fadeout, psprsStatic);
