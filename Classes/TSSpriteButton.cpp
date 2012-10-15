@@ -43,7 +43,7 @@ void TSSpriteButton::_onAnimationStop()
 	CASpriteModelPose* ppose = this->getCurrentPose();
 	if (ppose->name() == ButtonPose_Pressed)
 	{
-		//setState(ButtonPose_Stand);
+		setState(ButtonPose_Stand);
 	}
 	if (_settings().hasKey(ButtonPose_DeadPose))
 	{

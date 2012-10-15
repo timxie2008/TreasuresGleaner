@@ -396,6 +396,10 @@ void TSStagePlayLayerGamePrepare::onEvent(CAEvent* pevt)
 				{
 					this->setConditionResult("root.running@user.play", true);
 				}
+				else if (name == "button_moregames")
+				{
+					postGameEvent("play_state", "share");
+				}
 				else if (name == "button_sound")
 				{
 					if (stage()->isSoundMute() || stage()->isMusicMute())
