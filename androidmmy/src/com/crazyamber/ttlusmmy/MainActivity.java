@@ -87,7 +87,13 @@ public class MainActivity extends Cocos2dxActivity
 					msg.what = ADAdapter.EVENT_Prepare;
 					_adManageHandler.sendMessage(msg);
 				}
-				if (val.equals("running"))
+				else if (val.equals("share"))
+				{
+					Message msg = new Message();
+					msg.what = ADAdapter.EVENT_ShareGames;
+					_adManageHandler.sendMessage(msg);
+				}
+				else if (val.equals("running"))
 				{
 					Message msg = new Message();
 					msg.what = ADAdapter.EVENT_Play;
@@ -102,14 +108,14 @@ public class MainActivity extends Cocos2dxActivity
 	{
 		super.onCreate(savedInstanceState);
 
-		//String v = Utils.getPackageVersion(this);
-		
 		Logger.start(this,  Logger.ERROR, Logger.DEBUG);
 		Logger.d(TAG, "craete");
 		
 		Utils.killUnrelatedActivityProcesses(this);
 		GameEnvHandler.setListener(this, _eventListener);
 		
+		String sig = GameEnvHandler.getSignature();
+		Settings.set(this, "sig", sig);
 		
 		//encrypt mogo
 //		try

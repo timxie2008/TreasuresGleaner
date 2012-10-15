@@ -1709,18 +1709,19 @@ com.adsmogo.util.RepeatCheck: RepeatCheck()
 com.adsmogo.util.RepeatCheck: boolean isAppRepeated(android.content.Context,java.lang.String)
 com.adsmogo.util.RepeatCheck: void getInstalledApps(android.content.Context)
 com.adsmogo.util.RepeatCheck: boolean isAppInstalled(android.content.Context,java.lang.String)
-com.crazyamber.ttlus.GameEnvHandler
-com.crazyamber.ttlus.GameEnvHandler: void <clinit>()
-com.crazyamber.ttlus.GameEnvHandler: GameEnvHandler()
-com.crazyamber.ttlus.GameEnvHandler: void setListener(android.content.Context,com.crazyamber.ttlus.GameEnvHandler$GameEventListener)
-com.crazyamber.ttlus.GameEnvHandler: java.lang.String getLanguage()
-com.crazyamber.ttlus.GameEnvHandler: void onJNIEvent(java.lang.String,java.lang.String)
-com.crazyamber.ttlus.GameEnvHandler: java.lang.Object getEvent(java.lang.String)
+com.crazyamber.core.GameEnvHandler
+com.crazyamber.core.GameEnvHandler: void <clinit>()
+com.crazyamber.core.GameEnvHandler: GameEnvHandler()
+com.crazyamber.core.GameEnvHandler: void setListener(android.content.Context,com.crazyamber.core.GameEnvHandler$GameEventListener)
+com.crazyamber.core.GameEnvHandler: java.lang.String getLanguage()
+com.crazyamber.core.GameEnvHandler: void onJNIEvent(java.lang.String,java.lang.String)
+com.crazyamber.core.GameEnvHandler: java.lang.Object getEvent(java.lang.String)
 com.crazyamber.ttlus.MainActivity
 com.crazyamber.ttlus.MainActivity: MainActivity()
 com.crazyamber.ttlus.R$attr
 com.crazyamber.ttlus.R$drawable
 com.crazyamber.ttlus.R$drawable: int icon
+com.crazyamber.ttlus.R$drawable: int newicon
 com.crazyamber.ttlus.R$string
 com.crazyamber.ttlus.R$string: int app_name
 com.google.ads.Ad

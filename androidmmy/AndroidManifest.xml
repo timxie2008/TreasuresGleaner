@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.crazyamber.ttlusmmy"
-    android:versionCode="10109"
-    android:versionName="1.1.09" >
+    android:versionCode="10200"
+    android:versionName="1.2.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -66,270 +66,6 @@
             </intent-filter>
         </activity>
 
-        <!-- 声明Mogo的Activity -->
-        <activity
-            android:name="com.adsmogo.adview.AdsMogoWebView"
-            android:label="@string/app_name" >
-        </activity>
-
-        <!-- 声明AdMob的Activity -->
-        <activity
-            android:name="com.google.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-        
-        <!-- 声明艾德思奇的Activity和Service -->
-        <activity
-            android:name="com.mobisage.android.MobiSageActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation" >
-        </activity>
-
-        <service
-            android:name="com.mobisage.android.MobiSageApkService"
-            android:exported="true" />
-
-        <!-- 声明安沃的Activity -->
-        <!-- 
-        <activity
-            android:name="com.adwo.adsdk.AdwoAdBrowserActivity"
-            android:label="@string/app_name" />
-        -->
-        
-        <!-- 安沃全屏广告 -->
-		<!--        
-        <activity
-            android:name="com.adwo.adsdk.AdwoSplashAdActivity"
-            android:label="@string/app_name" />
-		-->
-		
-        <!-- 声明聚赢的Activity -->
-        <!-- 
-        <activity android:name="com.tencent.mobwin.MobinWINBrowserActivity" />
-		-->
-        <!-- 添加百度应用详情Activity -->
-        <!-- 
-        <meta-data
-            android:name="Market_ID"
-            android:value="1" />
-
-        <activity
-            android:name="com.baidu.mobads.AppActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation" />
-		-->
-        <!-- 添加友盟的Activity -->
-        <!-- 
-        <activity
-            android:name="com.umengAd.android.UmengAdDetailActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent" />
-		-->
-        <!-- 声明AppMedia的Activity -->
-        <!-- 
-        <activity android:name="cn.appmedia.ad.AdActivity" >
-        </activity>
-		-->
-		 
-        <!-- 声明力美的Activity -->
-        <!--
-        <activity
-            android:name="com.lmmob.ad.sdk.LmMobAdWebView"
-            android:configChanges="keyboardHidden|orientation" />
-        <activity
-            android:name="com.lmmob.ad.sdk.LmMobFullImageActivity"
-            android:configChanges="keyboardHidden|orientation" />
-        -->
-        <!-- 声明Vpon的Activity -->
-        <!-- 
-        <activity
-            android:name="com.vpon.adon.android.WebInApp"
-            android:configChanges="orientation|keyboardHidden|navigation|keyboard"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.vpon.adon.android.CrazyAdRun"
-            android:configChanges="orientation|keyboardHidden|navigation|keyboard"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent" />
-        <activity
-            android:name="com.vpon.adon.android.webClientHandler.QRActivity"
-            android:clearTaskOnLaunch="true"
-            android:configChanges="keyboardHidden|navigation|keyboard"
-            android:finishOnTaskLaunch="true" >
-        </activity>
-        <activity
-            android:name="com.vpon.adon.android.webClientHandler.ShootActivity"
-            android:clearTaskOnLaunch="true"
-            android:configChanges="keyboardHidden|navigation|keyboard"
-            android:finishOnTaskLaunch="true" >
-        </activity>
-        <activity
-            android:name="com.googleing.zxinging.client.android.CaptureActivity"
-            android:clearTaskOnLaunch="true"
-            android:configChanges="orientation|keyboardHidden"
-            android:finishOnTaskLaunch="true"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateAlwaysHidden" >
-            <intent-filter>
-                <action android:name="com.googleing.zxinging.client.android.SCAN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-		-->
-        <!-- 声明AdMob的Activity -->
-        <!--
-		<activity
-            android:name="com.google.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-        -->
-
-
-        <!-- 声明AdChina的Activity -->
-        <!--
-        <activity
-            android:name="com.adchina.android.ads.views.AdBrowserView"
-            android:configChanges="orientation|keyboard|keyboardHidden"
-            android:theme="@android:style/Theme.Translucent" />
-        <activity
-            android:name="com.adchina.android.ads.views.FullScreenAdActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent" />
-        -->
-        <!-- 声明赢告的Activity -->
-        <!--
-        <activity android:name="com.winad.android.ads.VideoPlayerActivity" />
-
-        <receiver android:name="com.winad.android.ads.ReciveInstallPackage" >
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
-        -->
-        <!-- 声明微云 -->
-        <!--
-        <receiver android:name="com.wiyun.common.WiLauncher" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.net.wifi.STATE_CHANGE" />
-                <action android:name="com.wiyun.common.DAP" />
-                <action android:name="com.wiyun.common.FIT" />
-                <action android:name="com.wiyun.common.DOF" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
-
-        <activity
-            android:name="com.wiyun.common.SimpleBrowserActivity"
-            android:launchMode="singleTask" >
-        </activity>
-        -->
-        <!-- 声明Greystripe的Activity -->
-        <!--
-        <provider
-            android:name="com.greystripe.android.sdk.AdContentProvider"
-            android:authorities="com.admogo.AdContentProvider"
-            android:exported="false"
-            android:multiprocess="true" />
-
-        <activity
-            android:name="com.greystripe.android.sdk.AdView"
-            android:configChanges="keyboard|keyboardHidden|orientation" >
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        -->
-        <!-- 声明MdotM的Activity -->
-        <!--
-        <activity
-            android:name="com.mdotm.android.ads.MdotmLandingPage"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
-        </activity>
-        -->
-        <!-- 声明Millennial的Activity -->
-        <!--
-        <activity
-            android:name="com.millennialmedia.android.MMAdViewOverlayActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.millennialmedia.android.VideoPlayer"
-            android:configChanges="keyboardHidden|orientation|keyboard"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        -->
-        <!-- 声明AirAD的Activity -->
-        <!--
-        <activity
-            android:name="com.mt.airad.MultiAD"
-            android:configChanges="orientation|keyboard|keyboardHidden"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        -->
-        <!-- 声明LSense的Activity -->
-        <!--
-        <activity
-            android:name="com.l.adlib_android.AdBrowseActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        -->
-        <!-- 声明哇棒的Activity -->
-        <!--
-        <activity
-            android:name="com.wooboo.adlib_android.AdActivity"
-            android:configChanges="orientation|keyboardHidden" />
-
-        <service android:name="com.wooboo.download.WoobooService" >
-            <intent-filter>
-                <action android:name="com.wooboo.WoobooDownloadService" >
-                </action>
-            </intent-filter>
-        </service>
-
-        <activity
-            android:name="com.wooboo.adlib_android.FullActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:launchMode="singleTask" />
-
-        <meta-data
-            android:name="Market_ID"
-            android:value="1" />
-        -->
-
-
-        <!-- 声明有米的Activity和receiver -->
-        <!--
-        <activity
-            android:name="net.youmi.android.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation" />
-        -->
-        <!-- 声明多盟的Activity -->
-        <!--
-		<activity
-            android:name="cn.domob.android.ads.DomobActivity"
-            android:theme="@android:style/Theme.Translucent" />
-        -->
-
-
-        <!-- 注册Service，应用下载所需 -->
-        <service
-            android:name="com.adsmogo.controller.service.UpdateService"
-            android:exported="true"
-            android:process=":remote" />
-        <!-- 注册Service，应用被安装所用 -->
-        <service
-            android:name="com.adsmogo.controller.service.CountService"
-            android:exported="true"
-            android:process=":remote" />
-
         <!-- Caution! Do not change this app key. It is only for demo usage. -->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -337,7 +73,7 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="gfan" >
+            android:value="mumayi" >
         </meta-data>
         <service
             android:name="com.umeng.common.net.DownloadingService"
@@ -345,27 +81,33 @@
             android:process=":DownloadingService" >
         </service>
         
-		<!-- 以下是酷果广告平台在application段内配置的内容 -->
-		<meta-data android:name="cooId" android:value="none" />
-		<meta-data android:name="channelId" android:value="k-appchina" />
-		<activity android:name="com.kuguo.ad.MainActivity"
-			android:theme="@android:style/Theme.Dialog"
-			android:excludeFromRecents="true"
-			android:launchMode="singleInstance" />
-		<activity android:name="com.kuguo.ad.BoutiqueActivity" 
-			android:excludeFromRecents="true"
-			android:launchMode="singleInstance"
-			android:screenOrientation="portrait"/>
-		<service android:name="com.kuguo.ad.MainService" />
-		<receiver android:name="com.kuguo.ad.MainReceiver">
-			<intent-filter>
-				<action android:name="android.intent.action.PACKAGE_ADDED" />
-				<data android:scheme="package" />
-			</intent-filter>
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-		</receiver>
+        <!--金蛋模块-->
+		<activity
+        	android:label="推荐列表"
+        	android:name="com.mobile.app.adlist.GEList"    
+        	android:theme="@android:style/Theme.NoTitleBar" 
+        	android:configChanges="orientation|keyboardHidden|locale"  	
+        	android:screenOrientation="portrait"
+        	>
+        </activity>
+        <activity
+        	android:name="com.mobile.app.adpush.GELaunchNotify"
+        	android:theme="@android:style/Theme.Translucent"
+        	android:configChanges="orientation|keyboardHidden|locale"
+        	>        	
+        </activity>
+        <receiver
+            android:name="com.mobile.app.utils.GESoftInspector"     
+            >  
+             <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>   
+                <data android:scheme="package"/>         
+             </intent-filter>         
+        </receiver>
+        <!-- 
+        <meta-data android:name="GE-UID" android:value="10000"/>
+        <meta-data android:name="GE-PID" android:value="T1001"/>
+         -->
         
     </application>
 

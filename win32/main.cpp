@@ -40,6 +40,11 @@ void postGameEvent(const char* key, const char* value)
 	_Info("Game Event:%s=%s", key, value);
 }
 
+string getConfig()
+{
+	return "mg=true";
+}
+
 string getLanguage()
 {
 	return "cn";

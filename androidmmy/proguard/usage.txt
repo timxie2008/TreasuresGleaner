@@ -1,101 +1,51 @@
-com.adsmogo.adapters.AirAdAdapter$1:
-    94:95:public void onAdBannerShown()
-    99:101:public void onAdContentClose()
-    105:107:public void onAdContentLoadFinished()
-    111:113:public void onAdContentShow()
-    118:127:public void onAdReceivedFailed(int)
-    132:138:public void onAdReceived()
-com.adsmogo.adapters.SuizongAPIAdapter$SuizongScreenManager:
-    374:375:public void setAw(java.lang.String)
-    382:383:public void setAh(java.lang.String)
-com.adsmogo.adview.AdsMogoWebView$AdViewJsObj:
-    793:803:public void setWinth(int)
-com.adsmogo.util.AdsMogoRequestDomain$DomainList:
-    private static final long serialVersionUID
-com.crazyamber.ttlusmmy.ADAdapter:
-    private static final java.lang.String TAG
-    public static final int EVENT_Loaded
-    public static final int EVENT_Prepare
-    public static final int EVENT_Play
-com.crazyamber.ttlusmmy.BuildConfig
-com.crazyamber.ttlusmmy.Logger:
+com.crazyamber.core.Logger:
     public static final int NONE
     public static final int ERROR
     public static final int WARN
     public static final int INFO
     public static final int DEBUG
     public static final int VERBOSE
-    18:18:Logger()
-    29:31:public static void addTarget(java.lang.String,com.crazyamber.ttlusmmy.Logger$ILoggerTarget)
+    18:18:public Logger()
+    29:31:public static void addTarget(java.lang.String,com.crazyamber.core.Logger$ILoggerTarget)
     350:358:public static void w(java.lang.String,java.lang.String)
     362:370:public static void i(java.lang.String,java.lang.String)
     386:394:public static void v(java.lang.String,java.lang.String)
+com.crazyamber.core.Settings:
+    7:7:public Settings()
+com.crazyamber.core.Threader
+com.crazyamber.core.Utils:
+    35:35:public Utils()
+    46:51:public static boolean isSDCardAvailable()
+    56:56:public static long currentTimeMillis()
+    61:61:public static java.lang.Integer getAPILevel()
+    96:110:public static java.lang.String getPackageVersion(android.content.Context)
+    115:122:public static java.lang.String map2String(java.util.HashMap)
+    127:128:public static java.lang.String safeString(java.lang.String)
+    133:133:public static java.lang.String boolean2str(boolean)
+    138:152:public static java.lang.String readStringFromStream(java.io.InputStream)
+    159:181:public static java.lang.String getIpAddress()
+    269:270:public static android.telephony.TelephonyManager getTelephonyManager(android.content.Context)
+    275:291:public static boolean isApplicationHasInstalled(android.content.Context,java.lang.String)
+    354:366:public static int hashString2Integer(java.lang.String)
+    372:395:public static java.lang.String replace(java.lang.String,java.lang.String,java.lang.String)
+    403:412:public static void createShortcut(android.content.Context,java.lang.String,int,java.lang.Class)
+    421:440:public static boolean hasShortCut(android.content.Context,java.lang.String)
+    452:463:public static void sleep(long)
+    467:489:public static void run(java.lang.String,java.lang.String)
+    535:536:public static boolean fileExists(java.lang.String)
+    596:605:public static int parseInt(java.lang.String)
+    610:611:public static byte[] intToBytes(int)
+com.crazyamber.ttlusmmy.ADAdapter:
+    private static final java.lang.String TAG
+    public static final int EVENT_Loaded
+    public static final int EVENT_Prepare
+    public static final int EVENT_Play
+    public static final int EVENT_ShareGames
+com.crazyamber.ttlusmmy.ADAdapter$_ADConfig:
+    78:81:private java.lang.String adid()
+com.crazyamber.ttlusmmy.BuildConfig
 com.crazyamber.ttlusmmy.R:
     10:10:public R()
-com.crazyamber.ttlusmmy.Settings:
-    7:7:public Settings()
-com.crazyamber.ttlusmmy.Threader
-com.crazyamber.ttlusmmy.Utils:
-    34:34:public Utils()
-    45:50:public static boolean isSDCardAvailable()
-    55:55:public static long currentTimeMillis()
-    60:60:public static java.lang.Integer getAPILevel()
-    65:79:public static java.lang.String getPackageVersion(android.content.Context)
-    84:91:public static java.lang.String map2String(java.util.HashMap)
-    96:97:public static java.lang.String safeString(java.lang.String)
-    102:102:public static java.lang.String boolean2str(boolean)
-    107:121:public static java.lang.String readStringFromStream(java.io.InputStream)
-    128:150:public static java.lang.String getIpAddress()
-    238:239:public static android.telephony.TelephonyManager getTelephonyManager(android.content.Context)
-    244:260:public static boolean isApplicationHasInstalled(android.content.Context,java.lang.String)
-    265:320:public static int hashString2Integer(java.lang.String)
-    326:349:public static java.lang.String replace(java.lang.String,java.lang.String,java.lang.String)
-    357:366:public static void createShortcut(android.content.Context,java.lang.String,int,java.lang.Class)
-    375:394:public static boolean hasShortCut(android.content.Context,java.lang.String)
-    406:417:public static void sleep(long)
-    421:443:public static void run(java.lang.String,java.lang.String)
-    489:490:public static boolean fileExists(java.lang.String)
-    550:559:public static int parseInt(java.lang.String)
-com.kuguo.ad.JsonEntity
-com.kuguo.ad.KuguoAdsManager:
-    public static final int STYLE_KUZAI
-    public static final int STYLE_KUXUAN
-    public static final int APPTYPE
-    public static final int GAMETYPE
-    public void stopPushMessage(android.content.Context)
-    public void showAppList(android.content.Context)
-    public void setKuxuanPosition(int,int)
-    public void setDefaultAppType(android.content.Context,int)
-com.kuguo.ad.MainService:
-    public static void a(android.content.Context)
-com.kuguo.ad.a:
-    public a()
-    public static void b(android.content.Context,int)
-com.kuguo.ad.au:
-    public au()
-com.kuguo.ad.bx
-com.kuguo.ad.d:
-    public d()
-com.kuguo.ad.s:
-    public s()
-com.kuguo.c.a:
-    public a()
-com.kuguo.c.b:
-    public b()
-com.kuguo.c.c:
-    public c()
-com.kuguo.c.d:
-    public d()
-com.mobisage.android.F:
-    43:65:public final void impressiontrack(java.lang.String)
-    68:87:public final void clickAd(java.lang.String)
-    90:109:public final void onWebClickAd(java.lang.String)
-    112:136:private void a(java.util.HashMap)
-    255:296:private void b(java.util.HashMap)
-    299:331:private void c(java.util.HashMap)
-    26:26:static synthetic android.content.Context a(com.mobisage.android.F)
-com.mobisage.android.F$1
-com.mobisage.android.F$2
 com.umeng.analytics.a:
     private static final java.lang.String c
 com.umeng.analytics.b:

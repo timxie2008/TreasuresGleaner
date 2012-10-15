@@ -1,6 +1,9 @@
 package com.crazyamber.core;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
@@ -12,9 +15,6 @@ public class SimpleCipher
 	private IvParameterSpec ivspec;
 	private SecretKeySpec keyspec;
 	private Cipher cipher;
-
-	//private String iv = "fedcba9876543210";//Dummy iv (CHANGE IT!)
-	//private String SecretKey = "0123456789abcdef";//Dummy secretKey (CHANGE IT!)
 
 	public SimpleCipher(byte[] iv, byte[] sk)
 	{
@@ -37,72 +37,99 @@ public class SimpleCipher
 		}
 	}
 
-	public String encryptString(String text)  throws Exception
+	public byte[] decrypt(byte[] inbuf)
 	{
-		byte[] r = encrypt(text);
-		return Utils.bytesToHex(r);
-	}
-	
-	public String decryptString(String text) throws Exception
-	{
-		byte[] r = decrypt(text);
-		return new String(r,"UTF-8");
-	}
-	
-	public byte[] encrypt(String text) throws Exception
-	{
-		if (text == null || text.length() == 0) 
-			throw new Exception("Empty string");
-
-		byte[] encrypted = null;
-
-		try
-		{
-			cipher.init(Cipher.ENCRYPT_MODE, keyspec, ivspec);
-			encrypted = cipher.doFinal(padString(text).getBytes());
-		}
-		catch (Exception e)
-		{
-			Logger.e(e);
-			throw new Exception("[encrypt] " + e.getMessage());
-		}
-
-		return encrypted;
-	}
-
-	public byte[] decrypt(String code) throws Exception
-	{
-		if (code == null || code.length() == 0) 
-			throw new Exception("Empty string");
-
 		byte[] decrypted = null;
-
 		try
 		{
 			cipher.init(Cipher.DECRYPT_MODE, keyspec, ivspec);
-			decrypted = cipher.doFinal(Utils.hexToBytes(code));
+			decrypted = cipher.doFinal(inbuf);
+
+			ByteBuffer buf = ByteBuffer.allocate(decrypted.length);
+			buf.put(decrypted);
+			buf.position(0);
+			int len = buf.getInt();
+			//int hi = len >> 16;
+			len = len & 0xffff;
+			int hc = buf.getInt();
+			byte[] ret = new byte[len];
+			buf.get(ret, 0, len);
+			int rhc = Utils.hashBytes2Integer(ret);
+			if (hc == rhc)
+				return ret;
+			return new byte[0];
 		}
 		catch (Exception e)
 		{
-			Logger.e(e);
-			throw new Exception("[decrypt] " + e.getMessage());
+			//Logger.e(e);
 		}
-		return decrypted;
+		
+		return null;
 	}
-
-	private String padString(String source)
+	
+	public byte[] encrypt(byte[] inbuf)
 	{
-		char paddingChar = ' ';
-		int size = 16;
-		int align = (source.length() + (size - 1)) / size;
-		align *= size;
-		int padLength = align - source.length();
-
-		for (int i = 0; i < padLength; i++)
+		byte[] encrypted = null;
+		try
 		{
-			source += paddingChar;
-		}
+			int len = inbuf.length;
+			int align = len + 8 + 15;
+			align /= 16;
+			align *= 16;
+			
+			ByteBuffer buf = ByteBuffer.allocate(align);
+			Random ran =new Random(System.currentTimeMillis());
+			int hi =( ran.nextInt() & 0x7fff) << 16;
+			int plen = len | hi;
+			buf.putInt(plen);
+			int hc = Utils.hashBytes2Integer(inbuf);
+			buf.putInt(hc);
+			int i;
+			for (i = 0; i < len; i++)
+			{
+				buf.put(inbuf[i]);
+			}
+			byte[] inb = buf.array();
 
-		return source;
+			cipher.init(Cipher.ENCRYPT_MODE, keyspec, ivspec);
+			encrypted = cipher.doFinal(inb);
+		}
+		catch (Exception e)
+		{
+			//Logger.e(e);
+		}
+		
+		return encrypted;
+	}
+	
+	public String encryptString(String text)
+	{
+		byte[] r;
+		try
+		{
+			r = encrypt(text.getBytes("UTF-8"));
+			return Utils.bytesToHex(r);
+		}
+		catch (UnsupportedEncodingException e)
+		{
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	public String decryptString(String text)
+	{
+		byte[] i = Utils.hexToBytes(text);
+		byte[] r = decrypt(i);
+		String ret = "";
+		try
+		{
+			ret = new String(r,"UTF-8");
+		}
+		catch (UnsupportedEncodingException e)
+		{
+			e.printStackTrace();
+		}
+		return ret;
 	}
 }

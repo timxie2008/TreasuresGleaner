@@ -12,30 +12,22 @@ com.adsmogo.adview.AdsMogoWebView$AdViewJsObj:
     793:803:public void setWinth(int)
 com.adsmogo.util.AdsMogoRequestDomain$DomainList:
     private static final long serialVersionUID
-com.crazyamber.ttlus.ADAdapter:
-    private static final java.lang.String TAG
-    public static final int EVENT_Loaded
-    public static final int EVENT_Prepare
-    public static final int EVENT_Play
-com.crazyamber.ttlus.BuildConfig
-com.crazyamber.ttlus.Logger:
+com.crazyamber.core.Logger:
     public static final int NONE
     public static final int ERROR
     public static final int WARN
     public static final int INFO
     public static final int DEBUG
     public static final int VERBOSE
-    18:18:Logger()
-    29:31:public static void addTarget(java.lang.String,com.crazyamber.ttlus.Logger$ILoggerTarget)
+    18:18:public Logger()
+    29:31:public static void addTarget(java.lang.String,com.crazyamber.core.Logger$ILoggerTarget)
     350:358:public static void w(java.lang.String,java.lang.String)
     362:370:public static void i(java.lang.String,java.lang.String)
     386:394:public static void v(java.lang.String,java.lang.String)
-com.crazyamber.ttlus.R:
-    10:10:public R()
-com.crazyamber.ttlus.Settings:
+com.crazyamber.core.Settings:
     7:7:public Settings()
-com.crazyamber.ttlus.Threader
-com.crazyamber.ttlus.Utils:
+com.crazyamber.core.Threader
+com.crazyamber.core.Utils:
     34:34:public Utils()
     45:50:public static boolean isSDCardAvailable()
     55:55:public static long currentTimeMillis()
@@ -56,6 +48,14 @@ com.crazyamber.ttlus.Utils:
     421:443:public static void run(java.lang.String,java.lang.String)
     489:490:public static boolean fileExists(java.lang.String)
     550:559:public static int parseInt(java.lang.String)
+com.crazyamber.ttlus.ADAdapter:
+    private static final java.lang.String TAG
+    public static final int EVENT_Loaded
+    public static final int EVENT_Prepare
+    public static final int EVENT_Play
+com.crazyamber.ttlus.BuildConfig
+com.crazyamber.ttlus.R:
+    10:10:public R()
 com.kuguo.ad.JsonEntity
 com.kuguo.ad.KuguoAdsManager:
     public static final int STYLE_KUZAI

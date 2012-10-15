@@ -1,5 +1,6 @@
 package com.crazyamber.ttlusmmy;
 
+import java.nio.ByteBuffer;
 import java.util.List;
 
 import com.crazyamber.core.*;
@@ -10,10 +11,10 @@ import com.mobile.app.main.GEListener;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -24,13 +25,14 @@ public class ADAdapter implements GEListener
 	public static final int EVENT_Loaded = 0x0001;
 	public static final int EVENT_Prepare = 0x0002;
 	public static final int EVENT_Play = 0x0003;
+	public static final int EVENT_ShareGames = 0x0004;
 
-    private GEInstance geInstance;
+    private GEInstance _geInstance;
     
     private boolean _adLoaded = false;
 	private RelativeLayout _adLayout;
 
-	private Activity _activity = null;
+	//private Activity _activity = null;
 	private Context _context = null;
 	
 	private AnalyzerAdapter _analyzer = null;
@@ -181,6 +183,7 @@ public class ADAdapter implements GEListener
 				return;
 			}
 			
+			/*
 			Log.d(TAG, "a0");
 			String adid = "";
 			try
@@ -198,7 +201,9 @@ public class ADAdapter implements GEListener
 			}
 
 			Log.d(TAG, "ab");
-
+			*/
+			
+			/*
 			RelativeLayout.LayoutParams layoutParams;
 			layoutParams = new RelativeLayout.LayoutParams(
 					RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -218,12 +223,12 @@ public class ADAdapter implements GEListener
 			childLayout.addView(ll, layoutParamsAD);
 	        //互动广告
 	        //LinearLayout interLinearLayout=(LinearLayout)findViewById(R.id.interGELinearLayout);//初始化互动广告必须的布局
-	        geInstance.loadInterAd(5, GEInstance.INTERSPACEY, ll);//加载互动广告
-	        geInstance.setInterAdVisible(View.VISIBLE);//显示或隐藏互动广告
+	        _geInstance.loadInterAd(5, GEInstance.INTERSPACEY, ll);//加载互动广告
+	        _geInstance.setInterAdVisible(View.VISIBLE);//显示或隐藏互动广告
 
 			_adLayout.removeAllViews();
 			_adLayout.addView(childLayout, layoutParams);
-			
+			*/
 			_adLoaded = true;
 		}
 		catch (Exception e)
@@ -248,7 +253,7 @@ public class ADAdapter implements GEListener
 	private void _rebuildPush()
 	{
         //推送广告
-        geInstance.loadPushAd();//加载推送广告(1.与上次推送调用时间间隔满足两小时才会推送  2.如果满足时间间隔条件,但是是相同广告也会取消推送)
+        _geInstance.loadPushAd();//加载推送广告(1.与上次推送调用时间间隔满足两小时才会推送  2.如果满足时间间隔条件,但是是相同广告也会取消推送)
 	}
 
 	private void _updateADConfig()
@@ -260,7 +265,7 @@ public class ADAdapter implements GEListener
 //		new String ("douding;en;5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30"),
 		String config;
 		String[] channels = { _channel_id, "all" };
-		
+
 		boolean hit = false;
 		for (String channel : channels)
 		{
@@ -295,7 +300,7 @@ public class ADAdapter implements GEListener
 			
 			for (String channel : channels)
 			{
-				String rc = Settings.get(_context,  channel);
+				String rc = Settings.get(_context, channel);
 				try
 				{
 					config = _c.decryptString(rc);
@@ -316,7 +321,7 @@ public class ADAdapter implements GEListener
 	
 	public void setup(Activity act, RelativeLayout adLayout, AnalyzerAdapter analyzer)
 	{
-		_activity = act;
+		//_activity = act;
 		_context = act;
 		_adLayout = adLayout;
 		_analyzer = analyzer;
@@ -332,31 +337,61 @@ public class ADAdapter implements GEListener
 			Logger.e(e);
 		}
 		
-        geInstance = new GEInstance();
+        _geInstance = new GEInstance();
+        
+//        try
+//		{
+//        	String sg = GameEnvHandler.getSignature();
+//        	Settings.set(_context, "sig", sg);
+//        	
+//			String uid = _c.encryptString("51590");
+//	        String pid = _c.encryptString("木蚂蚁");
+//	        uid = _c.decryptString(uid);
+//	        pid = _c.decryptString(pid);
+//	        pid = pid + "";
+//	        uid = uid + "";
+//	        uid = pid;
+//	        pid = uid;
+//		}
+//		catch (Exception e)
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
         
         //初始函数
-        geInstance.initialize(_context,"10000","T1001");//每次程序启动必须要初始化一次(设置开发者UID和PID)
-        
-        geInstance.setTestMode(true);//开启测试模式(默认是关闭的,测试的时候可以开启,方便调试并查看广告后台错误信息)
-        geInstance.setOnGEListener(this);//继承GEListener接口(1.监听自定义广告数据  2.监听是否获取金币成功)
-        geInstance.setNotificationIcon(R.drawable.icon);//设置状态栏图标
-        geInstance.openListAdOn(false);//是否开启点击任意(自定义广告除外)广告都打开积分墙(默认不开启)
-        geInstance.getGEVersion();//获取当前广告客户端的版本
-        //虚拟积分
-        geInstance.setSocreUnit("金蛋");//设置积分的单位(例如:金币 金蛋 人民币等)
-        geInstance.setScoreParam(1);//设置金币的转换率(例如:如果默认下载一款软件得到的积分是50,若设置转换率为10,则最终显示并赋予用户50*10=500金币)
-        geInstance.setDefalutScore(300);//设置给用户的默认积分(默认为0)
-        //自定义广告
-        //geInstance.loadInfoAd(1,true,true);//加载迷你广告(参数1:加载广告的数量(建议1~10)  参数2:是否下载广告的截图(单项自定义广告建议下载)  参数3:是否使用内置界面显示广告,如果用自定义布局则不需要开启此选项)
-        //geInstance.loadInfoAd(5,false,true);
-        //迷你广告
-        //LinearLayout miniLinearLayout=(LinearLayout)findViewById(R.id.miniGELinearLayout);//初始化迷你广告必须的布局
-        //geInstance.loadMiniAd(5,GEInstance.MINIFADE, _adLayout);//加载迷你广告(所有广告在加载完毕后会自动显示)
-        //geInstance.setMiniBackColor(0xffff0000);//设置迷你广告背景颜色
-        //geInstance.setMiniTextColor(0xff00ff00);//设置迷你广告文字颜色
-        //geInstance.setMiniAdVisible(View.VISIBLE);//显示或隐藏迷你广告
-        
-		_updateADConfig();
+        try
+		{
+			_geInstance.initialize(_context, 
+					_c.decryptString("33576b4db9a4153a83804deef377a071"), 
+					_channel_id);
+	        
+	        _geInstance.setTestMode(true);//开启测试模式(默认是关闭的,测试的时候可以开启,方便调试并查看广告后台错误信息)
+	        _geInstance.setOnGEListener(this);//继承GEListener接口(1.监听自定义广告数据  2.监听是否获取金币成功)
+	        _geInstance.setNotificationIcon(R.drawable.sicon);//设置状态栏图标
+	        _geInstance.openListAdOn(false);//是否开启点击任意(自定义广告除外)广告都打开积分墙(默认不开启)
+	        _geInstance.getGEVersion();//获取当前广告客户端的版本
+	        //虚拟积分
+	        _geInstance.setSocreUnit("积分");//设置积分的单位(例如:金币 金蛋 人民币等)
+	        _geInstance.setScoreParam(1);//设置金币的转换率(例如:如果默认下载一款软件得到的积分是50,若设置转换率为10,则最终显示并赋予用户50*10=500金币)
+	        _geInstance.setDefalutScore(300);//设置给用户的默认积分(默认为0)
+	        //自定义广告
+	        //_geInstance.loadInfoAd(1,true,true);//加载迷你广告(参数1:加载广告的数量(建议1~10)  参数2:是否下载广告的截图(单项自定义广告建议下载)  参数3:是否使用内置界面显示广告,如果用自定义布局则不需要开启此选项)
+	        //_geInstance.loadInfoAd(5,false,true);
+	        //迷你广告
+	        //LinearLayout miniLinearLayout=(LinearLayout)findViewById(R.id.miniGELinearLayout);//初始化迷你广告必须的布局
+	        //_geInstance.loadMiniAd(5,GEInstance.MINIFADE, _adLayout);//加载迷你广告(所有广告在加载完毕后会自动显示)
+	        //_geInstance.setMiniBackColor(0xffff0000);//设置迷你广告背景颜色
+	        //_geInstance.setMiniTextColor(0xff00ff00);//设置迷你广告文字颜色
+	        //_geInstance.setMiniAdVisible(View.VISIBLE);//显示或隐藏迷你广告
+	        
+			_updateADConfig();
+		}
+		catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//每次程序启动必须要初始化一次(设置开发者UID和PID)
 	}
 	
 	public void cleanup()
@@ -374,9 +409,11 @@ public class ADAdapter implements GEListener
         case ADAdapter.EVENT_Prepare:
         	_updateADConfig();
      	   	_rebuildAD();
+     	   	break;
+        case ADAdapter.EVENT_ShareGames:
 	        //列表广告
-	        GEInstance.setListName("积分墙");//修改积分墙标题名称
-	        GEInstance.loadListAd();//加载列表广告
+     	   	_geInstance.setListName("积分墙");//修改积分墙标题名称
+     	   	_geInstance.loadListAd();//加载列表广告
      	   	break;
         case ADAdapter.EVENT_Play:
         	if (!_config.bEnableADPlay)

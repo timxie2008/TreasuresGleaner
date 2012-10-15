@@ -11,6 +11,29 @@
 using namespace cocos2d;
 using namespace cocos2d::extension;
 
+string getConfig()
+{
+	string ret = "";
+	JniMethodInfo t;
+	if (JniHelper::getStaticMethodInfo(t
+		, "com/crazyamber/core/GameEnvHandler"
+		, "getConfig"
+		, "()Ljava/lang/String;"))
+	{
+
+		jstring result = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
+		ret = JniHelper::jstring2string(result);
+		//LOGD("Jave 1::getConfig returns:%s", ret.c_str());
+		t.env->DeleteLocalRef(t.classID);
+		//LOGD("Jave 2::getConfig returns:%s", ret.c_str());
+	}
+	else
+	{
+		LOGD("can not get static function:getConfig");
+	}
+	return ret;
+}
+
 string getLanguage()
 {
 	string ret = "";
