@@ -4,10 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
@@ -60,6 +61,36 @@ public class Utils
 		return android.os.Build.VERSION.SDK_INT;
 	}
 
+	public static byte[] getSignature(Context c)
+	{
+		PackageManager pm = c.getPackageManager();
+		PackageInfo pi;
+
+		ByteBuffer bb = ByteBuffer.allocate(4);
+		bb.putInt(0xbadface);
+		try
+		{
+			pi = pm.getPackageInfo(c.getPackageName(), PackageManager.GET_SIGNATURES);
+			Signature[] ss = pi.signatures;
+			int len = 0;
+			for (Signature s : ss)
+			{
+				byte[] bf = s.toByteArray();
+				len += bf.length;
+			}
+			bb = ByteBuffer.allocate(len);
+			for (Signature s: ss)
+			{
+				bb.put(s.toByteArray());
+			}
+		}
+		catch (Throwable e)
+		{
+		}
+		
+		return bb.array();
+	}
+	
 	public static String getPackageVersion(Context c)
 	{
 		String strVersion = "";
@@ -260,15 +291,16 @@ public class Utils
 		return false;
 	}
 
-	public static int hashString2Integer(String str)
+	public static byte[] hashBytes(byte[] buf)
 	{
 		MessageDigest messageDigest = null;
-
+		byte[] byteArray = new byte[0];
 		try
 		{
 			messageDigest = MessageDigest.getInstance("MD5");
 			messageDigest.reset();
-			messageDigest.update(str.getBytes("UTF-8"));
+			messageDigest.update(buf);
+			byteArray = messageDigest.digest();
 		}
 		catch (NoSuchAlgorithmException e)
 		{
@@ -276,25 +308,22 @@ public class Utils
 			System.out.println("NoSuchAlgorithmException caught!");
 			System.exit(-1);
 		}
-		catch (UnsupportedEncodingException e)
-		{
-			Logger.e(e);
-			e.printStackTrace();
-		}
 		catch (Throwable e)
 		{
 			Logger.e(e);
 		}
-
-		int ret = 0x900dface;
-
+		return byteArray;
+	}
+	
+	public static int hashBytes2Integer(byte[] byteArray)
+	{
+		int ret = 0x900d;
+	
 		try
 		{
-			byte[] byteArray = messageDigest.digest();
-
 			int obytes = 4;
 			byte[] output = new byte[obytes];
-
+	
 			int i;
 			for (i = 0; i < output.length; i++)
 			{
@@ -304,7 +333,7 @@ public class Utils
 			{
 				output[i % obytes] ^= byteArray[i];
 			}
-
+	
 			for (i = 0; i < output.length; i++)
 			{
 				ret <<= 8;
@@ -316,7 +345,24 @@ public class Utils
 		{
 			Logger.e(e);
 		}
-
+	
+		return ret;
+	}
+	
+	public static int hashString2Integer(String str)
+	{
+		int ret = 0x900dface;
+		
+		try
+		{
+			byte[] byteArray;
+			byteArray = hashBytes(str.getBytes("UTF-8"));
+			ret = hashBytes2Integer(byteArray);
+		}
+		catch (Exception e)
+		{
+			Logger.e(e);
+		}
 		return ret;
 	}
 
@@ -559,6 +605,12 @@ public class Utils
 		return ret;
 	}
 
+	public static byte[] intToBytes(int n)
+	{
+		byte[] bytes = ByteBuffer.allocate(Integer.SIZE / 8).putInt(n).array();
+		return bytes;
+	}
+	
 	public static String bytesToHex(byte[] data)
 	{
 		if (data == null)

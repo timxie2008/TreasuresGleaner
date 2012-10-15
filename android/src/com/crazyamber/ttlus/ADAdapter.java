@@ -34,6 +34,34 @@ public class ADAdapter implements AdsMogoListener
 			Utils.hexToBytes("37ca9a53c87eaa66f8fe88444f02a876"), 
 			Utils.hexToBytes("a3bb37149550b256009d23fc34b85836"));
 	
+//	//("c87eaafe88444f02a866f87637ca9a53");
+//	//("17b388b8b05841899761b326f2f4fa86");
+//	//("0b25685800144b9da3bb373695523fc3");
+	private String _idkuguo  = "227b56fe6fc8b642500610153c57e00dfa6d4e88d66a1ace5e9ec3633c30ca628998e347cae152aa01d48a5717ba2095";
+	private String _idmogoen = "fb50f5d51d6e40d93417ecaae48c23011222f9e044abe203ef0d9ef6eeefa2a19c201bc8d26b5b6d9fb02fa624a1d322";
+	private String _idmogocn = "3a6d3b0eedd952f93fe811ea91fd5b53581c5a123baa03d27c1e680bfdb38e99fae86d449b50ef87b7277721d9544c7d";
+	//eam=true;eap=true;ep=false;ed=false;iden=fb50f5d51d6e40d93417ecaae48c23011222f9e044abe203ef0d9ef6eeefa2a19c201bc8d26b5b6d9fb02fa624a1d322;idcn=3a6d3b0eedd952f93fe811ea91fd5b53581c5a123baa03d27c1e680bfdb38e99fae86d449b50ef87b7277721d9544c7d
+	
+	public void prepare()
+	{
+		//encrypt mogo
+		try
+		{
+			String v = Utils.getPackageVersion(_context);
+			String enmogo_cn = _c.encryptString("c87eaafe88444f02a866f87637ca9a53");
+			String demogo_cn = _c.decryptString(enmogo_cn);
+			String enmogo_en = _c.encryptString("17b388b8b05841899761b326f2f4fa86");
+			String demogo_en = _c.decryptString(enmogo_en);
+			String enkugo = _c.encryptString("0b25685800144b9da3bb373695523fc3");
+			String dekugo = _c.decryptString(enkugo);
+		 
+			enkugo = dekugo;
+		}
+		catch (Exception e)
+		{
+			String em = e.getMessage();
+		}
+	}
 	public ADAdapter()
 	{
 		_context = null;
@@ -253,7 +281,7 @@ public class ADAdapter implements AdsMogoListener
 		String idkuguo = "";
 		try
 		{
-			idkuguo = _c.decryptString("bba364f3c80b5fbfc53279cd51d61f5c83e3570c9b79bcf578b5ae4f0e0ea8a5");
+			idkuguo = _c.decryptString(_idkuguo);
 		}
 		catch (Exception e)
 		{
@@ -322,13 +350,9 @@ public class ADAdapter implements AdsMogoListener
 	
 	private void _updateADConfig()
 	{
-//		eam=true;eap=true;ep=false;ed=false;iden=5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30;idcn=24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9
-//		new String ("all;cn;24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9"),
-//		new String ("all;en;5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30"),
-//		new String ("douding;cn;24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9"),
-//		new String ("douding;en;5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30"),
 		String config;
-		String[] channels = { _channel_id, "all" };
+		String v = Utils.getPackageVersion(_context);
+		String[] channels = { _channel_id, "default", _channel_id + "_" + v, "default_" + v };
 		
 		boolean hit = false;
 		for (String channel : channels)
@@ -358,8 +382,8 @@ public class ADAdapter implements AdsMogoListener
 			_config.bEnablePush = false;
 			_config.bEnableAppDownload = false;
 			_config.channel = _channel_id;
-			_config.iden = "5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30";
-			_config.idcn = "24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9";
+			_config.iden = _idmogoen;
+			_config.idcn = _idmogocn;
 			_config.setDirty(true);
 			
 			for (String channel : channels)

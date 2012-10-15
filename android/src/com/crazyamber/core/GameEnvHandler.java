@@ -23,6 +23,20 @@ public class GameEnvHandler
 		_context = c;
 		_listener = gel;
 	}
+	
+	public static String getConfig()
+	{
+		return "mg=true";
+	}
+	
+	public static String getSignature()
+	{
+		byte[] buf = Utils.getSignature(_context);
+		buf = Utils.hashBytes(buf);
+		String sig = Utils.bytesToHex(buf);
+		return sig;
+	}
+	
 	public static String getLanguage()
 	{
 		Resources resources = _context.getResources();//获得res资源对象

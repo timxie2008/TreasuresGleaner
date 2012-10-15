@@ -108,30 +108,7 @@ public class MainActivity extends Cocos2dxActivity
 		
 		Utils.killUnrelatedActivityProcesses(this);
 		GameEnvHandler.setListener(this, _eventListener);
-		
-		
-		//encrypt mogo
-//		try
-//		{
-//			String enmogo_cn = _c.encryptString("c87eaafe88444f02a866f87637ca9a53");
-//			String demogo_cn = _c.decryptString(enmogo_cn);
-//			String enmogo_en = _c.encryptString("17b388b8b05841899761b326f2f4fa86");
-//			String demogo_en = _c.decryptString(enmogo_en);
-//			String enkugo = _c.encryptString("0b25685800144b9da3bb373695523fc3");
-//			String dekugo = _c.decryptString(enkugo);
-//		 
-//			enkugo = dekugo;
-//		}
-//		catch (Exception e)
-//		{
-//			String em = e.getMessage();
-//		}
-//		//("c87eaafe88444f02a866f87637ca9a53");
-//		//("17b388b8b05841899761b326f2f4fa86");
-//		//("0b25685800144b9da3bb373695523fc3");
-//		//_idmogo = _c.decryptString(id);
-//		//idkuguo = _c.decryptString("bba364f3c80b5fbfc53279cd51d61f5c83e3570c9b79bcf578b5ae4f0e0ea8a5");
-		
+
 		_analyzer.setup(this);
 		
 		try
@@ -189,6 +166,7 @@ public class MainActivity extends Cocos2dxActivity
 			}
 			
 			_ad.setup(this, _adLayout, _analyzer);
+			//_ad.prepare();
 			_ad.update(ADAdapter.EVENT_Loaded);
 		}
 		catch (Exception e)
