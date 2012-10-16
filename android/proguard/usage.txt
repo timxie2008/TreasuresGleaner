@@ -28,31 +28,32 @@ com.crazyamber.core.Settings:
     7:7:public Settings()
 com.crazyamber.core.Threader
 com.crazyamber.core.Utils:
-    34:34:public Utils()
-    45:50:public static boolean isSDCardAvailable()
-    55:55:public static long currentTimeMillis()
-    60:60:public static java.lang.Integer getAPILevel()
-    65:79:public static java.lang.String getPackageVersion(android.content.Context)
-    84:91:public static java.lang.String map2String(java.util.HashMap)
-    96:97:public static java.lang.String safeString(java.lang.String)
-    102:102:public static java.lang.String boolean2str(boolean)
-    107:121:public static java.lang.String readStringFromStream(java.io.InputStream)
-    128:150:public static java.lang.String getIpAddress()
-    238:239:public static android.telephony.TelephonyManager getTelephonyManager(android.content.Context)
-    244:260:public static boolean isApplicationHasInstalled(android.content.Context,java.lang.String)
-    265:320:public static int hashString2Integer(java.lang.String)
-    326:349:public static java.lang.String replace(java.lang.String,java.lang.String,java.lang.String)
-    357:366:public static void createShortcut(android.content.Context,java.lang.String,int,java.lang.Class)
-    375:394:public static boolean hasShortCut(android.content.Context,java.lang.String)
-    406:417:public static void sleep(long)
-    421:443:public static void run(java.lang.String,java.lang.String)
-    489:490:public static boolean fileExists(java.lang.String)
-    550:559:public static int parseInt(java.lang.String)
+    35:35:public Utils()
+    46:51:public static boolean isSDCardAvailable()
+    56:56:public static long currentTimeMillis()
+    61:61:public static java.lang.Integer getAPILevel()
+    115:122:public static java.lang.String map2String(java.util.HashMap)
+    127:128:public static java.lang.String safeString(java.lang.String)
+    133:133:public static java.lang.String boolean2str(boolean)
+    138:152:public static java.lang.String readStringFromStream(java.io.InputStream)
+    159:181:public static java.lang.String getIpAddress()
+    269:270:public static android.telephony.TelephonyManager getTelephonyManager(android.content.Context)
+    275:291:public static boolean isApplicationHasInstalled(android.content.Context,java.lang.String)
+    354:366:public static int hashString2Integer(java.lang.String)
+    372:395:public static java.lang.String replace(java.lang.String,java.lang.String,java.lang.String)
+    403:412:public static void createShortcut(android.content.Context,java.lang.String,int,java.lang.Class)
+    421:440:public static boolean hasShortCut(android.content.Context,java.lang.String)
+    452:463:public static void sleep(long)
+    467:489:public static void run(java.lang.String,java.lang.String)
+    535:536:public static boolean fileExists(java.lang.String)
+    596:605:public static int parseInt(java.lang.String)
+    610:611:public static byte[] intToBytes(int)
 com.crazyamber.ttlus.ADAdapter:
     private static final java.lang.String TAG
     public static final int EVENT_Loaded
     public static final int EVENT_Prepare
     public static final int EVENT_Play
+    50:64:public void prepare()
 com.crazyamber.ttlus.BuildConfig
 com.crazyamber.ttlus.R:
     10:10:public R()

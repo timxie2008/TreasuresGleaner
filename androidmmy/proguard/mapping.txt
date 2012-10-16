@@ -3,7 +3,7 @@ com.crazyamber.core.GameEnvHandler -> com.crazyamber.core.GameEnvHandler:
     com.crazyamber.core.GameEnvHandler$GameEventListener _listener -> b
     android.content.Context _context -> c
     void setListener(android.content.Context,com.crazyamber.core.GameEnvHandler$GameEventListener) -> setListener
-    boolean enableMoreGame() -> enableMoreGame
+    java.lang.String getConfig() -> getConfig
     java.lang.String getSignature() -> getSignature
     java.lang.String getLanguage() -> getLanguage
     void onJNIEvent(java.lang.String,java.lang.String) -> onJNIEvent

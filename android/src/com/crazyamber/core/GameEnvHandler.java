@@ -26,7 +26,7 @@ public class GameEnvHandler
 	
 	public static String getConfig()
 	{
-		return "mg=true";
+		return "mg=bool:false";
 	}
 	
 	public static String getSignature()

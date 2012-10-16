@@ -42,7 +42,7 @@ void postGameEvent(const char* key, const char* value)
 
 string getConfig()
 {
-	return "mg=true";
+	return "mg=bool:false";
 }
 
 string getLanguage()

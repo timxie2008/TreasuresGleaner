@@ -2,7 +2,7 @@ com.crazyamber.core.GameEnvHandler
 com.crazyamber.core.GameEnvHandler: void <clinit>()
 com.crazyamber.core.GameEnvHandler: GameEnvHandler()
 com.crazyamber.core.GameEnvHandler: void setListener(android.content.Context,com.crazyamber.core.GameEnvHandler$GameEventListener)
-com.crazyamber.core.GameEnvHandler: boolean enableMoreGame()
+com.crazyamber.core.GameEnvHandler: java.lang.String getConfig()
 com.crazyamber.core.GameEnvHandler: java.lang.String getSignature()
 com.crazyamber.core.GameEnvHandler: java.lang.String getLanguage()
 com.crazyamber.core.GameEnvHandler: void onJNIEvent(java.lang.String,java.lang.String)

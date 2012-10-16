@@ -1967,6 +1967,8 @@ com.crazyamber.core.GameEnvHandler -> com.crazyamber.core.GameEnvHandler:
     com.crazyamber.core.GameEnvHandler$GameEventListener _listener -> b
     android.content.Context _context -> c
     void setListener(android.content.Context,com.crazyamber.core.GameEnvHandler$GameEventListener) -> setListener
+    java.lang.String getConfig() -> getConfig
+    java.lang.String getSignature() -> getSignature
     java.lang.String getLanguage() -> getLanguage
     void onJNIEvent(java.lang.String,java.lang.String) -> onJNIEvent
     java.lang.Object getEvent(java.lang.String) -> getEvent
@@ -2011,15 +2013,18 @@ com.crazyamber.core.SimpleCipher -> com.crazyamber.core.f:
     javax.crypto.spec.IvParameterSpec ivspec -> a
     javax.crypto.spec.SecretKeySpec keyspec -> b
     javax.crypto.Cipher cipher -> c
+    byte[] decrypt(byte[]) -> a
+    byte[] encrypt(byte[]) -> b
     java.lang.String encryptString(java.lang.String) -> a
     java.lang.String decryptString(java.lang.String) -> b
-    byte[] encrypt(java.lang.String) -> c
-    byte[] decrypt(java.lang.String) -> d
-    java.lang.String padString(java.lang.String) -> e
 com.crazyamber.core.Utils -> com.crazyamber.core.g:
+    byte[] getSignature(android.content.Context) -> a
+    java.lang.String getPackageVersion(android.content.Context) -> b
+    byte[] hashBytes(byte[]) -> a
+    int hashBytes2Integer(byte[]) -> b
     int getSystemVersion() -> a
-    void killUnrelatedActivityProcesses(android.content.Context) -> a
-    java.lang.String bytesToHex(byte[]) -> a
+    void killUnrelatedActivityProcesses(android.content.Context) -> c
+    java.lang.String bytesToHex(byte[]) -> c
     byte[] hexToBytes(java.lang.String) -> a
     void msgBox(android.content.Context,java.lang.String,java.lang.String) -> a
 com.crazyamber.core.Utils$1 -> com.crazyamber.core.h:
@@ -2031,8 +2036,11 @@ com.crazyamber.ttlus.ADAdapter -> com.crazyamber.ttlus.a:
     android.content.Context _context -> b
     com.crazyamber.ttlus.AnalyzerAdapter _analyzer -> c
     com.crazyamber.core.SimpleCipher _c -> f
-    java.lang.String _channel_id -> g
-    com.crazyamber.ttlus.ADAdapter$_ADConfig _config -> h
+    java.lang.String _idkuguo -> g
+    java.lang.String _idmogoen -> h
+    java.lang.String _idmogocn -> i
+    java.lang.String _channel_id -> j
+    com.crazyamber.ttlus.ADAdapter$_ADConfig _config -> k
     void _rebuildAD() -> b
     void _destroyAD() -> c
     void _rebuildPush() -> d

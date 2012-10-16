@@ -125,6 +125,12 @@ void TSStagePlayLayerGamePrepare::onStateBegin(CAState* from, void* param)
 
 		_InitGetters();
 
+		string config = CAWorld::getConfig();
+		CASettings s;
+		s.initialize(config);
+		bool b = s.getBool("mg");
+		_button_moregames()->setVisible(b);
+
 		//disable music for testing 
 		//this->stage()->playMusic("music_back_1");
 
