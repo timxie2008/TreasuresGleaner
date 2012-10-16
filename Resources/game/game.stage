@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <stage>
   <settings>
-    <key name="language" string="cn" />
+    <key name="max_music_vol" float="0.1" />
+    <key name="max_sound_vol" float="0.4" />
   </settings>
 
   <!-- env -->
