@@ -1963,15 +1963,13 @@ com.adsmogo.util.RepeatCheck -> com.adsmogo.util.RepeatCheck:
     void getInstalledApps(android.content.Context) -> getInstalledApps
     boolean isAppInstalled(android.content.Context,java.lang.String) -> isAppInstalled
 com.crazyamber.core.GameEnvHandler -> com.crazyamber.core.GameEnvHandler:
-    java.util.HashMap _events -> a
-    com.crazyamber.core.GameEnvHandler$GameEventListener _listener -> b
-    android.content.Context _context -> c
+    com.crazyamber.core.GameEnvHandler$GameEventListener _listener -> a
+    android.content.Context _context -> b
     void setListener(android.content.Context,com.crazyamber.core.GameEnvHandler$GameEventListener) -> setListener
     java.lang.String getConfig() -> getConfig
     java.lang.String getSignature() -> getSignature
     java.lang.String getLanguage() -> getLanguage
     void onJNIEvent(java.lang.String,java.lang.String) -> onJNIEvent
-    java.lang.Object getEvent(java.lang.String) -> getEvent
 com.crazyamber.core.GameEnvHandler$GameEventListener -> com.crazyamber.core.a:
     void onEvent(java.lang.String,java.lang.String) -> a
 com.crazyamber.core.Logger -> com.crazyamber.core.b:
@@ -2122,7 +2120,6 @@ com.crazyamber.ttlus.R -> com.crazyamber.ttlus.R:
 com.crazyamber.ttlus.R$attr -> com.crazyamber.ttlus.R$attr:
 com.crazyamber.ttlus.R$drawable -> com.crazyamber.ttlus.R$drawable:
     int icon -> icon
-    int newicon -> newicon
 com.crazyamber.ttlus.R$string -> com.crazyamber.ttlus.R$string:
     int app_name -> app_name
 com.google.ads.Ad -> com.google.ads.Ad:

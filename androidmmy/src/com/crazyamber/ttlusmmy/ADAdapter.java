@@ -253,70 +253,84 @@ public class ADAdapter implements GEListener
 	private void _rebuildPush()
 	{
         //推送广告
-        _geInstance.loadPushAd();//加载推送广告(1.与上次推送调用时间间隔满足两小时才会推送  2.如果满足时间间隔条件,但是是相同广告也会取消推送)
+		try
+		{
+			_geInstance.loadPushAd();//加载推送广告(1.与上次推送调用时间间隔满足两小时才会推送  2.如果满足时间间隔条件,但是是相同广告也会取消推送)
+		}
+		catch(Throwable e)
+		{
+			
+		}
 	}
 
 	private void _updateADConfig()
 	{
-//		eam=true;eap=true;ep=false;ed=false;iden=5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30;idcn=24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9
-//		new String ("all;cn;24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9"),
-//		new String ("all;en;5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30"),
-//		new String ("douding;cn;24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9"),
-//		new String ("douding;en;5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30"),
-		String config;
-		String[] channels = { _channel_id, "all" };
-
-		boolean hit = false;
-		for (String channel : channels)
+		try
 		{
-			config = _analyzer.getConfigParams(channel);
-			if (_config.parse(channel, config))
-			{
-				try
-				{
-					config = _c.encryptString(config);
-					Settings.set(_context, channel, config);
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-				hit = true;
-				break;
-			}
-		}
-		
-		if (!hit)
-		{
-			//fill default params
-			_config.bEnableADMenu = true;
-			_config.bEnableADPlay = true;
-			_config.bEnablePush = false;
-			_config.bEnableAppDownload = false;
-			_config.channel = _channel_id;
-			_config.iden = "5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30";
-			_config.idcn = "24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9";
-			_config.setDirty(true);
-			
+	//		eam=true;eap=true;ep=false;ed=false;iden=5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30;idcn=24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9
+	//		new String ("all;cn;24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9"),
+	//		new String ("all;en;5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30"),
+	//		new String ("douding;cn;24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9"),
+	//		new String ("douding;en;5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30"),
+			String config;
+			String[] channels = { _channel_id, "all" };
+	
+			boolean hit = false;
 			for (String channel : channels)
 			{
-				String rc = Settings.get(_context, channel);
-				try
-				{
-					config = _c.decryptString(rc);
-				}
-				catch (Exception e)
-				{
-					config = "";
-				}
-				
+				config = _analyzer.getConfigParams(channel);
 				if (_config.parse(channel, config))
 				{
+					try
+					{
+						config = _c.encryptString(config);
+						Settings.set(_context, channel, config);
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
+					hit = true;
 					break;
 				}
 			}
+			
+			if (!hit)
+			{
+				//fill default params
+				_config.bEnableADMenu = true;
+				_config.bEnableADPlay = true;
+				_config.bEnablePush = false;
+				_config.bEnableAppDownload = false;
+				_config.channel = _channel_id;
+				_config.iden = "5889a8f0c5ee63e458382b6f00a53c2be3b91ee676adb4afae1bc7604e235d30";
+				_config.idcn = "24671a5691c6e17198538cc93f2f226e32ebc282c6f124666776bfd3597815d9";
+				_config.setDirty(true);
+				
+				for (String channel : channels)
+				{
+					String rc = Settings.get(_context, channel);
+					try
+					{
+						config = _c.decryptString(rc);
+					}
+					catch (Exception e)
+					{
+						config = "";
+					}
+					
+					if (_config.parse(channel, config))
+					{
+						break;
+					}
+				}
+			}
+			Log.d(TAG, "uac");
 		}
-		Log.d(TAG, "uac");
+		catch (Throwable e)
+		{
+			
+		}
 	}
 	
 	public void setup(Activity act, RelativeLayout adLayout, AnalyzerAdapter analyzer)
@@ -366,7 +380,7 @@ public class ADAdapter implements GEListener
 					_c.decryptString("33576b4db9a4153a83804deef377a071"), 
 					_channel_id);
 	        
-	        _geInstance.setTestMode(true);//开启测试模式(默认是关闭的,测试的时候可以开启,方便调试并查看广告后台错误信息)
+	        _geInstance.setTestMode(false);//开启测试模式(默认是关闭的,测试的时候可以开启,方便调试并查看广告后台错误信息)
 	        _geInstance.setOnGEListener(this);//继承GEListener接口(1.监听自定义广告数据  2.监听是否获取金币成功)
 	        _geInstance.setNotificationIcon(R.drawable.sicon);//设置状态栏图标
 	        _geInstance.openListAdOn(false);//是否开启点击任意(自定义广告除外)广告都打开积分墙(默认不开启)
@@ -374,7 +388,7 @@ public class ADAdapter implements GEListener
 	        //虚拟积分
 	        _geInstance.setSocreUnit("积分");//设置积分的单位(例如:金币 金蛋 人民币等)
 	        _geInstance.setScoreParam(1);//设置金币的转换率(例如:如果默认下载一款软件得到的积分是50,若设置转换率为10,则最终显示并赋予用户50*10=500金币)
-	        _geInstance.setDefalutScore(300);//设置给用户的默认积分(默认为0)
+	        _geInstance.setDefalutScore(0);//设置给用户的默认积分(默认为0)
 	        //自定义广告
 	        //_geInstance.loadInfoAd(1,true,true);//加载迷你广告(参数1:加载广告的数量(建议1~10)  参数2:是否下载广告的截图(单项自定义广告建议下载)  参数3:是否使用内置界面显示广告,如果用自定义布局则不需要开启此选项)
 	        //_geInstance.loadInfoAd(5,false,true);
@@ -387,7 +401,7 @@ public class ADAdapter implements GEListener
 	        
 			_updateADConfig();
 		}
-		catch (Exception e)
+		catch (Throwable e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -397,6 +411,20 @@ public class ADAdapter implements GEListener
 	public void cleanup()
 	{
 		_destroyAD();
+	}
+
+	private void _showShareGames()
+	{
+        //列表广告
+    	try
+    	{
+ 	   		_geInstance.setListName("积分墙");//修改积分墙标题名称
+ 	   		_geInstance.loadListAd();//加载列表广告
+    	}
+    	catch (Throwable e)
+    	{
+    		e.toString();
+    	}
 	}
 	
 	public void update(int what)
@@ -411,9 +439,7 @@ public class ADAdapter implements GEListener
      	   	_rebuildAD();
      	   	break;
         case ADAdapter.EVENT_ShareGames:
-	        //列表广告
-     	   	_geInstance.setListName("积分墙");//修改积分墙标题名称
-     	   	_geInstance.loadListAd();//加载列表广告
+        	_showShareGames();
      	   	break;
         case ADAdapter.EVENT_Play:
         	if (!_config.bEnableADPlay)
@@ -439,6 +465,7 @@ public class ADAdapter implements GEListener
 	}
 
 	@Override
+    @SuppressWarnings("rawtypes")
 	public void onInfoList(List arg0)
 	{
 		// TODO Auto-generated method stub

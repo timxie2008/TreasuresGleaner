@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="items/items.plist" tex="items/items.png"></texture>
+  <mesh name="pearl_black">
+    <frame src="pearl_black.png"></frame>
+  </mesh>
+  <mesh name="pearl_white">
+    <frame src="pearl_white.png"></frame>
+  </mesh>
+  <mesh name="pearl_golden">
+    <frame src="pearl_golden.png"></frame>
+  </mesh>
+  <settings>
+    <key name="deadpose" string="dismiss"></key>
+  </settings>
+  <pose name="black" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="pearl_black" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="09%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="indicator_white" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="pearl_white" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="18%" alpha="0.3"></key>
+        <key time="0100" yardscalex="12%" alpha="0.6"></key>
+        <key time="0300" yardscalex="07%" alpha="1.0"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="white" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="pearl_white" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="09%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="indicator_black" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="pearl_black" dt="1"></mesh>
+      <modifier mode="abc0" timescale="2">
+        <key time="0000" yardscalex="26%" alpha="0.5"></key>
+        <key time="0050" yardscalex="16%" alpha="0.7"></key>
+        <key time="0070" yardscalex="07%" alpha="1.0"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="golden" collid="0.3,0.3">
+    <part name="body">
+      <mesh ref="pearl_golden" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="09%" ></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="dismiss" collid="0,0">
+    <part name="body">
+      <mesh ref="{last}" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="09%" alpha="90%" ></key>
+        <key time="0120" yardscalex="12%" alpha="40%"></key>
+        <key time="0240" yardscalex="18%" alpha="10%"></key>
+        <key time="0360" yardscalex="20%" alpha="00%"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

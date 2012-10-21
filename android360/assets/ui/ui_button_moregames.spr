@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="ui/ui.plist" tex="ui/ui.png"></texture>
+  <mesh name="btn_moregames">
+    <frame src="button_moregames.png"></frame>
+  </mesh>
+  <settings>
+    <!--key name="deadpose" string="dismiss"></key-->
+  </settings>
+  <pose name="idle" collid="0.99,0.99">
+    <part name="body">
+      <mesh ref="btn_moregames" dt="1000"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="12%" yardpos="0,0" alpha="0"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="fadein" collid="0.99,0.99">
+    <part name="body">
+      <mesh ref="btn_moregames" dt="1000"></mesh>
+      <modifier mode="abc0" timescale="1.0" timeoffset="0">
+        <key time="000" yardscaley="14%"  yardpos="1.40,0.0" alpha="100%"></key>
+        <key time="240" yardscaley="14%"  yardpos="1.10,0.0" alpha="100%"></key>
+        <key time="280" yardscaley="14%"  yardpos="0.81,0.0" alpha="100%"></key>
+        <key time="320" yardscaley="14%"  yardpos="0.68,0.0" alpha="100%"></key>
+        <key time="360" yardscaley="14%"  yardpos="0.71,0.0" alpha="100%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="fadeout" collid="0.99,0.99">
+    <part name="body">
+      <mesh ref="btn_moregames" dt="1000"></mesh>
+      <modifier mode="abc0" timescale="1.0" timeoffset="0">
+        <key time="0000" yardscaley="14%"  yardpos="0.71,0.0" alpha="100%"></key>
+        <key time="0040" yardscaley="14%"  yardpos="0.68,0.0" alpha="100%"></key>
+        <key time="0080" yardscaley="14%"  yardpos="0.81,0.0" alpha="100%"></key>
+        <key time="0120" yardscaley="14%"  yardpos="1.00,0.0" alpha="100%"></key>
+        <key time="0200" yardscaley="14%"  yardpos="3.40,0.0" alpha="100%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="pressed" collid="1.1,1.1">
+    <part name="body">
+      <mesh ref="btn_moregames" dt="1000"></mesh>
+      <modifier mode="abc0" timescale="1.0" timeoffset="0.0">
+        <key time="000" yardscaley="13.9%" yardpos="0.71,0" alpha="1.0"></key>
+        <key time="020" yardscaley="3.7%" yardpos="0.71,0" alpha="1.0"></key>
+        <key time="040" yardscaley="13.1%" yardpos="0.71,0" alpha="0.9"></key>
+        <key time="060" yardscaley="14.0%" yardpos="0.71,0" alpha="1.0"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

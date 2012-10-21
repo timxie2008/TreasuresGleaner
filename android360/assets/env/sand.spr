@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="env/env.plist" tex="env/env.png"></texture>
+  <mesh name="env_sand_01">
+    <frame src="sand-01.png"></frame>
+  </mesh>
+  <pose name="sand_01">
+    <part name="body">
+      <mesh ref="env_sand_01" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" apos="0,0" yardpos="0%,0%" yardscale="100%,20%" ></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="env/env_back.plist" tex="env/env_back.png"></texture>
+  <mesh name="bk_building">
+    <frame src="background_building.png"></frame>
+  </mesh>
+  <mesh name="bk_land">
+    <frame src="background_land.png"></frame>
+  </mesh>
+  <settings>
+    <key name="deadpose" string="dismiss"></key>
+  </settings>
+  <pose name="building" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="bk_building" dt="1"></mesh>
+      <modifier mode="abc0" >
+        <key time="000" yardscalex="60%" alpha="0.8"/>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="land" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="bk_land" dt="1"></mesh>
+      <modifier mode="abc0" >
+        <key time="0000" apos="0,1" yardpos="0%,100%" yardscale="100%,100%" alpha="0.6"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

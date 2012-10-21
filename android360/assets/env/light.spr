@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="env/env.plist" tex="env/env.png"></texture>
+  <mesh name="env_sea_light">
+    <frame src="light.png"></frame>
+  </mesh>
+  <pose name="stand">
+    <part>
+      <mesh ref="env_sea_light" dt="1"></mesh>
+      <modifier mode="abcb">
+        <!-- abc0 abcc abcb abca(default) -->
+        <key time="0000" yardpos="50%,50%" yardscale="100%,100%" alpha="25%" ></key>
+        <key time="1000" yardpos="50%,50%" yardscale="105%,100%" alpha="13%" ></key>
+        <key time="2000" yardpos="50%,50%" yardscale="100%,100%" alpha="10%" ></key>
+        <key time="3000" yardpos="50%,50%" yardscale="105%,100%" alpha="15%" ></key>
+        <key time="4000" yardpos="50%,50%" yardscale="100%,100%" alpha="30%" ></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

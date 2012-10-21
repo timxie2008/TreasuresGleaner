@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<machine name="root" init="idle">
+  <state name="idle" init="">
+    <transition condition="user.show" tostate="root.create" />
+  </state>
+  <state name="create">
+    <transition condition="true" tostate="root.fadein" />
+  </state>
+  <state name="fadein" init="">
+    <transition condition="wait" timeout="0.9" tostate="root.diving" />
+  </state>
+  <state name="diving">
+    <transition condition="pose.finished" tostate="root.running" />
+  </state>
+  <state name="running" init="">
+    <transition condition="user.pause" tostate="root.pause@lE" />
+    <transition condition="player.dead" tostate="root.showover" />
+  </state>
+  <state name="pause">
+    <!-- stop something here -->
+    <transition condition="user.wait_resume" tostate="root.wait_resume" />
+    <transition condition="user.restart" tostate="root.restart" />
+  </state>
+  <state name="wait_resume">
+    <!-- resume something here-->
+    <transition condition="pause.isidle" tostate="root.resume" />
+  </state>
+  <state name="resume">
+    <!-- resume something here-->
+    <transition condition="true" tostate="root.running@Le" />
+  </state>
+  <state name="showover">
+    <transition condition="pose.finished" tostate="root.over" />
+  </state>
+  <state name="over">
+    <transition condition="false" tostate="root.fadeout" />
+  </state>
+  <state name="restart" >
+    <!-- 
+      display something to identify game is restarting
+      discard the record
+    -->
+    <transition condition="true" tostate="root.fadeout" />
+  </state>
+  <state name="fadeout" init="">
+    <transition condition="wait" timeout="0.1" tostate="root.sendresult" />
+  </state>
+  <state name="sendresult">
+    <!-- send CAEventCommand(play.finished) to parent layer-->
+    <transition condition="true" tostate="root.idle" />
+  </state>
+</machine>

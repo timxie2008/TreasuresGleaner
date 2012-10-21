@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0">
+  <texture src="items/items.plist" tex="items/items.png"></texture>
+  <mesh name="blocker_01">
+    <frame src="blocker_01.png"></frame>
+  </mesh>
+  <mesh name="blocker_boom_01_1">
+    <frame src="blocker_01_1.png"></frame>
+  </mesh>
+  <mesh name="blocker_boom_01_2">
+    <frame src="blocker_01_2.png"></frame>
+  </mesh>
+  <mesh name="blocker_boom_01_3">
+    <frame src="blocker_01_3.png"></frame>
+  </mesh>
+  <mesh name="blocker_boom_01_4">
+    <frame src="blocker_01_4.png"></frame>
+  </mesh>
+  <settings>
+    <key name="deadpose" string="dismiss"></key>
+    <key name="damage" int="3" />
+  </settings>
+  <pose name="stand" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="blocker_01" dt="1"></mesh>
+      <modifier mode="abcb">
+        <key time="0000" yardscalex="10%" rot="0"></key>
+        <key time="0100" yardscalex="11%" rot="3"></key>
+        <key time="0200" yardscalex="12%" rot="6"></key>
+        <key time="0300" yardscalex="11%" rot="9"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="slice_1" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="blocker_boom_01_1" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="12%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="11%" rot="3" alpha="0.8"></key>
+        <key time="0200" yardscalex="9%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="6%" rot="9" alpha="0.0"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="slice_2" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="blocker_boom_01_2" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="12%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="14%" rot="3" alpha="0.8"></key>
+        <key time="0200" yardscalex="12%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="11%" rot="9" alpha="0.0"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="slice_3" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="blocker_boom_01_3" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="12%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="13%" rot="3" alpha="0.8"></key>
+        <key time="0200" yardscalex="9%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="6%" rot="9" alpha="0.0"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="slice_4" collid="0.6,0.6">
+    <part name="body">
+      <mesh ref="blocker_boom_01_4" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="9%" rot="0" alpha="1.0"></key>
+        <key time="0100" yardscalex="8%" rot="3" alpha="0.8"></key>
+        <key time="0200" yardscalex="7%" rot="6" alpha="0.4"></key>
+        <key time="0300" yardscalex="6%" rot="9" alpha="0.0"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="dismiss" collid="0,0">
+    <part name="body">
+      <mesh ref="{last}" dt="1"></mesh>
+      <modifier mode="abc0">
+        <key time="0000" yardscalex="09%" alpha="90%" ></key>
+        <key time="0120" yardscalex="12%" alpha="40%"></key>
+        <key time="0240" yardscalex="18%" alpha="10%"></key>
+        <key time="0360" yardscalex="20%" alpha="00%"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>

@@ -3,6 +3,7 @@ package com.crazyamber.core;
 import java.util.HashMap;
 import java.util.Locale;
 
+
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -26,7 +27,7 @@ public class GameEnvHandler
 	
 	public static String getConfig()
 	{
-		return "mg=true";
+		return "mg=bool:true";
 	}
 	
 	public static String getSignature()

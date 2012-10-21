@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout version="1.0">
+  <child name="1" ref="grass" xpos="0,0" pose="grass_03"></child>
+  <child name="2" ref="grass" xpos="0.012,-0.01" pose="grass_05r2"></child>
+  <child name="3" ref="grass" xpos="-0.015,0.01" pose="grass_01r1"></child>
+</layout>

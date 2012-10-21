@@ -30,6 +30,7 @@ import android.content.pm.Signature;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
 import android.telephony.TelephonyManager;
 
 public class Utils

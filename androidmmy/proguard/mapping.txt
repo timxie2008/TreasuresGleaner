@@ -79,6 +79,7 @@ com.crazyamber.ttlusmmy.ADAdapter -> com.crazyamber.ttlusmmy.a:
     void _updateADConfig() -> e
     void setup(android.app.Activity,android.widget.RelativeLayout,com.crazyamber.ttlusmmy.AnalyzerAdapter) -> a
     void cleanup() -> a
+    void _showShareGames() -> f
     void update(int) -> a
     void onAdFailed(java.lang.String) -> onAdFailed
     void onAdSucceed(int) -> onAdSucceed

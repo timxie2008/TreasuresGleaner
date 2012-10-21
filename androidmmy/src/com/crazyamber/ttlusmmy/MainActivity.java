@@ -114,8 +114,8 @@ public class MainActivity extends Cocos2dxActivity
 		Utils.killUnrelatedActivityProcesses(this);
 		GameEnvHandler.setListener(this, _eventListener);
 		
-		String sig = GameEnvHandler.getSignature();
-		Settings.set(this, "sig", sig);
+		//String sig = GameEnvHandler.getSignature();
+		//Settings.set(this, "sig", sig);
 		
 		//encrypt mogo
 //		try

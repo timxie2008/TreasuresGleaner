@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite version="1.0" type="text">
+  <texture src="ui/ui.plist" tex="ui/ui.png"></texture>
+  <mesh name="font_number_yellow_0">
+    <frame src="number_yellow_00.png"></frame>
+  </mesh>
+  <mesh name="font_number_yellow_1">
+    <frame src="number_yellow_01.png"></frame>
+  </mesh>
+  <mesh name="font_number_yellow_2">
+    <frame src="number_yellow_02.png"></frame>
+  </mesh>
+  <mesh name="font_number_yellow_3">
+    <frame src="number_yellow_03.png"></frame>
+  </mesh>
+  <mesh name="font_number_yellow_4">
+    <frame src="number_yellow_04.png"></frame>
+  </mesh>
+  <mesh name="font_number_yellow_5">
+    <frame src="number_yellow_05.png"></frame>
+  </mesh>
+  <mesh name="font_number_yellow_6">
+    <frame src="number_yellow_06.png"></frame>
+  </mesh>
+  <mesh name="font_number_yellow_7">
+    <frame src="number_yellow_07.png"></frame>
+  </mesh>
+  <mesh name="font_number_yellow_8">
+    <frame src="number_yellow_08.png"></frame>
+  </mesh>
+  <mesh name="font_number_yellow_9">
+    <frame src="number_yellow_09.png"></frame>
+  </mesh>
+  <mesh name="font_char_yellow_m">
+    <frame src="number_meter_ending.png"></frame>
+  </mesh>
+  <pose name="0">
+    <part name="body">
+      <mesh ref="font_number_yellow_0" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="1">
+    <part name="body">
+      <mesh ref="font_number_yellow_1" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="2">
+    <part name="body">
+      <mesh ref="font_number_yellow_2" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="3">
+    <part name="body">
+      <mesh ref="font_number_yellow_3" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="4">
+    <part name="body">
+      <mesh ref="font_number_yellow_4" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="5">
+    <part name="body">
+      <mesh ref="font_number_yellow_5" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="6">
+    <part name="body">
+      <mesh ref="font_number_yellow_6" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="7">
+    <part name="body">
+      <mesh ref="font_number_yellow_7" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="8">
+    <part name="body">
+      <mesh ref="font_number_yellow_8" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="9">
+    <part name="body">
+      <mesh ref="font_number_yellow_9" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="5.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="m">
+    <part name="body">
+      <mesh ref="font_char_yellow_m" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="2.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="2.5%" rot="-7" alpha="100%"></key>
+        <key time="500" yardscaley="2.5%" rot="-7" alpha="80%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="fadeout">
+    <part name="body">
+      <mesh ref="{last}" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0" yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="100" yardscaley="8.5%" rot="-7" alpha="30%"></key>
+        <key time="200" yardscaley="10%" rot="-7" alpha="0%"></key>
+      </modifier>
+    </part>
+  </pose>
+  <pose name="splash">
+    <part name="body">
+      <mesh ref="{last}" dt="0.8"></mesh>
+      <modifier mode="abc0">
+        <key time="0"   yardscaley="5.5%" rot="-7" alpha="100%"></key>
+        <key time="400" yardscaley="2.5%" rot="-7" alpha="30%"></key>
+        <key time="500" yardscaley="0%" rot="-7" alpha="0%"></key>
+      </modifier>
+    </part>
+  </pose>
+</sprite>
