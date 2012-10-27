@@ -1,6 +1,6 @@
 rem set params
-set NDK_ROOT=G:\_projects\android-ndk-r8b
-set COCOS2DX_ROOT=G:\_projects\cocos2d.home\
+set NDK_ROOT=\_projects\android-ndk-r8b
+set COCOS2DX_ROOT=\_projects\cocos2d.home\
 
 set GAME_ROOT=%~dp0
 set GAME_ANDROID_ROOT=%GAME_ROOT%
