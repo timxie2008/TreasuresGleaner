@@ -178,9 +178,9 @@ public class MainActivity extends Cocos2dxActivity
 	@Override
 	protected void onPause()
 	{
+		super.onPause();
 		try
 		{
-			super.onPause();
 			_analyzer.pause(this);
 			mGLView.onPause();
 		}
@@ -193,9 +193,9 @@ public class MainActivity extends Cocos2dxActivity
 	@Override
 	protected void onResume()
 	{
+		super.onResume();
 		try
 		{
-			super.onResume();
 			_analyzer.resume(this);
 			mGLView.onResume();
 		}
@@ -208,10 +208,10 @@ public class MainActivity extends Cocos2dxActivity
 	@Override
 	protected void onDestroy()
 	{
+		super.onDestroy();
 		try
 		{
 			_ad.cleanup();
-			super.onDestroy();
 		}
 		catch (Exception e)
 		{

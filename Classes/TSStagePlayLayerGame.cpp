@@ -97,7 +97,8 @@ void TSStagePlayLayerGame::onEnter()
 #else
 		size.height = 18 * 4;
 #endif
-		_pInfo = CCLabelTTF::labelWithString(" ", size, kCCTextAlignmentLeft, "Arial", 16);
+		//_pInfo = CCLabelTTF::labelWithString(" ", size, kCCTextAlignmentLeft, "Arial", 16);
+		_pInfo = CCLabelTTF::create(" ", size, kCCTextAlignmentLeft, "Arial", 16);
 		_pInfo->setAnchorPoint(ccp(0.0f, 0.0f));
 		_pInfo->setPosition( ccp(0, 20) );
 		_pInfo->setVertexZ(99);

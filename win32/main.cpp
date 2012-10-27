@@ -30,7 +30,7 @@ static void _test()
 #define _DEVICE_HEIGHT	480
 #endif
 
-#define _DEVICE_SCALE  (6.0f / 8.0f)
+#define _DEVICE_SCALE  (8.0f / 8.0f)
 
 #define DEVICE_WIDTH	(int)(_DEVICE_WIDTH * _DEVICE_SCALE)
 #define DEVICE_HEIGHT	(int)(_DEVICE_HEIGHT * _DEVICE_SCALE)
@@ -47,7 +47,7 @@ string getConfig()
 
 string getLanguage()
 {
-	return "cn";
+	return "en";
 }
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,

@@ -33,7 +33,8 @@ void TSStageLogoLayerMain::onEnter()
 
 	// add a label shows "Hello World"
 	// create and initialize a label
-    _pInfo = CCLabelTTF::labelWithString(" ", "Arial", 16);
+    //_pInfo = CCLabelTTF::labelWithString(" ", "Arial", 16);
+	_pInfo = CCLabelTTF::create(" ", "Arial", 16);
 	// ask director the window size
 	CCSize size = CAWorld::getScreenSize();
 

@@ -38,7 +38,7 @@ TSSpritePlayer::TSSpritePlayer(CAStageLayer* player, const char* name) : CASprit
 	CAWorld::percent2view(_rectYard);
 
 	int i;
-	char* szNames[] = { "player", "dolphin", "whale" };
+	const char* szNames[] = { "player", "dolphin", "whale" };
 	for (i = 0; i < 3; i++)
 	{
 		_TPlayerSpeedParams& sp = _speed_params[i];

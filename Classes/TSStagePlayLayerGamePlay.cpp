@@ -560,7 +560,7 @@ void TSStagePlayLayerGamePlay::_checkRewards()
 
 	CCPoint posCollid;
 	bool bCollided = false;
-	char* szRewards[] = { "rdolphin", "rwhale" };
+	const char* szRewards[] = { "rdolphin", "rwhale" };
 	string strReward = "";
 	int j;
 	for (j = 0; !bCollided && j < 2; j++)

@@ -338,7 +338,7 @@ void TSStagePlayLayerGamePrepare::onUpdate()
 			pspr->setZOrder(_label_title()->getZOrder() - CAUtils::Rand(0.0f, 0.3f));
 
 			this->addSprite(pspr);
-			char* szPose = "pop_slow";
+			const char* szPose = "pop_slow";
 			pspr->setState(szPose);
 			pspr->setDeadPose(szPose);
 		}

@@ -1,6 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
+LOCAL_CFLAGS += -Wno-psabi
 
 LOCAL_MODULE := game_frame_shared
 

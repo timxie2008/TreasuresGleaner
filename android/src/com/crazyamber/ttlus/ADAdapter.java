@@ -4,7 +4,7 @@ import com.crazyamber.core.*;
 
 import com.adsmogo.adview.AdsMogoLayout;
 import com.adsmogo.controller.listener.AdsMogoListener;
-import com.kuguo.ad.KuguoAdsManager;
+//import com.kuguo.ad.KuguoAdsManager;
 
 import android.app.Activity;
 import android.content.Context;
@@ -41,7 +41,8 @@ public class ADAdapter implements AdsMogoListener
 	private String _idmogoen = "fb50f5d51d6e40d93417ecaae48c23011222f9e044abe203ef0d9ef6eeefa2a19c201bc8d26b5b6d9fb02fa624a1d322";
 	private String _idmogocn = "3a6d3b0eedd952f93fe811ea91fd5b53581c5a123baa03d27c1e680bfdb38e99fae86d449b50ef87b7277721d9544c7d";
 	//eam=true;eap=true;ep=false;ed=false;iden=fb50f5d51d6e40d93417ecaae48c23011222f9e044abe203ef0d9ef6eeefa2a19c201bc8d26b5b6d9fb02fa624a1d322;idcn=3a6d3b0eedd952f93fe811ea91fd5b53581c5a123baa03d27c1e680bfdb38e99fae86d449b50ef87b7277721d9544c7d
-	
+
+	/*
 	public void prepare()
 	{
 		//encrypt mogo
@@ -62,6 +63,8 @@ public class ADAdapter implements AdsMogoListener
 			String em = e.getMessage();
 		}
 	}
+	*/
+	
 	public ADAdapter()
 	{
 		_context = null;
@@ -270,6 +273,7 @@ public class ADAdapter implements AdsMogoListener
 
 	private void _rebuildPush()
 	{
+		/*
 		if (_config.bEnablePush || _config.bEnableAppDownload)
 		{
 		}
@@ -304,6 +308,7 @@ public class ADAdapter implements AdsMogoListener
 					_context, false);
 			_analyzer.onEvent(_context, "push");
 		}
+		*/
 	}
 
 	@Override
@@ -418,19 +423,25 @@ public class ADAdapter implements AdsMogoListener
 			ApplicationInfo appInfo = 
 					_context.getPackageManager().getApplicationInfo(
 							_context.getPackageName(), PackageManager.GET_META_DATA);
-			this._channel_id = appInfo.metaData.getString("UMENG_CHANNEL");
+			_channel_id = appInfo.metaData.getString("UMENG_CHANNEL");
+			if (null == _channel_id)
+			{
+				_channel_id = "";
+			}
+			_updateADConfig();
 		}
 		catch (Exception e)
 		{
 			Logger.e(e);
 		}
-		_updateADConfig();
 	}
 	
 	public void cleanup()
 	{
 		_destroyAD();
+		/*
 		KuguoAdsManager.getInstance().recycle(_context);
+		*/
 	}
 	
 	public void update(int what)
