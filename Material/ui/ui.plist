@@ -698,13 +698,13 @@
                 <key>frame</key>
                 <string>{{483,364},{338,111}}</string>
                 <key>offset</key>
-                <string>{2,-1}</string>
+                <string>{-1,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{14,7},{338,111}}</string>
+                <string>{{1,35},{338,111}}</string>
                 <key>sourceSize</key>
-                <string>{362,123}</string>
+                <string>{342,181}</string>
             </dict>
             <key>title_en.png</key>
             <dict>
@@ -755,7 +755,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:31ff3fad6cffb3f302b92b2578fb1d1a$</string>
+            <string>$TexturePacker:SmartUpdate:127757d71990c627140acbddeb3e056e$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>
