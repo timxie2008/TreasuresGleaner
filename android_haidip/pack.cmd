@@ -6,6 +6,10 @@ setlocal enabledelayedexpansion
 rem build native first
 call build_native.cmd
 
+echo replacing resources
+copy ..\Material\ui\ui_new.png assets\ui\ui.png /Y
+copy ..\Material\ui\ui_new.plist assets\ui\ui.plist /Y
+
 rem pack every channel 
 for /D %%i in (../publish/pushversion/*) do (
 	if exist ..\publish\pushversion\%%i\haidip_%%i_%1.apk (
