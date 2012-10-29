@@ -39,7 +39,7 @@ public class Logger
 
 	private static int					_counter			= 0;
 	private static int					_logLevel			= ERROR;
-	private static int					_logcatLevel		= ERROR;
+	private static int					_logcatLevel		= VERBOSE;
 	// private static String _file = "";
 
 	// private static Thread _recordor = null;
@@ -326,10 +326,10 @@ public class Logger
 		return msg;
 	}
 
-	public static void e(Throwable t)
+	public static void e(String tag, Throwable t)
 	{
 		String msg = _throwable2str(t);
-		e("THROWABLE", msg);
+		e(tag, msg);
 	}
 
 	public static void e(String tag, String msg)

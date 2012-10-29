@@ -46,7 +46,7 @@ import java.lang.ref.WeakReference;
 
 public class MainActivity extends Cocos2dxActivity
 {
-	private static final String	TAG	= MainActivity.class.getSimpleName();
+	private static final String	TAG	= MainActivity.class.getName();
 
 	private Cocos2dxGLSurfaceView mGLView;
 	private RelativeLayout _adLayout = null;

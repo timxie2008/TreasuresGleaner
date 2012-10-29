@@ -30,41 +30,9 @@ public class ADAdapter implements AdsMogoListener
 	
 	AnalyzerAdapter _analyzer = null;
 
-	private SimpleCipher _c = new SimpleCipher(
-			Utils.hexToBytes("37ca9a53c87eaa66f8fe88444f02a876"), 
-			Utils.hexToBytes("a3bb37149550b256009d23fc34b85836"));
-	
-//	//("c87eaafe88444f02a866f87637ca9a53");
-//	//("17b388b8b05841899761b326f2f4fa86");
-//	//("0b25685800144b9da3bb373695523fc3");
-	private String _idkuguo  = "227b56fe6fc8b642500610153c57e00dfa6d4e88d66a1ace5e9ec3633c30ca628998e347cae152aa01d48a5717ba2095";
-	
-	private String _idmogoen = "fb50f5d51d6e40d93417ecaae48c23011222f9e044abe203ef0d9ef6eeefa2a19c201bc8d26b5b6d9fb02fa624a1d322";
-	private String _idmogocn = "3a6d3b0eedd952f93fe811ea91fd5b53581c5a123baa03d27c1e680bfdb38e99fae86d449b50ef87b7277721d9544c7d";
+	private String _idmogoen = "10e516b1f258e4241deb216812e1cbecf7a3ad38e57a531ecf623f777d960f2a0e7bf4f89a5fd4c38ac52b8cbe52da2a";
+	private String _idmogocn = "10e516b1f258e4241deb216812e1cbecf7a3ad38e57a531ecf623f777d960f2a0e7bf4f89a5fd4c38ac52b8cbe52da2a";
 	//eam=true;eap=true;ep=false;ed=false;iden=fb50f5d51d6e40d93417ecaae48c23011222f9e044abe203ef0d9ef6eeefa2a19c201bc8d26b5b6d9fb02fa624a1d322;idcn=3a6d3b0eedd952f93fe811ea91fd5b53581c5a123baa03d27c1e680bfdb38e99fae86d449b50ef87b7277721d9544c7d
-
-	/*
-	public void prepare()
-	{
-		//encrypt mogo
-		try
-		{
-			String v = Utils.getPackageVersion(_context);
-			String enmogo_cn = _c.encryptString("c87eaafe88444f02a866f87637ca9a53");
-			String demogo_cn = _c.decryptString(enmogo_cn);
-			String enmogo_en = _c.encryptString("17b388b8b05841899761b326f2f4fa86");
-			String demogo_en = _c.decryptString(enmogo_en);
-			String enkugo = _c.encryptString("0b25685800144b9da3bb373695523fc3");
-			String dekugo = _c.decryptString(enkugo);
-		 
-			enkugo = dekugo;
-		}
-		catch (Exception e)
-		{
-			String em = e.getMessage();
-		}
-	}
-	*/
 	
 	public ADAdapter()
 	{
@@ -111,7 +79,7 @@ public class ADAdapter implements AdsMogoListener
 			return bDirty;
 		}
 		
-		public boolean parse(String ch, String config)
+		public boolean parse(Context c, String ch, String config)
 		{
 			if (null == config || config.length() <= 0)
 				return false;
@@ -176,6 +144,10 @@ public class ADAdapter implements AdsMogoListener
 							bEnableAppDownload = b;
 						}
 					}
+					else
+					{
+						Settings.set(c, items[0], items[1]);
+					}
 				}
 			}
 			int hcn = _hashCode();
@@ -188,6 +160,10 @@ public class ADAdapter implements AdsMogoListener
 	private String _channel_id = "";
 	private _ADConfig _config = new _ADConfig();
 
+	private SimpleCipher _c = new SimpleCipher(
+			Utils.hexToBytes("37ca9a53c87eaa66f8fe88444f02a876"), 
+			Utils.hexToBytes("a3bb37149550b256009d23fc34b85836"));
+	
 	private void _rebuildAD()
 	{
 		try
@@ -251,7 +227,7 @@ public class ADAdapter implements AdsMogoListener
 		}
 		catch (Exception e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 	}
 	
@@ -268,7 +244,7 @@ public class ADAdapter implements AdsMogoListener
 		}
 		catch (Exception e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 	}
 
@@ -364,7 +340,7 @@ public class ADAdapter implements AdsMogoListener
 		for (String channel : channels)
 		{
 			config = _analyzer.getConfigParams(channel);
-			if (_config.parse(channel, config))
+			if (_config.parse(_context, channel, config))
 			{
 				try
 				{
@@ -404,7 +380,7 @@ public class ADAdapter implements AdsMogoListener
 					config = "";
 				}
 				
-				if (_config.parse(channel, config))
+				if (_config.parse(_context, channel, config))
 				{
 					break;
 				}
@@ -429,20 +405,22 @@ public class ADAdapter implements AdsMogoListener
 			{
 				_channel_id = "";
 			}
+			//set default params first
+			Settings.setInt(_context, "pmaxcount", 16);
+			Settings.setInt(_context, "pminmin", 5);
+			Settings.setInt(_context, "hmin", 1);
+			Settings.setInt(_context, "hmax", 23);
 			_updateADConfig();
 		}
 		catch (Exception e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 	}
 	
 	public void cleanup()
 	{
 		_destroyAD();
-		/*
-		KuguoAdsManager.getInstance().recycle(_context);
-		*/
 	}
 	
 	public void update(int what)
@@ -450,7 +428,6 @@ public class ADAdapter implements AdsMogoListener
         switch (what)
         {
         case ADAdapter.EVENT_Loaded:
-        	_rebuildPush();
         	break;
         case ADAdapter.EVENT_Prepare:
         	_updateADConfig();

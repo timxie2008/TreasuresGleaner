@@ -27,13 +27,12 @@ public class SimpleCipher
 		}
 		catch (NoSuchAlgorithmException e)
 		{
-			e.printStackTrace();
-			Logger.e(e);
+			Logger.e("", e);
 		}
 		catch (NoSuchPaddingException e)
 		{
 			e.printStackTrace();
-			Logger.e(e);
+			Logger.e("", e);
 		}
 	}
 
@@ -104,6 +103,9 @@ public class SimpleCipher
 	
 	public String encryptString(String text)
 	{
+		if (null == text || text.length() <= 0)
+			return "";
+		
 		byte[] r;
 		try
 		{
@@ -119,6 +121,9 @@ public class SimpleCipher
 	
 	public String decryptString(String text)
 	{
+		if (null == text || text.length() <= 0)
+			return "";
+		
 		byte[] i = Utils.hexToBytes(text);
 		byte[] r = decrypt(i);
 		String ret = "";

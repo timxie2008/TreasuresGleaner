@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout version="1.0">
-  <child name="1" ref="text_blue" xpos="0,0" pose="0"></child>
-  <child name="2" ref="text_blue" xpos="2.0%,0" pose="0"></child>
-  <child name="3" ref="text_blue" xpos="4.0%,0" pose="0"></child>
-  <child name="4" ref="text_blue" xpos="6.0%,0" pose="0"></child>
-  <child name="5" ref="text_blue" xpos="8.0%,0" pose="0"></child>
-  <child name="6" ref="text_blue" xpos="10.0%,0" pose="0"></child>
-</layout>

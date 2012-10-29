@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class UnhandledExceptionHandler implements Thread.UncaughtExceptionHandler //UncaughtExceptionHandler接口用来捕获运行时未被程序捕获异常. 
 {
 
-	private static final String				TAG				= UnhandledExceptionHandler.class.getSimpleName();
+	private static final String				TAG				= UnhandledExceptionHandler.class.getName();
 	private static HashMap<Thread, Boolean>	_handledThreads	= new HashMap<Thread, Boolean>();
 
 	private Thread.UncaughtExceptionHandler	_oldHandler;

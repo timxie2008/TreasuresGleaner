@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<anim version="1.0">
-  <key time="000" yardscaley="16%"  yardpos="1.40,0.0" alpha="100%"></key>
-  <key time="240" yardscaley="16%"  yardpos="1.10,0.0" alpha="100%"></key>
-  <key time="280" yardscaley="16%"  yardpos="0.86,0.0" alpha="100%"></key>
-  <key time="320" yardscaley="16%"  yardpos="0.80,0.0" alpha="100%"></key>
-  <key time="360" yardscaley="16%"  yardpos="0.86,0.0" alpha="100%"></key>
-</anim>

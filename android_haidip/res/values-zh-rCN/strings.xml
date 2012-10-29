@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">海底三千里</string>
+    <string name="app_name_inter">海底三千里</string>
+    <string name="app_name">亲 </string>
+    <string name="wpt">亲 </string>
 </resources>

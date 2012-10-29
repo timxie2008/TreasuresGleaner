@@ -10,11 +10,10 @@ import android.os.RemoteException;
 
 public class ServiceHandler extends Handler
 {
-	private static final String		TAG						= ServiceHandler.class.getSimpleName();
+	private static final String		TAG						= ServiceHandler.class.getName();
 	private static final int		RUNSTATE_RUNNING		= 0;
 	private static final int		RUNSTATE_NEEDSETTINGS	= 1;
 	private int						_nRunningState;
-
 	private Context					_serviceContext			= null;
 
 	/** commands from UI */

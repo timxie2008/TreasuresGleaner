@@ -7,11 +7,11 @@ rem build native first
 call build_native.cmd
 
 rem pack every channel 
-for /D %%i in (../publish/channels/*) do (
-	if exist ..\publish\channels\%%i\ttlus_%%i_%1.apk (
-		echo skip ..\publish\channels\%%i\ttlus_%%i_%1.apk
+for /D %%i in (../publish/pushversion/*) do (
+	if exist ..\publish\pushversion\%%i\haidip_%%i_%1.apk (
+		echo skip ..\publish\pushversion\%%i\haidip_%%i_%1.apk
 	)
-	if not exist ..\publish\channels\%%i\ttlus_%%i_%1.apk (
+	if not exist ..\publish\pushversion\%%i\haidip_%%i_%1.apk (
 		echo build channel %%i 
 		rem update channel name
 		echo coping AndroidManifest.xml file
@@ -25,10 +25,10 @@ for /D %%i in (../publish/channels/*) do (
 		rm -rf bin
 		ant release
 
-		echo export apk file:..\publish\channels\%%i\ttlus_%%i_%1.apk
-		rem dir .\bin\com.crazyamber.ttlus-release.apk
+		echo export apk file:..\publish\pushversion\%%i\haidip_%%i_%1.apk
+		rem dir .\bin\com.crazyamber.haidip-release.apk
 		rem for %%f in (.\bin\com.crazyamber.*.apk) do (
-		copy .\bin\com.crazyamber.ttlus-release.apk ..\publish\channels\%%i\ttlus_%%i_%1.apk /Y
+		copy .\bin\com.crazyamber.haidip-release.apk ..\publish\pushversion\%%i\haidip_%%i_%1.apk /Y
 		rem )
 		rem pause
 	)

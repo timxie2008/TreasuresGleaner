@@ -37,7 +37,6 @@ public class ADAdapter implements AdsMogoListener
 //	//("c87eaafe88444f02a866f87637ca9a53");
 //	//("17b388b8b05841899761b326f2f4fa86");
 //	//("0b25685800144b9da3bb373695523fc3");
-	private String _idkuguo  = "227b56fe6fc8b642500610153c57e00dfa6d4e88d66a1ace5e9ec3633c30ca628998e347cae152aa01d48a5717ba2095";
 	private String _idmogoen = "fb50f5d51d6e40d93417ecaae48c23011222f9e044abe203ef0d9ef6eeefa2a19c201bc8d26b5b6d9fb02fa624a1d322";
 	private String _idmogocn = "3a6d3b0eedd952f93fe811ea91fd5b53581c5a123baa03d27c1e680bfdb38e99fae86d449b50ef87b7277721d9544c7d";
 	//eam=true;eap=true;ep=false;ed=false;iden=fb50f5d51d6e40d93417ecaae48c23011222f9e044abe203ef0d9ef6eeefa2a19c201bc8d26b5b6d9fb02fa624a1d322;idcn=3a6d3b0eedd952f93fe811ea91fd5b53581c5a123baa03d27c1e680bfdb38e99fae86d449b50ef87b7277721d9544c7d

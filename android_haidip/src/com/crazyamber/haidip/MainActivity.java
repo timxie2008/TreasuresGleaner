@@ -46,7 +46,7 @@ import java.lang.ref.WeakReference;
 
 public class MainActivity extends Cocos2dxActivity
 {
-	private static final String	TAG	= MainActivity.class.getSimpleName();
+	private static final String	TAG	= MainActivity.class.getName();
 
 	private Cocos2dxGLSurfaceView mGLView;
 	private RelativeLayout _adLayout = null;
@@ -103,7 +103,7 @@ public class MainActivity extends Cocos2dxActivity
 
 		//String v = Utils.getPackageVersion(this);
 		
-		Logger.start(this,  Logger.ERROR, Logger.DEBUG);
+		Logger.start(this,  Logger.DEBUG, Logger.DEBUG);
 		Logger.d(TAG, "craete");
 		
 		Utils.killUnrelatedActivityProcesses(this);
@@ -171,7 +171,7 @@ public class MainActivity extends Cocos2dxActivity
 		}
 		catch (Exception e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 	}
 
@@ -186,7 +186,7 @@ public class MainActivity extends Cocos2dxActivity
 		}
 		catch (Exception e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 	}
 
@@ -201,7 +201,7 @@ public class MainActivity extends Cocos2dxActivity
 		}
 		catch (Exception e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 	}
 
@@ -215,7 +215,7 @@ public class MainActivity extends Cocos2dxActivity
 		}
 		catch (Exception e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 		
 		Logger.stop();
@@ -231,7 +231,7 @@ public class MainActivity extends Cocos2dxActivity
 		}
 		catch (Exception e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 		return false;
 	}

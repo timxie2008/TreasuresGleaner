@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
@@ -34,7 +35,7 @@ import android.telephony.TelephonyManager;
 
 public class Utils
 {
-	//private static final String	TAG	= Utils.class.getSimpleName();
+	private static final String	TAG	= Utils.class.getName();
 
 	/**
 	 * 检查SD卡是否可用
@@ -171,92 +172,15 @@ public class Utils
 		}
 		catch (SocketException e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 		catch (Throwable e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 
 		return "";
 	}
-
-	/*
-	private static int	_nid	= 100;
-
-	public static void showNotification(Context c, int Ricon, String title, String message, Intent intent)
-	{
-		try
-		{
-			NotificationManager nm = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
-			// 新建状态栏通知֪
-			Notification baseNF = new Notification();
-
-			// 设置通知在状态栏显示的图标
-			baseNF.icon = Ricon; // R.drawable.ic_message;
-
-			// 通知时在状态栏显示的内容
-			baseNF.tickerText = "You clicked BaseNF!";
-
-			// 通知的默认参数 DEFAULT_SOUND, DEFAULT_VIBRATE, DEFAULT_LIGHTS.
-			// 如果要全部采用默认值, 用 DEFAULT_ALL.
-			// 此处采用默认声音
-			// baseNF.defaults |= Notification.DEFAULT_SOUND;
-			baseNF.defaults |= Notification.DEFAULT_VIBRATE;
-			// baseNF.defaults |= Notification.DEFAULT_LIGHTS;
-
-			// 让声音、振动无限循环，直到用户响应
-			baseNF.flags |= Notification.FLAG_INSISTENT;
-
-			// 通知被点击后，自动消失
-			baseNF.flags |= Notification.FLAG_AUTO_CANCEL;
-
-			// 点击'Clear'时，不清楚该通知(QQ的通知无法清除，就是用的这个)
-			baseNF.flags |= Notification.FLAG_NO_CLEAR;
-
-			// 第二个参数 ：下拉状态栏时显示的消息标题 expanded message title
-			// 第三个参数：下拉状态栏时显示的消息内容 expanded message text
-			// 第四个参数：点击该通知时执行页面跳转ת
-			baseNF.setLatestEventInfo(c, title, message, PendingIntent.getActivity(c, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT));
-
-			// 发出状态栏通知
-			// The first parameter is the unique ID for the Notification
-			// and the second is the Notification object.
-			nm.notify(_nid++, baseNF);
-		}
-		catch (Throwable e)
-		{
-			Logger.e(e);
-		}
-	}
-
-	public static void showNotification2(Context c, int Ricon, String title, String message)
-	{
-		try
-		{
-			// 1.通过getSystemService方法获得一个NotificationManager对象
-			NotificationManager notificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
-			// 2.创建一个Notification对象
-			Notification notification = new Notification(Ricon, // R.drawable.ic_message,
-			"TTLUS", System.currentTimeMillis());
-			// 3.创建PendingIntent对象
-			notification.defaults |= Notification.DEFAULT_SOUND;
-			notification.defaults |= Notification.DEFAULT_VIBRATE;
-			// 让声音、振动无限循环，直到用户响应
-			notification.flags |= Notification.FLAG_INSISTENT;
-
-			// 通知被点击后，自动消失
-			notification.flags |= Notification.FLAG_AUTO_CANCEL;
-			PendingIntent pi = PendingIntent.getActivity(c, 0, null, PendingIntent.FLAG_CANCEL_CURRENT);
-			notification.setLatestEventInfo(c, title, message, pi);
-			notificationManager.notify(_nid++, notification);
-		}
-		catch (Throwable e)
-		{
-			Logger.e(e);
-		}
-	}
-	*/
 
 	// first
 	// android.os.Build.static vars
@@ -304,13 +228,13 @@ public class Utils
 		}
 		catch (NoSuchAlgorithmException e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 			System.out.println("NoSuchAlgorithmException caught!");
-			System.exit(-1);
+			//System.exit(-1);
 		}
 		catch (Throwable e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 		return byteArray;
 	}
@@ -343,7 +267,7 @@ public class Utils
 		}
 		catch (Throwable e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 	
 		return ret;
@@ -361,7 +285,7 @@ public class Utils
 		}
 		catch (Exception e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 		return ret;
 	}
@@ -453,11 +377,11 @@ public class Utils
 		}
 		catch (InterruptedException e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 		catch (Throwable e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 
 	}
@@ -480,16 +404,24 @@ public class Utils
 		}
 		catch (IOException e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 		catch (Throwable e)
 		{
-			Logger.e(e);
+			Logger.e(TAG, e);
 		}
 	}
 
-	@TargetApi(8)
 	public static void killUnrelatedActivityProcesses(Context c)
+	{
+		if (getAPILevel() >= 8)
+		{
+			_killUnrelatedActivityProcesses(c);
+		}
+	}
+	
+	@TargetApi(8)
+	private static void _killUnrelatedActivityProcesses(Context c)
 	{
 		ActivityManager am = (ActivityManager) c.getSystemService(Context.ACTIVITY_SERVICE);
 
@@ -605,6 +537,20 @@ public class Utils
 		return ret;
 	}
 
+	public static long parseLong(String str)
+	{
+		long ret = 0;
+		try
+		{
+			ret = Long.valueOf(str);
+		}
+		catch (Exception e)
+		{
+			
+		}
+		return ret;
+	}
+
 	public static byte[] intToBytes(int n)
 	{
 		byte[] bytes = ByteBuffer.allocate(Integer.SIZE / 8).putInt(n).array();
@@ -668,5 +614,20 @@ public class Utils
 				}).create();
 
 		dialog.show();
+	}
+	
+	public static int clamp(int v, int min, int max)
+	{
+		if (v < min) v = min;
+		else if (v > max) v = max;
+		return v;
+	}
+	public static int RandIn(int min, int max)
+	{
+		Random r = new Random();
+		int n = r.nextInt();
+		if (n < 0) n = -n;
+		n = n % (max - min) + min;
+		return n;
 	}
 }
