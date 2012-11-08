@@ -2,21 +2,35 @@
 if @%1 == @ goto help
 if @%2 == @ goto help
 
+if @%3 == @ goto default
+set REMOVEALL=1
+goto begin
+:default
+set REMOVEALL=0
+:begin
+
 setlocal enabledelayedexpansion
 rem build native first
-call build_native.cmd
+rem call build_native.cmd
 
 echo replacing resources
-copy ..\Material\ui\ui_new.png assets\ui\ui.png /Y
-copy ..\Material\ui\ui_new.plist assets\ui\ui.plist /Y
+copy ..\Material\ui\ui_haidi.png assets\ui\ui.png /Y > nul
+copy ..\Material\ui\ui_haidi.plist assets\ui\ui.plist /Y > nul
 
 rem pack every channel 
+
 for /D %%i in (../publish/pushversion/*) do (
+	echo preparing to build channel %%i 
 	if exist ..\publish\pushversion\%%i\haidip_%%i_%1.apk (
-		echo skip ..\publish\pushversion\%%i\haidip_%%i_%1.apk
+		if %REMOVEALL% EQU 1 (
+			del ..\publish\pushversion\%%i\haidip_%%i_%1.apk
+		) else (
+			echo skip ..\publish\pushversion\%%i\haidip_%%i_%1.apk
+		)
 	)
 	if not exist ..\publish\pushversion\%%i\haidip_%%i_%1.apk (
-		echo build channel %%i 
+		echo rebuilding ..\publish\pushversion\%%i\haidip_%%i_%1.apk
+
 		rem update channel name
 		echo coping AndroidManifest.xml file
 		copy AndroidManifest.xml.template AndroidManifest.xml /Y
@@ -24,7 +38,6 @@ for /D %%i in (../publish/pushversion/*) do (
 		sed -i "s/__UC__/%%i/g" AndroidManifest.xml
 		sed -i "s/__VERSIONNAME__/%1/g" AndroidManifest.xml
 		sed -i "s/__VERSIONCODE__/%2/g" AndroidManifest.xml
-		echo rebuilding
 		rem ant build
 		rm -rf bin
 		ant release
@@ -40,6 +53,6 @@ for /D %%i in (../publish/pushversion/*) do (
 goto exit
 
 :help
-echo pack vername(aa.bb.cc) versioncode(aabbcc)
+echo pack vername(aa.bb.cc) versioncode(aabbcc) [rebuild?]
 
 :exit

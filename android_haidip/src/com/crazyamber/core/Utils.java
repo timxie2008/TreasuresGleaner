@@ -29,6 +29,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
@@ -37,6 +39,44 @@ public class Utils
 {
 	private static final String	TAG	= Utils.class.getName();
 
+	public static boolean isNetworkAvailable(Context c, boolean mobile)
+	{
+		ConnectivityManager mConnectivity = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+		TelephonyManager mTelephony = (TelephonyManager) c.getSystemService(Context.TELEPHONY_SERVICE);
+
+		NetworkInfo info = mConnectivity.getActiveNetworkInfo();
+		if (info == null) 
+		{ 
+			return false; 
+		}
+		if (!info.isAvailable() && !info.isConnected())
+			return false;
+
+		int netType = info.getType();
+		int netSubtype = info.getSubtype();
+		boolean connected = info.isConnected();
+		
+		if (netType == ConnectivityManager.TYPE_WIFI)
+		{
+			return connected;
+		}
+		else if (netType == ConnectivityManager.TYPE_MOBILE && mobile)
+		{
+			boolean roaming = mTelephony.isNetworkRoaming();
+			if (roaming)
+			{
+				//漫游状态
+				return false;
+			}
+			
+			//if (netSubtype == TelephonyManager.NETWORK_TYPE_UMTS)
+		
+			return info.isConnected();
+		}
+		
+		return false;
+	}
+	
 	/**
 	 * 检查SD卡是否可用
 	 * 

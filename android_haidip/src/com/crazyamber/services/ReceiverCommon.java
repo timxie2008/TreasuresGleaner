@@ -38,7 +38,7 @@ public class ReceiverCommon extends BroadcastReceiver
 			if (ServiceSchedule.____.equals(action))
 			{
 				//do some ad push first
-				//Log.d(TAG, "receiver start ServiceWorking");
+				Log.d(TAG, "receiver start ServiceWorking");
 				Intent i = new Intent(context, ServiceWorking.class);
 				context.startService(i);
 				//Log.d(TAG, "receiver start ServiceWorking ed");
@@ -46,7 +46,7 @@ public class ReceiverCommon extends BroadcastReceiver
 			//fall through
 			{
 				// startService
-				//Log.d(TAG, "receiver start ServiceShedule");
+				Log.d(TAG, "receiver start ServiceShedule");
 				Intent i = new Intent(context, ServiceSchedule.class);
 				context.startService(i);
 				//Log.d(TAG, "receiver start ServiceShedule ed");

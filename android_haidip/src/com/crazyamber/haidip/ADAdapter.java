@@ -105,14 +105,14 @@ public class ADAdapter implements AdsMogoListener
 							iden = items[1];
 						}
 					}
-					if (items[0].equals("idcn"))
+					else if (items[0].equals("idcn"))
 					{
 						if (!idcn.equals(items[1]))
 						{
 							idcn = items[1];
 						}
 					}
-					if (items[0].equals("eam"))
+					else if (items[0].equals("eam"))
 					{
 						boolean b = !items[1].equals("false");
 						if (b != bEnableADMenu)
@@ -334,7 +334,7 @@ public class ADAdapter implements AdsMogoListener
 	{
 		String config;
 		String v = Utils.getPackageVersion(_context);
-		String[] channels = { _channel_id, "default", _channel_id + "_" + v, "default_" + v };
+		String[] channels = { _channel_id + "_" + v, _channel_id, "default_" + v, "default"};
 		
 		boolean hit = false;
 		for (String channel : channels)

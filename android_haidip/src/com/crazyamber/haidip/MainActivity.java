@@ -101,6 +101,8 @@ public class MainActivity extends Cocos2dxActivity
 	{
 		super.onCreate(savedInstanceState);
 
+		//boolean b = Utils.isNetworkAvailable(this, true);
+		//b = b | false;
 		//String v = Utils.getPackageVersion(this);
 		
 		Logger.start(this,  Logger.DEBUG, Logger.DEBUG);

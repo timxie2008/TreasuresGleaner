@@ -57,7 +57,7 @@ public class MainActivity extends Cocos2dxActivity
 	private static class _ADManagerHandler extends Handler
 	{
 		WeakReference<MainActivity> mActivity;  
-		  
+
 		_ADManagerHandler(MainActivity activity) 
 		{  
 			mActivity = new WeakReference<MainActivity>(activity);  
@@ -196,6 +196,7 @@ public class MainActivity extends Cocos2dxActivity
 		super.onResume();
 		try
 		{
+			this.getResources().
 			_analyzer.resume(this);
 			mGLView.onResume();
 		}

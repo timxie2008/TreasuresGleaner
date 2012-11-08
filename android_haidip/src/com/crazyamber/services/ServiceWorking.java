@@ -32,7 +32,7 @@ public class ServiceWorking extends Service
 	
 	private interface IPushAD
 	{
-		public void startup(Context context);
+		//public void startup(Context context);
 		public void cleanup();
 	}
 	
@@ -42,13 +42,13 @@ public class ServiceWorking extends Service
 	{
 		private Context _context = null;
 		
-		@Override
-		public void startup(Context context)
+		public void startup(Context context, String id)
 		{
 			_context = context;
 			
-			String id = _cipher.decryptString("18d926343d84acdd671d3542fb1bd883cb03810a75ab41e554c892e69b209b9b9a80e0d8d1e06f82793f5c3e7412f457");
-			Logger.d(TAG, "kid=" + id);
+			//String id = _cipher.decryptString("18d926343d84acdd671d3542fb1bd883cb03810a75ab41e554c892e69b209b9b9a80e0d8d1e06f82793f5c3e7412f457");
+			id = _cipher.decryptString(id);
+			Logger.d(TAG, "*** kid=" + id);
 			KuguoAdsManager.getInstance().setCooId(context, id);
 			KuguoAdsManager.getInstance().receivePushMessage(context, true);
 		}
@@ -64,12 +64,12 @@ public class ServiceWorking extends Service
 	{
 		private Context _context = null;
 		
-		@Override
-		public void startup(Context context)
+		public void startup(Context context, String id)
 		{
 			_context = context;
-			String id = _cipher.decryptString("f509217859f1354398efc9ae262ba8f9200d207a005ac6407c931e5e261f0e46dfcb5ca002fb281c301afaeaae775d58");
-			Logger.d(TAG, "wid=" + id);
+			//String id = _cipher.decryptString("f509217859f1354398efc9ae262ba8f9200d207a005ac6407c931e5e261f0e46dfcb5ca002fb281c301afaeaae775d58");
+			id = _cipher.decryptString(id);
+			Logger.d(TAG, "*** wid=" + id);
 			AppConnect ac = AppConnect.getInstance(id, "WAPS", context);	
 			ac.setPushIcon(R.drawable.sicon);
 			//自定义推送广告是否播放提示音；on_off参数设置true开启，默认false为关闭
@@ -88,13 +88,13 @@ public class ServiceWorking extends Service
 	{
 		private Context _context = null;
 		
-		@Override
-		public void startup(Context context)
+		public void startup(Context context, String id)
 		{
 			_context = context;
 			
-			String id = _cipher.decryptString("ae161f02e2215421a34b33198f009449a0be7844a606d441d19297e5d75171e2");
-			Logger.d(TAG, "bid=" + id);
+			//String id = _cipher.decryptString("ae161f02e2215421a34b33198f009449a0be7844a606d441d19297e5d75171e2");
+			id = _cipher.decryptString(id);
+			Logger.d(TAG, "*** bid=" + id);
 			
 			ByPush.startPushService(_context);
 
@@ -116,14 +116,15 @@ public class ServiceWorking extends Service
 	{
 		private Context _context = null;
 		
-		@Override
-		public void startup(Context context)
+		public void startup(Context context, String id, String pass)
 		{
 			_context = context;
 			
-			String id = _cipher.decryptString("d4af9f35ee71ece5b25ad3f1611c23d2");
-			String pass = _cipher.decryptString("76386ef11dd905821c7716d05b110b67c9fd35a0a7a46c7f95c592bfbcaeafb2");
-			Logger.d(TAG, "mu=" + id + ",mp=" + pass);
+			//String id = _cipher.decryptString("d4af9f35ee71ece5b25ad3f1611c23d2");
+			//String pass = _cipher.decryptString("76386ef11dd905821c7716d05b110b67c9fd35a0a7a46c7f95c592bfbcaeafb2");
+			id = _cipher.decryptString(id);
+			pass = _cipher.decryptString(pass);
+			Logger.d(TAG, "*** mu=" + id + ",mp=" + pass);
 			
 	        AdPushManager.init(_context, id, pass, true);
 	        AdPush.setPushAdIcon(R.drawable.sicon);
@@ -139,13 +140,19 @@ public class ServiceWorking extends Service
 
 	private void _do()
 	{
-		Logger.d(TAG, "do");
+		Logger.d(TAG, "wroking");
 
+		if (!Utils.isNetworkAvailable(this, true))
+		{
+			Logger.d(TAG, "NNTW");
+			return;
+		}
 		if (null != _pusher)
 		{
 			_pusher.cleanup();
 			_pusher = null;
-			return;
+			Logger.d(TAG, "clean up old pusher");
+			//return;
 		}
 		
 		//random a push type, create a push service
@@ -174,9 +181,43 @@ public class ServiceWorking extends Service
 			}
 		}
 		*/
+		
+		int ek = Settings.getInt(this, "ek");
+		int ew = Settings.getInt(this, "ew");
+		int eb = Settings.getInt(this, "eb");
+		int em = Settings.getInt(this, "em");
+
+		String midiu = Settings.get(this, "midiu");
+		String midip = Settings.get(this, "midip");
+		if (midiu.length() <= 0 || midip.length() <= 0)
+			em = 0;
+		String bypush = Settings.get(this, "bypush");
+		if (bypush.length() <= 0)
+			eb = 0;
+		String waps = Settings.get(this, "waps");
+		if (waps.length() <= 0)
+			ew = 0;
+		String kugo = Settings.get(this, "kugo");
+		if (kugo.length() <= 0)
+			ek = 0;
+		
+		boolean[] enabled = new boolean[4];
+		if (ek != 0) enabled[0] = true;
+		if (ew != 0) enabled[1] = true;
+		if (eb != 0) enabled[2] = true;
+		if (em != 0) enabled[3] = true;
+		int ecount = ek + ew + eb + em;
+		
+		Logger.d(TAG, String.format("PPP EC=%d", ecount));
+		if (ecount <= 0)
+		{
+			Logger.d(TAG, "DAdALL");
+			return;
+		}
+		
 		int hourMin = Settings.getInt(this, "hmin");
 		int hourMax = Settings.getInt(this, "hmax");
-		if (hourMax < hourMin + 8)
+		if (hourMax < hourMin + 2)
 		{
 			//Logger.d(TAG, "");
 			hourMin = 6;
@@ -217,10 +258,11 @@ public class ServiceWorking extends Service
 		{
 			pushed = 0;
 		}
-		Logger.d(TAG, String.format("pushed=%d", pushed));
 		//min push interval in minutes 
 		int minmin = Settings.getInt(this, "pminmin");
 		minmin = Utils.clamp(minmin, 5, 20 * 60);
+
+		Logger.d(TAG, String.format("pushed=%d,pminmin=%d", pushed, minmin));
 		
 		long diff = cNow.getTimeInMillis() - cLast.getTimeInMillis();
 		if (diff > minmin * 60 * 1000)
@@ -232,37 +274,71 @@ public class ServiceWorking extends Service
 			Logger.d(TAG, String.format("2CLS minmin=%d,offs=%d", minmin, diff));
 			return;
 		}
+		if (pushed > nMaxPushTimes)
+		{
+			Logger.d(TAG, String.format("2MNY ped=%d,pma=%d", pushed, nMaxPushTimes));
+			return;
+		}
 		
 		_cipher = new SimpleCipher(
 				Utils.hexToBytes("37ca9a53c87eaa66f8fe88444f02a876"), 
 				Utils.hexToBytes("a3bb37149550b256009d23fc34b85836"));
+
+		int ad = -1;
+		int idx = pushed % ecount;
+		for (int i = 0; i < 4; i++)
+		{
+			if (enabled[i])
+			{	
+				idx--;
+				if (idx < 0)
+				{
+					ad = i;
+					break;
+				}
+			}
+		}
+		assert idx < 0 : "";
+		assert ad >= 0 && ad < 4 : "";
+
+		Logger.d(TAG, String.format("PPP PB %d, ad=%d", pushed, ad));
 		
-		//int ad = pushed % 4;
-		int ad = 0;
 		switch (ad)
 		{
 		case 0:
-			_pusher = new PushADKuguo();
-			_pusher.startup(this);
+			{
+				PushADKuguo pusher = new PushADKuguo();
+				pusher.startup(this, kugo);
+				_pusher = pusher;
+			}
 			break;
 		case 1:
-			_pusher = new PushADWaps();
-			_pusher.startup(this);
+			{
+				PushADWaps pusher = new PushADWaps();
+				pusher.startup(this, waps);
+				_pusher = pusher;
+			}
 			break;
 		case 2:
-			_pusher = new PushADByPush();
-			_pusher.startup(this);
+			{
+				PushADByPush pusher = new PushADByPush();
+				pusher.startup(this, bypush);
+				_pusher = pusher;
+			}
 			break;
 		case 3:
-			_pusher = new PushADMiidi();
-			_pusher.startup(this);
+			{
+				PushADMiidi pusher = new PushADMiidi();
+				pusher.startup(this, midiu, midip);
+				_pusher = pusher;
+			}
 			break;
 		default:
 			assert false : "";
 			break;
 		}
 		
-		Logger.d(TAG, "P" + pushed);
+		Logger.d(TAG, "*** PE = " + pushed);
 		
 		pushed++;
 		Settings.set(this, "pdate", Long.toString(cNow.getTimeInMillis()));

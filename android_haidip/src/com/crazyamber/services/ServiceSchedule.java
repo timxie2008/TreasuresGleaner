@@ -46,38 +46,60 @@ public class ServiceSchedule extends Service
 	private void _scheduleAlarm()
 	{
 		//Logger.d(TAG, "_scheduleAlarm");
+		String _lastScheduleKey = "pls";
 		
-		AlarmManager am = (AlarmManager)this.getSystemService(Service.ALARM_SERVICE);
 		Calendar c = Calendar.getInstance();
 		c.setTimeInMillis(System.currentTimeMillis());
 
+		String pls = Settings.get(this, _lastScheduleKey);
+		long lpls = Utils.parseLong(pls);
+		
+		boolean bReschedule = true;
+		if (lpls > c.getTimeInMillis())
+		{
+			c.setTimeInMillis(lpls);
+			bReschedule = false;
+		}
+		
 		int ho = c.get(Calendar.HOUR_OF_DAY);
 		int mi = c.get(Calendar.MINUTE);
 		int se = c.get(Calendar.SECOND);
-		
-		//Logger.d(TAG, String.format("now %d:%d:%d", ho, mi, se));
-		
-		//mi += Utils.RandIn(5, 10);
-		//if (mi >= 60) { mi = 0; if (ho < 24) ho++; };
-		//se = Utils.RandIn(10, 50);
 
-		int sche_secs = 10;
-		se += sche_secs;
-		mi += se / 60;
-		se %= 60;
-
-		//Logger.d(TAG, String.format("will %d:%d:%d", ho, mi, se));
+		if (bReschedule)
+		{
+			int sche_base_secs = 2 * 60; 
+			int sche_secs = sche_base_secs + Utils.RandIn(10, 50);
+			sche_secs += se;
+			se = 0;
+			
+			int dh = sche_secs / 60 / 60; sche_secs -= dh * 60 * 60;
+			int dm = sche_secs / 60; sche_secs -= dm * 60;
+			int ds = sche_secs % 60;
+	
+			ho += dh;
+			mi += dm;
+			se = ds; 
+			
+			Logger.d(TAG, String.format("reschedule %d:%d:%d", ho, mi, se));
+			
+			c.set(Calendar.HOUR_OF_DAY, ho);
+			c.set(Calendar.MINUTE, mi);
+			c.set(Calendar.SECOND, se);
+		}
 		
-		c.set(Calendar.HOUR_OF_DAY, ho);
-		c.set(Calendar.MINUTE, mi);
-		c.set(Calendar.SECOND, se);
-
-		//Logger.d(TAG, String.format("schedule %d:%d:%d", ho, mi, se));
+		ho = c.get(Calendar.HOUR_OF_DAY);
+		mi = c.get(Calendar.MINUTE);
+		se = c.get(Calendar.SECOND);
+		
+		Logger.d(TAG, String.format("==schedule %d:%d:%d", ho, mi, se));
+		
+		Settings.set(this, _lastScheduleKey, Long.toString(c.getTimeInMillis()));
 		
 		//设置消息的响应
 		Intent ia = new Intent(this, ReceiverCommon.class);
 		ia.setAction(____);
 		PendingIntent pii = PendingIntent.getBroadcast(this, 0, ia, 0);
+		AlarmManager am = (AlarmManager)this.getSystemService(Service.ALARM_SERVICE);
 		am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pii);
 	}
 
@@ -104,7 +126,8 @@ public class ServiceSchedule extends Service
 		int ret = super.onStartCommand(intent, flags, startId);
 		
 		//Logger.d(TAG, "onStartCommand(flags=" + flags + ", startId=" + startId);
-
+		Initializer.updateConfig(this);
+		
 		_safeCheck();
 		_scheduleAlarm();
 		
