@@ -377,7 +377,18 @@ void TSStagePlayLayerGamePrepare::onEvent(CAEvent* pevt)
 			CAEventKey* pek = (CAEventKey*)pevt;
 			if (KE_Back == pek->key()) // || KE_Menu == pek->key())
 			{
-				this->setConditionResult("root.running@user.quit", true);
+				string config = getConfig();
+				CASettings s;
+				s.initialize(config);
+				if (s.hasKey("osexit") && s.getBool("osexit"))
+				{
+					//do nothing
+					//this->setConditionResult("root.running@user.quit.directly", true);
+				}
+				else
+				{
+					this->setConditionResult("root.running@user.quit", true);
+				}
 			}
 		}
 		break;

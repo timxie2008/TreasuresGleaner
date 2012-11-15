@@ -77,7 +77,11 @@ public class MainActivity extends Cocos2dxActivity
 		@Override
 		public void onEvent(String evt, String val)
 		{
-			if (evt.equals("play_state"))
+			if (evt.equals("log"))
+			{
+				Logger.i("JNI", val);
+			}
+			else if (evt.equals("play_state"))
 			{
 				_analyzer.onEvent(MainActivity.this, val);
 				if (val.equals("prepare"))
@@ -103,7 +107,7 @@ public class MainActivity extends Cocos2dxActivity
 
 		//String v = Utils.getPackageVersion(this);
 		
-		Logger.start(this,  Logger.ERROR, Logger.DEBUG);
+		Logger.start(this,  Logger.DEBUG, Logger.DEBUG);
 		Logger.d(TAG, "craete");
 		
 		Utils.killUnrelatedActivityProcesses(this);
@@ -196,7 +200,6 @@ public class MainActivity extends Cocos2dxActivity
 		super.onResume();
 		try
 		{
-			this.getResources().
 			_analyzer.resume(this);
 			mGLView.onResume();
 		}

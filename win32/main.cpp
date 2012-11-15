@@ -37,12 +37,13 @@ static void _test()
 
 void postGameEvent(const char* key, const char* value)
 {
-	_Info("Game Event:%s=%s", key, value);
+	//DO NOT call DEbug Log, DebugLog will call this function
+	//_Info("Game Event:%s=%s", key, value);
 }
 
 string getConfig()
 {
-	return "mg=bool:false";
+	return "mg=bool:false;osexit=bool:true";
 }
 
 string getLanguage()

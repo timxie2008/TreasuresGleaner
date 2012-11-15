@@ -139,7 +139,7 @@ void TSSpritePlayer::_createBubbles(int c, bool bLow)
 		x = this->getPos().x;
 		y = this->getPos().y;
 
-		const CCSize& size = CCSprite::getContentSize();
+		const CCSize& size = getCCSprite()->getContentSize();
 		//_Trace("player ptime=%d, x=%f, y=%f,sw=%f,sh=%f", percent, x, y, size.width, size.height);
 		x += CAUtils::Rand() * size.width / 3 - size.width / 6;
 

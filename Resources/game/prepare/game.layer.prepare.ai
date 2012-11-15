@@ -11,6 +11,7 @@
   </state>
   <state name="running" init="">
     <transition condition="user.quit" tostate="root.onquit" />
+    <transition condition="user.quit.directly" tostate="root.onexit" />
     <transition condition="user.play" tostate="root.onplay" />
   </state>
   <state name="onexit">
