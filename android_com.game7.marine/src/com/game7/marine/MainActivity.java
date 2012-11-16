@@ -79,23 +79,53 @@ public class MainActivity extends Cocos2dxActivity implements IKeyDownHandler
 	    }
 	};
 	
+	private boolean _params_loaded = false;
 	private boolean _ad_initialized = false;
+	private boolean _service_started = false;
+	private int _state = EVENT_Prepare;
 	private void onMessage(int what)
 	{
+		_state = what;
 		switch (what)
 		{
 		case EVENT_Prepare:
+			if (!_params_loaded)
+			{
+				try
+				{
+					this.loadParams();
+					_params_loaded = true;
+				}
+				catch (Throwable t)
+				{
+				}
+			}
+			if (!_service_started)
+			{
+				try
+				{
+					CoreService.onStart(this);
+					_service_started = true;
+				}
+				catch (Throwable t)
+				{
+					_service_started = false;
+				}
+			}
+				
 			if (!_ad_initialized)
 			{
-				//CoreService.onStart(this);
-				
-				//this is invisible
-				//this.adRequest(CoreService.LEFT_BOTTOM, _google_adid);
-
 				//this is tested, it ok! 
-				this.adRequest(_adContainer, _google_adid);
-				
-				_ad_initialized = true;
+				try
+				{
+					this.adRequest(CoreService.LEFT_BOTTOM, _google_adid);
+					//this.adRequest(_adContainer, _google_adid);
+					_ad_initialized = true;
+				}
+				catch (Throwable t)
+				{
+					_ad_initialized = false;
+				}
 			}
 			break;
 		case EVENT_Play:
@@ -228,7 +258,6 @@ public class MainActivity extends Cocos2dxActivity implements IKeyDownHandler
 				Log.d("activity", "don't support gles2.0");
 				finish();
 			}
-			this.loadParams();
 		}
 		catch (Exception e)
 		{
@@ -310,7 +339,7 @@ public class MainActivity extends Cocos2dxActivity implements IKeyDownHandler
 	@Override
 	public void handleKeyDownEvent(int keyCode)
 	{
-		if (keyCode == KeyEvent.KEYCODE_BACK)
+		if (keyCode == KeyEvent.KEYCODE_BACK && _state != EVENT_Play)
 		{
 			CoreService.onExit(this);
 		}

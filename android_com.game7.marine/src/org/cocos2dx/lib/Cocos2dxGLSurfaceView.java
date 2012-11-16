@@ -158,6 +158,7 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView
 	public Cocos2dxGLSurfaceView(Context context)
 	{
 		super(context);
+		this.setId(0x900dface);
 		initView();
 	}
 

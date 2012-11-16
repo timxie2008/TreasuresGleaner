@@ -62,6 +62,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.wyh.framework.moreexchange.MoreGamesActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.PageIndicatorDefaults" >
+        </activity>
        <activity
             android:name="com.wyh.framework.ImageAdActivity"
             android:configChanges="keyboardHidden|orientation"
