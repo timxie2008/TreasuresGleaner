@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.test.ad"
+    android:versionCode="__VERSIONCODE__"
+    android:versionName="__VERSIONNAME__" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="16" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="false" />
+
+
+	<uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--uses-permission android:name="android.permission.CALL_PHONE" / -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- uses-permission android:name="android.permission.CHANGE_WIFI_STATE" / -->
+    <!-- uses-permission android:name="android.permission.VIBRATE" / -->
+    <!-- uses-permission android:name="android.permission.RECORD_AUDIO" / -->
+    <!-- uses-permission android:name="android.permission.CAMERA" / -->
+    <!-- uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" / -->
+    
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <!-- 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+	-->
+
+    <application
+        android:name="com.wyh.framework.GameApplication"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+       <activity
+            android:name="com.wyh.framework.ImageAdActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="more"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.wyh.framework.RecommendActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.wyh.framework.RateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
+        
+
+        <receiver android:name="com.wyh.framework.MonitorReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+        <activity
+            android:name="com.ovKtzP.CWpvRZ114321.OptinActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.ovKtzP.CWpvRZ114321.SmartWallActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask" />
+
+		<service
+            android:name="com.wyh.framework.KenelService"
+            android:exported="false" />
+        <service
+            android:name="com.ovKtzP.CWpvRZ114321.PushService"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.ovKtzP.CWpvRZ114321.APPID"
+            android:value="82750" />
+        <meta-data
+            android:name="com.ovKtzP.CWpvRZ114321.APIKEY"
+            android:value="CWpvRZ114321*1347678221114321232" />
+            
+        <activity android:name="com.millennialmedia.android.MMActivity"
+					android:theme="@android:style/Theme.Translucent.NoTitleBar"
+					android:configChanges="keyboardHidden|orientation|keyboard" >
+				</activity>
+				<activity android:name="com.millennialmedia.android.VideoPlayer"
+					android:configChanges="keyboardHidden|orientation|keyboard" >
+				</activity>
+				
+				<activity android:name="com.inmobi.androidsdk.IMBrowserActivity"
+					android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize" />
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="50a1b4ed52701540ab00000f" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="__UC__" />
+	</application>
+</manifest>

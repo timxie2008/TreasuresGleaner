@@ -1,0 +1,1077 @@
+Buildfile: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\build.xml
+
+-set-mode-check:
+
+-set-release-mode:
+
+-release-obfuscation-check:
+     [echo] proguard.config is G:\_projects\android-sdks/tools/proguard/proguard-android.txt:proguard.cfg
+     [echo] Proguard.config is enabled
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 20.0.3
+ [checkenv] Installed at G:\_projects\android-sdks
+
+-setup:
+     [echo] Project Name: com.game7.marine
+  [gettype] Project Type: Application
+
+-build-setup:
+     [echo] Resolving Build Target for com.game7.marine...
+[gettarget] Project Target:   Android 4.1.2
+[gettarget] API level:        16
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin
+    [mkdir] Created dir: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res
+    [mkdir] Created dir: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\classes
+     [echo] ----------
+     [echo] Resolving Dependencies for com.game7.marine...
+[dependency] Library dependencies:
+[dependency] No Libraries
+[dependency] 
+[dependency] ------------------
+[dependency] API<=15: Adding annotations.jar to the classpath.
+     [echo] ----------
+     [echo] Building Libraries with 'release'...
+   [subant] No sub-builds to iterate on
+
+-pre-build:
+
+-code-gen:
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] No AIDL files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+[renderscript] No RenderScript files to compile.
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found Deleted Target File
+     [aapt] Generating resource IDs...
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] Generating BuildConfig class.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 18 source files to G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\classes
+    [javac] 注: 某些输入文件使用或覆盖了已过时的 API。
+    [javac] 注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+
+-post-compile:
+
+-obfuscate:
+    [mkdir] Created dir: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\proguard
+      [jar] Building jar: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\proguard\original.jar
+ [proguard] ProGuard, version 4.7
+ [proguard] Reading input...
+ [proguard] Reading program jar [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\proguard\original.jar]
+ [proguard] Reading program jar [G:\_projects\android-sdks\tools\support\annotations.jar]
+ [proguard] Reading program jar [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\libs\com-ovKtzP-CWpvRZ114321.jar]
+ [proguard] Reading program jar [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\libs\framework_android_sdk-1.0.jar]
+ [proguard] Reading library jar [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\libs\framework_android_sdk-1.0.jar]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.BaseActivity]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.a]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.b]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.c]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.d]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.e]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.f]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.g]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.h]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.i]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.j]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.k]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.l]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.m]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.CoreService]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.DEBUG]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.o]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.n]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.EmbeddedMoreActivity]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.p]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.GameApplication]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.q]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.s]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.u]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.t]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.r]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.ImageAdActivity]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.KenelService]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.MonitorReceiver]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.v]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.RateActivity]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.w]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.x]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.y]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.z]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.RecommendActivity]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.a.a]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.a.b]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.a.c]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.a.d]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.a.a.a]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.a.a.b]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.a.a.c]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.a.a.d]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.a.a.e]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.GameListFragment]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.a]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.MoreGamesActivity]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.b]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.c]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.d]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.e]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.f]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.TabPageIndicator]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.a.b]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.a.a]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.b.a]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.b.c]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.b.b]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.moreexchange.c.a]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.ui.AsyncImageView$1]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.ui.AsyncImageView$ImageLoalder]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.ui.AsyncImageView$Result]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.ui.AsyncImageView]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.ui.FloatImageView$1]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.ui.FloatImageView$ImageLoalder]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.ui.FloatImageView]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.ui.OnCancelListener]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.ui.OnExitListener]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.b.a]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.b.b]
+ [proguard] Note: duplicate definition of library class [com.wyh.framework.b.c]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.inmobi.InMobiAdapter$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.inmobi.InMobiAdapter$BannerListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.inmobi.InMobiAdapter$InterstitialListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.inmobi.InMobiAdapter]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.inmobi.InMobiAdapterExtras$Education]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.inmobi.InMobiAdapterExtras$Ethnicity]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.inmobi.InMobiAdapterExtras]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.inmobi.InMobiAdapterServerParameters]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapter$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapter$BannerListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapter$InterstitialListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapter]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapterExtras$AdLocation]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapterExtras$Education]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapterExtras$Ethnicity]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapterExtras$InterstitialTime]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapterExtras$MaritalStatus]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapterExtras$Orientation]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapterExtras$Politics]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapterExtras]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.millennial.MillennialAdapterServerParameters]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdCache$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdCache$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdCache$3]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdCache$4]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdCache$AdCacheTaskListener]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdCache$Iterator]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdCache]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdCacheThreadPool$AdCacheTask]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdCacheThreadPool]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayActivity$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayActivity]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$10]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$11]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$12]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$3]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$4]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$5]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$6]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$7]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$8]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$9]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$BottomBarDrawable]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$CloseDrawable]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$CloseTopDrawable]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$NonConfigurationInstance]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$OverlayJSInterface$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$OverlayJSInterface$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$OverlayJSInterface]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$OverlayWebViewClient]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView$SetCloseButtonTouchDelegateRunnable]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.AdViewOverlayView]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.Base64]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.BasicMMAdListener]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.BuildConfig]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.CachedAd$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.CachedAd]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HandShake$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HandShake$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HandShake$3]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HandShake$AdTypeHandShake]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HandShake$Scheme]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HandShake]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HttpGetRequest$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HttpGetRequest$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HttpGetRequest]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HttpRedirection$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HttpRedirection$Listener]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.HttpRedirection]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.InterstitialAd$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.InterstitialAd]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMActivity]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$3]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$4]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$5]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$6]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$7]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$8]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$MMAdListener]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$Request]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView$RequestListener]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdView]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewController$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewController$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewController$3]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewController$4]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewController$5]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewController$MMJSInterface$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewController$MMJSInterface]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewController]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewSDK$Event$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewSDK$Event$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewSDK$Event$3]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewSDK$Event$4]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewSDK$Event$5]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewSDK$Event$6]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewSDK$Event$7]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewSDK$Event]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewSDK$Log]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMAdViewSDK]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMBannerAdView]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMBaseActivity]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMBroadcastReceiver]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMCache$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMCache]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMCommand$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMCommand]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMConversionTracker$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMConversionTracker]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMDemographic]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMDevice]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMError]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMFileManager]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMInterstitial]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMInterstitialAd]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMJSObject]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMJSResponse]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMMedia$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMMedia$Audio$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMMedia$Audio$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMMedia$Audio$OnLoadCompleteListener$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMMedia$Audio$OnLoadCompleteListener]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMMedia$Audio]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMMedia$PickerActivity]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMMedia]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMNotification$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMNotification]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.MMWebViewClient]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.OverlaySettings$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.OverlaySettings]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.PreCacheWorker]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.R$attr]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.R$styleable]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.R]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoAd$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoAd$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoAd]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoImage$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoImage]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoLogEvent$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoLogEvent]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayer]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$10]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$11]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$12]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$13]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$14]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$15]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$16]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$17]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$18]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$2$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$3]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$4]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$5]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$6]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$7]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$8]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$9]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$DelayedAnimationListener]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$ScreenReceiver]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$VideoHackBgListener]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity$VideoServer]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoPlayerActivity]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoView$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoView$2]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoView$3]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoView$4]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoView$5$1]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoView$5]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoView$6]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoView$7]
+ [proguard] Note: duplicate definition of library class [com.millennialmedia.android.VideoView]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.IMCommonUtil$LOG_LEVEL]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.IMCommonUtil]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.Base64$a]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.Base64$b]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.Base64$c]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.Base64]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.IMFileOperations]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.IMLocationMonitor]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.IMLog$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.IMLog$INTERNAL_LOG_LEVEL]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.IMLog]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.IMMemoryStatus]
+ [proguard] Note: duplicate definition of library class [com.inmobi.commons.internal.InternalSDKUtil]
+ [proguard] Note: duplicate definition of library class [com.pad.android.xappad.AdWakeLock]
+ [proguard] Note: duplicate definition of library class [com.pad.android.xappad.AdTask]
+ [proguard] Note: duplicate definition of library class [com.pad.android.xappad.AdNotification]
+ [proguard] Note: duplicate definition of library class [com.pad.android.xappad.AdReminderNotification]
+ [proguard] Note: duplicate definition of library class [com.pad.android.xappad.AdController$1]
+ [proguard] Note: duplicate definition of library class [com.pad.android.xappad.AdController$2]
+ [proguard] Note: duplicate definition of library class [com.pad.android.xappad.AdController$AdIcon]
+ [proguard] Note: duplicate definition of library class [com.pad.android.xappad.AdController]
+ [proguard] Note: duplicate definition of library class [com.pad.android.listener.AdNotificationListener]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMCustomView$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMCustomView$SwitchIconType]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMCustomView]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$2]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$3]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$4]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$5]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$6]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$7]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$8]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$9]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$10]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$11$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$11$2]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$11]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$12]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$13]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$14]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$15]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$16]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$IMWebViewListener]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$ViewState]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView$a]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWebView]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.container.IMWrapperFunctions]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSAssetController]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSController$Dimensions$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSController$Dimensions]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSController$ExpandProperties$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSController$ExpandProperties]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSController$PlayerProperties$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSController$PlayerProperties]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSController$Properties$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSController$Properties]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSController$ReflectedParcelable]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSController]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSDisplayController]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSUtilityController$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSUtilityController$2]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.JSUtilityController]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMAVPlayer$1$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMAVPlayer$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMAVPlayer$2]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMAVPlayer$3]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMAVPlayer$a]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMAVPlayer$playerState]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMAVPlayer]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMAVPlayerListener]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMConfigException]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMConstants]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMNavigationStringEnum]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMSDKUtil]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.ai.controller.util.IMTransitionStringEnum]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdInterstitial$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdInterstitial$2]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdInterstitial$3]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdInterstitial$4]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdInterstitial$a]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdInterstitial$State]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdInterstitial]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdInterstitialListener]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdListener]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdRequest$EducationType]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdRequest$ErrorCode]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdRequest$EthnicityType]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdRequest$GenderType]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdRequest$IMIDType]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdRequest]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdView$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdView$2]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdView$3]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdView$4]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdView$5]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdView$6]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdView$a]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdView$AnimationType]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMAdView]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.a]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMBrowserActivity$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMBrowserActivity$2]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMBrowserActivity$3]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMBrowserActivity$4]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMBrowserActivity$5]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMBrowserActivity$6]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.IMBrowserActivity]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.anim.IMRotate3dAnimation]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.anim.IMRotate3dAnimationVert]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.anim.IMTranslateAnimation]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMAdException]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMAdUnit$AdActionNames]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMAdUnit$AdTypes]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMAdUnit]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMClickProcessingTask]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMConfigConstants]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMNiceInfo$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMNiceInfo$2]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMNiceInfo$a]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMNiceInfo]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMUserInfo]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.IMXMLParser]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.net.IMHttpRequestBuilder]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.net.IMHttpRequestCallback]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.net.IMRequestResponseManager$1]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.net.IMRequestResponseManager$ActionType]
+ [proguard] Note: duplicate definition of library class [com.inmobi.androidsdk.impl.net.IMRequestResponseManager]
+ [proguard] Note: duplicate definition of library class [com.umeng.analytics.Gender]
+ [proguard] Note: duplicate definition of library class [com.umeng.analytics.MobclickAgent$1]
+ [proguard] Note: duplicate definition of library class [com.umeng.analytics.MobclickAgent$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.analytics.MobclickAgent$b]
+ [proguard] Note: duplicate definition of library class [com.umeng.analytics.MobclickAgent]
+ [proguard] Note: duplicate definition of library class [com.umeng.analytics.ReportPolicy]
+ [proguard] Note: duplicate definition of library class [com.umeng.analytics.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.analytics.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.analytics.UmengOnlineConfigureListener]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.Log]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.c]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.a$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.a$b]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.c$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.c$b]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.c]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.d]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.DownloadingService$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.DownloadingService$b]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.DownloadingService]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.e]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.f$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.f$b]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.f]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.g]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.h$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.h]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.i$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.i$b]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.i$c]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.i]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.j]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.k]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.net.l]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.a.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.a.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.b.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.b.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.b.c]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.b.d]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.b.e]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.b.f]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.b.g]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.b.h]
+ [proguard] Note: duplicate definition of library class [com.umeng.common.b.i]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.a$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.a$b]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.b$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.NotificationType]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.c]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.d]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.e]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.UMFeedbackService]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.f]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.g]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.a.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.a.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.a.c]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.a.d]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.a.e]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.a.f]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.b.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.b.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.b.c]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.b.d]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.b.e]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.FeedbackConversation$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.FeedbackConversation]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.b$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.c]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.FeedbackConversations$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.FeedbackConversations]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.d$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.d]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.e]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.SendFeedback$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.SendFeedback$b]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.SendFeedback]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.ui.ThreadView]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.util.ActivityStarter]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.util.FeedBackListener]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.util.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.util.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.fb.util.c]
+ [proguard] Note: duplicate definition of library class [com.umeng.update.UmengDownloadListener]
+ [proguard] Note: duplicate definition of library class [com.umeng.update.a]
+ [proguard] Note: duplicate definition of library class [com.umeng.update.b]
+ [proguard] Note: duplicate definition of library class [com.umeng.update.c]
+ [proguard] Note: duplicate definition of library class [com.umeng.update.UmengUpdateAgent$a]
+ [proguard] Note: duplicate definition of library class [com.umeng.update.UmengUpdateAgent$b]
+ [proguard] Note: duplicate definition of library class [com.umeng.update.UmengUpdateAgent]
+ [proguard] Note: duplicate definition of library class [com.umeng.update.UmengUpdateListener]
+ [proguard] Note: duplicate definition of library class [com.umeng.update.UpdateResponse]
+ [proguard] Note: duplicate definition of library class [com.umeng.update.UpdateStatus]
+ [proguard] Note: duplicate definition of library class [com.pad.android.listener.AdOptinListener]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdWebView$AdWebChromeClient$1]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdWebView$AdWebChromeClient$2]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdWebView$AdWebChromeClient$3]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdWebView$AdWebChromeClient]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdWebView$AdWebClient]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdWebView]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdJSInterface$1]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdJSInterface]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$1]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$2]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$3]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$4]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$5]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$6]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$7]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$8]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$9]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$OfferPolling]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$PollRequest$1]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$PollRequest]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController$Polling]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdController]
+ [proguard] Note: duplicate definition of library class [com.pad.android.iappad.AdTask]
+ [proguard] Note: duplicate definition of library class [com.pad.android.util.AdEncryption]
+ [proguard] Note: duplicate definition of library class [com.pad.android.util.AdUtilFuncs]
+ [proguard] Note: duplicate definition of library class [com.pad.android.util.AdRequest]
+ [proguard] Note: duplicate definition of library class [com.pad.android.util.AdRefValues]
+ [proguard] Note: duplicate definition of library class [com.pad.android.util.AdOptinView$1]
+ [proguard] Note: duplicate definition of library class [com.pad.android.util.AdOptinView$2]
+ [proguard] Note: duplicate definition of library class [com.pad.android.util.AdOptinView$AdOptinJSInterface]
+ [proguard] Note: duplicate definition of library class [com.pad.android.util.AdOptinView]
+ [proguard] Note: duplicate definition of library class [com.pad.android.util.AdOptinRequest]
+ [proguard] Note: duplicate definition of library class [com.pad.android.util.AdLog]
+ [proguard] Note: duplicate definition of library class [com.pad.android.listener.AdListener]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.ab]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.z]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.c]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.r]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.i]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.Fragment]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.o]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.FragmentManagerState]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.a]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.FragmentState]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.e]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.x]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.q]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.ListFragment]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.FragmentActivity]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.BackStackState]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.j]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.aa]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.k]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.w]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.s]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.DialogFragment]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.n]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.h]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.v]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.Fragment$SavedState]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.t]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.m]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.d]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.f]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.g]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.u]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.b]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.l]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.y]
+ [proguard] Note: duplicate definition of library class [android.support.v4.app.p]
+ [proguard] Note: duplicate definition of library class [android.support.v4.a.a]
+ [proguard] Note: duplicate definition of library class [android.support.v4.a.b]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.q]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.a]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.f]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.j]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ae]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ViewPager$SavedState]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.i]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.l]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.z]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ab]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.aj]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.m]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.p]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.aa]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.g]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.x]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.c]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.y]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.n]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ac]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ak]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ViewPager]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.k]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.h]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.s]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.o]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.PagerTitleStrip]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ag]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.w]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.b]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.t]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.af]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ViewPager$LayoutParams]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.r]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ah]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.v]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.u]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.d]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.al]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ai]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.e]
+ [proguard] Note: duplicate definition of library class [android.support.v4.view.ad]
+ [proguard] Note: duplicate definition of library class [android.support.v4.d.e]
+ [proguard] Note: duplicate definition of library class [android.support.v4.d.c]
+ [proguard] Note: duplicate definition of library class [android.support.v4.d.d]
+ [proguard] Note: duplicate definition of library class [android.support.v4.d.a]
+ [proguard] Note: duplicate definition of library class [android.support.v4.d.b]
+ [proguard] Note: duplicate definition of library class [android.support.v4.b.a]
+ [proguard] Note: duplicate definition of library class [android.support.v4.b.c]
+ [proguard] Note: duplicate definition of library class [android.support.v4.b.b]
+ [proguard] Note: duplicate definition of library class [android.support.v4.b.e]
+ [proguard] Note: duplicate definition of library class [android.support.v4.b.d]
+ [proguard] Note: duplicate definition of library class [android.support.v4.c.a]
+ [proguard] Note: duplicate definition of library class [android.support.v4.c.b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.Ad]
+ [proguard] Note: duplicate definition of library class [com.google.ads.AdActivity$StaticMethodWrapper]
+ [proguard] Note: duplicate definition of library class [com.google.ads.AdActivity]
+ [proguard] Note: duplicate definition of library class [com.google.ads.AdListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.AdRequest$ErrorCode]
+ [proguard] Note: duplicate definition of library class [com.google.ads.AdRequest$Gender]
+ [proguard] Note: duplicate definition of library class [com.google.ads.AdRequest]
+ [proguard] Note: duplicate definition of library class [com.google.ads.AdSize]
+ [proguard] Note: duplicate definition of library class [com.google.ads.AdView]
+ [proguard] Note: duplicate definition of library class [com.google.ads.AppEventListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.InterstitialAd]
+ [proguard] Note: duplicate definition of library class [com.google.ads.doubleclick.DfpAdView]
+ [proguard] Note: duplicate definition of library class [com.google.ads.doubleclick.DfpExtras]
+ [proguard] Note: duplicate definition of library class [com.google.ads.doubleclick.DfpInterstitialAd]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.a$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.a$2]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.a$3]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.c$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.c$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.c$b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.c$c]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.c$d]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.c$e]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.c]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.d]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.e]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.f$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.f$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.f]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.g]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.h]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.AdVideoView$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.AdVideoView]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.AdWebView$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.AdWebView]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.i]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.j$a$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.j$a$2]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.j$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.internal.j]
+ [proguard] Note: duplicate definition of library class [com.google.ads.a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.c$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.c]
+ [proguard] Note: duplicate definition of library class [com.google.ads.d]
+ [proguard] Note: duplicate definition of library class [com.google.ads.e$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.e$2]
+ [proguard] Note: duplicate definition of library class [com.google.ads.e$3]
+ [proguard] Note: duplicate definition of library class [com.google.ads.e$4]
+ [proguard] Note: duplicate definition of library class [com.google.ads.e$5]
+ [proguard] Note: duplicate definition of library class [com.google.ads.e$6]
+ [proguard] Note: duplicate definition of library class [com.google.ads.e$7]
+ [proguard] Note: duplicate definition of library class [com.google.ads.e$8]
+ [proguard] Note: duplicate definition of library class [com.google.ads.e]
+ [proguard] Note: duplicate definition of library class [com.google.ads.f]
+ [proguard] Note: duplicate definition of library class [com.google.ads.g$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.g]
+ [proguard] Note: duplicate definition of library class [com.google.ads.h$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.h$2]
+ [proguard] Note: duplicate definition of library class [com.google.ads.h]
+ [proguard] Note: duplicate definition of library class [com.google.ads.i$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.i]
+ [proguard] Note: duplicate definition of library class [com.google.ads.j]
+ [proguard] Note: duplicate definition of library class [com.google.ads.k]
+ [proguard] Note: duplicate definition of library class [com.google.ads.l$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.l]
+ [proguard] Note: duplicate definition of library class [com.google.ads.m]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.EmptyNetworkExtras]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.MediationAdRequest]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.MediationAdapter]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.MediationBannerAdapter]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.MediationBannerListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.MediationInterstitialAdapter]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.MediationInterstitialListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.MediationServerParameters$MappingException]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.MediationServerParameters$Parameter]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.MediationServerParameters]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.NetworkExtras]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.admob.AdMobAdapter$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.admob.AdMobAdapter$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.admob.AdMobAdapter$b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.admob.AdMobAdapter]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.admob.AdMobAdapterExtras]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.admob.AdMobAdapterServerParameters]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.customevent.CustomEventAdapter$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.customevent.CustomEventAdapter$b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.customevent.CustomEventAdapter]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.customevent.CustomEventBanner]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.customevent.CustomEventBannerListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.customevent.CustomEventInterstitial]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.customevent.CustomEventInterstitialListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.customevent.CustomEventListener]
+ [proguard] Note: duplicate definition of library class [com.google.ads.mediation.customevent.CustomEventServerParameters]
+ [proguard] Note: duplicate definition of library class [com.google.ads.n]
+ [proguard] Note: duplicate definition of library class [com.google.ads.o]
+ [proguard] Note: duplicate definition of library class [com.google.ads.p]
+ [proguard] Note: duplicate definition of library class [com.google.ads.q]
+ [proguard] Note: duplicate definition of library class [com.google.ads.r]
+ [proguard] Note: duplicate definition of library class [com.google.ads.s]
+ [proguard] Note: duplicate definition of library class [com.google.ads.t]
+ [proguard] Note: duplicate definition of library class [com.google.ads.u]
+ [proguard] Note: duplicate definition of library class [com.google.ads.v]
+ [proguard] Note: duplicate definition of library class [com.google.ads.w]
+ [proguard] Note: duplicate definition of library class [com.google.ads.x]
+ [proguard] Note: duplicate definition of library class [com.google.ads.y]
+ [proguard] Note: duplicate definition of library class [com.google.ads.z]
+ [proguard] Note: duplicate definition of library class [com.google.ads.aa]
+ [proguard] Note: duplicate definition of library class [com.google.ads.searchads.SearchAdRequest$BorderType]
+ [proguard] Note: duplicate definition of library class [com.google.ads.searchads.SearchAdRequest]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.a$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.b$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.b$b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.AdUtil$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.AdUtil$UserActivityReceiver]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.AdUtil]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.c$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.c$b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.c$c]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.c]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.d]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.e]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.f]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.g$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.g$a$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.g$a$2]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.g$a$3]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.g$a$4]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.g$a$5]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.g$a$6]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.g$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.g$b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.g]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.h$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.h]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.i$1]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.i$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.i$b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.i$c]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.i$d]
+ [proguard] Note: duplicate definition of library class [com.google.ads.util.i]
+ [proguard] Note: duplicate definition of library class [com.google.ads.ab]
+ [proguard] Note: duplicate definition of library class [com.google.ads.ac]
+ [proguard] Note: duplicate definition of library class [com.google.ads.ae]
+ [proguard] Note: duplicate definition of library class [com.google.ads.af$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.af$b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.af$c]
+ [proguard] Note: duplicate definition of library class [com.google.ads.af]
+ [proguard] Note: duplicate definition of library class [com.google.ads.ag]
+ [proguard] Note: duplicate definition of library class [com.google.ads.ah$a]
+ [proguard] Note: duplicate definition of library class [com.google.ads.ah$b]
+ [proguard] Note: duplicate definition of library class [com.google.ads.ah$c]
+ [proguard] Note: duplicate definition of library class [com.google.ads.ah]
+ [proguard] Reading library jar [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\libs\com-ovKtzP-CWpvRZ114321.jar]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.BugSenseHandler]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.BugSenseHandler$2]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.BugSense$2]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.ActivityAsyncTask]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.BugSenseHandler$4]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.BugSenseHandler$Processor]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.BugSense]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.BugSense$Processor]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.DefaultExceptionHandler]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.BugSenseHandler$3]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.BugSenseHandler$1]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.G]
+ [proguard] Note: duplicate definition of library class [com.bugsense.trace.BugSense$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Airpush$3]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.HttpPostDataTask]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.FormatAds]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.IconAds$2]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Airpush$2]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.DialogAd$2]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.PushService$2]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.DialogAd$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.OptinActivity$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.PushService$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Extras]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.IconAds$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.IconAds]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.IconAds$3]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.SmartWallActivity$AirpushWebClient]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.AsyncTaskCompleteListener]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.ImageTask]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.PushNotification$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.BootReceiver]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Base64]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Airpush$8]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.DeliverNotification]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Airpush$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Airpush]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.OptinActivity$OptinDialog]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.SmartWallActivity]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.HttpPostDataTask$2]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.PushService]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Airpush$4]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.SmartWallActivity$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.UserDetails$DeviceUuidFactory]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Airpush$7]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.SetPreferences]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.BootReceiver$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.BuildConfig]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.DeliverNotification$2]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.PushNotification]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.SDKIntializer]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.HttpPostDataTask$InflatingEntity]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.UserDetails]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.HttpPostDataTask$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Airpush$6]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.UserDetails$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.OptinActivity$MyWebViewClient]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.HandleClicks]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.SetPreferences$1$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.DeliverNotification$3]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.OptinActivity]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Util$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Util]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.OptinActivity$OptinDialog$2]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.IConstants]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.OptinActivity$OptinDialog$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.Airpush$5]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.SetPreferences$1]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.DialogAd]
+ [proguard] Note: duplicate definition of library class [com.ovKtzP.CWpvRZ114321.DeliverNotification$1]
+ [proguard] Reading library jar [G:\_projects\android-sdks\platforms\android-16\android.jar]
+ [proguard] Note: duplicate definition of library class [android.annotation.TargetApi]
+ [proguard] Note: duplicate definition of library class [android.annotation.SuppressLint]
+ [proguard] Note: there were 836 duplicate class definitions.
+ [proguard] Initializing...
+ [proguard] Note: com.google.ads.AdRequest: can't find dynamically referenced class com.google.analytics.tracking.android.AdMobInfo
+ [proguard] Note: com.ovKtzP.CWpvRZ114321.DeliverNotification: can't find dynamically referenced class com.android.internal.R$id
+ [proguard] Note: com.ovKtzP.CWpvRZ114321.DeliverNotification: can't find dynamically referenced class com.android.internal.R$id
+ [proguard] Note: com.ovKtzP.CWpvRZ114321.UserDetails: can't find dynamically referenced class android.os.SystemProperties
+ [proguard] Note: com.wyh.framework.ui.FloatImageView: can't find dynamically referenced class com.android.internal.R$dimen
+ [proguard] Note: the configuration refers to the unknown class 'com.google.vending.licensing.ILicensingService'
+ [proguard] Note: the configuration refers to the unknown class 'com.android.vending.licensing.ILicensingService'
+ [proguard] Note: the configuration refers to the unknown class 'com.android.vending.licensing.ILicensingService'
+ [proguard] Note: the configuration keeps the entry point 'com.game7.core.GameEnvHandler { void intialize(android.content.Context,com.game7.core.GameEnvHandler$GameEventListener); }', but not the descriptor class 'com.game7.core.GameEnvHandler$GameEventListener'
+ [proguard] Note: there were 3 references to unknown classes.
+ [proguard]       You should check your configuration for typos.
+ [proguard] Note: there were 1 unkept descriptor classes in kept class members.
+ [proguard]       You should consider explicitly keeping the mentioned classes
+ [proguard]       (using '-keep').
+ [proguard] Note: there were 5 unresolved dynamic references to classes or interfaces.
+ [proguard]       You should check if you need to specify additional program jars.
+ [proguard] Ignoring unused library classes...
+ [proguard]   Original number of library classes: 3215
+ [proguard]   Final number of library classes:    871
+ [proguard] Printing kept classes, fields, and methods...
+ [proguard] Shrinking...
+ [proguard] Printing usage to [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\proguard\usage.txt]...
+ [proguard] Removing unused program classes and class elements...
+ [proguard]   Original number of program classes: 886
+ [proguard]   Final number of program classes:    879
+ [proguard] Obfuscating...
+ [proguard] Printing mapping to [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\proguard\mapping.txt]...
+ [proguard] Writing output...
+ [proguard] Preparing output jar [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\proguard\obfuscated.jar]
+ [proguard]   Copying resources from program jar [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\proguard\original.jar]
+ [proguard]   Copying resources from program jar [G:\_projects\android-sdks\tools\support\annotations.jar]
+ [proguard] Warning: can't write resource [META-INF/MANIFEST.MF] (Duplicate zip entry [annotations.jar:META-INF/MANIFEST.MF])
+ [proguard]   Copying resources from program jar [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\libs\com-ovKtzP-CWpvRZ114321.jar]
+ [proguard] Warning: can't write resource [META-INF/MANIFEST.MF] (Duplicate zip entry [com-ovKtzP-CWpvRZ114321.jar:META-INF/MANIFEST.MF])
+ [proguard]   Copying resources from program jar [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\libs\framework_android_sdk-1.0.jar]
+ [proguard] Warning: can't write resource [META-INF/MANIFEST.MF] (Duplicate zip entry [framework_android_sdk-1.0.jar:META-INF/MANIFEST.MF])
+ [proguard] Printing classes to [G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\proguard\dump.txt]...
+
+-dex:
+      [dex] Converting compiled files and external libraries into G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\classes.dex...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res
+   [crunch] To destination dir: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_cancel.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_cancel.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_cancel.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_cancel_on.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_cancel_on.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_cancel_on.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_more.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_more.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_more.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_more_on.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_more_on.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_more_on.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_rate_cancel.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_cancel.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_cancel.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_rate_cancel_on.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_cancel_on.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_cancel_on.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_rate_rate.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_rate.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_rate.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_rate_rate_on.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_rate_on.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_rate_on.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_rate_share.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_share.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_share.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_rate_share_on.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_share_on.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_rate_share_on.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_recommend_cancel_default.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_recommend_cancel_default.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_recommend_cancel_default.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_recommend_cancel_pressed.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_recommend_cancel_pressed.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_recommend_cancel_pressed.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_recommend_download_default.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_recommend_download_default.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_recommend_download_default.png: 73% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_recommend_download_pressed.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_recommend_download_pressed.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_recommend_download_pressed.png: 81% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_yes.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_yes.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_yes.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_btn_yes_on.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_yes_on.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_btn_yes_on.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_more_arrow.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_more_arrow.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_more_arrow.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_more_background.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_more_background.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_more_background.png: 73% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_more_default.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_more_default.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_more_default.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_more_free.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_more_free.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_more_free.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_more_title.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_more_title.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_more_title.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_rate_share_background.9.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_rate_share_background.9.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_rate_share_background.9.png: 55% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\common_recommend_background.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_recommend_background.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\common_recommend_background.png: 68% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\ic_launcher.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\ic_launcher.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\ic_launcher.png: 87% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\icon.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\icon.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\icon.png: 67% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\vpi__tab_selected_focused_holo.9.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_selected_focused_holo.9.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_selected_focused_holo.9.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\vpi__tab_selected_holo.9.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_selected_holo.9.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_selected_holo.9.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\vpi__tab_selected_pressed_holo.9.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_selected_pressed_holo.9.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_selected_pressed_holo.9.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\vpi__tab_unselected_focused_holo.9.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_unselected_focused_holo.9.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_unselected_focused_holo.9.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\vpi__tab_unselected_holo.9.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_unselected_holo.9.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_unselected_holo.9.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-hdpi\vpi__tab_unselected_pressed_holo.9.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_unselected_pressed_holo.9.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-hdpi\vpi__tab_unselected_pressed_holo.9.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-land\banner_ad_dialog_bg.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-land\banner_ad_dialog_bg.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-land\banner_ad_dialog_bg.png: 83% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-land\banner_ad_item_bg.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-land\banner_ad_item_bg.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-land\banner_ad_item_bg.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-ldpi\icon.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-ldpi\icon.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-ldpi\icon.png: 59% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-mdpi\ic_launcher.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-mdpi\ic_launcher.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-mdpi\ic_launcher.png: 78% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-mdpi\icon.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-mdpi\icon.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-mdpi\icon.png: 41% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable-xhdpi\icon.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-xhdpi\icon.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable-xhdpi\icon.png: 89% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable\banner_ad_dialog_bg.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\banner_ad_dialog_bg.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\banner_ad_dialog_bg.png: 87% size of source)
+   [crunch] ERROR: 9-patch image G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable\msgp2.9.png malformed.
+   [crunch]        No marked region found along edge.
+   [crunch]        Found along top edge.
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable\banner_ad_item_bg.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\banner_ad_item_bg.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\banner_ad_item_bg.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable\msg.9.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\msg.9.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\msg.9.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable\msgp1.9.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\msgp1.9.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\msgp1.9.png: 0% size of source)
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable\msgp2.9.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\msgp2.9.png
+   [crunch] Processing image to cache: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\res\drawable\push_icon.png => G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\push_icon.png
+   [crunch]   (processed image to cache entry G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\res\drawable\push_icon.png: 78% size of source)
+   [crunch] Crunched 43 PNG files to update cache
+
+-package-resources:
+     [aapt] Creating full resource package...
+
+-package:
+[apkbuilder] Current build type is different than previous build: forced apkbuilder run.
+[apkbuilder] Creating com.game7.marine-release-unsigned.apk for release...
+
+-post-package:
+
+-release-prompt-for-password:
+
+-release-nosign:
+
+-release-sign:
+     [echo] Signing final apk...
+ [zipalign] Running zip align on final apk...
+     [echo] Release Package: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\com.game7.marine-release.apk
+[propertyfile] Creating new property file: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\build.prop
+[propertyfile] Updating property file: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\build.prop
+[propertyfile] Updating property file: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\build.prop
+[propertyfile] Updating property file: G:\_projects\crazy.amber\TreasuresGleaner\android.com.game7.marine\bin\build.prop
+
+-post-build:
+
+release:
+
+BUILD SUCCESSFUL
+Total time: 39 seconds

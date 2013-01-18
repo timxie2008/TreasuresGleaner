@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\libcacore\Classes;..\Classes;&quot;$(SolutionDir)cocos2d.home\cocos2dx&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\include&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\kazmath\include&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\win32&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32\iconv&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32\libxml2&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32\OGLES&quot;;&quot;$(SolutionDir)cocos2d.home\&quot;;&quot;$(SolutionDir)cocos2d.home\chipmunk\include\chipmunk&quot;;&quot;$(SolutionDir)cocos2d.home\CocosDenshion\include&quot;"
+				AdditionalIncludeDirectories="..\..\libcacore\Classes;..\Classes;&quot;$(SolutionDir)cocos2d.home\cocos2dx&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\include&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\kazmath\include&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\win32&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32\zlib&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32\iconv&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32\libxml2&quot;;&quot;$(SolutionDir)cocos2d.home\cocos2dx\platform\third_party\win32\OGLES&quot;;&quot;$(SolutionDir)cocos2d.home\&quot;;&quot;$(SolutionDir)cocos2d.home\chipmunk\include\chipmunk&quot;;&quot;$(SolutionDir)cocos2d.home\CocosDenshion\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;COCOS2D_DEBUG=2;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -723,18 +723,6 @@
 				<Filter
 					Name="src"
 					>
-					<File
-						RelativePath="..\android\jni\game_frame.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							ExcludedFromBuild="true"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
-					</File>
 				</Filter>
 			</Filter>
 		</Filter>
